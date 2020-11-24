@@ -1,0 +1,82 @@
+﻿@model WebApplication.DataAccess.CariEhliyet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CariEhliyet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CariEhliyet_VerilisTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CariEhliyet_VerilisTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CariEhliyet_GecerlilikTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CariEhliyet_GecerlilikTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CariEhliyet_VerildigiYer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CariEhliyet_VerildigiYer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CariEhliyet_DogumYeri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CariEhliyet_DogumYeri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CariEhliyet_EhliyetNumarasi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CariEhliyet_EhliyetNumarasi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EhliyetSinif_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EhliyetSinif_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KanGrubu_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KanGrubu_ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CariEhliyet_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

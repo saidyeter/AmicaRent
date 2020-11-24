@@ -1,0 +1,50 @@
+﻿@model WebApplication.DataAccess.EkstraHizmetler
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EkstraHizmetler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_Ucreti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_Ucreti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EkstraHizmetler_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

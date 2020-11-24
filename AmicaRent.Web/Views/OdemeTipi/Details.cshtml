@@ -1,0 +1,42 @@
+﻿@model WebApplication.DataAccess.OdemeTipi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OdemeTipi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OdemeTipi_Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OdemeTipi_Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OdemeTipi_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OdemeTipi_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OdemeTipi_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OdemeTipi_CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OdemeTipi_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

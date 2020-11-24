@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication.DataAccess.AracGrup>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AracGrup_Adi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AracGrup_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AracGrup_CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AracGrup_Adi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AracGrup_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AracGrup_CreateDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AracGrup_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AracGrup_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AracGrup_ID })
+        </td>
+    </tr>
+}
+
+</table>

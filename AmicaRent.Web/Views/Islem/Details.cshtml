@@ -1,0 +1,194 @@
+﻿@model WebApplication.DataAccess.Islem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Islem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_Tipi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_Tipi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Arac_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arac_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_BaslangicTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_BaslangicTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_BitisTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_BitisTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_IlkKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_IlkKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_SonKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_SonKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_YakitDurumu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_YakitDurumu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_TeslimatLokasyonID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_TeslimatLokasyonID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_IadeLokasyonID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_IadeLokasyonID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_GunlukUcret)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_GunlukUcret)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_GunlukKMSiniri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_GunlukKMSiniri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_ToplamKiralamaUcreti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_ToplamKiralamaUcreti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_ToplamKMAsimUcreti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_ToplamKMAsimUcreti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_ToplamEkstraHizmetler)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_ToplamEkstraHizmetler)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_ToplamValeHizmetleri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_ToplamValeHizmetleri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_ToplamDigerUcretler)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_ToplamDigerUcretler)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_IskontoOrani)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_IskontoOrani)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_TahsilEdilen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_TahsilEdilen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_KalanBorc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_KalanBorc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Islem_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

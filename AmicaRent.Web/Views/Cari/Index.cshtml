@@ -1,0 +1,129 @@
+﻿@model IEnumerable<WebApplication.DataAccess.Cari>
+
+@{
+    ViewBag.Title = "Cari Kayıtlar";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cari Kayıtlar</h3>
+            </div>
+            <div class="box-body">
+                <table id="cariTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Ad Soyad</th>
+                            <th>Uyruk</th>
+                            <th>TCKN</th>
+                            <th>Cinsiyet</th>
+                            <th>Doğum Tarihi</th>
+                            <th>Eposta Adresi</th>
+                            <th>Adres1</th>
+                            <th>Adres2</th>
+                            <th>Şehir</th>
+                            <th>Mobil Telefon</th>
+                            <th>LokalTelefon</th>
+                            <th>Oluşturulma Tarihi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_AdSoyad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_UyrukID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_IDNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_Cinsiyet)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_DogumTarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_EpostaAdresi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_Adres1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_Adres2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CariSehir_ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_MobilTelefon)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_LokalTelefon)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cari_CreateDate)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Cari_ID }) |
+                                    @Html.ActionLink("Detaylar", "Details", new { id = item.Cari_ID }) |
+                                    @Html.ActionLink("Sil", "Delete", new { id = item.Cari_ID })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Ad Soyad</th>
+                            <th>Uyruk</th>
+                            <th>TCKN</th>
+                            <th>Cinsiyet</th>
+                            <th>Doğum Tarihi</th>
+                            <th>Eposta Adresi</th>
+                            <th>Adres1</th>
+                            <th>Adres2</th>
+                            <th>Şehir</th>
+                            <th>Mobil Telefon</th>
+                            <th>LokalTelefon</th>
+                            <th>Oluşturulma Tarihi</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/AdminLTE/plugins/datatables/js")
+}
+
+
+@*$(function () {
+        $('#example1').DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            var menuItem = document.querySelector('#cariTable');
+            menuItem.classList.add('active');
+            var subMenuItem = menuItem.querySelector('#left-sidebar-menu-car-Arac');
+            subMenuItem.classList.add('active');
+        });
+    </script>*@

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApplication.DataAccess.EkstraHizmetler>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_Adi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_Ucreti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EkstraHizmetler_Adi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EkstraHizmetler_Ucreti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EkstraHizmetler_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EkstraHizmetler_CreateDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EkstraHizmetler_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EkstraHizmetler_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EkstraHizmetler_ID })
+        </td>
+    </tr>
+}
+
+</table>

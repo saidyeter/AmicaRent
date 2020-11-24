@@ -1,0 +1,56 @@
+﻿@model WebApplication.DataAccess.EkstraHizmetler
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EkstraHizmetler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_Ucreti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_Ucreti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_CreateDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

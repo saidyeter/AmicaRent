@@ -1,0 +1,90 @@
+﻿@model WebApplication.DataAccess.ServisFirma
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ServisFirma</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_Adres1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_Adres1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_Adres2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_Adres2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_Tel1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_Tel1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_Tel2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_Tel2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_Yetkili)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_Yetkili)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ServisFirma_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

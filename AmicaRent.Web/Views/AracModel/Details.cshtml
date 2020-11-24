@@ -1,0 +1,50 @@
+﻿@model WebApplication.DataAccess.AracModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AracModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AracMarka_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AracMarka_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AracModel_Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AracModel_Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AracModel_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AracModel_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AracModel_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AracModel_CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AracModel_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

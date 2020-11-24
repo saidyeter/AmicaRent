@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebApplication.DataAccess.CariEhliyet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cari_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CariEhliyet_VerilisTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CariEhliyet_GecerlilikTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CariEhliyet_VerildigiYer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CariEhliyet_DogumYeri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CariEhliyet_EhliyetNumarasi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EhliyetSinif_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KanGrubu_ID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cari_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CariEhliyet_VerilisTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CariEhliyet_GecerlilikTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CariEhliyet_VerildigiYer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CariEhliyet_DogumYeri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CariEhliyet_EhliyetNumarasi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EhliyetSinif_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KanGrubu_ID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CariEhliyet_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CariEhliyet_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CariEhliyet_ID })
+        </td>
+    </tr>
+}
+
+</table>

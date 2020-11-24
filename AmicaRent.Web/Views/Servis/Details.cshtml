@@ -1,0 +1,66 @@
+﻿@model WebApplication.DataAccess.Servis
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Servis</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Arac_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arac_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servis_ServisZamani)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servis_ServisZamani)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServisFirma_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServisFirma_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servis_Notlar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servis_Notlar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servis_Ucreti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servis_Ucreti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servis_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servis_CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Servis_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

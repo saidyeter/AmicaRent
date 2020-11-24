@@ -1,0 +1,42 @@
+﻿@model WebApplication.DataAccess.IslemEkstraHizmetler
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IslemEkstraHizmetler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IslemEkstraHizmetler_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IslemEkstraHizmetler_CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IslemEkstraHizmetler_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

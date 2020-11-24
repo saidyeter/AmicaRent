@@ -1,0 +1,48 @@
+﻿@model WebApplication.DataAccess.IslemEkstraHizmetler
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>IslemEkstraHizmetler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EkstraHizmetler_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EkstraHizmetler_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IslemEkstraHizmetler_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IslemEkstraHizmetler_CreateDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

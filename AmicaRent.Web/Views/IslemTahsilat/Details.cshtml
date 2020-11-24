@@ -1,0 +1,66 @@
+﻿@model WebApplication.DataAccess.IslemTahsilat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IslemTahsilat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Islem_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Islem_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IslemTahsilat_Tarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IslemTahsilat_Tarih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IslemTahsilat_Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IslemTahsilat_Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OdemeTipi_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OdemeTipi_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IslemTahsilat_Tutar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IslemTahsilat_Tutar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IslemTahsilat_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IslemTahsilat_CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IslemTahsilat_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

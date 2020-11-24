@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication.DataAccess.CariSehir>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CariSehir_Adi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CariSehir_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CariSehir_CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CariSehir_Adi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CariSehir_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CariSehir_CreateDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CariSehir_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CariSehir_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CariSehir_ID })
+        </td>
+    </tr>
+}
+
+</table>

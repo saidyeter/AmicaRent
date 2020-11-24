@@ -1,0 +1,114 @@
+﻿@model WebApplication.DataAccess.Cari
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cari</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_AdSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_AdSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_UyrukID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_UyrukID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_IDNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_IDNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_Cinsiyet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_Cinsiyet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_DogumTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_DogumTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_EpostaAdresi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_EpostaAdresi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_Adres1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_Adres1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_Adres2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_Adres2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CariSehir_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CariSehir_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_MobilTelefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_MobilTelefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_LokalTelefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_LokalTelefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cari_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cari_CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cari_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
