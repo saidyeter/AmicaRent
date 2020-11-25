@@ -27,7 +27,7 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.AracGrup_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracGrup_ID, "Araç Grup", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(model => model.AracGrup_ID, new SelectList(aracGrupList, "AracGrup_ID", "AracGrup_Adi"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.AracGrup_ID, "", new { @class = "text-danger" })
@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracMarka_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracMarka_ID,"Araç Marka", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(model => model.AracMarka_ID, new SelectList(aracMarkaList, "AracMarka_ID", "AracMarka_Adi"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.AracMarka_ID, "", new { @class = "text-danger" })
@@ -43,7 +43,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracModel_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracModel_ID,"Araç Model", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(model => model.AracModel_ID, new SelectList(aracModelList, "AracModel_ID", "AracModel_Adi"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.AracModel_ID, "", new { @class = "text-danger" })
@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Arac_Yil, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Arac_Yil, "Araç Yıl", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.Arac_Yil, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Arac_Yil, "", new { @class = "text-danger" })
@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracYakitTuru_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracYakitTuru_ID, "Araç Yakıt Türü", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(model => model.AracYakitTuru_ID, new SelectList(aracYakitTuruList, "AracYakitTuru_ID", "AracYakitTuru_Adi"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.AracYakitTuru_ID, "", new { @class = "text-danger" })
@@ -67,7 +67,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Arac_VitesTipi, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Arac_VitesTipi, "Araç Vites Tipi", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(model => model.Arac_VitesTipi, new SelectList(vitesTipi, "Key", "Value"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Arac_VitesTipi, "", new { @class = "text-danger" })
@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracKasaTipi_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracKasaTipi_ID, "Kasa Tipi", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(model => model.AracKasaTipi_ID, new SelectList(aracKasaTipiList, "AracKasaTipi_ID", "AracKasaTipi_Adi"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.AracKasaTipi_ID, "", new { @class = "text-danger" })
@@ -83,7 +83,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracKlimaDurumu, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracKlimaDurumu, "Klima Durumu", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(model => model.AracKlimaDurumu, new SelectList(aracKlimaDurumu, "Key", "Value"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.AracKlimaDurumu, "", new { @class = "text-danger" })
@@ -91,7 +91,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracPlakaNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracPlakaNo, "Plaka No", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.AracPlakaNo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.AracPlakaNo, "", new { @class = "text-danger" })
@@ -99,7 +99,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracGuncelKM, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracGuncelKM, "Güncel KM.", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.AracGuncelKM, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.AracGuncelKM, "", new { @class = "text-danger" })
@@ -107,7 +107,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracMotorNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracMotorNo, "Araç Motor No", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.AracMotorNo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.AracMotorNo, "", new { @class = "text-danger" })
@@ -115,7 +115,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracSaseNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracSaseNo,"Araç Şase No", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.AracSaseNo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.AracSaseNo, "", new { @class = "text-danger" })
@@ -123,7 +123,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracRuhsatSeriNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracRuhsatSeriNo, "Ruhsat Seri No", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.AracRuhsatSeriNo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.AracRuhsatSeriNo, "", new { @class = "text-danger" })
@@ -131,7 +131,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Arac_Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Arac_Status, "Araç Durumu", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.Arac_Status, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Arac_Status, "", new { @class = "text-danger" })
@@ -139,7 +139,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracRenk_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracRenk_ID, "Araç Renk", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(model => model.AracRenk_ID, new SelectList(aracRenkList, "AracRenk_ID", "AracRenk_Adi"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.AracRenk_ID, "", new { @class = "text-danger" })
@@ -147,7 +147,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.AracKiralamaDurumu, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracKiralamaDurumu, "Kiralama Durumu", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.DropDownListFor(model => model.AracKiralamaDurumu, new SelectList(aracKiralamaDurumu, "Key", "Value"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.AracKiralamaDurumu, "", new { @class = "text-danger" })
@@ -155,7 +155,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Arac_TrafikSigortasiBitisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Arac_TrafikSigortasiBitisTarihi, "Trf.Sig.Bit.Tar.", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.Arac_TrafikSigortasiBitisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Arac_TrafikSigortasiBitisTarihi, "", new { @class = "text-danger" })
@@ -163,7 +163,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Arac_KaskoBitisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Arac_KaskoBitisTarihi, "Kasko Bit.Tar.", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.Arac_KaskoBitisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Arac_KaskoBitisTarihi, "", new { @class = "text-danger" })
@@ -171,7 +171,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Arac_KoltukSigortasiBitisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Arac_KoltukSigortasiBitisTarihi, "Koltuk Sig.Bit.Tar.", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.Arac_KoltukSigortasiBitisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Arac_KoltukSigortasiBitisTarihi, "", new { @class = "text-danger" })
@@ -179,7 +179,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, "Fenni Myn.Gec.Tar.", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, "", new { @class = "text-danger" })

@@ -1,4 +1,4 @@
-﻿@model WebApplication.DataAccess.CariEhliyet
+﻿@model WebApplication.DataAccess.viewCariEhliyet
 
 @{
     ViewBag.Title = "Details";
@@ -11,15 +11,15 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Cari_ID)
+            Cari Adı Soyadı
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Cari_ID)
+            @Html.DisplayFor(model => model.Cari_AdSoyad)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CariEhliyet_VerilisTarihi)
+            Veriliş Tarihi
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CariEhliyet_GecerlilikTarihi)
+            Geçerlilik Tarihi
         </dt>
 
         <dd>
@@ -35,15 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CariEhliyet_VerildigiYer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CariEhliyet_VerildigiYer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CariEhliyet_DogumYeri)
+            Doğum Yeri
         </dt>
 
         <dd>
@@ -51,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CariEhliyet_EhliyetNumarasi)
+            Ehliyet Numarası
         </dt>
 
         <dd>
@@ -59,21 +51,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EhliyetSinif_ID)
+            Ehliyet Sınıfı
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EhliyetSinif_ID)
+            @Html.DisplayFor(model => model.EhliyetSinif_Adi)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.KanGrubu_ID)
+            Kan Grubu
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.KanGrubu_ID)
+            @Html.DisplayFor(model => model.KanGrubu_Adi)
         </dd>
-
     </dl>
 </div>
 <p>

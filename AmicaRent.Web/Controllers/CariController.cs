@@ -81,6 +81,20 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
+
+
+
+            List<CariUyruk> uyrukList = db.CariUyruk.ToList();
+            ViewBag.UyrukList = uyrukList;
+            List<CariSehir> sehirList = db.CariSehir.ToList();
+            ViewBag.SehirList = sehirList;
+
+            Dictionary<int, string> cinsiyet = new Dictionary<int, string>();
+            cinsiyet.Add(1, "Erkek");
+            cinsiyet.Add(2, "Kadın");
+            ViewBag.Cinsiyet = cinsiyet;
+
+
             return View(cari);
         }
 

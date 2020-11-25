@@ -17,7 +17,7 @@ namespace WebApplication.Controllers
         // GET: Servis
         public ActionResult Index()
         {
-            return View(db.Servis.ToList());
+            return View(db.viewServis.ToList());
         }
 
         // GET: Servis/Details/5
@@ -27,7 +27,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Servis servis = db.Servis.Find(id);
+            var servis = db.viewServis.SingleOrDefault(x => x.Servis_ID == id);
             if (servis == null)
             {
                 return HttpNotFound();
@@ -38,6 +38,18 @@ namespace WebApplication.Controllers
         // GET: Servis/Create
         public ActionResult Create()
         {
+
+            List<ServisFirma> servisFirmalist = db.ServisFirma.ToList();
+            ViewBag.ServisFirmalist = servisFirmalist;
+
+            Dictionary<int, string> aracList = new Dictionary<int, string>();
+            foreach (var arac in db.viewAracList.ToList())
+            {
+                aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
+            }
+            ViewBag.AracList = aracList; 
+
+
             return View();
         }
 
@@ -70,6 +82,17 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<ServisFirma> servisFirmalist = db.ServisFirma.ToList();
+            ViewBag.ServisFirmalist = servisFirmalist;
+
+            Dictionary<int, string> aracList = new Dictionary<int, string>();
+            foreach (var arac in db.viewAracList.ToList())
+            {
+                aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
+            }
+            ViewBag.AracList = aracList;
+
             return View(servis);
         }
 

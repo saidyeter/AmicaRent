@@ -1,7 +1,14 @@
-﻿@model WebApplication.DataAccess.CariEhliyet
+﻿@using WebApplication.DataAccess
+@model WebApplication.DataAccess.CariEhliyet
 
 @{
     ViewBag.Title = "Yeni Cari Ehliyet";
+    List<EhliyetSinif> ehliyetSinifList = ViewBag.EhliyetSinifList;
+
+    List<KanGrubu> kanGrubuList = ViewBag.KanGrubuList;
+
+    List<Cari> cariList = ViewBag.CariList;
+
 }
 
 
@@ -15,16 +22,16 @@
             </div>
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Cari_ID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cari_ID, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_ID, "Cari Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.Cari_ID, new SelectList(cariList, "Cari_ID", "Cari_AdSoyad"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cari_ID, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CariEhliyet_VerilisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CariEhliyet_VerilisTarihi, "Veriliş Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.CariEhliyet_VerilisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CariEhliyet_VerilisTarihi, "", new { @class = "text-danger" })
@@ -32,7 +39,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CariEhliyet_GecerlilikTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CariEhliyet_GecerlilikTarihi, "Geçerlilik Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.CariEhliyet_GecerlilikTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CariEhliyet_GecerlilikTarihi, "", new { @class = "text-danger" })
@@ -40,7 +47,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CariEhliyet_VerildigiYer, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CariEhliyet_VerildigiYer, "Verildiği Yer", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.CariEhliyet_VerildigiYer, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CariEhliyet_VerildigiYer, "", new { @class = "text-danger" })
@@ -48,7 +55,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CariEhliyet_DogumYeri, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CariEhliyet_DogumYeri, "Doğum Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.CariEhliyet_DogumYeri, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CariEhliyet_DogumYeri, "", new { @class = "text-danger" })
@@ -56,7 +63,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CariEhliyet_EhliyetNumarasi, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CariEhliyet_EhliyetNumarasi, "Ehliyet Numarası", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.CariEhliyet_EhliyetNumarasi, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CariEhliyet_EhliyetNumarasi, "", new { @class = "text-danger" })
@@ -64,17 +71,17 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.EhliyetSinif_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.EhliyetSinif_ID, "Ehliyet Sınıfı Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
-                    @Html.EditorFor(model => model.EhliyetSinif_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.EhliyetSinif_ID, new SelectList(ehliyetSinifList, "EhliyetSinif_ID", "EhliyetSinif_Adi"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.EhliyetSinif_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.KanGrubu_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.KanGrubu_ID, "Kan Grubu Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
-                    @Html.EditorFor(model => model.KanGrubu_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.KanGrubu_ID, new SelectList(kanGrubuList, "KanGrubu_ID", "KanGrubu_Adi"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.KanGrubu_ID, "", new { @class = "text-danger" })
                 </div>
             </div>

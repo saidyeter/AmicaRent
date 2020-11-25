@@ -1,4 +1,4 @@
-﻿@model WebApplication.DataAccess.Islem
+﻿@model WebApplication.DataAccess.viewIslem
 
 @{
     ViewBag.Title = "Details";
@@ -11,31 +11,35 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_Tipi)
+            İşlem Tipi
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Islem_Tipi)
+            @Html.DisplayFor(model => model.IslemTipim)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Cari_ID)
+            Cari Adı Soyadı
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Cari_ID)
+            @Html.DisplayFor(model => model.Cari_AdSoyad)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Arac_ID)
+            Araç Marka/Model
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Arac_ID)
+            @Html.DisplayFor(model => model.AracGrup_Adi) 
+            @Html.DisplayFor(model => model.AracMarka_Adi) 
+            @Html.DisplayFor(model => model.AracModel_Adi) 
+            @Html.DisplayFor(model => model.Arac_Yil) 
+
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_BaslangicTarihi)
+            Başlangıç Tarihi
         </dt>
 
         <dd>
@@ -43,7 +47,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_BitisTarihi)
+            Bitiş Tarihi
         </dt>
 
         <dd>
@@ -51,7 +55,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_IlkKM)
+            İlk KM.
         </dt>
 
         <dd>
@@ -59,7 +63,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_SonKM)
+            Son KM.
         </dt>
 
         <dd>
@@ -67,7 +71,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_YakitDurumu)
+            Yakıt Durumu
         </dt>
 
         <dd>
@@ -75,7 +79,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_TeslimatLokasyonID)
+            Teslimat Lokasyonu
         </dt>
 
         <dd>
@@ -83,7 +87,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_IadeLokasyonID)
+            İade Lokasyonu
         </dt>
 
         <dd>
@@ -91,7 +95,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_GunlukUcret)
+            Günlük Ücret
         </dt>
 
         <dd>
@@ -99,7 +103,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_GunlukKMSiniri)
+            Günlük KM. Sınırı
         </dt>
 
         <dd>
@@ -107,7 +111,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_ToplamKiralamaUcreti)
+            Toplam Kiralama Ücreti
         </dt>
 
         <dd>
@@ -115,7 +119,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_ToplamKMAsimUcreti)
+            KM.Aşım Ücreti
         </dt>
 
         <dd>
@@ -123,7 +127,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_ToplamEkstraHizmetler)
+            Toplam Ekstra Hizmetler
         </dt>
 
         <dd>
@@ -131,7 +135,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_ToplamValeHizmetleri)
+            Toplam Vale Hizmetleri
         </dt>
 
         <dd>
@@ -139,7 +143,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_ToplamDigerUcretler)
+            Diğer Ücretler
         </dt>
 
         <dd>
@@ -147,7 +151,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_IskontoOrani)
+            İskonto Oranı
         </dt>
 
         <dd>
@@ -155,7 +159,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_TahsilEdilen)
+            Tahsil Edilen
         </dt>
 
         <dd>
@@ -163,7 +167,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_KalanBorc)
+            Kalan
         </dt>
 
         <dd>
@@ -171,7 +175,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_Status)
+            Durumu
         </dt>
 
         <dd>
@@ -179,7 +183,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Islem_CreateDate)
+            Oluşturma Zamanı
         </dt>
 
         <dd>

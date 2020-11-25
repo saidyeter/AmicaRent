@@ -17,7 +17,7 @@ namespace WebApplication.Controllers
         // GET: Islem
         public ActionResult Index()
         {
-            return View(db.Islem.ToList());
+            return View(db.viewIslem.ToList());
         }
 
         // GET: Islem/Details/5
@@ -27,7 +27,8 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Islem islem = db.Islem.Find(id);
+            var islem = db.viewIslem.SingleOrDefault(x => x.Islem_ID == id);
+
             if (islem == null)
             {
                 return HttpNotFound();
@@ -38,6 +39,22 @@ namespace WebApplication.Controllers
         // GET: Islem/Create
         public ActionResult Create()
         {
+
+            List<Cari> cariList = db.Cari.ToList();
+            ViewBag.CariList = cariList;
+
+            Dictionary<int, string> aracList = new Dictionary<int, string>();
+            foreach (var arac in db.viewAracList.ToList())
+            {
+                aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
+            }
+            ViewBag.AracList = aracList;
+
+            Dictionary<int, string> islemTipi = new Dictionary<int, string>();
+            islemTipi.Add(1, "Rezervasyon");
+            islemTipi.Add(2, "Kiralama");
+            ViewBag.IslemTipi = islemTipi;
+
             return View();
         }
 
@@ -70,6 +87,23 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
+
+
+            List<Cari> cariList = db.Cari.ToList();
+            ViewBag.CariList = cariList;
+
+            Dictionary<int, string> aracList = new Dictionary<int, string>();
+            foreach (var arac in db.viewAracList.ToList())
+            {
+                aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
+            }
+            ViewBag.AracList = aracList;
+
+            Dictionary<int, string> islemTipi = new Dictionary<int, string>();
+            islemTipi.Add(1, "Rezervasyon");
+            islemTipi.Add(2, "Kiralama");
+            ViewBag.IslemTipi = islemTipi;
+
             return View(islem);
         }
 

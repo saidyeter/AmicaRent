@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication.DataAccess.CariEhliyet>
+﻿@model IEnumerable<WebApplication.DataAccess.viewCariEhliyet>
 
 @{
     ViewBag.Title = "Index";
@@ -19,10 +19,7 @@
         </th>
         <th>
             Geçerlilik Tarihi
-        </th>
-        <th>
-            Verildiği Yer
-        </th>
+        </th>        
         <th>
             Doğum Yeri
         </th>
@@ -41,7 +38,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Cari_ID)
+                @Html.DisplayFor(modelItem => item.Cari_AdSoyad)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CariEhliyet_VerilisTarihi)
@@ -50,19 +47,16 @@
                 @Html.DisplayFor(modelItem => item.CariEhliyet_GecerlilikTarihi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CariEhliyet_VerildigiYer)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.CariEhliyet_DogumYeri)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CariEhliyet_EhliyetNumarasi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EhliyetSinif_ID)
+                @Html.DisplayFor(modelItem => item.EhliyetSinif_Adi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.KanGrubu_ID)
+                @Html.DisplayFor(modelItem => item.KanGrubu_Adi)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.CariEhliyet_ID }) |

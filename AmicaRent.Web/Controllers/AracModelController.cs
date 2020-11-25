@@ -17,7 +17,7 @@ namespace WebApplication.Controllers
         // GET: AracModel
         public ActionResult Index()
         {
-            return View(db.AracModel.ToList());
+            return View(db.viewAracModel.ToList());
         }
 
         // GET: AracModel/Details/5
@@ -27,7 +27,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AracModel aracModel = db.AracModel.Find(id);
+            var aracModel = db.viewAracModel.SingleOrDefault(x => x.AracModel_ID == id);
             if (aracModel == null)
             {
                 return HttpNotFound();
@@ -38,6 +38,9 @@ namespace WebApplication.Controllers
         // GET: AracModel/Create
         public ActionResult Create()
         {
+            List<AracMarka> aracMarkaList = db.AracMarka.ToList();
+            ViewBag.AracMarkaList = aracMarkaList;
+
             return View();
         }
 
@@ -70,6 +73,9 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
+            List<AracMarka> aracMarkaList = db.AracMarka.ToList();
+            ViewBag.AracMarkaList = aracMarkaList;
+
             return View(aracModel);
         }
 

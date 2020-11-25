@@ -1,16 +1,13 @@
-﻿@model IEnumerable<WebApplication.DataAccess.Servis>
+﻿@model IEnumerable<WebApplication.DataAccess.viewServis>
 
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = ""; }
 
-<h2>Index</h2>
+<h2>Araç Servis Kayıtları</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Yeni Oluştur", "Create")
 </p>
 <table class="table">
-
     <tr>
         <th>
             Araç Marka/Model
@@ -27,9 +24,6 @@
         <th>
             Servis Ücreti
         </th>
-        <th>
-            Oluşturma Zamanı
-        </th>
         <th></th>
     </tr>
 
@@ -37,22 +31,19 @@
     {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.Arac_ID)
+        @item.AracGrup_Adi @item.AracMarka_Adi @item.AracModel_Adi @item.Arac_Yil
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Servis_ServisZamani)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.ServisFirma_ID)
+        @Html.DisplayFor(modelItem => item.ServisFirma_Adi)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Servis_Notlar)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Servis_Ucreti)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Servis_CreateDate)
     </td>
     <td>
         @Html.ActionLink("Düzenle", "Edit", new { id = item.Servis_ID }) |

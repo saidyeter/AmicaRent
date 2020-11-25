@@ -17,7 +17,7 @@ namespace WebApplication.Controllers
         // GET: CariEhliyet
         public ActionResult Index()
         {
-            return View(db.CariEhliyet.ToList());
+            return View(db.viewCariEhliyet.ToList());
         }
 
         // GET: CariEhliyet/Details/5
@@ -27,7 +27,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CariEhliyet cariEhliyet = db.CariEhliyet.Find(id);
+            var cariEhliyet = db.viewCariEhliyet.SingleOrDefault(x => x.CariEhliyet_ID == id);
             if (cariEhliyet == null)
             {
                 return HttpNotFound();
@@ -38,6 +38,15 @@ namespace WebApplication.Controllers
         // GET: CariEhliyet/Create
         public ActionResult Create()
         {
+            List<EhliyetSinif> ehliyetSinifList = db.EhliyetSinif.ToList();
+            ViewBag.EhliyetSinifList = ehliyetSinifList;
+
+            List<KanGrubu> kanGrubuList = db.KanGrubu.ToList();
+            ViewBag.KanGrubuList = kanGrubuList;
+
+            List<Cari> cariList = db.Cari.ToList();
+            ViewBag.CariList = cariList;
+
             return View();
         }
 
@@ -70,6 +79,16 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
+
+            List<EhliyetSinif> ehliyetSinifList = db.EhliyetSinif.ToList();
+            ViewBag.EhliyetSinifList = ehliyetSinifList;
+
+            List<KanGrubu> kanGrubuList = db.KanGrubu.ToList();
+            ViewBag.KanGrubuList = kanGrubuList;
+
+            List<Cari> cariList = db.Cari.ToList();
+            ViewBag.CariList = cariList;
+
             return View(cariEhliyet);
         }
 

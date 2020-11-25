@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication.DataAccess.Islem>
+﻿@model IEnumerable<WebApplication.DataAccess.viewIslem>
 
 @{
     ViewBag.Title = "Index";
@@ -53,13 +53,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Islem_Tipi)
+                @Html.DisplayFor(modelItem => item.IslemTipim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cari_ID)
+                @Html.DisplayFor(modelItem => item.Cari_AdSoyad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Arac_ID)
+                @item.AracGrup_Adi @item.AracMarka_Adi @item.AracModel_Adi @item.Arac_Yil
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Islem_BaslangicTarihi)
@@ -93,5 +93,5 @@
 
             </td>
         </tr>
-}
+    }
 </table>

@@ -1,4 +1,4 @@
-﻿@model WebApplication.DataAccess.AracModel
+﻿@model WebApplication.DataAccess.viewAracModel
 
 @{
     ViewBag.Title = "Details";
@@ -10,16 +10,17 @@
     <h4>AracModel</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.AracMarka_ID)
+            Araç Markası
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AracMarka_ID)
+            @Html.DisplayFor(model => model.AracMarka_Adi)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracModel_Adi)
+            Araç Model
         </dt>
 
         <dd>
@@ -27,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracModel_Status)
+            Araç Model Durumu
         </dt>
 
         <dd>
@@ -35,12 +36,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracModel_CreateDate)
+            Oluşturma Zamanı
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.AracModel_CreateDate)
         </dd>
+
+
 
     </dl>
 </div>

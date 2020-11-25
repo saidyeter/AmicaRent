@@ -1,4 +1,4 @@
-﻿@model WebApplication.DataAccess.Arac
+﻿@model WebApplication.DataAccess.viewAracList
 
 @{
     ViewBag.Title = "Details";
@@ -11,31 +11,31 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.AracGrup_ID)
+            Araç Grubu
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AracGrup_ID)
+            @Html.DisplayFor(model => model.AracGrup_Adi)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracMarka_ID)
+            Araç Markası
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AracMarka_ID)
+            @Html.DisplayFor(model => model.AracMarka_Adi)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracModel_ID)
+            Araç Modeli
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AracModel_ID)
+            @Html.DisplayFor(model => model.AracModel_Adi)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Arac_Yil)
+            Araç Yılı
         </dt>
 
         <dd>
@@ -43,15 +43,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracYakitTuru_ID)
+            Araç Yakıt Türü
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AracYakitTuru_ID)
+            @Html.DisplayFor(model => model.AracYakitTuru_Adi)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Arac_VitesTipi)
+            Vites Tipi
         </dt>
 
         <dd>
@@ -59,23 +59,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracKasaTipi_ID)
+            Araç Kasa Tipi
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AracKasaTipi_ID)
+            @Html.DisplayFor(model => model.AracKasaTipi_Adi)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracKlimaDurumu)
+            Klima Durumu
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AracKlimaDurumu)
+            @Html.DisplayFor(model => model.KlimaDurumu)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracPlakaNo)
+            Plaka Numarası
         </dt>
 
         <dd>
@@ -83,7 +83,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracGuncelKM)
+            Güncel KM.
         </dt>
 
         <dd>
@@ -91,7 +91,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracMotorNo)
+            Araç Motor Numarası
         </dt>
 
         <dd>
@@ -99,7 +99,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracSaseNo)
+            Araç Şaşe Numarası
         </dt>
 
         <dd>
@@ -107,7 +107,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracRuhsatSeriNo)
+            Araç Ruhsat Seri Numarası
         </dt>
 
         <dd>
@@ -115,31 +115,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Arac_Status)
+            Araç Renk
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Arac_Status)
+            @Html.DisplayFor(model => model.AracRenk_Adi)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracRenk_ID)
+            Kiralama Durumu
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AracRenk_ID)
+            @Html.DisplayFor(model => model.KiralamaDurumu)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AracKiralamaDurumu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AracKiralamaDurumu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Arac_TrafikSigortasiBitisTarihi)
+            Trafik Sigortası Bitiş Tarihi
         </dt>
 
         <dd>
@@ -147,7 +139,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Arac_KaskoBitisTarihi)
+            Kasko Bitiş Tarihi
         </dt>
 
         <dd>
@@ -155,7 +147,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Arac_KoltukSigortasiBitisTarihi)
+            Koltuk Sigortası Bitiş Tarihi
         </dt>
 
         <dd>
@@ -163,7 +155,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Arac_FenniMuayeneGecerlilikTarihi)
+            Fenni Muayene Geçerlilik Tarihi
         </dt>
 
         <dd>

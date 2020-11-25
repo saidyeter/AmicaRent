@@ -1,25 +1,26 @@
-﻿@model WebApplication.DataAccess.Servis
+﻿@model WebApplication.DataAccess.viewServis
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = ""; }
 
-<h2>Details</h2>
+<h2>Servis Detayları</h2>
 
 <div>
     <h4>Servis</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Arac_ID)
+            Araç Marka / Model
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Arac_ID)
+            @Html.DisplayFor(model => model.AracGrup_Adi)
+            @Html.DisplayFor(model => model.AracMarka_Adi)
+            @Html.DisplayFor(model => model.AracModel_Adi)
+            @Html.DisplayFor(model => model.Arac_Yil)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Servis_ServisZamani)
+            Servis Zamanı
         </dt>
 
         <dd>
@@ -27,15 +28,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ServisFirma_ID)
+            Servis Firması
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ServisFirma_ID)
+            @Html.DisplayFor(model => model.ServisFirma_Adi)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Servis_Notlar)
+            Notlar
         </dt>
 
         <dd>
@@ -43,24 +44,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Servis_Ucreti)
+            Ücreti
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Servis_Ucreti)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Servis_CreateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Servis_CreateDate)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Servis_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Servis_ID }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index")
 </p>

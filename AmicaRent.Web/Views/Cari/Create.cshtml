@@ -19,93 +19,93 @@
             </div>
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_AdSoyad, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Cari_AdSoyad, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cari_AdSoyad, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_AdSoyad, "Adı Soyadı", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Cari_AdSoyad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cari_AdSoyad, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_UyrukID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.DropDownListFor(model => model.Cari_UyrukID, new SelectList(uyrukList, "CariUyruk_ID", "CariUyruk_Adi"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Cari_UyrukID, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_UyrukID, "Cari Uyruk", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.Cari_UyrukID, new SelectList(uyrukList, "CariUyruk_ID", "CariUyruk_Adi"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cari_UyrukID, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_IDNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Cari_IDNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cari_IDNumber, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_IDNumber, "Kimlik Numarası", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Cari_IDNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cari_IDNumber, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_Cinsiyet, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.DropDownListFor(model => model.Cari_Cinsiyet, new SelectList(cinsiyet, "Key", "Value"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Cari_Cinsiyet, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_Cinsiyet, "Cinsiyet", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.Cari_Cinsiyet, new SelectList(cinsiyet, "Key", "Value"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cari_Cinsiyet, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_DogumTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Cari_DogumTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cari_DogumTarihi, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_DogumTarihi, "Doğum Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Cari_DogumTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cari_DogumTarihi, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_EpostaAdresi, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Cari_EpostaAdresi, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cari_EpostaAdresi, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_EpostaAdresi, "E-Posta Adresi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Cari_EpostaAdresi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cari_EpostaAdresi, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_Adres1, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Cari_Adres1, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cari_Adres1, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_Adres1, "Adres - 1", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Cari_Adres1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cari_Adres1, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_Adres2, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Cari_Adres2, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cari_Adres2, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_Adres2, "Adres - 2", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Cari_Adres2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cari_Adres2, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.CariSehir_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.DropDownListFor(model => model.CariSehir_ID, new SelectList(sehirList, "CariSehir_ID", "CariSehir_Adi"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CariSehir_ID, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CariSehir_ID, "Şehir", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.CariSehir_ID, new SelectList(sehirList, "CariSehir_ID", "CariSehir_Adi"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CariSehir_ID, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_MobilTelefon, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Cari_MobilTelefon, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cari_MobilTelefon, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_MobilTelefon, "Mobil Telefon", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Cari_MobilTelefon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cari_MobilTelefon, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cari_LokalTelefon, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Cari_LokalTelefon, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Cari_LokalTelefon, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_LokalTelefon, "Lokal Telefon", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Cari_LokalTelefon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cari_LokalTelefon, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Onayla</button>
