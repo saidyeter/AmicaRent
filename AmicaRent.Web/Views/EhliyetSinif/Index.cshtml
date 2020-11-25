@@ -12,34 +12,35 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.EhliyetSinif_Adi)
+            Ehliyet Sınıfı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EhliyetSinif_Status)
+            Durumu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EhliyetSinif_CreateDate)
+            Oluşturma Zamanı
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EhliyetSinif_Adi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EhliyetSinif_Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EhliyetSinif_CreateDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EhliyetSinif_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EhliyetSinif_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EhliyetSinif_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EhliyetSinif_Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EhliyetSinif_Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EhliyetSinif_CreateDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EhliyetSinif_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EhliyetSinif_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EhliyetSinif_ID })
+            </td>
+        </tr>
+    }
 
 </table>

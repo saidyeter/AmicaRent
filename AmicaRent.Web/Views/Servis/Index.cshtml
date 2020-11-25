@@ -10,54 +10,55 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
+
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Arac_ID)
+            Araç Marka/Model
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Servis_ServisZamani)
+            Servis Zamanı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_ID)
+            Servis Firma
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Servis_Notlar)
+            Notlar
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Servis_Ucreti)
+            Servis Ücreti
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Servis_CreateDate)
+            Oluşturma Zamanı
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arac_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Servis_ServisZamani)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Servis_Notlar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Servis_Ucreti)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Servis_CreateDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Servis_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Servis_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Servis_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Arac_ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Servis_ServisZamani)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Servis_Notlar)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Servis_Ucreti)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Servis_CreateDate)
+    </td>
+    <td>
+        @Html.ActionLink("Düzenle", "Edit", new { id = item.Servis_ID }) |
+        @Html.ActionLink("Detaylar", "Details", new { id = item.Servis_ID }) |
+
+    </td>
+</tr>}
 
 </table>

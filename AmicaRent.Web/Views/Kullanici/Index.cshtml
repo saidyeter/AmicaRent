@@ -12,52 +12,52 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Kullanici_TamAdi)
+            Kullanıcı Tam Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kullanici_Adi)
+            Kullanıcı Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kullanici_Sifre)
+            Kullanıcı Şifre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kullanici_SonGirisZamani)
+            Son Giriş Zamanı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kullanici_Status)
+            Durumu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kullanici_CreateDate)
+            Oluşturma Zamanı
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kullanici_TamAdi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kullanici_Adi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kullanici_Sifre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kullanici_SonGirisZamani)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kullanici_Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kullanici_CreateDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Kullanici_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Kullanici_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Kullanici_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kullanici_TamAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kullanici_Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kullanici_Sifre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kullanici_SonGirisZamani)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kullanici_Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kullanici_CreateDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Kullanici_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Kullanici_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Kullanici_ID })
+            </td>
+        </tr>
+    }
 
 </table>

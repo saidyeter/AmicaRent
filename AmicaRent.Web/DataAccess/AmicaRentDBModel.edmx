@@ -96,58 +96,6 @@
           <Property Name="AracYakitTuru_Status" Type="int" Nullable="false" />
           <Property Name="AracYakitTuru_CreateDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="AspNetRoles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaims">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ClaimType" Type="nvarchar(max)" />
-          <Property Name="ClaimValue" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogins">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUserRoles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUsers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="NameIdentifier" Type="nvarchar(max)" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
-          <Property Name="PasswordHash" Type="nvarchar(max)" />
-          <Property Name="SecurityStamp" Type="nvarchar(max)" />
-          <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="datetime" />
-          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
         <EntityType Name="Cari">
           <Key>
             <PropertyRef Name="Cari_ID" />
@@ -341,62 +289,155 @@
           <Property Name="ServisFirma_CreateDate" Type="datetime" />
           <Property Name="ServisFirma_Status" Type="int" />
         </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AmicaRentDB.dbo.viewAracList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewAracList">
+          <Key>
+            <PropertyRef Name="Arac_ID" />
+            <PropertyRef Name="AracGrup_Adi" />
+            <PropertyRef Name="AracModel_Adi" />
+            <PropertyRef Name="Arac_Yil" />
+            <PropertyRef Name="AracYakitTuru_Adi" />
+            <PropertyRef Name="Arac_VitesTipi" />
+            <PropertyRef Name="KlimaDurumu" />
+            <PropertyRef Name="AracPlakaNo" />
+            <PropertyRef Name="AracGuncelKM" />
+            <PropertyRef Name="AracMotorNo" />
+            <PropertyRef Name="AracSaseNo" />
+            <PropertyRef Name="AracRuhsatSeriNo" />
+            <PropertyRef Name="AracRenk_Adi" />
+          </Key>
+          <Property Name="Arac_ID" Type="int" Nullable="false" />
+          <Property Name="AracGrup_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AracMarka_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="AracModel_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Arac_Yil" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="AracYakitTuru_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Arac_VitesTipi" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="AracKasaTipi_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KlimaDurumu" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="AracPlakaNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AracGuncelKM" Type="float" Nullable="false" />
+          <Property Name="AracMotorNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AracSaseNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AracRuhsatSeriNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AracRenk_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiralamaDurumu" Type="varchar" MaxLength="16" />
+          <Property Name="Arac_TrafikSigortasiBitisTarihi" Type="date" />
+          <Property Name="Arac_KaskoBitisTarihi" Type="date" />
+          <Property Name="Arac_KoltukSigortasiBitisTarihi" Type="date" />
+          <Property Name="Arac_FenniMuayeneGecerlilikTarihi" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AmicaRentDB.dbo.viewAracModel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewAracModel">
+          <Key>
+            <PropertyRef Name="AracModel_ID" />
+            <PropertyRef Name="AracMarka_ID" />
+            <PropertyRef Name="AracModel_Adi" />
+          </Key>
+          <Property Name="AracModel_ID" Type="int" Nullable="false" />
+          <Property Name="AracMarka_ID" Type="int" Nullable="false" />
+          <Property Name="AracMarka_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="AracModel_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AracModel_Status" Type="int" />
+          <Property Name="AracModel_CreateDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AmicaRentDB.dbo.viewCari' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewCari">
+          <Key>
+            <PropertyRef Name="Cari_ID" />
+            <PropertyRef Name="Cinsiyet" />
+          </Key>
+          <Property Name="Cari_ID" Type="int" Nullable="false" />
+          <Property Name="Cari_AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="CariUyruk_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cari_IDNumber" Type="nvarchar" MaxLength="11" />
+          <Property Name="Cinsiyet" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Cari_DogumTarihi" Type="date" />
+          <Property Name="Cari_EpostaAdresi" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cari_Adres1" Type="nvarchar" MaxLength="500" />
+          <Property Name="Cari_Adres2" Type="nvarchar" MaxLength="500" />
+          <Property Name="CariSehir_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cari_MobilTelefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cari_LokalTelefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cari_CreateDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AmicaRentDB.dbo.viewCariEhliyet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewCariEhliyet">
+          <Key>
+            <PropertyRef Name="CariEhliyet_ID" />
+          </Key>
+          <Property Name="CariEhliyet_ID" Type="int" Nullable="false" />
+          <Property Name="Cari_ID" Type="int" />
+          <Property Name="Cari_AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="CariEhliyet_VerilisTarihi" Type="date" />
+          <Property Name="CariEhliyet_GecerlilikTarihi" Type="date" />
+          <Property Name="CariEhliyet_DogumYeri" Type="nvarchar" MaxLength="50" />
+          <Property Name="CariEhliyet_EhliyetNumarasi" Type="nvarchar" MaxLength="50" />
+          <Property Name="EhliyetSinif_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KanGrubu_Adi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AmicaRentDB.dbo.viewIslem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewIslem">
+          <Key>
+            <PropertyRef Name="Islem_ID" />
+            <PropertyRef Name="IslemTipim" />
+            <PropertyRef Name="AracGrup_Adi" />
+            <PropertyRef Name="AracModel_Adi" />
+            <PropertyRef Name="Arac_Yil" />
+          </Key>
+          <Property Name="Islem_ID" Type="int" Nullable="false" />
+          <Property Name="IslemTipim" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Cari_AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="AracGrup_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AracMarka_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="AracModel_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Arac_Yil" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Islem_BaslangicTarihi" Type="datetime" />
+          <Property Name="Islem_BitisTarihi" Type="datetime" />
+          <Property Name="Islem_IlkKM" Type="int" />
+          <Property Name="Islem_SonKM" Type="int" />
+          <Property Name="Islem_YakitDurumu" Type="int" />
+          <Property Name="Islem_TeslimatLokasyonID" Type="int" />
+          <Property Name="Islem_IadeLokasyonID" Type="int" />
+          <Property Name="Islem_GunlukUcret" Type="float" />
+          <Property Name="Islem_GunlukKMSiniri" Type="float" />
+          <Property Name="Islem_ToplamKiralamaUcreti" Type="float" />
+          <Property Name="Islem_ToplamKMAsimUcreti" Type="float" />
+          <Property Name="Islem_ToplamEkstraHizmetler" Type="float" />
+          <Property Name="Islem_ToplamValeHizmetleri" Type="float" />
+          <Property Name="Islem_ToplamDigerUcretler" Type="float" />
+          <Property Name="Islem_IskontoOrani" Type="int" />
+          <Property Name="Islem_TahsilEdilen" Type="float" />
+          <Property Name="Islem_KalanBorc" Type="float" />
+          <Property Name="Islem_Status" Type="int" />
+          <Property Name="Islem_CreateDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewServis">
+          <Key>
+            <PropertyRef Name="Servis_ID" />
+            <PropertyRef Name="AracGrup_Adi" />
+            <PropertyRef Name="AracModel_Adi" />
+            <PropertyRef Name="Arac_Yil" />
+            <PropertyRef Name="AracPlakaNo" />
+          </Key>
+          <Property Name="Servis_ID" Type="int" Nullable="false" />
+          <Property Name="AracGrup_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AracMarka_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="AracModel_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Arac_Yil" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="AracPlakaNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Servis_ServisZamani" Type="date" />
+          <Property Name="ServisFirma_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Servis_Notlar" Type="nvarchar" MaxLength="500" />
+          <Property Name="Servis_Ucreti" Type="float" />
+        </EntityType>
         <EntityContainer Name="AmicaRentDBModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Arac" EntityType="Self.Arac" Schema="dbo" store:Type="Tables" />
@@ -406,11 +447,6 @@
           <EntitySet Name="AracModel" EntityType="Self.AracModel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AracRenk" EntityType="Self.AracRenk" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AracYakitTuru" EntityType="Self.AracYakitTuru" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cari" EntityType="Self.Cari" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CariEhliyet" EntityType="Self.CariEhliyet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CariSehir" EntityType="Self.CariSehir" Schema="dbo" store:Type="Tables" />
@@ -427,22 +463,114 @@
           <EntitySet Name="OdemeTipi" EntityType="Self.OdemeTipi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servis" EntityType="Self.Servis" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServisFirma" EntityType="Self.ServisFirma" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
+          <EntitySet Name="viewAracList" EntityType="Self.viewAracList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewAracList].[Arac_ID] AS [Arac_ID], 
+    [viewAracList].[AracGrup_Adi] AS [AracGrup_Adi], 
+    [viewAracList].[AracMarka_Adi] AS [AracMarka_Adi], 
+    [viewAracList].[AracModel_Adi] AS [AracModel_Adi], 
+    [viewAracList].[Arac_Yil] AS [Arac_Yil], 
+    [viewAracList].[AracYakitTuru_Adi] AS [AracYakitTuru_Adi], 
+    [viewAracList].[Arac_VitesTipi] AS [Arac_VitesTipi], 
+    [viewAracList].[AracKasaTipi_Adi] AS [AracKasaTipi_Adi], 
+    [viewAracList].[KlimaDurumu] AS [KlimaDurumu], 
+    [viewAracList].[AracPlakaNo] AS [AracPlakaNo], 
+    [viewAracList].[AracGuncelKM] AS [AracGuncelKM], 
+    [viewAracList].[AracMotorNo] AS [AracMotorNo], 
+    [viewAracList].[AracSaseNo] AS [AracSaseNo], 
+    [viewAracList].[AracRuhsatSeriNo] AS [AracRuhsatSeriNo], 
+    [viewAracList].[AracRenk_Adi] AS [AracRenk_Adi], 
+    [viewAracList].[KiralamaDurumu] AS [KiralamaDurumu], 
+    [viewAracList].[Arac_TrafikSigortasiBitisTarihi] AS [Arac_TrafikSigortasiBitisTarihi], 
+    [viewAracList].[Arac_KaskoBitisTarihi] AS [Arac_KaskoBitisTarihi], 
+    [viewAracList].[Arac_KoltukSigortasiBitisTarihi] AS [Arac_KoltukSigortasiBitisTarihi], 
+    [viewAracList].[Arac_FenniMuayeneGecerlilikTarihi] AS [Arac_FenniMuayeneGecerlilikTarihi]
+    FROM [dbo].[viewAracList] AS [viewAracList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewAracModel" EntityType="Self.viewAracModel" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewAracModel].[AracModel_ID] AS [AracModel_ID], 
+    [viewAracModel].[AracMarka_ID] AS [AracMarka_ID], 
+    [viewAracModel].[AracMarka_Adi] AS [AracMarka_Adi], 
+    [viewAracModel].[AracModel_Adi] AS [AracModel_Adi], 
+    [viewAracModel].[AracModel_Status] AS [AracModel_Status], 
+    [viewAracModel].[AracModel_CreateDate] AS [AracModel_CreateDate]
+    FROM [dbo].[viewAracModel] AS [viewAracModel]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewCari" EntityType="Self.viewCari" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewCari].[Cari_ID] AS [Cari_ID], 
+    [viewCari].[Cari_AdSoyad] AS [Cari_AdSoyad], 
+    [viewCari].[CariUyruk_Adi] AS [CariUyruk_Adi], 
+    [viewCari].[Cari_IDNumber] AS [Cari_IDNumber], 
+    [viewCari].[Cinsiyet] AS [Cinsiyet], 
+    [viewCari].[Cari_DogumTarihi] AS [Cari_DogumTarihi], 
+    [viewCari].[Cari_EpostaAdresi] AS [Cari_EpostaAdresi], 
+    [viewCari].[Cari_Adres1] AS [Cari_Adres1], 
+    [viewCari].[Cari_Adres2] AS [Cari_Adres2], 
+    [viewCari].[CariSehir_Adi] AS [CariSehir_Adi], 
+    [viewCari].[Cari_MobilTelefon] AS [Cari_MobilTelefon], 
+    [viewCari].[Cari_LokalTelefon] AS [Cari_LokalTelefon], 
+    [viewCari].[Cari_CreateDate] AS [Cari_CreateDate]
+    FROM [dbo].[viewCari] AS [viewCari]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewCariEhliyet" EntityType="Self.viewCariEhliyet" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewCariEhliyet].[CariEhliyet_ID] AS [CariEhliyet_ID], 
+    [viewCariEhliyet].[Cari_ID] AS [Cari_ID], 
+    [viewCariEhliyet].[Cari_AdSoyad] AS [Cari_AdSoyad], 
+    [viewCariEhliyet].[CariEhliyet_VerilisTarihi] AS [CariEhliyet_VerilisTarihi], 
+    [viewCariEhliyet].[CariEhliyet_GecerlilikTarihi] AS [CariEhliyet_GecerlilikTarihi], 
+    [viewCariEhliyet].[CariEhliyet_DogumYeri] AS [CariEhliyet_DogumYeri], 
+    [viewCariEhliyet].[CariEhliyet_EhliyetNumarasi] AS [CariEhliyet_EhliyetNumarasi], 
+    [viewCariEhliyet].[EhliyetSinif_Adi] AS [EhliyetSinif_Adi], 
+    [viewCariEhliyet].[KanGrubu_Adi] AS [KanGrubu_Adi]
+    FROM [dbo].[viewCariEhliyet] AS [viewCariEhliyet]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewIslem" EntityType="Self.viewIslem" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewIslem].[Islem_ID] AS [Islem_ID], 
+    [viewIslem].[IslemTipim] AS [IslemTipim], 
+    [viewIslem].[Cari_AdSoyad] AS [Cari_AdSoyad], 
+    [viewIslem].[AracGrup_Adi] AS [AracGrup_Adi], 
+    [viewIslem].[AracMarka_Adi] AS [AracMarka_Adi], 
+    [viewIslem].[AracModel_Adi] AS [AracModel_Adi], 
+    [viewIslem].[Arac_Yil] AS [Arac_Yil], 
+    [viewIslem].[Islem_BaslangicTarihi] AS [Islem_BaslangicTarihi], 
+    [viewIslem].[Islem_BitisTarihi] AS [Islem_BitisTarihi], 
+    [viewIslem].[Islem_IlkKM] AS [Islem_IlkKM], 
+    [viewIslem].[Islem_SonKM] AS [Islem_SonKM], 
+    [viewIslem].[Islem_YakitDurumu] AS [Islem_YakitDurumu], 
+    [viewIslem].[Islem_TeslimatLokasyonID] AS [Islem_TeslimatLokasyonID], 
+    [viewIslem].[Islem_IadeLokasyonID] AS [Islem_IadeLokasyonID], 
+    [viewIslem].[Islem_GunlukUcret] AS [Islem_GunlukUcret], 
+    [viewIslem].[Islem_GunlukKMSiniri] AS [Islem_GunlukKMSiniri], 
+    [viewIslem].[Islem_ToplamKiralamaUcreti] AS [Islem_ToplamKiralamaUcreti], 
+    [viewIslem].[Islem_ToplamKMAsimUcreti] AS [Islem_ToplamKMAsimUcreti], 
+    [viewIslem].[Islem_ToplamEkstraHizmetler] AS [Islem_ToplamEkstraHizmetler], 
+    [viewIslem].[Islem_ToplamValeHizmetleri] AS [Islem_ToplamValeHizmetleri], 
+    [viewIslem].[Islem_ToplamDigerUcretler] AS [Islem_ToplamDigerUcretler], 
+    [viewIslem].[Islem_IskontoOrani] AS [Islem_IskontoOrani], 
+    [viewIslem].[Islem_TahsilEdilen] AS [Islem_TahsilEdilen], 
+    [viewIslem].[Islem_KalanBorc] AS [Islem_KalanBorc], 
+    [viewIslem].[Islem_Status] AS [Islem_Status], 
+    [viewIslem].[Islem_CreateDate] AS [Islem_CreateDate]
+    FROM [dbo].[viewIslem] AS [viewIslem]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewServis" EntityType="Self.viewServis" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewServis].[Servis_ID] AS [Servis_ID], 
+    [viewServis].[AracGrup_Adi] AS [AracGrup_Adi], 
+    [viewServis].[AracMarka_Adi] AS [AracMarka_Adi], 
+    [viewServis].[AracModel_Adi] AS [AracModel_Adi], 
+    [viewServis].[Arac_Yil] AS [Arac_Yil], 
+    [viewServis].[AracPlakaNo] AS [AracPlakaNo], 
+    [viewServis].[Servis_ServisZamani] AS [Servis_ServisZamani], 
+    [viewServis].[ServisFirma_Adi] AS [ServisFirma_Adi], 
+    [viewServis].[Servis_Notlar] AS [Servis_Notlar], 
+    [viewServis].[Servis_Ucreti] AS [Servis_Ucreti]
+    FROM [dbo].[viewServis] AS [viewServis]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -539,56 +667,6 @@
           <Property Name="AracYakitTuru_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AracYakitTuru_Status" Type="Int32" Nullable="false" />
           <Property Name="AracYakitTuru_CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="AspNetRoles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaims">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogins">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
-        </EntityType>
-        <EntityType Name="AspNetUsers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NameIdentifier" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="Cari">
           <Key>
@@ -783,38 +861,143 @@
           <Property Name="ServisFirma_CreateDate" Type="DateTime" Precision="3" />
           <Property Name="ServisFirma_Status" Type="Int32" />
         </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
-        </Association>
+        <EntityType Name="viewAracList">
+          <Key>
+            <PropertyRef Name="Arac_ID" />
+            <PropertyRef Name="AracGrup_Adi" />
+            <PropertyRef Name="AracModel_Adi" />
+            <PropertyRef Name="Arac_Yil" />
+            <PropertyRef Name="AracYakitTuru_Adi" />
+            <PropertyRef Name="Arac_VitesTipi" />
+            <PropertyRef Name="KlimaDurumu" />
+            <PropertyRef Name="AracPlakaNo" />
+            <PropertyRef Name="AracGuncelKM" />
+            <PropertyRef Name="AracMotorNo" />
+            <PropertyRef Name="AracSaseNo" />
+            <PropertyRef Name="AracRuhsatSeriNo" />
+            <PropertyRef Name="AracRenk_Adi" />
+          </Key>
+          <Property Name="Arac_ID" Type="Int32" Nullable="false" />
+          <Property Name="AracGrup_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AracMarka_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AracModel_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Arac_Yil" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AracYakitTuru_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Arac_VitesTipi" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AracKasaTipi_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KlimaDurumu" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AracPlakaNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AracGuncelKM" Type="Double" Nullable="false" />
+          <Property Name="AracMotorNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AracSaseNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AracRuhsatSeriNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AracRenk_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiralamaDurumu" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Arac_TrafikSigortasiBitisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Arac_KaskoBitisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Arac_KoltukSigortasiBitisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Arac_FenniMuayeneGecerlilikTarihi" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="viewAracModel">
+          <Key>
+            <PropertyRef Name="AracModel_ID" />
+            <PropertyRef Name="AracMarka_ID" />
+            <PropertyRef Name="AracModel_Adi" />
+          </Key>
+          <Property Name="AracModel_ID" Type="Int32" Nullable="false" />
+          <Property Name="AracMarka_ID" Type="Int32" Nullable="false" />
+          <Property Name="AracMarka_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AracModel_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AracModel_Status" Type="Int32" />
+          <Property Name="AracModel_CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="viewCari">
+          <Key>
+            <PropertyRef Name="Cari_ID" />
+            <PropertyRef Name="Cinsiyet" />
+          </Key>
+          <Property Name="Cari_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cari_AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CariUyruk_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cari_IDNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cari_DogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Cari_EpostaAdresi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cari_Adres1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Cari_Adres2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CariSehir_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cari_MobilTelefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cari_LokalTelefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cari_CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="viewCariEhliyet">
+          <Key>
+            <PropertyRef Name="CariEhliyet_ID" />
+          </Key>
+          <Property Name="CariEhliyet_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cari_ID" Type="Int32" />
+          <Property Name="Cari_AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CariEhliyet_VerilisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="CariEhliyet_GecerlilikTarihi" Type="DateTime" Precision="0" />
+          <Property Name="CariEhliyet_DogumYeri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CariEhliyet_EhliyetNumarasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EhliyetSinif_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KanGrubu_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="viewIslem">
+          <Key>
+            <PropertyRef Name="Islem_ID" />
+            <PropertyRef Name="IslemTipim" />
+            <PropertyRef Name="AracGrup_Adi" />
+            <PropertyRef Name="AracModel_Adi" />
+            <PropertyRef Name="Arac_Yil" />
+          </Key>
+          <Property Name="Islem_ID" Type="Int32" Nullable="false" />
+          <Property Name="IslemTipim" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cari_AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AracGrup_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AracMarka_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AracModel_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Arac_Yil" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Islem_BaslangicTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Islem_BitisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Islem_IlkKM" Type="Int32" />
+          <Property Name="Islem_SonKM" Type="Int32" />
+          <Property Name="Islem_YakitDurumu" Type="Int32" />
+          <Property Name="Islem_TeslimatLokasyonID" Type="Int32" />
+          <Property Name="Islem_IadeLokasyonID" Type="Int32" />
+          <Property Name="Islem_GunlukUcret" Type="Double" />
+          <Property Name="Islem_GunlukKMSiniri" Type="Double" />
+          <Property Name="Islem_ToplamKiralamaUcreti" Type="Double" />
+          <Property Name="Islem_ToplamKMAsimUcreti" Type="Double" />
+          <Property Name="Islem_ToplamEkstraHizmetler" Type="Double" />
+          <Property Name="Islem_ToplamValeHizmetleri" Type="Double" />
+          <Property Name="Islem_ToplamDigerUcretler" Type="Double" />
+          <Property Name="Islem_IskontoOrani" Type="Int32" />
+          <Property Name="Islem_TahsilEdilen" Type="Double" />
+          <Property Name="Islem_KalanBorc" Type="Double" />
+          <Property Name="Islem_Status" Type="Int32" />
+          <Property Name="Islem_CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="viewServis">
+          <Key>
+            <PropertyRef Name="Servis_ID" />
+            <PropertyRef Name="AracGrup_Adi" />
+            <PropertyRef Name="AracModel_Adi" />
+            <PropertyRef Name="Arac_Yil" />
+            <PropertyRef Name="AracPlakaNo" />
+          </Key>
+          <Property Name="Servis_ID" Type="Int32" Nullable="false" />
+          <Property Name="AracGrup_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AracMarka_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AracModel_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Arac_Yil" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AracPlakaNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Servis_ServisZamani" Type="DateTime" Precision="0" />
+          <Property Name="ServisFirma_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Servis_Notlar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Servis_Ucreti" Type="Double" />
+        </EntityType>
         <EntityContainer Name="AmicaRentDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Arac" EntityType="Self.Arac" />
@@ -824,10 +1007,6 @@
           <EntitySet Name="AracModel" EntityType="Self.AracModel" />
           <EntitySet Name="AracRenk" EntityType="Self.AracRenk" />
           <EntitySet Name="AracYakitTuru" EntityType="Self.AracYakitTuru" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="Cari" EntityType="Self.Cari" />
           <EntitySet Name="CariEhliyet" EntityType="Self.CariEhliyet" />
           <EntitySet Name="CariSehir" EntityType="Self.CariSehir" />
@@ -844,18 +1023,12 @@
           <EntitySet Name="OdemeTipi" EntityType="Self.OdemeTipi" />
           <EntitySet Name="Servis" EntityType="Self.Servis" />
           <EntitySet Name="ServisFirma" EntityType="Self.ServisFirma" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
+          <EntitySet Name="viewAracList" EntityType="Self.viewAracList" />
+          <EntitySet Name="viewAracModel" EntityType="Self.viewAracModel" />
+          <EntitySet Name="viewCari" EntityType="Self.viewCari" />
+          <EntitySet Name="viewCariEhliyet" EntityType="Self.viewCariEhliyet" />
+          <EntitySet Name="viewIslem" EntityType="Self.viewIslem" />
+          <EntitySet Name="viewServis" EntityType="Self.viewServis" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -958,52 +1131,6 @@
                 <ScalarProperty Name="AracYakitTuru_Adi" ColumnName="AracYakitTuru_Adi" />
                 <ScalarProperty Name="AracYakitTuru_Status" ColumnName="AracYakitTuru_Status" />
                 <ScalarProperty Name="AracYakitTuru_CreateDate" ColumnName="AracYakitTuru_CreateDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="AmicaRentDBModel.AspNetRoles">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="AmicaRentDBModel.AspNetUserClaims">
-              <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="AmicaRentDBModel.AspNetUserLogins">
-              <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="AmicaRentDBModel.AspNetUsers">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="NameIdentifier" ColumnName="NameIdentifier" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1216,14 +1343,126 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="AmicaRentDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-            <EndProperty Name="AspNetUsers">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="viewAracList">
+            <EntityTypeMapping TypeName="AmicaRentDBModel.viewAracList">
+              <MappingFragment StoreEntitySet="viewAracList">
+                <ScalarProperty Name="Arac_ID" ColumnName="Arac_ID" />
+                <ScalarProperty Name="AracGrup_Adi" ColumnName="AracGrup_Adi" />
+                <ScalarProperty Name="AracMarka_Adi" ColumnName="AracMarka_Adi" />
+                <ScalarProperty Name="AracModel_Adi" ColumnName="AracModel_Adi" />
+                <ScalarProperty Name="Arac_Yil" ColumnName="Arac_Yil" />
+                <ScalarProperty Name="AracYakitTuru_Adi" ColumnName="AracYakitTuru_Adi" />
+                <ScalarProperty Name="Arac_VitesTipi" ColumnName="Arac_VitesTipi" />
+                <ScalarProperty Name="AracKasaTipi_Adi" ColumnName="AracKasaTipi_Adi" />
+                <ScalarProperty Name="KlimaDurumu" ColumnName="KlimaDurumu" />
+                <ScalarProperty Name="AracPlakaNo" ColumnName="AracPlakaNo" />
+                <ScalarProperty Name="AracGuncelKM" ColumnName="AracGuncelKM" />
+                <ScalarProperty Name="AracMotorNo" ColumnName="AracMotorNo" />
+                <ScalarProperty Name="AracSaseNo" ColumnName="AracSaseNo" />
+                <ScalarProperty Name="AracRuhsatSeriNo" ColumnName="AracRuhsatSeriNo" />
+                <ScalarProperty Name="AracRenk_Adi" ColumnName="AracRenk_Adi" />
+                <ScalarProperty Name="KiralamaDurumu" ColumnName="KiralamaDurumu" />
+                <ScalarProperty Name="Arac_TrafikSigortasiBitisTarihi" ColumnName="Arac_TrafikSigortasiBitisTarihi" />
+                <ScalarProperty Name="Arac_KaskoBitisTarihi" ColumnName="Arac_KaskoBitisTarihi" />
+                <ScalarProperty Name="Arac_KoltukSigortasiBitisTarihi" ColumnName="Arac_KoltukSigortasiBitisTarihi" />
+                <ScalarProperty Name="Arac_FenniMuayeneGecerlilikTarihi" ColumnName="Arac_FenniMuayeneGecerlilikTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewAracModel">
+            <EntityTypeMapping TypeName="AmicaRentDBModel.viewAracModel">
+              <MappingFragment StoreEntitySet="viewAracModel">
+                <ScalarProperty Name="AracModel_ID" ColumnName="AracModel_ID" />
+                <ScalarProperty Name="AracMarka_ID" ColumnName="AracMarka_ID" />
+                <ScalarProperty Name="AracMarka_Adi" ColumnName="AracMarka_Adi" />
+                <ScalarProperty Name="AracModel_Adi" ColumnName="AracModel_Adi" />
+                <ScalarProperty Name="AracModel_Status" ColumnName="AracModel_Status" />
+                <ScalarProperty Name="AracModel_CreateDate" ColumnName="AracModel_CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewCari">
+            <EntityTypeMapping TypeName="AmicaRentDBModel.viewCari">
+              <MappingFragment StoreEntitySet="viewCari">
+                <ScalarProperty Name="Cari_ID" ColumnName="Cari_ID" />
+                <ScalarProperty Name="Cari_AdSoyad" ColumnName="Cari_AdSoyad" />
+                <ScalarProperty Name="CariUyruk_Adi" ColumnName="CariUyruk_Adi" />
+                <ScalarProperty Name="Cari_IDNumber" ColumnName="Cari_IDNumber" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="Cari_DogumTarihi" ColumnName="Cari_DogumTarihi" />
+                <ScalarProperty Name="Cari_EpostaAdresi" ColumnName="Cari_EpostaAdresi" />
+                <ScalarProperty Name="Cari_Adres1" ColumnName="Cari_Adres1" />
+                <ScalarProperty Name="Cari_Adres2" ColumnName="Cari_Adres2" />
+                <ScalarProperty Name="CariSehir_Adi" ColumnName="CariSehir_Adi" />
+                <ScalarProperty Name="Cari_MobilTelefon" ColumnName="Cari_MobilTelefon" />
+                <ScalarProperty Name="Cari_LokalTelefon" ColumnName="Cari_LokalTelefon" />
+                <ScalarProperty Name="Cari_CreateDate" ColumnName="Cari_CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewCariEhliyet">
+            <EntityTypeMapping TypeName="AmicaRentDBModel.viewCariEhliyet">
+              <MappingFragment StoreEntitySet="viewCariEhliyet">
+                <ScalarProperty Name="CariEhliyet_ID" ColumnName="CariEhliyet_ID" />
+                <ScalarProperty Name="Cari_ID" ColumnName="Cari_ID" />
+                <ScalarProperty Name="Cari_AdSoyad" ColumnName="Cari_AdSoyad" />
+                <ScalarProperty Name="CariEhliyet_VerilisTarihi" ColumnName="CariEhliyet_VerilisTarihi" />
+                <ScalarProperty Name="CariEhliyet_GecerlilikTarihi" ColumnName="CariEhliyet_GecerlilikTarihi" />
+                <ScalarProperty Name="CariEhliyet_DogumYeri" ColumnName="CariEhliyet_DogumYeri" />
+                <ScalarProperty Name="CariEhliyet_EhliyetNumarasi" ColumnName="CariEhliyet_EhliyetNumarasi" />
+                <ScalarProperty Name="EhliyetSinif_Adi" ColumnName="EhliyetSinif_Adi" />
+                <ScalarProperty Name="KanGrubu_Adi" ColumnName="KanGrubu_Adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewIslem">
+            <EntityTypeMapping TypeName="AmicaRentDBModel.viewIslem">
+              <MappingFragment StoreEntitySet="viewIslem">
+                <ScalarProperty Name="Islem_ID" ColumnName="Islem_ID" />
+                <ScalarProperty Name="IslemTipim" ColumnName="IslemTipim" />
+                <ScalarProperty Name="Cari_AdSoyad" ColumnName="Cari_AdSoyad" />
+                <ScalarProperty Name="AracGrup_Adi" ColumnName="AracGrup_Adi" />
+                <ScalarProperty Name="AracMarka_Adi" ColumnName="AracMarka_Adi" />
+                <ScalarProperty Name="AracModel_Adi" ColumnName="AracModel_Adi" />
+                <ScalarProperty Name="Arac_Yil" ColumnName="Arac_Yil" />
+                <ScalarProperty Name="Islem_BaslangicTarihi" ColumnName="Islem_BaslangicTarihi" />
+                <ScalarProperty Name="Islem_BitisTarihi" ColumnName="Islem_BitisTarihi" />
+                <ScalarProperty Name="Islem_IlkKM" ColumnName="Islem_IlkKM" />
+                <ScalarProperty Name="Islem_SonKM" ColumnName="Islem_SonKM" />
+                <ScalarProperty Name="Islem_YakitDurumu" ColumnName="Islem_YakitDurumu" />
+                <ScalarProperty Name="Islem_TeslimatLokasyonID" ColumnName="Islem_TeslimatLokasyonID" />
+                <ScalarProperty Name="Islem_IadeLokasyonID" ColumnName="Islem_IadeLokasyonID" />
+                <ScalarProperty Name="Islem_GunlukUcret" ColumnName="Islem_GunlukUcret" />
+                <ScalarProperty Name="Islem_GunlukKMSiniri" ColumnName="Islem_GunlukKMSiniri" />
+                <ScalarProperty Name="Islem_ToplamKiralamaUcreti" ColumnName="Islem_ToplamKiralamaUcreti" />
+                <ScalarProperty Name="Islem_ToplamKMAsimUcreti" ColumnName="Islem_ToplamKMAsimUcreti" />
+                <ScalarProperty Name="Islem_ToplamEkstraHizmetler" ColumnName="Islem_ToplamEkstraHizmetler" />
+                <ScalarProperty Name="Islem_ToplamValeHizmetleri" ColumnName="Islem_ToplamValeHizmetleri" />
+                <ScalarProperty Name="Islem_ToplamDigerUcretler" ColumnName="Islem_ToplamDigerUcretler" />
+                <ScalarProperty Name="Islem_IskontoOrani" ColumnName="Islem_IskontoOrani" />
+                <ScalarProperty Name="Islem_TahsilEdilen" ColumnName="Islem_TahsilEdilen" />
+                <ScalarProperty Name="Islem_KalanBorc" ColumnName="Islem_KalanBorc" />
+                <ScalarProperty Name="Islem_Status" ColumnName="Islem_Status" />
+                <ScalarProperty Name="Islem_CreateDate" ColumnName="Islem_CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewServis">
+            <EntityTypeMapping TypeName="AmicaRentDBModel.viewServis">
+              <MappingFragment StoreEntitySet="viewServis">
+                <ScalarProperty Name="Servis_ID" ColumnName="Servis_ID" />
+                <ScalarProperty Name="AracGrup_Adi" ColumnName="AracGrup_Adi" />
+                <ScalarProperty Name="AracMarka_Adi" ColumnName="AracMarka_Adi" />
+                <ScalarProperty Name="AracModel_Adi" ColumnName="AracModel_Adi" />
+                <ScalarProperty Name="Arac_Yil" ColumnName="Arac_Yil" />
+                <ScalarProperty Name="AracPlakaNo" ColumnName="AracPlakaNo" />
+                <ScalarProperty Name="Servis_ServisZamani" ColumnName="Servis_ServisZamani" />
+                <ScalarProperty Name="ServisFirma_Adi" ColumnName="ServisFirma_Adi" />
+                <ScalarProperty Name="Servis_Notlar" ColumnName="Servis_Notlar" />
+                <ScalarProperty Name="Servis_Ucreti" ColumnName="Servis_Ucreti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

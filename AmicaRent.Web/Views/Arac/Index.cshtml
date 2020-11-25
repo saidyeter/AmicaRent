@@ -1,150 +1,110 @@
-﻿@model IEnumerable<WebApplication.DataAccess.Arac>
+﻿@model IEnumerable<WebApplication.DataAccess.viewAracList>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Araç";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <a class="btn btn-app" href="@Url.Action("Create")">
+                    <i class="fa fa-plus"></i> Yeni
+                </a>
+            </div>
+            <div class="box-body">
+                <table id="AracTable" class="table table-bordered table-striped">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AracGrup_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracMarka_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracModel_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Arac_Yil)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracYakitTuru_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Arac_VitesTipi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracKasaTipi_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracKlimaDurumu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracPlakaNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracGuncelKM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracMotorNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracSaseNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracRuhsatSeriNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Arac_Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracRenk_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracKiralamaDurumu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Arac_TrafikSigortasiBitisTarihi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Arac_KaskoBitisTarihi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Arac_KoltukSigortasiBitisTarihi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Arac_FenniMuayeneGecerlilikTarihi)
-        </th>
-        <th></th>
-    </tr>
+                    <tr>
+                        <th>
+                            Araç Grup
+                        </th>
+                        <th>
+                            Araç Marka
+                        </th>
+                        <th>
+                            Araç Model
+                        </th>
+                        <th>
+                            Araç Yılı
+                        </th>
+                        <th>
+                            Yakıt Türü
+                        </th>
+                        <th>
+                            Vites Tipi
+                        </th>
+                        <th>
+                            Araç Kasa Tipi
+                        </th>
+                        <th>
+                            Plaka Numarası
+                        </th>
+                        <th>
+                            Araç Durumu
+                        </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracGrup_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracMarka_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracModel_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arac_Yil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracYakitTuru_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arac_VitesTipi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracKasaTipi_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracKlimaDurumu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracPlakaNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracGuncelKM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracMotorNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracSaseNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracRuhsatSeriNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arac_Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracRenk_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracKiralamaDurumu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arac_TrafikSigortasiBitisTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arac_KaskoBitisTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arac_KoltukSigortasiBitisTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arac_FenniMuayeneGecerlilikTarihi)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Arac_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Arac_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Arac_ID })
-        </td>
-    </tr>
-}
+                        <th>
+                             
+                        </th>
 
-</table>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AracGrup_Adi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AracMarka_Adi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AracModel_Adi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Arac_Yil)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AracYakitTuru_Adi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Arac_VitesTipi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AracKasaTipi_Adi)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AracPlakaNo)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.KiralamaDurumu)
+                            </td>
+                            <td>
+
+                                <a class="btn" href="@Url.Action("Edit", new { id = item.Arac_ID })">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn" href="@Url.Action("Details", new { id = item.Arac_ID })">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                                @*<a class="btn" href="@Url.Action("Delete", new { id = item.Arac_ID })">
+                                        <i class="fa fa-trash"></i>
+                                    </a>*@
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         var menuItem = document.querySelector('#left-sidebar-menu-car');

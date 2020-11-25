@@ -17,7 +17,7 @@ namespace WebApplication.Controllers
         // GET: Arac
         public ActionResult Index()
         {
-            return View(db.Arac.ToList());
+            return View(db.viewAracList.ToList());
         }
 
         // GET: Arac/Details/5
@@ -38,6 +38,43 @@ namespace WebApplication.Controllers
         // GET: Arac/Create
         public ActionResult Create()
         {
+
+            List<AracGrup> aracGrupList = db.AracGrup.ToList();
+            ViewBag.AracGrupList = aracGrupList;
+            List<AracMarka> aracMarkaList = db.AracMarka.ToList();
+            ViewBag.AracMarkaList = aracMarkaList;
+            List<AracModel> aracModelList = db.AracModel.ToList();
+            ViewBag.AracModelList = aracModelList;
+            List<AracYakitTuru> aracYakitTuruList = db.AracYakitTuru.ToList();
+            ViewBag.AracYakitTuruList = aracYakitTuruList;
+
+            Dictionary<string, string> vitesTipi = new Dictionary<string, string>();
+            vitesTipi.Add("OTOMATİK", "OTOMATİK");
+            vitesTipi.Add("MANUEL", "MANUEL");
+            ViewBag.VitesTipi = vitesTipi;
+
+            List<AracKasaTipi> aracKasaTipiList = db.AracKasaTipi.ToList();
+            ViewBag.AracKasaTipiList = aracKasaTipiList;
+
+            Dictionary<int, string> aracKlimaDurumu = new Dictionary<int, string>();
+            aracKlimaDurumu.Add(1, "Klimalı");
+            aracKlimaDurumu.Add(2, "Klimasız");
+            ViewBag.AracKlimaDurumu = aracKlimaDurumu;
+
+            List<AracRenk> aracRenkList = db.AracRenk.ToList();
+            ViewBag.AracRenkList = aracRenkList;
+
+
+            Dictionary<int, string> aracKiralamaDurumu = new Dictionary<int, string>();
+            aracKiralamaDurumu.Add(0, "Boşta");
+            aracKiralamaDurumu.Add(1, "Müşteride");
+            aracKiralamaDurumu.Add(2, "Pasif Araç");
+            aracKiralamaDurumu.Add(3, "Arızalı/Serviste");
+
+            ViewBag.AracKiralamaDurumu = aracKiralamaDurumu;
+
+
+
             return View();
         }
 

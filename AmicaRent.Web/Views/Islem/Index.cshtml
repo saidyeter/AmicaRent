@@ -10,150 +10,88 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
+
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Islem_Tipi)
+            İşlem Tipi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cari_ID)
+            Cari Adı Soyadı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Arac_ID)
+            Araç Marka / Model
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Islem_BaslangicTarihi)
+            Başlangıç Tarihi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Islem_BitisTarihi)
+            Bitiş Tarihi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Islem_IlkKM)
+            İlk KM.
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Islem_SonKM)
+            Son KM.
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Islem_YakitDurumu)
+            Yakıt Durumu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Islem_TeslimatLokasyonID)
+            Teslimat Lokasyonu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Islem_IadeLokasyonID)
+            İade Lokasyonu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Islem_GunlukUcret)
+            Durum
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_GunlukKMSiniri)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_ToplamKiralamaUcreti)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_ToplamKMAsimUcreti)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_ToplamEkstraHizmetler)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_ToplamValeHizmetleri)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_ToplamDigerUcretler)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_IskontoOrani)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_TahsilEdilen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_KalanBorc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Islem_CreateDate)
-        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_Tipi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cari_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arac_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_BaslangicTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_BitisTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_IlkKM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_SonKM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_YakitDurumu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_TeslimatLokasyonID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_IadeLokasyonID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_GunlukUcret)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_GunlukKMSiniri)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_ToplamKiralamaUcreti)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_ToplamKMAsimUcreti)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_ToplamEkstraHizmetler)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_ToplamValeHizmetleri)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_ToplamDigerUcretler)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_IskontoOrani)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_TahsilEdilen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_KalanBorc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Islem_CreateDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Islem_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Islem_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Islem_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Islem_Tipi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cari_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Arac_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Islem_BaslangicTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Islem_BitisTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Islem_IlkKM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Islem_SonKM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Islem_YakitDurumu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Islem_TeslimatLokasyonID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Islem_IadeLokasyonID)
+            </td>
 
+            <td>
+                @Html.DisplayFor(modelItem => item.Islem_Status)
+            </td>
+
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Islem_ID }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.Islem_ID }) |
+
+            </td>
+        </tr>
+}
 </table>

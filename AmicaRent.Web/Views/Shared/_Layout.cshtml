@@ -225,10 +225,11 @@
                     </div>
                     <div class="pull-left info">
                         <p>@User.Identity.GetUserNameIdentifier()</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <p>Said</p>
+                        @*<a href="#"><i class="fa fa-circle text-success"></i> Online</a>*@
                     </div>
                 </div>
-                <form action="#" method="get" class="sidebar-form">
+                @*<form action="#" method="get" class="sidebar-form">
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
@@ -237,32 +238,59 @@
                             </button>
                         </span>
                     </div>
-                </form>
+                </form>*@
                 <ul class="sidebar-menu">
                     <li class="header">MENÜ ADIMLARI</li>
-                    <li id="left-sidebar-menu-car" class="treeview">
+                    <li id="left-sidebar-menu-carDef" class="treeview">
                         <a href="#">
-                            <i class="fa fa-car"></i> <span>Araçlar</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-car"></i> <span>Araç</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-car-Arac"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-save"></i> Araç Tanımlama</a></li>
-                            <li id="left-sidebar-menu-car-AracGrup"><a href="@Url.Action("Index", "AracGrup")"><i class="fa fa-bell-o"></i> Araç Grupları</a></li>
-                            <li id="left-sidebar-menu-car-AracKasaTipi"><a href="@Url.Action("Index", "AracKasaTipi")"><i class="fa fa-automobile"></i> Araç Kasa Tipleri</a></li>
-                            <li id="left-sidebar-menu-car-AracMarka"><a href="@Url.Action("Index", "AracMarka")"><i class="fa fa-copyright"></i> Araç Marka Tanımlama</a></li>
-                            <li id="left-sidebar-menu-car-AracModel"><a href="@Url.Action("Index", "AracModel")"><i class="fa fa-horse-head"></i> Araç Model Tanımlama</a></li>
-                            <li id="left-sidebar-menu-car-AracRenk"><a href="@Url.Action("Index", "AracRenk")"><i class="fa fa-paint-brush"></i> Araç Renk Tanımlama</a></li>
-                            <li id="left-sidebar-menu-car-AracYakitTuru"><a href="@Url.Action("Index", "AracYakitTuru")"><i class="fa ion-contrast"></i> Araç Yakıt Türleri</a></li>
+                            <li id="left-sidebar-menu-carDef-Arac"><a href="@Url.Action("Create", "Arac")"><i class="fa fa-save"></i> Araç Tanımlama</a></li>
+                            <li id="left-sidebar-menu-carDef-AracGrup"><a href="@Url.Action("Create", "AracGrup")"><i class="fa fa-bell-o"></i> Araç Grup Tanımlama</a></li>
+                            <li id="left-sidebar-menu-carDef-AracKasaTipi"><a href="@Url.Action("Create", "AracKasaTipi")"><i class="fa fa-automobile"></i> Araç Kasa Tipi Tanımlama</a></li>
+                            <li id="left-sidebar-menu-carDef-AracMarka"><a href="@Url.Action("Create", "AracMarka")"><i class="fa fa-copyright"></i> Araç Marka Tanımlama</a></li>
+                            <li id="left-sidebar-menu-carDef-AracModel"><a href="@Url.Action("Create", "AracModel")"><i class="fa fa-horse-head"></i> Araç Model Tanımlama</a></li>
+                            <li id="left-sidebar-menu-carDef-AracRenk"><a href="@Url.Action("Create", "AracRenk")"><i class="fa fa-paint-brush"></i> Araç Renk Tanımlama</a></li>
+                            <li id="left-sidebar-menu-carDef-AracYakitTuru"><a href="@Url.Action("Create", "AracYakitTuru")"><i class="fa ion-contrast"></i> Araç Yakıt Türü Tanımlama</a></li>
                         </ul>
                     </li>
-                    <li id="left-sidebar-menu-customer" class="treeview">
+                    <li id="left-sidebar-menu-carList" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-car"></i> <span>Araç Listeleri</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li id="left-sidebar-menu-carList-Arac"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-save"></i> Tüm Araç Listesi</a></li>
+                            <li id="left-sidebar-menu-carList-Arac-res"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-save"></i> Rezervasyon Listesi</a></li>
+                            <li id="left-sidebar-menu-carList-Arac-avab"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-save"></i> Müsait Araç Listesi</a></li>
+                            <li id="left-sidebar-menu-carList-AracGrup"><a href="@Url.Action("Index", "AracGrup")"><i class="fa fa-bell-o"></i> Araç Grup Listesi</a></li>
+                            <li id="left-sidebar-menu-carList-AracKasaTipi"><a href="@Url.Action("Index", "AracKasaTipi")"><i class="fa fa-automobile"></i> Araç Kasa Tipi Listesi</a></li>
+                            <li id="left-sidebar-menu-carList-AracMarka"><a href="@Url.Action("Index", "AracMarka")"><i class="fa fa-copyright"></i> Araç Marka Listesi</a></li>
+                            <li id="left-sidebar-menu-carList-AracModel"><a href="@Url.Action("Index", "AracModel")"><i class="fa fa-horse-head"></i> Araç Model Listesi</a></li>
+                            <li id="left-sidebar-menu-carList-AracRenk"><a href="@Url.Action("Index", "AracRenk")"><i class="fa fa-paint-brush"></i> Araç Renk Listesi</a></li>
+                            <li id="left-sidebar-menu-carList-AracYakitTuru"><a href="@Url.Action("Index", "AracYakitTuru")"><i class="fa ion-contrast"></i> Araç Yakıt Türü Listesi</a></li>
+                        </ul>
+                    </li>
+                    <li id="left-sidebar-menu-customerDef" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-car"></i> <span>Müşteri</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li id="left-sidebar-menu-customerDef-Cari"><a href="@Url.Action("Create", "Cari")"><i class="fa fa-save"></i> Cari Tanımlama</a></li>
+                            <li id="left-sidebar-menu-customerDef-CariEhliyet"><a href="@Url.Action("Create", "CariEhliyet")"><i class="fa fa-bell-o"></i> Cari Ehliyet Tanımlama</a></li>
+                            <li id="left-sidebar-menu-customerDef-CariSehir"><a href="@Url.Action("Create", "CariSehir")"><i class="fa fa-automobile"></i> Cari Şehir Tanımlama</a></li>
+                            <li id="left-sidebar-menu-customerDef-CariUyruk"><a href="@Url.Action("Create", "CariUyruk")"><i class="fa fa-automobile"></i> Cari Uyruk Tanımlama</a></li>
+                        </ul>
+                    </li>
+                    <li id="left-sidebar-menu-customerList" class="treeview">
                         <a href="#">
                             <i class="fa fa-car"></i> <span>Müşteri Bilgileri</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-customer-Cari"><a href="@Url.Action("Index", "Cari")"><i class="fa fa-save"></i> Cari Kayıtlar</a></li>
-                            <li id="left-sidebar-menu-customer-CariEhliyet"><a href="@Url.Action("Index", "CariEhliyet")"><i class="fa fa-bell-o"></i> Cari Ehliyet Kayıtları</a></li>
-                            <li id="left-sidebar-menu-customer-CariSehir"><a href="@Url.Action("Index", "CariSehir")"><i class="fa fa-automobile"></i> Cari Şehir Kayıtları</a></li>
-                            <li id="left-sidebar-menu-customer-CariUyruk"><a href="@Url.Action("Index", "CariUyruk")"><i class="fa fa-automobile"></i> Cari Uyruk Kayıtları</a></li>
+                            <li id="left-sidebar-menu-customerList-Cari"><a href="@Url.Action("Index", "Cari")"><i class="fa fa-save"></i> Cari Listesi</a></li>
+                            <li id="left-sidebar-menu-customerList-CariEhliyet"><a href="@Url.Action("Index", "CariEhliyet")"><i class="fa fa-bell-o"></i> Cari Ehliyet Listesi</a></li>
+                            <li id="left-sidebar-menu-customerList-CariSehir"><a href="@Url.Action("Index", "CariSehir")"><i class="fa fa-automobile"></i> Cari Şehir Listesi</a></li>
+                            <li id="left-sidebar-menu-customerList-CariUyruk"><a href="@Url.Action("Index", "CariUyruk")"><i class="fa fa-automobile"></i> Cari Uyruk Listesi</a></li>
                         </ul>
                     </li>
                     <li id="left-sidebar-menu-action" class="treeview">
@@ -270,29 +298,65 @@
                             <i class="fa fa-car"></i> <span>İşlem</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-action-Islem"><a href="@Url.Action("Index", "Islem")"><i class="fa fa-save"></i> Rezervasyon İşlemleri</a></li>
-                            <li id="left-sidebar-menu-action-Islem"><a href="@Url.Action("Index", "Islem")"><i class="fa fa-save"></i> Kiralama İşlemleri</a></li>
+                            <li id="left-sidebar-menu-actionList-Islem"><a href="@Url.Action("Index", "Islem")"><i class="fa fa-save"></i> Rezervasyon Listesi</a></li>
+                            <li id="left-sidebar-menu-actionDef-Islem"><a href="@Url.Action("Create", "Islem")"><i class="fa fa-save"></i> Kiralama İşlemleri</a></li>
                         </ul>
                     </li>
-                    @*<li id="left-sidebar-menu-widgets">
-                        <a href="@Url.Action("Index", "Widgets")">
-                            <i class="fa fa-th"></i> <span>Widgets</span>
-                            <small class="label pull-right bg-green">new</small>
-                        </a>
-                    </li>
-                    <li id="left-sidebar-menu-charts" class="treeview">
+                    <li id="left-sidebar-menu-service" class="treeview">
                         <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Charts</span>
-                            <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-car"></i> <span>Servis İşlemleri</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action("ChartJs", "Charts")"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                            <li id="left-sidebar-menu-charts-morris"><a href="@Url.Action("Morris", "Charts")"><i class="fa fa-circle-o"></i> Morris</a></li>
-                            <li id="left-sidebar-menu-charts-flot"><a href="@Url.Action("Flot", "Charts")"><i class="fa fa-circle-o"></i> Flot</a></li>
-                            <li id="left-sidebar-menu-charts-inline"><a href="@Url.Action("Inline", "Charts")"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                            <li id="left-sidebar-menu-serviceDef-Servis"><a href="@Url.Action("Create", "Servis")"><i class="fa fa-save"></i> Servis Tanımla</a></li>
+                            <li id="left-sidebar-menu-serviceDef-ServisFirma"><a href="@Url.Action("Create", "ServisFirma")"><i class="fa fa-save"></i> Servis Firmaları</a></li>
+                            <li id="left-sidebar-menu-serviceList-Servis"><a href="@Url.Action("Index", "Servis")"><i class="fa fa-save"></i> Yaklaşan Servis Listesi</a></li>
                         </ul>
                     </li>
+                    <li id="left-sidebar-menu-system" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-car"></i> <span>Sistem Değişkenleri</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li id="left-sidebar-menu-systemDef-OdemeTipi"><a href="@Url.Action("Create", "OdemeTipi")"><i class="fa fa-save"></i> Ödeme Türleri Tanımlama</a></li>
+                            <li id="left-sidebar-menu-system-blank"><a href="#"><i class="fa fa-save"></i> Banka Bilgileri Tanımlama</a></li>
+                            <li id="left-sidebar-menu-system-blank"><a href="#"><i class="fa fa-save"></i> Şube Tanımlama</a></li>
+                            <li id="left-sidebar-menu-systemDef-Kullanici"><a href="@Url.Action("Create", "Kullanici")"><i class="fa fa-save"></i> Kullanıcı Tanımlama</a></li>
+                        </ul>
+                    </li>
+
+                    <li id="left-sidebar-menu-till" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-car"></i> <span>Kasa İşlemleri</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li id="left-sidebar-menu-till-blank"><a href="#"><i class="fa fa-save"></i> Günlük Kasa</a></li>
+                            <li id="left-sidebar-menu-till-blank"><a href="#"><i class="fa fa-save"></i> Borç/Alacak Durumu</a></li>
+                            <li id="left-sidebar-menu-till-blank"><a href="#"><i class="fa fa-save"></i> Araç Kredi İşlemleri</a></li>
+                        </ul>
+                    </li>                   
+                    
+                    
+                    
+
+                    @*<li id="left-sidebar-menu-widgets">
+            <a href="@Url.Action("Index", "Widgets")">
+                <i class="fa fa-th"></i> <span>Widgets</span>
+                <small class="label pull-right bg-green">new</small>
+            </a>
+        </li>
+        <li id="left-sidebar-menu-charts" class="treeview">
+            <a href="#">
+                <i class="fa fa-pie-chart"></i>
+                <span>Charts</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action("ChartJs", "Charts")"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                <li id="left-sidebar-menu-charts-morris"><a href="@Url.Action("Morris", "Charts")"><i class="fa fa-circle-o"></i> Morris</a></li>
+                <li id="left-sidebar-menu-charts-flot"><a href="@Url.Action("Flot", "Charts")"><i class="fa fa-circle-o"></i> Flot</a></li>
+                <li id="left-sidebar-menu-charts-inline"><a href="@Url.Action("Inline", "Charts")"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            </ul>
+        </li>*@
                     <li id="left-sidebar-menu-elements" class="treeview">
                         <a href="#">
                             <i class="fa fa-laptop"></i>
@@ -308,95 +372,95 @@
                             <li id="left-sidebar-menu-elements-modals"><a href="@Url.Action("Modals", "Elements")"><i class="fa fa-circle-o"></i> Modals</a></li>
                         </ul>
                     </li>
-                    <li id="left-sidebar-menu-forms" class="treeview">
-                        <a href="#">
-                            <i class="fa fa-edit"></i> <span>Forms</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-forms-general"><a href="@Url.Action("General", "Forms")"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                            <li id="left-sidebar-menu-forms-advanced"><a href="@Url.Action("Advanced", "Forms")"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                            <li id="left-sidebar-menu-forms-editors"><a href="@Url.Action("Editors", "Forms")"><i class="fa fa-circle-o"></i> Editors</a></li>
-                        </ul>
-                    </li>
-                    <li id="left-sidebar-menu-tables" class="treeview">
-                        <a href="#">
-                            <i class="fa fa-table"></i> <span>Tables</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-tables-simple"><a href="@Url.Action("Simple", "Tables")"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-                            <li id="left-sidebar-menu-tables-data"><a href="@Url.Action("Data", "Tables")"><i class="fa fa-circle-o"></i> Data tables</a></li>
-                        </ul>
-                    </li>
-                    <li id="left-sidebar-menu-calendar">
-                        <a href="@Url.Action("Index", "Calendar")">
-                            <i class="fa fa-calendar"></i>
-                            <span>Calendar</span>
-                            <small class="label pull-right bg-red">3</small>
-                        </a>
-                    </li>
-                    <li id="left-sidebar-menu-mailbox" class="treeview">
-                        <a href="#">
-                            <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-mailbox-inbox"><a href="@Url.Action("Inbox", "Mailbox")">Inbox <span class="label label-primary pull-right">13</span></a></li>
-                            <li id="left-sidebar-menu-mailbox-compose"><a href="@Url.Action("Compose", "Mailbox")">Compose</a></li>
-                            <li id="left-sidebar-menu-mailbox-read"><a href="@Url.Action("Read", "Mailbox")">Read</a></li>
-                        </ul>
-                    </li>
-                    <li id="left-sidebar-menu-examples" class="treeview">
-                        <a href="#">
-                            <i class="fa fa-folder"></i> <span>Examples</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-examples-invoice"><a href="@Url.Action("Invoice", "Examples")"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                            <li id="left-sidebar-menu-examples-profileex"><a href="@Url.Action("ProfileEx", "Examples")"><i class="fa fa-circle-o"></i> Profile</a></li>
-                            <li id="left-sidebar-menu-examples-login"><a href="@Url.Action("Login", "Examples")"><i class="fa fa-circle-o"></i> Login</a></li>
-                            <li id="left-sidebar-menu-examples-register"><a href="@Url.Action("Register", "Examples")"><i class="fa fa-circle-o"></i> Register</a></li>
-                            <li id="left-sidebar-menu-examples-lockscreen"><a href="@Url.Action("Lockscreen", "Examples")"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                            <li id="left-sidebar-menu-examples-p404"><a href="@Url.Action("P404", "Examples")"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                            <li id="left-sidebar-menu-examples-p500"><a href="@Url.Action("P500", "Examples")"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                            <li id="left-sidebar-menu-examples-blank"><a href="@Url.Action("Blank", "Examples")"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-                            <li id="left-sidebar-menu-examples-pace"><a href="@Url.Action("Pace", "Examples")"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-                        </ul>
-                    </li>
-                    <li id="left-sidebar-menu-multilevel" class="treeview">
-                        <a href="#">
-                            <i class="fa fa-share"></i> <span>Multilevel</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                            <li>
-                                <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                        </ul>
-                    </li>
-                    <li id="left-sidebar-menu-documentation">
-                        <a href="@Url.Action("Index", "Documentation")">
-                            <i class="fa fa-book"></i>
-                            <span>Layout Documentation</span>
-                        </a>
-                    </li>
-                    <li class="header">LABELS</li>
-                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-                    <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>*@
+                    @*<li id="left-sidebar-menu-forms" class="treeview">
+            <a href="#">
+                <i class="fa fa-edit"></i> <span>Forms</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li id="left-sidebar-menu-forms-general"><a href="@Url.Action("General", "Forms")"><i class="fa fa-circle-o"></i> General Elements</a></li>
+                <li id="left-sidebar-menu-forms-advanced"><a href="@Url.Action("Advanced", "Forms")"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
+                <li id="left-sidebar-menu-forms-editors"><a href="@Url.Action("Editors", "Forms")"><i class="fa fa-circle-o"></i> Editors</a></li>
+            </ul>
+        </li>
+        <li id="left-sidebar-menu-tables" class="treeview">
+            <a href="#">
+                <i class="fa fa-table"></i> <span>Tables</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li id="left-sidebar-menu-tables-simple"><a href="@Url.Action("Simple", "Tables")"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+                <li id="left-sidebar-menu-tables-data"><a href="@Url.Action("Data", "Tables")"><i class="fa fa-circle-o"></i> Data tables</a></li>
+            </ul>
+        </li>
+        <li id="left-sidebar-menu-calendar">
+            <a href="@Url.Action("Index", "Calendar")">
+                <i class="fa fa-calendar"></i>
+                <span>Calendar</span>
+                <small class="label pull-right bg-red">3</small>
+            </a>
+        </li>
+        <li id="left-sidebar-menu-mailbox" class="treeview">
+            <a href="#">
+                <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li id="left-sidebar-menu-mailbox-inbox"><a href="@Url.Action("Inbox", "Mailbox")">Inbox <span class="label label-primary pull-right">13</span></a></li>
+                <li id="left-sidebar-menu-mailbox-compose"><a href="@Url.Action("Compose", "Mailbox")">Compose</a></li>
+                <li id="left-sidebar-menu-mailbox-read"><a href="@Url.Action("Read", "Mailbox")">Read</a></li>
+            </ul>
+        </li>
+        <li id="left-sidebar-menu-examples" class="treeview">
+            <a href="#">
+                <i class="fa fa-folder"></i> <span>Examples</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li id="left-sidebar-menu-examples-invoice"><a href="@Url.Action("Invoice", "Examples")"><i class="fa fa-circle-o"></i> Invoice</a></li>
+                <li id="left-sidebar-menu-examples-profileex"><a href="@Url.Action("ProfileEx", "Examples")"><i class="fa fa-circle-o"></i> Profile</a></li>
+                <li id="left-sidebar-menu-examples-login"><a href="@Url.Action("Login", "Examples")"><i class="fa fa-circle-o"></i> Login</a></li>
+                <li id="left-sidebar-menu-examples-register"><a href="@Url.Action("Register", "Examples")"><i class="fa fa-circle-o"></i> Register</a></li>
+                <li id="left-sidebar-menu-examples-lockscreen"><a href="@Url.Action("Lockscreen", "Examples")"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+                <li id="left-sidebar-menu-examples-p404"><a href="@Url.Action("P404", "Examples")"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+                <li id="left-sidebar-menu-examples-p500"><a href="@Url.Action("P500", "Examples")"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+                <li id="left-sidebar-menu-examples-blank"><a href="@Url.Action("Blank", "Examples")"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+                <li id="left-sidebar-menu-examples-pace"><a href="@Url.Action("Pace", "Examples")"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+            </ul>
+        </li>
+        <li id="left-sidebar-menu-multilevel" class="treeview">
+            <a href="#">
+                <i class="fa fa-share"></i> <span>Multilevel</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                <li>
+                    <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                        <li>
+                            <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+            </ul>
+        </li>
+        <li id="left-sidebar-menu-documentation">
+            <a href="@Url.Action("Index", "Documentation")">
+                <i class="fa fa-book"></i>
+                <span>Layout Documentation</span>
+            </a>
+        </li>
+        <li class="header">LABELS</li>
+        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>*@
                 </ul>
             </section>
         </aside>
@@ -419,8 +483,7 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 2.3.2
             </div>
-            <strong>Copyrights | MVC Application Bartosz Rachwal (AIST) | Layout &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-            reserved.
+            <strong>Copyrights | Amica Yazılım &copy; 2020<a href="https://amikasoft.com/">Amika</a>.</strong> Tüm hakları saklıdır.
         </footer>
         <aside class="control-sidebar control-sidebar-dark">
             <ul class="nav nav-tabs nav-justified control-sidebar-tabs">

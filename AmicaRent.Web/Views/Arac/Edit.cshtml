@@ -1,185 +1,225 @@
 ﻿@model WebApplication.DataAccess.Arac
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Düzenle";
 }
-
-<h2>Edit</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Arac</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Arac_ID)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracGrup_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracGrup_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracGrup_ID, "", new { @class = "text-danger" })
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Araç</h3>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracMarka_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracMarka_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracMarka_ID, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Arac_ID)
+
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Araç Grubu
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracGrup_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracGrup_ID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracModel_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracModel_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracModel_ID, "", new { @class = "text-danger" })
+            <div class="form-group">
+
+                <label class="control-label col-md-2">
+                    Araç Marka
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracMarka_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracMarka_ID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Arac_Yil, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Arac_Yil, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Arac_Yil, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Araç Model
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracModel_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracModel_ID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracYakitTuru_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracYakitTuru_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracYakitTuru_ID, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Araç Yıl
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Arac_Yil, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Arac_Yil, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Arac_VitesTipi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Arac_VitesTipi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Arac_VitesTipi, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Yakıt Türü
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracYakitTuru_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracYakitTuru_ID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracKasaTipi_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracKasaTipi_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracKasaTipi_ID, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Vites Tipi
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Arac_VitesTipi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Arac_VitesTipi, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracKlimaDurumu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracKlimaDurumu, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracKlimaDurumu, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Kasa Tipi
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracKasaTipi_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracKasaTipi_ID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracPlakaNo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracPlakaNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracPlakaNo, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Klima Durumu
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracKlimaDurumu, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracKlimaDurumu, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracGuncelKM, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracGuncelKM, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracGuncelKM, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Plaka No
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracPlakaNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracPlakaNo, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracMotorNo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracMotorNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracMotorNo, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Güncel KM.
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracGuncelKM, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracGuncelKM, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracSaseNo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracSaseNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracSaseNo, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Araç Motor No
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracMotorNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracMotorNo, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracRuhsatSeriNo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracRuhsatSeriNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracRuhsatSeriNo, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Şase No
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracSaseNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracSaseNo, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Arac_Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Arac_Status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Arac_Status, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Ruhsat Seri No
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracRuhsatSeriNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracRuhsatSeriNo, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracRenk_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracRenk_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracRenk_ID, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Araç Durumu
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Arac_Status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Arac_Status, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AracKiralamaDurumu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AracKiralamaDurumu, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AracKiralamaDurumu, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Araç Renk
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracRenk_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracRenk_ID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Arac_TrafikSigortasiBitisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Arac_TrafikSigortasiBitisTarihi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Arac_TrafikSigortasiBitisTarihi, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Kiralama Durumu
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracKiralamaDurumu, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracKiralamaDurumu, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Arac_KaskoBitisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Arac_KaskoBitisTarihi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Arac_KaskoBitisTarihi, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Trf.Sig.Bit.Tar
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Arac_TrafikSigortasiBitisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Arac_TrafikSigortasiBitisTarihi, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Arac_KoltukSigortasiBitisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Arac_KoltukSigortasiBitisTarihi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Arac_KoltukSigortasiBitisTarihi, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Kasko Bit.Tar
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Arac_KaskoBitisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Arac_KaskoBitisTarihi, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Koltuk Sig.Bit.Tar
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Arac_KoltukSigortasiBitisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Arac_KoltukSigortasiBitisTarihi, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Fenni Myn.Gec.Tar
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Onayla</button>
             </div>
         </div>
     </div>

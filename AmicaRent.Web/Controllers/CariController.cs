@@ -17,7 +17,7 @@ namespace WebApplication.Controllers
         // GET: Cari
         public ActionResult Index()
         {
-            return View(db.Cari.ToList());
+            return View(db.viewCari.ToList());
         }
 
         // GET: Cari/Details/5
@@ -27,7 +27,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cari cari = db.Cari.Find(id);
+            var cari = db.viewCari.SingleOrDefault(x => x.Cari_ID == id);
             if (cari == null)
             {
                 return HttpNotFound();
@@ -38,6 +38,16 @@ namespace WebApplication.Controllers
         // GET: Cari/Create
         public ActionResult Create()
         {
+
+            List<CariUyruk> uyrukList = db.CariUyruk.ToList();
+            ViewBag.UyrukList = uyrukList;
+            List<CariSehir> sehirList = db.CariSehir.ToList();
+            ViewBag.SehirList = sehirList;
+
+            Dictionary<int, string> cinsiyet = new Dictionary<int, string>();
+            cinsiyet.Add(1, "Erkek");
+            cinsiyet.Add(2, "Kadın");
+            ViewBag.Cinsiyet = cinsiyet;
             return View();
         }
 
@@ -50,6 +60,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                cari.Cari_CreateDate = DateTime.Now;
                 db.Cari.Add(cari);
                 db.SaveChanges();
                 return RedirectToAction("Index");

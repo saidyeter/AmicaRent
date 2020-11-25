@@ -12,70 +12,71 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_Adi)
+            Firma Adı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_Adres1)
+            Adres - 1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_Adres2)
+            Adres - 2
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_Tel1)
+            Telefon - 1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_Tel2)
+            Telefon - 2
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_Email)
+            E-Mail
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_Yetkili)
+            Yetkili Adı Soyadı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_CreateDate)
+            Oluşturma Zamanı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ServisFirma_Status)
+            Durumu
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_Adi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_Adres1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_Adres2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_Tel1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_Tel2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_Yetkili)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_CreateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServisFirma_Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ServisFirma_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ServisFirma_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ServisFirma_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_Adi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_Adres1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_Adres2)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_Tel1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_Tel2)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_Yetkili)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_CreateDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ServisFirma_Status)
+    </td>
+    <td>
+        @Html.ActionLink("Düzenle", "Edit", new { id = item.ServisFirma_ID }) |
+        @Html.ActionLink("Detaylar", "Details", new { id = item.ServisFirma_ID }) |
+
+    </td>
+</tr>}
+
 
 </table>

@@ -798,6 +798,95 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ServisFirma', @level2type=N'COLUMN',@level2name=N'ServisFirma_Status'
 GO
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewAracList]
+AS
+SELECT        dbo.Arac.Arac_ID, dbo.AracGrup.AracGrup_Adi, dbo.AracMarka.AracMarka_Adi, dbo.AracModel.AracModel_Adi, dbo.Arac.Arac_Yil, dbo.AracYakitTuru.AracYakitTuru_Adi, dbo.Arac.Arac_VitesTipi, 
+                         dbo.AracKasaTipi.AracKasaTipi_Adi, CASE WHEN dbo.Arac.AracKlimaDurumu = 1 THEN 'Klimalý' ELSE 'Klimasýz' END AS KlimaDurumu, dbo.Arac.AracPlakaNo, dbo.Arac.AracGuncelKM, dbo.Arac.AracMotorNo, 
+                         dbo.Arac.AracSaseNo, dbo.Arac.AracRuhsatSeriNo, dbo.AracRenk.AracRenk_Adi, 
+                         CASE WHEN dbo.Arac.AracKiralamaDurumu = 0 THEN 'Boþta' WHEN dbo.Arac.AracKiralamaDurumu = 1 THEN 'Müþteride' WHEN dbo.Arac.AracKiralamaDurumu = 2 THEN 'Pasif Araç' WHEN dbo.Arac.AracKiralamaDurumu = 3 THEN
+                          'Arýzalý/Serviste' END AS KiralamaDurumu, dbo.Arac.Arac_TrafikSigortasiBitisTarihi, dbo.Arac.Arac_KaskoBitisTarihi, dbo.Arac.Arac_KoltukSigortasiBitisTarihi, dbo.Arac.Arac_FenniMuayeneGecerlilikTarihi
+FROM            dbo.Arac INNER JOIN
+                         dbo.AracGrup ON dbo.Arac.AracGrup_ID = dbo.AracGrup.AracGrup_ID INNER JOIN
+                         dbo.AracKasaTipi ON dbo.Arac.AracKasaTipi_ID = dbo.AracKasaTipi.AracKasaTipi_ID INNER JOIN
+                         dbo.AracMarka ON dbo.Arac.AracMarka_ID = dbo.AracMarka.AracMarka_ID INNER JOIN
+                         dbo.AracModel ON dbo.Arac.AracModel_ID = dbo.AracModel.AracModel_ID INNER JOIN
+                         dbo.AracRenk ON dbo.Arac.AracRenk_ID = dbo.AracRenk.AracRenk_ID INNER JOIN
+                         dbo.AracYakitTuru ON dbo.Arac.AracYakitTuru_ID = dbo.AracYakitTuru.AracYakitTuru_ID
+GO
+/****** Object:  View [dbo].[viewIslem]    Script Date: 25.11.2020 18:53:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewIslem]
+AS
+SELECT        dbo.Islem.Islem_ID, CASE WHEN dbo.Islem.Islem_Tipi = 1 THEN 'Rezervasyon' ELSE 'Kiralama' END AS IslemTipim, dbo.Cari.Cari_AdSoyad, dbo.viewAracList.AracGrup_Adi, dbo.viewAracList.AracMarka_Adi, 
+                         dbo.viewAracList.AracModel_Adi, dbo.viewAracList.Arac_Yil, dbo.Islem.Islem_BaslangicTarihi, dbo.Islem.Islem_BitisTarihi, dbo.Islem.Islem_IlkKM, dbo.Islem.Islem_SonKM, dbo.Islem.Islem_YakitDurumu, 
+                         dbo.Islem.Islem_TeslimatLokasyonID, dbo.Islem.Islem_IadeLokasyonID, dbo.Islem.Islem_GunlukUcret, dbo.Islem.Islem_GunlukKMSiniri, dbo.Islem.Islem_ToplamKiralamaUcreti, dbo.Islem.Islem_ToplamKMAsimUcreti, 
+                         dbo.Islem.Islem_ToplamEkstraHizmetler, dbo.Islem.Islem_ToplamValeHizmetleri, dbo.Islem.Islem_ToplamDigerUcretler, dbo.Islem.Islem_IskontoOrani, dbo.Islem.Islem_TahsilEdilen, dbo.Islem.Islem_KalanBorc, 
+                         dbo.Islem.Islem_Status, dbo.Islem.Islem_CreateDate
+FROM            dbo.Islem INNER JOIN
+                         dbo.Cari ON dbo.Islem.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
+                         dbo.viewAracList ON dbo.Islem.Arac_ID = dbo.viewAracList.Arac_ID
+GO
+/****** Object:  View [dbo].[viewServis]    Script Date: 25.11.2020 18:53:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewServis]
+AS
+SELECT        dbo.Servis.Servis_ID, dbo.viewAracList.AracGrup_Adi, dbo.viewAracList.AracMarka_Adi, dbo.viewAracList.AracModel_Adi, dbo.viewAracList.Arac_Yil, dbo.viewAracList.AracPlakaNo, dbo.Servis.Servis_ServisZamani, 
+                         dbo.ServisFirma.ServisFirma_Adi, dbo.Servis.Servis_Notlar, dbo.Servis.Servis_Ucreti
+FROM            dbo.Servis INNER JOIN
+                         dbo.ServisFirma ON dbo.Servis.ServisFirma_ID = dbo.ServisFirma.ServisFirma_ID INNER JOIN
+                         dbo.viewAracList ON dbo.Servis.Arac_ID = dbo.viewAracList.Arac_ID
+GO
+/****** Object:  View [dbo].[viewAracModel]    Script Date: 25.11.2020 18:53:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewAracModel]
+AS
+SELECT        dbo.AracModel.AracModel_ID, dbo.AracModel.AracMarka_ID, dbo.AracMarka.AracMarka_Adi, dbo.AracModel.AracModel_Adi, dbo.AracModel.AracModel_Status, dbo.AracModel.AracModel_CreateDate
+FROM            dbo.AracModel INNER JOIN
+                         dbo.AracMarka ON dbo.AracModel.AracMarka_ID = dbo.AracMarka.AracMarka_ID
+GO
+/****** Object:  View [dbo].[viewCari]    Script Date: 25.11.2020 18:53:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewCari]
+AS
+SELECT        dbo.Cari.Cari_ID, dbo.Cari.Cari_AdSoyad, dbo.CariUyruk.CariUyruk_Adi, dbo.Cari.Cari_IDNumber, CASE WHEN dbo.Cari.Cari_Cinsiyet = 1 THEN 'Erkek' ELSE 'Kadýn' END AS 'Cinsiyet', dbo.Cari.Cari_DogumTarihi, 
+                         dbo.Cari.Cari_EpostaAdresi, dbo.Cari.Cari_Adres1, dbo.Cari.Cari_Adres2, dbo.CariSehir.CariSehir_Adi, dbo.Cari.Cari_MobilTelefon, dbo.Cari.Cari_LokalTelefon, dbo.Cari.Cari_CreateDate
+FROM            dbo.Cari INNER JOIN
+                         dbo.CariSehir ON dbo.Cari.CariSehir_ID = dbo.CariSehir.CariSehir_ID INNER JOIN
+                         dbo.CariUyruk ON dbo.Cari.Cari_UyrukID = dbo.CariUyruk.CariUyruk_ID
+GO
+/****** Object:  View [dbo].[viewCariEhliyet]    Script Date: 25.11.2020 18:53:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewCariEhliyet]
+AS
+SELECT        dbo.CariEhliyet.CariEhliyet_ID, dbo.CariEhliyet.Cari_ID, dbo.Cari.Cari_AdSoyad, dbo.CariEhliyet.CariEhliyet_VerilisTarihi, dbo.CariEhliyet.CariEhliyet_GecerlilikTarihi, dbo.CariEhliyet.CariEhliyet_DogumYeri, 
+                         dbo.CariEhliyet.CariEhliyet_EhliyetNumarasi, dbo.EhliyetSinif.EhliyetSinif_Adi, dbo.KanGrubu.KanGrubu_Adi
+FROM            dbo.CariEhliyet INNER JOIN
+                         dbo.Cari ON dbo.CariEhliyet.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
+                         dbo.EhliyetSinif ON dbo.CariEhliyet.EhliyetSinif_ID = dbo.EhliyetSinif.EhliyetSinif_ID INNER JOIN
+                         dbo.KanGrubu ON dbo.CariEhliyet.KanGrubu_ID = dbo.KanGrubu.KanGrubu_ID
+GO
+
+
+
 
 USE [master]
 GO

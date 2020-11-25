@@ -232,18 +232,6 @@
     <Compile Include="DataAccess\AracYakitTuru.cs">
       <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\AspNetRoles.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AspNetUserClaims.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AspNetUserLogins.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AspNetUsers.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccess\Cari.cs">
       <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
     </Compile>
@@ -293,6 +281,24 @@
       <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\ServisFirma.cs">
+      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\viewAracList.cs">
+      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\viewAracModel.cs">
+      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\viewCari.cs">
+      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\viewCariEhliyet.cs">
+      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\viewIslem.cs">
+      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\viewServis.cs">
       <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ClaimsExtensions.cs" />
@@ -898,13 +904,6 @@
     <Content Include="AdminLTE\plugins\fonts\FontAwesome.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="DataAccess\AmicaRentDBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AmicaRentDBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DataAccess\AmicaRentDBModel.edmx.diagram">
-      <DependentUpon>AmicaRentDBModel.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -913,6 +912,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="DataAccess\AmicaRentDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AmicaRentDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataAccess\AmicaRentDBModel.edmx.diagram">
+      <DependentUpon>AmicaRentDBModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -1128,6 +1134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\bootstrap\css\bootstrap.css.map">
@@ -1163,7 +1170,6 @@
     <Content Include="Admin\plugins\ionicons\fonts\ionicons.eot" />
     <Content Include="Admin\plugins\ionicons\fonts\ionicons.ttf" />
     <Content Include="Admin\plugins\ionicons\fonts\ionicons.woff" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\Charts\Flot-menu.js" />

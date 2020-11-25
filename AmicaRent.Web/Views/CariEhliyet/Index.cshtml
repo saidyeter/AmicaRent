@@ -12,64 +12,64 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Cari_ID)
+            Cari Adı Soyadı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CariEhliyet_VerilisTarihi)
+            Veriliş Tarihi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CariEhliyet_GecerlilikTarihi)
+            Geçerlilik Tarihi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CariEhliyet_VerildigiYer)
+            Verildiği Yer
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CariEhliyet_DogumYeri)
+            Doğum Yeri
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CariEhliyet_EhliyetNumarasi)
+            Ehliyet Numarası
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EhliyetSinif_ID)
+            Ehliyet Sınıfı
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.KanGrubu_ID)
+            Kan Grubu
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cari_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CariEhliyet_VerilisTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CariEhliyet_GecerlilikTarihi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CariEhliyet_VerildigiYer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CariEhliyet_DogumYeri)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CariEhliyet_EhliyetNumarasi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EhliyetSinif_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KanGrubu_ID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CariEhliyet_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CariEhliyet_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CariEhliyet_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cari_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CariEhliyet_VerilisTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CariEhliyet_GecerlilikTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CariEhliyet_VerildigiYer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CariEhliyet_DogumYeri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CariEhliyet_EhliyetNumarasi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EhliyetSinif_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KanGrubu_ID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CariEhliyet_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CariEhliyet_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CariEhliyet_ID })
+            </td>
+        </tr>
+    }
 
 </table>

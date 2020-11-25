@@ -12,12 +12,13 @@ namespace WebApplication.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserLogins
+    public partial class viewAracModel
     {
-        public string LoginProvider { get; set; }
-        public string ProviderKey { get; set; }
-        public string UserId { get; set; }
-    
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        public int AracModel_ID { get; set; }
+        public int AracMarka_ID { get; set; }
+        public string AracMarka_Adi { get; set; }
+        public string AracModel_Adi { get; set; }
+        public Nullable<int> AracModel_Status { get; set; }
+        public Nullable<System.DateTime> AracModel_CreateDate { get; set; }
     }
 }

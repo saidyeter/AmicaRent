@@ -33,10 +33,6 @@ namespace WebApplication.DataAccess
         public virtual DbSet<AracModel> AracModel { get; set; }
         public virtual DbSet<AracRenk> AracRenk { get; set; }
         public virtual DbSet<AracYakitTuru> AracYakitTuru { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Cari> Cari { get; set; }
         public virtual DbSet<CariEhliyet> CariEhliyet { get; set; }
         public virtual DbSet<CariSehir> CariSehir { get; set; }
@@ -53,5 +49,11 @@ namespace WebApplication.DataAccess
         public virtual DbSet<OdemeTipi> OdemeTipi { get; set; }
         public virtual DbSet<Servis> Servis { get; set; }
         public virtual DbSet<ServisFirma> ServisFirma { get; set; }
+        public virtual DbSet<viewAracList> viewAracList { get; set; }
+        public virtual DbSet<viewAracModel> viewAracModel { get; set; }
+        public virtual DbSet<viewCari> viewCari { get; set; }
+        public virtual DbSet<viewCariEhliyet> viewCariEhliyet { get; set; }
+        public virtual DbSet<viewIslem> viewIslem { get; set; }
+        public virtual DbSet<viewServis> viewServis { get; set; }
     }
 }

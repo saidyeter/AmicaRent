@@ -1,45 +1,62 @@
 ﻿@model IEnumerable<WebApplication.DataAccess.AracGrup>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Araç Grup";
 }
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
 
-<h2>Index</h2>
+                <a class="btn btn-app" href="@Url.Action("Create")">
+                    <i class="fa fa-plus"></i> Yeni
+                </a>
+            </div>
+            <div class="box-body">
+                <table id="AracGrupTable" class="table table-bordered table-striped">
+                    <tr>
+                        <th>
+                            Grup Adı
+                        </th>
+                        <th>
+                            Grup Durumu
+                        </th>
+                        <th>
+                            Oluşturma Zamanı
+                        </th>
+                        <th></th>
+                    </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AracGrup_Adi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracGrup_Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AracGrup_CreateDate)
-        </th>
-        <th></th>
-    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AracGrup_Adi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AracGrup_Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AracGrup_CreateDate)
+                            </td>
+                            <td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracGrup_Adi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracGrup_Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AracGrup_CreateDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AracGrup_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AracGrup_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AracGrup_ID })
-        </td>
-    </tr>
-}
+                                <a class="btn" href="@Url.Action("Edit", new { id = item.AracGrup_ID })">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn" href="@Url.Action("Details", new { id = item.AracGrup_ID })">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                                @*<a class="btn" href="@Url.Action("Delete", new { id = item.AracGrup_ID })">
+                                    <i class="fa fa-trash"></i>
+                                </a>*@
+                            </td>
+                        </tr>
+                    }
 
-</table>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
