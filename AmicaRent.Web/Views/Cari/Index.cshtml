@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<WebApplication.DataAccess.viewCari>
 
-@{
-    ViewBag.Title = "Cari Kayıtlar";
-}
+@{ ViewBag.Title = "Cari Kayıtlar"; }
 
 <div class="row">
     <div class="col-xs-12">
@@ -35,58 +33,57 @@
 
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cari_AdSoyad)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CariUyruk_Adi)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cari_IDNumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cinsiyet)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cari_DogumTarihi)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cari_EpostaAdresi)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cari_Adres1)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cari_Adres2)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CariSehir_Adi)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cari_MobilTelefon)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cari_LokalTelefon)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cari_CreateDate)
-                                </td>
-                                <td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cari_AdSoyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CariUyruk_Adi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cari_IDNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cinsiyet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cari_DogumTarihi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cari_EpostaAdresi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cari_Adres1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cari_Adres2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CariSehir_Adi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cari_MobilTelefon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cari_LokalTelefon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cari_CreateDate)
+                </td>
+                <td>
 
-                                    <a class="btn" href="@Url.Action("Edit", new { id = item.Cari_ID })">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
+                    <a class="btn" href="@Url.Action("Düzenle", new { id = item.Cari_ID })">
+                        <i class="fa fa-edit"></i>
+                    </a>
 
-                                    <a class="btn" href="@Url.Action("Details", new { id = item.Cari_ID })">
-                                        <i class="fa fa-search"></i>
-                                    </a>
-                                    <a class="btn" href="@Url.Action("Delete", new { id = item.Cari_ID })">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
+                    <a class="btn" href="@Url.Action("Detaylar", new { id = item.Cari_ID })">
+                        <i class="fa fa-search"></i>
+                    </a>
+                    <a class="btn" href="#" onclick="deleteConfirm('@Url.Action("delete", new { id = item.Cari_ID })'); return false;">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>}
                     </tbody>
                     <tfoot>
                         <tr>
@@ -137,3 +134,11 @@
             subMenuItem.classList.add('active');
         });
     </script>*@
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-cari-liste');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-Cari');
+        subMenuItem.classList.add('active');
+    });</script>

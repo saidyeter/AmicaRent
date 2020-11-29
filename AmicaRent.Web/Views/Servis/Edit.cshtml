@@ -5,8 +5,7 @@
     List<ServisFirma> servisFirmalist = ViewBag.ServisFirmalist;
 
 
-    Dictionary<int, string> aracList = ViewBag.AracList;
-    }
+    Dictionary<int, string> aracList = ViewBag.AracList; }
 
 <h2>Servis Düzenleme</h2>
 
@@ -83,3 +82,12 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-service');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-service-liste-Servis');
+        subMenuItem.classList.add('active');
+    });</script>

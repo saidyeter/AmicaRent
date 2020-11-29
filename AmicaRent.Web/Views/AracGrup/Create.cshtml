@@ -1,8 +1,6 @@
 ﻿@model WebApplication.DataAccess.AracGrup
 
-@{
-    ViewBag.Title = "Yeni Araç Grup";
-}
+@{ ViewBag.Title = "Yeni Araç Grubu"; }
 
 
 
@@ -12,34 +10,19 @@
     <div class="form-horizontal">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Arac Grup</h3>
+                @*<h3 class="box-title">Arac Grup</h3>*@
             </div>
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.AracGrup_Adi,"Araç Grup Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AracGrup_Adi, "Araç Grup Adı", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-9">
                     @Html.EditorFor(model => model.AracGrup_Adi, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.AracGrup_Adi, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.AracGrup_Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.AracGrup_Status, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AracGrup_Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.AracGrup_CreateDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.AracGrup_CreateDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AracGrup_CreateDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
+      
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Onayla</button>
             </div>
@@ -48,9 +31,17 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-arac-tanim');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-arac-tanim-AracGrup');
+        subMenuItem.classList.add('active');
+    });</script>

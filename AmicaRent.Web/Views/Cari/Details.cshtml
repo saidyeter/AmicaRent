@@ -109,6 +109,12 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Cari_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Cari_ID }) |
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </p>
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-cari-liste');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-Cari');
+        subMenuItem.classList.add('active');
+    });</script>

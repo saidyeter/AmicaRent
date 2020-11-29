@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: CariUyruk
         public ActionResult Index()
         {
-            return View(db.CariUyruk.ToList());
+            return View(db.CariUyruk.Where(x => x.CariUyruk_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: CariUyruk/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                cariUyruk.CariUyruk_Status = (int)DBStatus.Active;
+                cariUyruk.CariUyruk_CreateDate = DateTime.Now;
                 db.CariUyruk.Add(cariUyruk);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,19 +104,12 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cariUyruk);
-        }
-
-        // POST: CariUyruk/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CariUyruk cariUyruk = db.CariUyruk.Find(id);
-            db.CariUyruk.Remove(cariUyruk);
+            cariUyruk.CariUyruk_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
+
         }
+
 
         protected override void Dispose(bool disposing)
         {

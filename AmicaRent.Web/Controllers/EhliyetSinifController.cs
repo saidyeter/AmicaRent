@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +16,7 @@ namespace WebApplication.Controllers
         // GET: EhliyetSinif
         public ActionResult Index()
         {
-            return View(db.EhliyetSinif.ToList());
+            return View(db.EhliyetSinif.Where(x => x.EhliyetSinif_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: EhliyetSinif/Details/5
@@ -50,6 +49,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                ehliyetSinif.EhliyetSinif_Status = (int)DBStatus.Active;
+                ehliyetSinif.EhliyetSinif_CreateDate = DateTime.Now;
                 db.EhliyetSinif.Add(ehliyetSinif);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,20 +102,12 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(ehliyetSinif);
-        }
-
-        // POST: EhliyetSinif/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EhliyetSinif ehliyetSinif = db.EhliyetSinif.Find(id);
-            db.EhliyetSinif.Remove(ehliyetSinif);
+            ehliyetSinif.EhliyetSinif_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+    
         protected override void Dispose(bool disposing)
         {
             if (disposing)

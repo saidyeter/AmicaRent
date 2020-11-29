@@ -32,22 +32,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Lokasyon_Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Lokasyon_Status, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Lokasyon_Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Lokasyon_CreateDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Lokasyon_CreateDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Lokasyon_CreateDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Onayla</button>
             </div>
@@ -56,7 +40,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
 
 @section Scripts {

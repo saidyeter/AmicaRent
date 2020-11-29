@@ -21,5 +21,6 @@ namespace WebApplication.DataAccess
         public string Servis_Notlar { get; set; }
         public Nullable<double> Servis_Ucreti { get; set; }
         public Nullable<System.DateTime> Servis_CreateDate { get; set; }
+        public int Servis_Status { get; set; }
     }
 }

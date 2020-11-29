@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<WebApplication.DataAccess.OdemeTipi>
 
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = "Index"; }
 
 <h2>Index</h2>
 
@@ -15,9 +13,6 @@
             Ödeme Tipi Adı
         </th>
         <th>
-            Durumu
-        </th>
-        <th>
             Oluşturma Zamanı
         </th>
         <th></th>
@@ -25,22 +20,26 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OdemeTipi_Adi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OdemeTipi_Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OdemeTipi_CreateDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OdemeTipi_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OdemeTipi_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OdemeTipi_ID })
-            </td>
-        </tr>
-    }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OdemeTipi_Adi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OdemeTipi_CreateDate)
+    </td>
+    <td>
+        @Html.ActionLink("Düzenle", "Edit", new { id = item.OdemeTipi_ID }) |
+        @Html.ActionLink("Detaylar", "Details", new { id = item.OdemeTipi_ID })
+    </td>
+</tr>
+}
 
 </table>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-system');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-system-tanim-OdemeTipi');
+        subMenuItem.classList.add('active');
+    });</script>

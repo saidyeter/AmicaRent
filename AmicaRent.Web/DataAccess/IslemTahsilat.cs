@@ -21,5 +21,6 @@ namespace WebApplication.DataAccess
         public Nullable<int> OdemeTipi_ID { get; set; }
         public Nullable<double> IslemTahsilat_Tutar { get; set; }
         public Nullable<System.DateTime> IslemTahsilat_CreateDate { get; set; }
+        public int IslemTahsilat_Status { get; set; }
     }
 }

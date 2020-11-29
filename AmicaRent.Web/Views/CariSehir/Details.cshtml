@@ -19,14 +19,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CariSehir_Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CariSehir_Status)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.CariSehir_CreateDate)
         </dt>
 
@@ -37,6 +29,12 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CariSehir_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.CariSehir_ID }) |
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </p>
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-cari-liste');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-CariSehir');
+        subMenuItem.classList.add('active');
+    });</script>

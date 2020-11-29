@@ -23,5 +23,6 @@ namespace WebApplication.DataAccess
         public string CariEhliyet_EhliyetNumarasi { get; set; }
         public Nullable<int> EhliyetSinif_ID { get; set; }
         public Nullable<int> KanGrubu_ID { get; set; }
+        public int CariEhliyet_Status { get; set; }
     }
 }

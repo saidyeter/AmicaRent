@@ -15,9 +15,6 @@
             Şehir Adı
         </th>
         <th>
-            Şehir Durumu
-        </th>
-        <th>
             Oluşturma Zamanı
         </th>
         <th></th>
@@ -29,17 +26,19 @@
                 @Html.DisplayFor(modelItem => item.CariSehir_Adi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CariSehir_Status)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.CariSehir_CreateDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CariSehir_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CariSehir_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CariSehir_ID })
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.CariSehir_ID }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.CariSehir_ID })
             </td>
         </tr>
     }
 
 </table>
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-cari-liste');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-CariSehir');
+        subMenuItem.classList.add('active');
+    });</script>

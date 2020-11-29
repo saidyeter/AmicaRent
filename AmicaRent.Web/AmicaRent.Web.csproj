@@ -158,7 +158,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -169,19 +168,14 @@
     <Compile Include="Controllers\AracModelController.cs" />
     <Compile Include="Controllers\AracRenkController.cs" />
     <Compile Include="Controllers\AracYakitTuruController.cs" />
-    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\CariEhliyetController.cs" />
     <Compile Include="Controllers\CariSehirController.cs" />
     <Compile Include="Controllers\CariUyrukController.cs" />
-    <Compile Include="Controllers\ChartsController.cs" />
-    <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Controllers\EhliyetSinifController.cs" />
     <Compile Include="Controllers\EkstraHizmetlerController.cs" />
     <Compile Include="Controllers\EkSurucuController.cs" />
     <Compile Include="Controllers\ElementsController.cs" />
-    <Compile Include="Controllers\ExamplesController.cs" />
-    <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IslemController.cs" />
     <Compile Include="Controllers\IslemEkstraHizmetlerController.cs" />
@@ -189,21 +183,17 @@
     <Compile Include="Controllers\KanGrubuController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\LokasyonController.cs" />
-    <Compile Include="Controllers\MailboxController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OdemeTipiController.cs" />
     <Compile Include="Controllers\ServisController.cs" />
     <Compile Include="Controllers\ServisFirmaController.cs" />
-    <Compile Include="Controllers\TablesController.cs" />
-    <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="DataAccess\AmicaRentDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AmicaRentDBModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\AmicaRentDBModel.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\AmicaRentDBModel.Designer.cs">
@@ -244,9 +234,6 @@
     <Compile Include="DataAccess\CariUyruk.cs">
       <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\C__MigrationHistory.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccess\EhliyetSinif.cs">
       <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
     </Compile>
@@ -269,6 +256,12 @@
       <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\Kullanici.cs">
+      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\KullaniciRolIliskileri.cs">
+      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\KullaniciRolTanimlari.cs">
       <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\Lokasyon.cs">
@@ -305,11 +298,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\DBStatus.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UserManagement\CustomAuthenticationFilter.cs" />
+    <Compile Include="UserManagement\CustomAuthorizeAttribute.cs" />
+    <Compile Include="UserManagement\CustomRoleProvider.cs" />
+    <Compile Include="UserManagement\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminLTE\fonts\fontawesome-webfont.svg">
@@ -835,48 +832,8 @@
     </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\Account\Login.js" />
-    <Content Include="Scripts\Account\Register.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Calendar\Calendar-menu.js" />
-    <Content Include="Scripts\Calendar\Calendar.js" />
-    <Content Include="Scripts\Charts\ChartsJs-menu.js" />
-    <Content Include="Scripts\Charts\ChartsJs.js" />
-    <Content Include="Scripts\Charts\Flot.js" />
-    <Content Include="Scripts\Charts\Inline-menu.js" />
-    <Content Include="Scripts\Charts\Inline.js" />
-    <Content Include="Scripts\Charts\Morris-menu.js" />
-    <Content Include="Scripts\Charts\Morris.js" />
-    <Content Include="Scripts\Documentation\Documentation-menu.js" />
-    <Content Include="Scripts\Elements\Buttons-menu.js" />
-    <Content Include="Scripts\Elements\General-menu.js" />
-    <Content Include="Scripts\Elements\Icons-menu.js" />
-    <Content Include="Scripts\Elements\Modals-menu.js" />
-    <Content Include="Scripts\Elements\Sliders-menu.js" />
-    <Content Include="Scripts\Elements\Sliders.js" />
-    <Content Include="Scripts\Elements\Timeline-menu.js" />
-    <Content Include="Scripts\Examples\Blank-menu.js" />
-    <Content Include="Scripts\Examples\Invoice-menu.js" />
-    <Content Include="Scripts\Examples\Lockscreen-menu.js" />
-    <Content Include="Scripts\Examples\Login-menu.js" />
-    <Content Include="Scripts\Examples\Login.js" />
-    <Content Include="Scripts\Examples\P404-menu.js" />
-    <Content Include="Scripts\Examples\P500-menu.js" />
-    <Content Include="Scripts\Examples\Pace-menu.js" />
-    <Content Include="Scripts\Examples\Pace.js" />
-    <Content Include="Scripts\Examples\ProfileEx-menu.js" />
-    <Content Include="Scripts\Examples\Register-menu.js" />
-    <Content Include="Scripts\Examples\Register.js" />
-    <Content Include="Scripts\Forms\Advanced-menu.js" />
-    <Content Include="Scripts\Forms\Advanced.js" />
-    <Content Include="Scripts\Forms\Editors-menu.js" />
-    <Content Include="Scripts\Forms\Editors.js" />
-    <Content Include="Scripts\Forms\General-menu.js" />
-    <Content Include="Scripts\Home\DashboardV1-menu.js" />
-    <Content Include="Scripts\Home\DashboardV1.js" />
-    <Content Include="Scripts\Home\DashboardV2-menu.js" />
-    <Content Include="Scripts\Home\DashboardV2.js" />
     <Content Include="AdminLTE\plugins\fonts\glyphicons-halflings-regular.woff2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -930,21 +887,11 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Mailbox\Compose-menu.js" />
-    <Content Include="Scripts\Mailbox\Compose.js" />
-    <Content Include="Scripts\Mailbox\Inbox-menu.js" />
-    <Content Include="Scripts\Mailbox\Inbox.js" />
-    <Content Include="Scripts\Mailbox\Read-menu.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\Shared\_Layout.js" />
-    <Content Include="Scripts\Tables\Data-menu.js" />
-    <Content Include="Scripts\Tables\Data.js" />
-    <Content Include="Scripts\Tables\Simple-menu.js" />
-    <Content Include="Scripts\Widgets\Widgets-menu.js" />
     <Content Include="Styles\Elements\General.css" />
     <Content Include="Styles\Elements\Icons.css" />
     <Content Include="Styles\Elements\Modals.css" />
@@ -973,168 +920,116 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Calendar\Index.cshtml" />
-    <Content Include="Views\Charts\ChartJs.cshtml" />
-    <Content Include="Views\Charts\Flot.cshtml" />
-    <Content Include="Views\Charts\Inline.cshtml" />
-    <Content Include="Views\Charts\Morris.cshtml" />
-    <Content Include="Views\Documentation\Index.cshtml" />
     <Content Include="Views\Elements\Buttons.cshtml" />
     <Content Include="Views\Elements\General.cshtml" />
     <Content Include="Views\Elements\Icons.cshtml" />
     <Content Include="Views\Elements\Modals.cshtml" />
     <Content Include="Views\Elements\Sliders.cshtml" />
     <Content Include="Views\Elements\Timeline.cshtml" />
-    <Content Include="Views\Examples\Blank.cshtml" />
-    <Content Include="Views\Examples\Invoice.cshtml" />
-    <Content Include="Views\Examples\InvoicePrint.cshtml" />
-    <Content Include="Views\Examples\Lockscreen.cshtml" />
-    <Content Include="Views\Examples\Login.cshtml" />
-    <Content Include="Views\Examples\P404.cshtml" />
-    <Content Include="Views\Examples\P500.cshtml" />
-    <Content Include="Views\Examples\Pace.cshtml" />
-    <Content Include="Views\Examples\ProfileEx.cshtml" />
-    <Content Include="Views\Examples\Register.cshtml" />
-    <Content Include="Views\Forms\Advanced.cshtml" />
-    <Content Include="Views\Forms\Editors.cshtml" />
-    <Content Include="Views\Forms\General.cshtml" />
-    <Content Include="Views\Mailbox\Compose.cshtml" />
-    <Content Include="Views\Mailbox\Inbox.cshtml" />
-    <Content Include="Views\Mailbox\Read.cshtml" />
-    <Content Include="Views\Tables\Data.cshtml" />
-    <Content Include="Views\Tables\Simple.cshtml" />
-    <Content Include="Views\Widgets\Index.cshtml" />
-    <Content Include="Views\Home\DashboardV1.cshtml" />
-    <Content Include="Views\Home\DashboardV2.cshtml" />
     <Content Include="Views\Arac\Create.cshtml" />
-    <Content Include="Views\Arac\Delete.cshtml" />
     <Content Include="Views\Arac\Details.cshtml" />
     <Content Include="Views\Arac\Edit.cshtml" />
     <Content Include="Views\Arac\Index.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\AracGrup\Create.cshtml" />
-    <Content Include="Views\AracGrup\Delete.cshtml" />
     <Content Include="Views\AracGrup\Details.cshtml" />
     <Content Include="Views\AracGrup\Edit.cshtml" />
     <Content Include="Views\AracGrup\Index.cshtml" />
     <Content Include="Views\AracKasaTipi\Create.cshtml" />
-    <Content Include="Views\AracKasaTipi\Delete.cshtml" />
     <Content Include="Views\AracKasaTipi\Details.cshtml" />
     <Content Include="Views\AracKasaTipi\Edit.cshtml" />
     <Content Include="Views\AracKasaTipi\Index.cshtml" />
     <Content Include="Views\AracMarka\Create.cshtml" />
-    <Content Include="Views\AracMarka\Delete.cshtml" />
     <Content Include="Views\AracMarka\Details.cshtml" />
     <Content Include="Views\AracMarka\Edit.cshtml" />
     <Content Include="Views\AracMarka\Index.cshtml" />
     <Content Include="Views\AracModel\Create.cshtml" />
-    <Content Include="Views\AracModel\Delete.cshtml" />
     <Content Include="Views\AracModel\Details.cshtml" />
     <Content Include="Views\AracModel\Edit.cshtml" />
     <Content Include="Views\AracModel\Index.cshtml" />
     <Content Include="Views\AracRenk\Create.cshtml" />
-    <Content Include="Views\AracRenk\Delete.cshtml" />
     <Content Include="Views\AracRenk\Details.cshtml" />
     <Content Include="Views\AracRenk\Edit.cshtml" />
     <Content Include="Views\AracRenk\Index.cshtml" />
     <Content Include="Views\AracYakitTuru\Create.cshtml" />
-    <Content Include="Views\AracYakitTuru\Delete.cshtml" />
     <Content Include="Views\AracYakitTuru\Details.cshtml" />
     <Content Include="Views\AracYakitTuru\Edit.cshtml" />
     <Content Include="Views\AracYakitTuru\Index.cshtml" />
     <Content Include="Views\Cari\Create.cshtml" />
-    <Content Include="Views\Cari\Delete.cshtml" />
     <Content Include="Views\Cari\Details.cshtml" />
     <Content Include="Views\Cari\Edit.cshtml" />
     <Content Include="Views\Cari\Index.cshtml" />
     <Content Include="Views\CariEhliyet\Create.cshtml" />
-    <Content Include="Views\CariEhliyet\Delete.cshtml" />
     <Content Include="Views\CariEhliyet\Details.cshtml" />
     <Content Include="Views\CariEhliyet\Edit.cshtml" />
     <Content Include="Views\CariEhliyet\Index.cshtml" />
     <Content Include="Views\CariSehir\Create.cshtml" />
-    <Content Include="Views\CariSehir\Delete.cshtml" />
     <Content Include="Views\CariSehir\Details.cshtml" />
     <Content Include="Views\CariSehir\Edit.cshtml" />
     <Content Include="Views\CariSehir\Index.cshtml" />
     <Content Include="Views\CariUyruk\Create.cshtml" />
-    <Content Include="Views\CariUyruk\Delete.cshtml" />
     <Content Include="Views\CariUyruk\Details.cshtml" />
     <Content Include="Views\CariUyruk\Edit.cshtml" />
     <Content Include="Views\CariUyruk\Index.cshtml" />
     <Content Include="Views\EhliyetSinif\Create.cshtml" />
-    <Content Include="Views\EhliyetSinif\Delete.cshtml" />
     <Content Include="Views\EhliyetSinif\Details.cshtml" />
     <Content Include="Views\EhliyetSinif\Edit.cshtml" />
     <Content Include="Views\EhliyetSinif\Index.cshtml" />
     <Content Include="Views\EkstraHizmetler\Create.cshtml" />
-    <Content Include="Views\EkstraHizmetler\Delete.cshtml" />
     <Content Include="Views\EkstraHizmetler\Details.cshtml" />
     <Content Include="Views\EkstraHizmetler\Edit.cshtml" />
     <Content Include="Views\EkstraHizmetler\Index.cshtml" />
     <Content Include="Views\EkSurucu\Create.cshtml" />
-    <Content Include="Views\EkSurucu\Delete.cshtml" />
     <Content Include="Views\EkSurucu\Details.cshtml" />
     <Content Include="Views\EkSurucu\Edit.cshtml" />
     <Content Include="Views\EkSurucu\Index.cshtml" />
     <Content Include="Views\Islem\Create.cshtml" />
-    <Content Include="Views\Islem\Delete.cshtml" />
     <Content Include="Views\Islem\Details.cshtml" />
     <Content Include="Views\Islem\Edit.cshtml" />
     <Content Include="Views\Islem\Index.cshtml" />
     <Content Include="Views\IslemEkstraHizmetler\Create.cshtml" />
-    <Content Include="Views\IslemEkstraHizmetler\Delete.cshtml" />
     <Content Include="Views\IslemEkstraHizmetler\Details.cshtml" />
     <Content Include="Views\IslemEkstraHizmetler\Edit.cshtml" />
     <Content Include="Views\IslemEkstraHizmetler\Index.cshtml" />
     <Content Include="Views\IslemTahsilat\Create.cshtml" />
-    <Content Include="Views\IslemTahsilat\Delete.cshtml" />
     <Content Include="Views\IslemTahsilat\Details.cshtml" />
     <Content Include="Views\IslemTahsilat\Edit.cshtml" />
     <Content Include="Views\IslemTahsilat\Index.cshtml" />
     <Content Include="Views\KanGrubu\Create.cshtml" />
-    <Content Include="Views\KanGrubu\Delete.cshtml" />
     <Content Include="Views\KanGrubu\Details.cshtml" />
     <Content Include="Views\KanGrubu\Edit.cshtml" />
     <Content Include="Views\KanGrubu\Index.cshtml" />
     <Content Include="Views\Kullanici\Create.cshtml" />
-    <Content Include="Views\Kullanici\Delete.cshtml" />
     <Content Include="Views\Kullanici\Details.cshtml" />
     <Content Include="Views\Kullanici\Edit.cshtml" />
     <Content Include="Views\Kullanici\Index.cshtml" />
     <Content Include="Views\Lokasyon\Create.cshtml" />
-    <Content Include="Views\Lokasyon\Delete.cshtml" />
     <Content Include="Views\Lokasyon\Details.cshtml" />
     <Content Include="Views\Lokasyon\Edit.cshtml" />
     <Content Include="Views\Lokasyon\Index.cshtml" />
     <Content Include="Views\OdemeTipi\Create.cshtml" />
-    <Content Include="Views\OdemeTipi\Delete.cshtml" />
     <Content Include="Views\OdemeTipi\Details.cshtml" />
     <Content Include="Views\OdemeTipi\Edit.cshtml" />
     <Content Include="Views\OdemeTipi\Index.cshtml" />
     <Content Include="Views\Servis\Create.cshtml" />
-    <Content Include="Views\Servis\Delete.cshtml" />
     <Content Include="Views\Servis\Details.cshtml" />
     <Content Include="Views\Servis\Edit.cshtml" />
     <Content Include="Views\Servis\Index.cshtml" />
     <Content Include="Views\ServisFirma\Create.cshtml" />
-    <Content Include="Views\ServisFirma\Delete.cshtml" />
     <Content Include="Views\ServisFirma\Details.cshtml" />
     <Content Include="Views\ServisFirma\Edit.cshtml" />
     <Content Include="Views\ServisFirma\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\AracGrup\IndexAvailable.cshtml" />
+    <Content Include="Views\AracGrup\IndexReserved.cshtml" />
+    <Content Include="Views\Kullanici\ManageRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\bootstrap\css\bootstrap.css.map">
@@ -1170,9 +1065,6 @@
     <Content Include="Admin\plugins\ionicons\fonts\ionicons.eot" />
     <Content Include="Admin\plugins\ionicons\fonts\ionicons.ttf" />
     <Content Include="Admin\plugins\ionicons\fonts\ionicons.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\Charts\Flot-menu.js" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -59,11 +59,16 @@
                 @Html.DisplayFor(modelItem => item.KanGrubu_Adi)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CariEhliyet_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CariEhliyet_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CariEhliyet_ID })
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.CariEhliyet_ID }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.CariEhliyet_ID }) 
             </td>
         </tr>
     }
 
 </table>
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-cari-liste');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-CariEhliyet');
+        subMenuItem.classList.add('active');
+    });</script>

@@ -48,6 +48,12 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AracModel_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.AracModel_ID }) |
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </p>
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-arac-liste');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-AracModel');
+        subMenuItem.classList.add('active');
+    });</script>

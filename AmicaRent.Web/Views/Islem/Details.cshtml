@@ -1,8 +1,6 @@
 ﻿@model WebApplication.DataAccess.viewIslem
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
 <h2>Details</h2>
 
@@ -31,10 +29,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AracGrup_Adi) 
-            @Html.DisplayFor(model => model.AracMarka_Adi) 
-            @Html.DisplayFor(model => model.AracModel_Adi) 
-            @Html.DisplayFor(model => model.Arac_Yil) 
+            @Html.DisplayFor(model => model.AracGrup_Adi)
+            @Html.DisplayFor(model => model.AracMarka_Adi)
+            @Html.DisplayFor(model => model.AracModel_Adi)
+            @Html.DisplayFor(model => model.Arac_Yil)
 
         </dd>
 
@@ -193,6 +191,13 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Islem_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Islem_ID }) |
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </p>
+
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-operation');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-operation-liste');
+        subMenuItem.classList.add('active');
+    });</script>

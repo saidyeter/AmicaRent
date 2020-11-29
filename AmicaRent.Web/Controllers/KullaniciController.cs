@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: Kullanici
         public ActionResult Index()
         {
-            return View(db.Kullanici.ToList());
+            return View(db.Kullanici.Where(x => x.Kullanici_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: Kullanici/Details/5
@@ -50,9 +51,13 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                kullanici.Kullanici_Status = (int)DBStatus.Active;
+                kullanici.Kullanici_CreateDate = DateTime.Now;
+                kullanici.Kullanici_SonGirisZamani = DateTime.Now;
                 db.Kullanici.Add(kullanici);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Message = "Kullanıcı eklendi. Yetkileri aşağıdan seçiniz.";
+                return RedirectToAction("ManageRole", new { id = kullanici.Kullanici_ID });
             }
 
             return View(kullanici);
@@ -101,19 +106,12 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(kullanici);
-        }
-
-        // POST: Kullanici/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Kullanici kullanici = db.Kullanici.Find(id);
-            db.Kullanici.Remove(kullanici);
+            kullanici.Kullanici_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
+
         }
+   
 
         protected override void Dispose(bool disposing)
         {
@@ -122,6 +120,64 @@ namespace WebApplication.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        [HttpGet]
+        public ActionResult ManageRole(int id)
+        {
+            var roles = db.KullaniciRolTanimlari.ToList();
+            var userRoles = db.KullaniciRolIliskileri.Where(x => x.Kullanici_ID == id);
+
+            var roles_userRoles = new List<KeyValuePair<KullaniciRolTanimlari, bool>>();
+            foreach (var role in roles)
+            {
+                if (userRoles.Any(u => u.Rol_ID == role.Rol_ID))
+                {
+                    roles_userRoles.Add(new KeyValuePair<KullaniciRolTanimlari, bool>(role, true));
+                }
+                else
+                {
+                    roles_userRoles.Add(new KeyValuePair<KullaniciRolTanimlari, bool>(role, false));
+                }
+            }
+            ViewBag.CurrentlyRoles = string.Join(",", userRoles.Select(x => x.Rol_ID.ToString()).ToList());
+            ViewBag.ManagedUserId = id;
+            ViewBag.RoleCategories = roles.Select(x => x.Rol_Kategori).Distinct().ToList();
+
+
+            return View(roles_userRoles);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManageRole(string roles, int ManagedUserId)
+        {
+            //optimize edilecek
+            var currentRoles = db.KullaniciRolIliskileri.Where(x => x.Kullanici_ID == ManagedUserId).ToList();
+            foreach (var item in currentRoles)
+            {
+                db.KullaniciRolIliskileri.Remove(item);
+            }
+
+            if (!string.IsNullOrEmpty(roles))
+            {
+                var roleList = roles.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var role in roleList)
+                {
+                    db.KullaniciRolIliskileri.Add(new KullaniciRolIliskileri
+                    {
+                        Kullanici_ID = ManagedUserId,
+                        Rol_ID = Convert.ToInt32(role)
+                    });
+                }
+                db.SaveChanges();
+
+            }
+
+
+            return RedirectToAction("Index");
         }
     }
 }

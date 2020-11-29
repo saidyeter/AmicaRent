@@ -1,16 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 
 namespace WebApplication.Controllers
 {
     public class HomeController : Controller
-    {
-        public ActionResult DashboardV1()
+    { 
+        [AllowAnonymous]
+        public ActionResult Index()
         {
             return View();
-        }
-        public ActionResult DashboardV2()
-        {
-            return View();
-        }
+        } 
     }
 }

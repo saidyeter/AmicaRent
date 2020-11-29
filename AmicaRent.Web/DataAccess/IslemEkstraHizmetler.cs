@@ -18,5 +18,6 @@ namespace WebApplication.DataAccess
         public Nullable<int> Islem_ID { get; set; }
         public Nullable<int> EkstraHizmetler_ID { get; set; }
         public Nullable<System.DateTime> IslemEkstraHizmetler_CreateDate { get; set; }
+        public int IslemEkstraHizmetler_Status { get; set; }
     }
 }

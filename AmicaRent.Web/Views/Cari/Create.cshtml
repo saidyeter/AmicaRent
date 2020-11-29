@@ -115,9 +115,15 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-cari-tanim');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-cari-tanim-Cari');
+        subMenuItem.classList.add('active');
+    });</script>

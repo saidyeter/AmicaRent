@@ -23,6 +23,6 @@ namespace WebApplication.DataAccess
         public string ServisFirma_Email { get; set; }
         public string ServisFirma_Yetkili { get; set; }
         public Nullable<System.DateTime> ServisFirma_CreateDate { get; set; }
-        public Nullable<int> ServisFirma_Status { get; set; }
+        public int ServisFirma_Status { get; set; }
     }
 }

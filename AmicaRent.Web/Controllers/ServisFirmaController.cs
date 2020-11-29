@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: ServisFirma
         public ActionResult Index()
         {
-            return View(db.ServisFirma.ToList());
+            return View(db.ServisFirma.Where(x => x.ServisFirma_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: ServisFirma/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                servisFirma.ServisFirma_Status = (int)DBStatus.Active;
+                servisFirma.ServisFirma_CreateDate = DateTime.Now;
                 db.ServisFirma.Add(servisFirma);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,19 +104,11 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(servisFirma);
-        }
-
-        // POST: ServisFirma/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ServisFirma servisFirma = db.ServisFirma.Find(id);
-            db.ServisFirma.Remove(servisFirma);
+            servisFirma.ServisFirma_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: IslemTahsilat
         public ActionResult Index()
         {
-            return View(db.IslemTahsilat.ToList());
+            return View(db.IslemTahsilat.Where(x => x.IslemTahsilat_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: IslemTahsilat/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                islemTahsilat.IslemTahsilat_Status = (int)DBStatus.Active;
+                islemTahsilat.IslemTahsilat_CreateDate = DateTime.Now;
                 db.IslemTahsilat.Add(islemTahsilat);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,20 +104,11 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(islemTahsilat);
-        }
-
-        // POST: IslemTahsilat/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            IslemTahsilat islemTahsilat = db.IslemTahsilat.Find(id);
-            db.IslemTahsilat.Remove(islemTahsilat);
+            islemTahsilat.IslemTahsilat_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
 
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

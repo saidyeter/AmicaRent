@@ -23,22 +23,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.AracMarka_Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.AracMarka_Status, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AracMarka_Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.AracMarka_CreateDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.AracMarka_CreateDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AracMarka_CreateDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Onayla</button>
             </div>
@@ -47,9 +31,15 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-arac-tanim');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-arac-tanim-AracMarka');
+        subMenuItem.classList.add('active');
+    });</script>

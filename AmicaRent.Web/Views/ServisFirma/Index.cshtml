@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<WebApplication.DataAccess.ServisFirma>
 
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = "Index"; }
 
 <h2>Index</h2>
 
@@ -35,9 +33,6 @@
         <th>
             Oluşturma Zamanı
         </th>
-        <th>
-            Durumu
-        </th>
         <th></th>
     </tr>
 
@@ -69,14 +64,20 @@
         @Html.DisplayFor(modelItem => item.ServisFirma_CreateDate)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.ServisFirma_Status)
-    </td>
-    <td>
         @Html.ActionLink("Düzenle", "Edit", new { id = item.ServisFirma_ID }) |
         @Html.ActionLink("Detaylar", "Details", new { id = item.ServisFirma_ID }) |
 
     </td>
-</tr>}
+</tr>
+}
 
 
 </table>
+
+
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-service');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-service-tanim-ServisFirma');
+        subMenuItem.classList.add('active');
+    });</script>

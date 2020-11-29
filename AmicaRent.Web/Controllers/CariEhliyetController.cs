@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: CariEhliyet
         public ActionResult Index()
         {
-            return View(db.viewCariEhliyet.ToList());
+            return View(db.viewCariEhliyet.Where(x => x.CariEhliyet_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: CariEhliyet/Details/5
@@ -38,13 +39,13 @@ namespace WebApplication.Controllers
         // GET: CariEhliyet/Create
         public ActionResult Create()
         {
-            List<EhliyetSinif> ehliyetSinifList = db.EhliyetSinif.ToList();
+            List<EhliyetSinif> ehliyetSinifList = db.EhliyetSinif.Where(x => x.EhliyetSinif_Status == (int)DBStatus.Active).ToList();
             ViewBag.EhliyetSinifList = ehliyetSinifList;
 
-            List<KanGrubu> kanGrubuList = db.KanGrubu.ToList();
+            List<KanGrubu> kanGrubuList = db.KanGrubu.Where(x => x.KanGrubu_Status == (int)DBStatus.Active).ToList();
             ViewBag.KanGrubuList = kanGrubuList;
 
-            List<Cari> cariList = db.Cari.ToList();
+            List<Cari> cariList = db.Cari.Where(x => x.Cari_Status == (int)DBStatus.Active).ToList();
             ViewBag.CariList = cariList;
 
             return View();
@@ -59,6 +60,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                cariEhliyet.CariEhliyet_Status = (int)DBStatus.Active;
                 db.CariEhliyet.Add(cariEhliyet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -80,13 +82,13 @@ namespace WebApplication.Controllers
                 return HttpNotFound();
             }
 
-            List<EhliyetSinif> ehliyetSinifList = db.EhliyetSinif.ToList();
+            List<EhliyetSinif> ehliyetSinifList = db.EhliyetSinif.Where(x => x.EhliyetSinif_Status == (int)DBStatus.Active).ToList();
             ViewBag.EhliyetSinifList = ehliyetSinifList;
 
-            List<KanGrubu> kanGrubuList = db.KanGrubu.ToList();
+            List<KanGrubu> kanGrubuList = db.KanGrubu.Where(x => x.KanGrubu_Status == (int)DBStatus.Active).ToList();
             ViewBag.KanGrubuList = kanGrubuList;
 
-            List<Cari> cariList = db.Cari.ToList();
+            List<Cari> cariList = db.Cari.Where(x => x.Cari_Status == (int)DBStatus.Active).ToList();
             ViewBag.CariList = cariList;
 
             return View(cariEhliyet);
@@ -120,16 +122,7 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cariEhliyet);
-        }
-
-        // POST: CariEhliyet/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CariEhliyet cariEhliyet = db.CariEhliyet.Find(id);
-            db.CariEhliyet.Remove(cariEhliyet);
+            cariEhliyet.CariEhliyet_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

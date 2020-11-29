@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,9 +18,17 @@ namespace WebApplication.Controllers
         // GET: Arac
         public ActionResult Index()
         {
-            return View(db.viewAracList.ToList());
+            return View(db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active).ToList());
+        }
+        public ActionResult IndexAvailable()
+        {
+            return View(db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.KiralamaDurumu == "Boşta").ToList());
         }
 
+        public ActionResult IndexReserved()
+        {
+            return View(db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.KiralamaDurumu != "Boşta").ToList());
+        }
         // GET: Arac/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,13 +48,13 @@ namespace WebApplication.Controllers
         public ActionResult Create()
         {
 
-            List<AracGrup> aracGrupList = db.AracGrup.ToList();
+            List<AracGrup> aracGrupList = db.AracGrup.Where(x => x.AracGrup_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracGrupList = aracGrupList;
-            List<AracMarka> aracMarkaList = db.AracMarka.ToList();
+            List<AracMarka> aracMarkaList = db.AracMarka.Where(x => x.AracMarka_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracMarkaList = aracMarkaList;
-            List<AracModel> aracModelList = db.AracModel.ToList();
+            List<AracModel> aracModelList = db.AracModel.Where(x => x.AracModel_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracModelList = aracModelList;
-            List<AracYakitTuru> aracYakitTuruList = db.AracYakitTuru.ToList();
+            List<AracYakitTuru> aracYakitTuruList = db.AracYakitTuru.Where(x => x.AracYakitTuru_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracYakitTuruList = aracYakitTuruList;
 
             Dictionary<string, string> vitesTipi = new Dictionary<string, string>();
@@ -53,7 +62,7 @@ namespace WebApplication.Controllers
             vitesTipi.Add("MANUEL", "MANUEL");
             ViewBag.VitesTipi = vitesTipi;
 
-            List<AracKasaTipi> aracKasaTipiList = db.AracKasaTipi.ToList();
+            List<AracKasaTipi> aracKasaTipiList = db.AracKasaTipi.Where(x => x.AracKasaTipi_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracKasaTipiList = aracKasaTipiList;
 
             Dictionary<int, string> aracKlimaDurumu = new Dictionary<int, string>();
@@ -61,7 +70,7 @@ namespace WebApplication.Controllers
             aracKlimaDurumu.Add(2, "Klimasız");
             ViewBag.AracKlimaDurumu = aracKlimaDurumu;
 
-            List<AracRenk> aracRenkList = db.AracRenk.ToList();
+            List<AracRenk> aracRenkList = db.AracRenk.Where(x => x.AracRenk_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracRenkList = aracRenkList;
 
 
@@ -86,6 +95,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                arac.Arac_Status = (int)DBStatus.Active;                
                 db.Arac.Add(arac);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -107,13 +117,15 @@ namespace WebApplication.Controllers
                 return HttpNotFound();
             }
 
-            List<AracGrup> aracGrupList = db.AracGrup.ToList();
+
+
+            List<AracGrup> aracGrupList = db.AracGrup.Where(x => x.AracGrup_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracGrupList = aracGrupList;
-            List<AracMarka> aracMarkaList = db.AracMarka.ToList();
+            List<AracMarka> aracMarkaList = db.AracMarka.Where(x => x.AracMarka_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracMarkaList = aracMarkaList;
-            List<AracModel> aracModelList = db.AracModel.ToList();
+            List<AracModel> aracModelList = db.AracModel.Where(x => x.AracModel_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracModelList = aracModelList;
-            List<AracYakitTuru> aracYakitTuruList = db.AracYakitTuru.ToList();
+            List<AracYakitTuru> aracYakitTuruList = db.AracYakitTuru.Where(x => x.AracYakitTuru_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracYakitTuruList = aracYakitTuruList;
 
             Dictionary<string, string> vitesTipi = new Dictionary<string, string>();
@@ -121,7 +133,7 @@ namespace WebApplication.Controllers
             vitesTipi.Add("MANUEL", "MANUEL");
             ViewBag.VitesTipi = vitesTipi;
 
-            List<AracKasaTipi> aracKasaTipiList = db.AracKasaTipi.ToList();
+            List<AracKasaTipi> aracKasaTipiList = db.AracKasaTipi.Where(x => x.AracKasaTipi_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracKasaTipiList = aracKasaTipiList;
 
             Dictionary<int, string> aracKlimaDurumu = new Dictionary<int, string>();
@@ -129,7 +141,7 @@ namespace WebApplication.Controllers
             aracKlimaDurumu.Add(2, "Klimasız");
             ViewBag.AracKlimaDurumu = aracKlimaDurumu;
 
-            List<AracRenk> aracRenkList = db.AracRenk.ToList();
+            List<AracRenk> aracRenkList = db.AracRenk.Where(x => x.AracRenk_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracRenkList = aracRenkList;
 
 
@@ -138,8 +150,8 @@ namespace WebApplication.Controllers
             aracKiralamaDurumu.Add(1, "Müşteride");
             aracKiralamaDurumu.Add(2, "Pasif Araç");
             aracKiralamaDurumu.Add(3, "Arızalı/Serviste");
-
             ViewBag.AracKiralamaDurumu = aracKiralamaDurumu;
+
 
 
             return View(arac);
@@ -169,21 +181,15 @@ namespace WebApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Arac arac = db.Arac.Find(id);
+
             if (arac == null)
             {
                 return HttpNotFound();
             }
-            return View(arac);
-        }
 
-        // POST: Arac/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Arac arac = db.Arac.Find(id);
-            db.Arac.Remove(arac);
+            arac.Arac_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

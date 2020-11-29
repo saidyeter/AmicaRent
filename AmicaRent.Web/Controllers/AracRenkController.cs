@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: AracRenk
         public ActionResult Index()
         {
-            return View(db.AracRenk.ToList());
+            return View(db.AracRenk.Where(x => x.AracRenk_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: AracRenk/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                aracRenk.AracRenk_Status = (int)DBStatus.Active;
+                aracRenk.AracRenk_CreateDate = DateTime.Now;
                 db.AracRenk.Add(aracRenk);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,16 +104,7 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(aracRenk);
-        }
-
-        // POST: AracRenk/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            AracRenk aracRenk = db.AracRenk.Find(id);
-            db.AracRenk.Remove(aracRenk);
+            aracRenk.AracRenk_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<WebApplication.DataAccess.Kullanici>
 
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = "Index"; }
 
 <h2>Index</h2>
 
@@ -33,31 +31,38 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kullanici_TamAdi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kullanici_Adi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kullanici_Sifre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kullanici_SonGirisZamani)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kullanici_Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kullanici_CreateDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Kullanici_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Kullanici_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Kullanici_ID })
-            </td>
-        </tr>
-    }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kullanici_TamAdi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kullanici_Adi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kullanici_Sifre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kullanici_SonGirisZamani)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kullanici_Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kullanici_CreateDate)
+    </td>
+    <td>
+        @Html.ActionLink("Düzenle", "Edit", new { id = item.Kullanici_ID }) |
+        @Html.ActionLink("Detaylar", "Details", new { id = item.Kullanici_ID }) |
+        @Html.ActionLink("Rolleri Düzenle", "ManageRole", new { id = item.Kullanici_ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Kullanici_ID })
+    </td>
+</tr>}
 
 </table>
+
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-system');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-system-liste-Kullanici');
+        subMenuItem.classList.add('active');
+    });</script>

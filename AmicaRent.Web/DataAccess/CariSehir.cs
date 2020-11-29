@@ -16,7 +16,7 @@ namespace WebApplication.DataAccess
     {
         public int CariSehir_ID { get; set; }
         public string CariSehir_Adi { get; set; }
-        public Nullable<int> CariSehir_Status { get; set; }
+        public int CariSehir_Status { get; set; }
         public Nullable<System.DateTime> CariSehir_CreateDate { get; set; }
     }
 }

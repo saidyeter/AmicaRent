@@ -1,8 +1,6 @@
 ﻿@model WebApplication.DataAccess.Kullanici
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
 <h2>Details</h2>
 
@@ -61,6 +59,13 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Kullanici_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Kullanici_ID }) |
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </p>
+
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-system');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-system-liste-Kullanici');
+        subMenuItem.classList.add('active');
+    });</script>

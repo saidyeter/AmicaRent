@@ -15,6 +15,7 @@ namespace WebApplication.DataAccess
     public partial class viewCari
     {
         public int Cari_ID { get; set; }
+        public int Cari_Status { get; set; }
         public string Cari_AdSoyad { get; set; }
         public string CariUyruk_Adi { get; set; }
         public string Cari_IDNumber { get; set; }

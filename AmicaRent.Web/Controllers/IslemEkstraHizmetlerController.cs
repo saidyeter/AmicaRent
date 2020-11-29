@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: IslemEkstraHizmetler
         public ActionResult Index()
         {
-            return View(db.IslemEkstraHizmetler.ToList());
+            return View(db.IslemEkstraHizmetler.Where(x => x.IslemEkstraHizmetler_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: IslemEkstraHizmetler/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                islemEkstraHizmetler.IslemEkstraHizmetler_Status = (int)DBStatus.Active;
+                islemEkstraHizmetler.IslemEkstraHizmetler_CreateDate = DateTime.Now;
                 db.IslemEkstraHizmetler.Add(islemEkstraHizmetler);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,20 +104,11 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(islemEkstraHizmetler);
-        }
-
-        // POST: IslemEkstraHizmetler/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            IslemEkstraHizmetler islemEkstraHizmetler = db.IslemEkstraHizmetler.Find(id);
-            db.IslemEkstraHizmetler.Remove(islemEkstraHizmetler);
+            islemEkstraHizmetler.IslemEkstraHizmetler_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
 
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

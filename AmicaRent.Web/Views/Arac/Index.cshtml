@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<WebApplication.DataAccess.viewAracList>
 
-@{
-    ViewBag.Title = "Araç";
-}
+@{ ViewBag.Title = "Araç"; }
 
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <a class="btn btn-app" href="@Url.Action("Create")">
-                    <i class="fa fa-plus"></i> Yeni
+                <a class="btn btn-app btn-default" href="@Url.Action("Create")">
+                    <i class="fa fa-plus"></i> Yeni Araç
                 </a>
             </div>
             <div class="box-body">
@@ -45,60 +43,60 @@
                         </th>
 
                         <th>
-                             
+
                         </th>
 
                     </tr>
 
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AracGrup_Adi)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AracMarka_Adi)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AracModel_Adi)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Arac_Yil)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AracYakitTuru_Adi)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Arac_VitesTipi)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AracKasaTipi_Adi)
-                            </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AracGrup_Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AracMarka_Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AracModel_Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Arac_Yil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AracYakitTuru_Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Arac_VitesTipi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AracKasaTipi_Adi)
+            </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AracPlakaNo)
-                            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AracPlakaNo)
+            </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.KiralamaDurumu)
-                            </td>
-                            <td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KiralamaDurumu)
+            </td>
+            <td>
 
-                                <a class="btn" href="@Url.Action("Edit", new { id = item.Arac_ID })">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a class="btn" href="@Url.Action("Details", new { id = item.Arac_ID })">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                                @*<a class="btn" href="@Url.Action("Delete", new { id = item.Arac_ID })">
-                                        <i class="fa fa-trash"></i>
-                                    </a>*@
-                            </td>
-                        </tr>
-                    }
+                <a class="btn" href="@Url.Action("Edit", new { id = item.Arac_ID })">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a class="btn" href="@Url.Action("Details", new { id = item.Arac_ID })">
+                    <i class="fa fa-search"></i>
+                </a>
+                <a class="btn" href="#" onclick="deleteConfirm('@Url.Action("delete", new { id = item.Arac_ID })'); return false;">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+}
 
                 </table>
-
+            
             </div>
         </div>
     </div>
@@ -107,9 +105,9 @@
 
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
-        var menuItem = document.querySelector('#left-sidebar-menu-car');
+        var menuItem = document.querySelector('#solmenu-arac-liste');
         menuItem.classList.add('active');
-        var subMenuItem = menuItem.querySelector('#left-sidebar-menu-car-Arac');
+        var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-Arac');
         subMenuItem.classList.add('active');
-    });
+    });   
 </script>

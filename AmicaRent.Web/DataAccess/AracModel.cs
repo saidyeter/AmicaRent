@@ -17,7 +17,7 @@ namespace WebApplication.DataAccess
         public int AracModel_ID { get; set; }
         public int AracMarka_ID { get; set; }
         public string AracModel_Adi { get; set; }
-        public Nullable<int> AracModel_Status { get; set; }
+        public int AracModel_Status { get; set; }
         public Nullable<System.DateTime> AracModel_CreateDate { get; set; }
     }
 }

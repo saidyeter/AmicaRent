@@ -17,7 +17,7 @@ namespace WebApplication.DataAccess
         public int EkstraHizmetler_ID { get; set; }
         public string EkstraHizmetler_Adi { get; set; }
         public Nullable<double> EkstraHizmetler_Ucreti { get; set; }
-        public Nullable<int> EkstraHizmetler_Status { get; set; }
+        public int EkstraHizmetler_Status { get; set; }
         public Nullable<System.DateTime> EkstraHizmetler_CreateDate { get; set; }
     }
 }

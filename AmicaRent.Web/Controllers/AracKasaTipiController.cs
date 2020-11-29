@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: AracKasaTipi
         public ActionResult Index()
         {
-            return View(db.AracKasaTipi.ToList());
+            return View(db.AracKasaTipi.Where(x => x.AracKasaTipi_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: AracKasaTipi/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                aracKasaTipi.AracKasaTipi_Status = (int)DBStatus.Active;
+                aracKasaTipi.AracKasaTipi_CreateDate = DateTime.Now;
                 db.AracKasaTipi.Add(aracKasaTipi);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,17 +104,7 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(aracKasaTipi);
-        }
-
-        // POST: AracKasaTipi/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            AracKasaTipi aracKasaTipi = db.AracKasaTipi.Find(id);
-            db.AracKasaTipi.Remove(aracKasaTipi);
-            db.SaveChanges();
+            aracKasaTipi.AracKasaTipi_Status = (int)DBStatus.Deleted;
             return RedirectToAction("Index");
         }
 

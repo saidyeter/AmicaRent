@@ -15,9 +15,6 @@
             Marka Adı
         </th>
         <th>
-            Marka Durumu
-        </th>
-        <th>
             Oluşturma Zamanı
         </th>
         <th></th>
@@ -30,17 +27,19 @@
                 @Html.DisplayFor(modelItem => item.AracMarka_Adi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AracMarka_Status)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.AracMarka_CreateDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AracMarka_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AracMarka_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AracMarka_ID })
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.AracMarka_ID }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.AracMarka_ID }) 
             </td>
         </tr>
     }
 
 </table>
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-arac-liste');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-AracMarka');
+        subMenuItem.classList.add('active');
+    });</script>

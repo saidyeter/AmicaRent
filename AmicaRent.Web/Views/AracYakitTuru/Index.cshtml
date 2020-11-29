@@ -15,9 +15,6 @@
             Yakıt Türü
         </th>
         <th>
-            Yakıt Türü Durumu
-        </th>
-        <th>
             Oluşturma Zamanı
         </th>
         <th></th>
@@ -30,17 +27,19 @@
                 @Html.DisplayFor(modelItem => item.AracYakitTuru_Adi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AracYakitTuru_Status)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.AracYakitTuru_CreateDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AracYakitTuru_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AracYakitTuru_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AracYakitTuru_ID })
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.AracYakitTuru_ID }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.AracYakitTuru_ID }) 
             </td>
         </tr>
     }
 
 </table>
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-arac-liste');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-AracYakitTuru');
+        subMenuItem.classList.add('active');
+    });</script>

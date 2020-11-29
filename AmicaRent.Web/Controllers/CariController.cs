@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: Cari
         public ActionResult Index()
         {
-            return View(db.viewCari.ToList());
+            return View(db.viewCari.Where(x => x.Cari_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: Cari/Details/5
@@ -39,9 +40,9 @@ namespace WebApplication.Controllers
         public ActionResult Create()
         {
 
-            List<CariUyruk> uyrukList = db.CariUyruk.ToList();
+            List<CariUyruk> uyrukList = db.CariUyruk.Where(x => x.CariUyruk_Status == (int)DBStatus.Active).ToList();
             ViewBag.UyrukList = uyrukList;
-            List<CariSehir> sehirList = db.CariSehir.ToList();
+            List<CariSehir> sehirList = db.CariSehir.Where(x => x.CariSehir_Status == (int)DBStatus.Active).ToList();
             ViewBag.SehirList = sehirList;
 
             Dictionary<int, string> cinsiyet = new Dictionary<int, string>();
@@ -61,6 +62,7 @@ namespace WebApplication.Controllers
             if (ModelState.IsValid)
             {
                 cari.Cari_CreateDate = DateTime.Now;
+                cari.Cari_Status = (int)DBStatus.Active;
                 db.Cari.Add(cari);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,9 +86,9 @@ namespace WebApplication.Controllers
 
 
 
-            List<CariUyruk> uyrukList = db.CariUyruk.ToList();
+            List<CariUyruk> uyrukList = db.CariUyruk.Where(x => x.CariUyruk_Status == (int)DBStatus.Active).ToList();
             ViewBag.UyrukList = uyrukList;
-            List<CariSehir> sehirList = db.CariSehir.ToList();
+            List<CariSehir> sehirList = db.CariSehir.Where(x => x.CariSehir_Status == (int)DBStatus.Active).ToList();
             ViewBag.SehirList = sehirList;
 
             Dictionary<int, string> cinsiyet = new Dictionary<int, string>();
@@ -126,19 +128,11 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cari);
-        }
-
-        // POST: Cari/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Cari cari = db.Cari.Find(id);
-            db.Cari.Remove(cari);
+            cari.Cari_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

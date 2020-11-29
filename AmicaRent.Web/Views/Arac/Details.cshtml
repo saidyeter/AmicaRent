@@ -1,8 +1,6 @@
 ﻿@model WebApplication.DataAccess.viewAracList
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
 <h2>Details</h2>
 
@@ -165,15 +163,15 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Arac_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Arac_ID }) |
+    @Html.ActionLink("Listeye Geri ", "Index")
 </p>
 
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
-        var menuItem = document.querySelector('#left-sidebar-menu-car');
+        var menuItem = document.querySelector('#solmenu-arac-liste');
         menuItem.classList.add('active');
-        var subMenuItem = menuItem.querySelector('#left-sidebar-menu-car-Arac');
+        var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-Arac');
         subMenuItem.classList.add('active');
     });
 </script>

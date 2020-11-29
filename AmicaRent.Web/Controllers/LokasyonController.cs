@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: Lokasyon
         public ActionResult Index()
         {
-            return View(db.Lokasyon.ToList());
+            return View(db.Lokasyon.Where(x => x.Lokasyon_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: Lokasyon/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                lokasyon.Lokasyon_Status = (int)DBStatus.Active;
+                lokasyon.Lokasyon_CreateDate = DateTime.Now;
                 db.Lokasyon.Add(lokasyon);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,19 +104,10 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(lokasyon);
-        }
-
-        // POST: Lokasyon/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Lokasyon lokasyon = db.Lokasyon.Find(id);
-            db.Lokasyon.Remove(lokasyon);
+            lokasyon.Lokasyon_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        } 
 
         protected override void Dispose(bool disposing)
         {

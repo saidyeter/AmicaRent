@@ -1,0 +1,103 @@
+﻿@using WebApplication.DataAccess
+@model  List<KeyValuePair<KullaniciRolTanimlari, bool>>
+@{
+    ViewBag.Title = "ManageRole";
+    int ManagedUserId = ViewBag.ManagedUserId;
+    List<int> RoleCategories = ViewBag.RoleCategories;
+    string CurrentlyRoles = ViewBag.CurrentlyRoles;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("roles", CurrentlyRoles);
+    @Html.Hidden("ManagedUserId", ManagedUserId);
+    <div class="box box-warning">
+        <div class="box-header with-border">
+            <h3 class="box-title">Kullanıcı Rolü Düzenle</h3>
+            @if (ViewBag.Message != null)
+            {
+                <h5 class="box-title">@ViewBag.Message</h5>
+            }
+        </div>
+        <div class="box-body">
+            @*<div class="form-group">
+                    <label>Text</label>
+                    <input type="text" class="form-control" placeholder="Enter ...">
+                </div>*@
+            <div class="row">
+                <div class="col-md-6">
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(m => m[i].Value, new { dataId = Model[i].Key.Rol_ID, identity = "roleCheck", category = Model[i].Key.Rol_Kategori })
+                                (@Model[i].Key.Rol_Kategori) 
+                                @Model[i].Key.Rol_Aciklama
+                            </label>
+                        </div>
+                    }
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @foreach (var item in RoleCategories)
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBox(item.ToString(), new { identity = "roleApply" })
+                                    Kategori @item
+                                </label>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Onayla</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var roleCheckBox = document.querySelectorAll('input[identity="roleCheck"]');
+        for (var i = 0; i < roleCheckBox.length; i++) {
+            roleCheckBox[i].addEventListener('change', setRoles )
+        }
+
+        var roleCategoryCheckBox = document.querySelectorAll('input[identity="roleApply"]');
+        var roleCategoryCheckBoxList = Array.from(roleCategoryCheckBox);
+        for (var i in roleCategoryCheckBoxList) {
+            var checkbox = roleCategoryCheckBoxList[i];
+            checkbox.addEventListener('change', function () {
+                var targetCheckBoxes = document.querySelectorAll('input[category="' + this.name + '"]');
+                var targetCheckBoxesList = Array.from(targetCheckBoxes);
+                if (this.checked) {
+                    for (var j in targetCheckBoxesList) {
+                        targetCheckBoxesList[j].checked = true;
+                    }
+                }
+                else {
+                    for (var j in targetCheckBoxesList) {
+                        targetCheckBoxesList[j].checked = false;
+                    }
+                }
+                setRoles()
+            })
+        }
+    })
+    function setRoles() {
+        var currentyCheckNodes = document.querySelectorAll('input[identity="roleCheck"]');
+        var currentyChecks = Array.from(currentyCheckNodes);
+        var checkeds = currentyChecks.filter(x => x.checked);
+        var rolesString = "";
+        for (var j = 0; j < checkeds.length; j++) {
+            rolesString += checkeds[j].getAttribute("dataId") + ",";
+        }
+        document.getElementById("roles").value = rolesString;
+    }
+
+
+</script>

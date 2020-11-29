@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: AracGrup
         public ActionResult Index()
         {
-            return View(db.AracGrup.ToList());
+            return View(db.AracGrup.Where(x => x.AracGrup_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: AracGrup/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                aracGrup.AracGrup_Status = (int)DBStatus.Active;
+                aracGrup.AracGrup_CreateDate = DateTime.Now;
                 db.AracGrup.Add(aracGrup);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,20 +104,10 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(aracGrup);
-        }
-
-        // POST: AracGrup/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            AracGrup aracGrup = db.AracGrup.Find(id);
-            db.AracGrup.Remove(aracGrup);
+            aracGrup.AracGrup_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

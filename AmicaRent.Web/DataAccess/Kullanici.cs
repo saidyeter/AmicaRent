@@ -19,7 +19,7 @@ namespace WebApplication.DataAccess
         public string Kullanici_Adi { get; set; }
         public string Kullanici_Sifre { get; set; }
         public Nullable<System.DateTime> Kullanici_SonGirisZamani { get; set; }
-        public Nullable<int> Kullanici_Status { get; set; }
+        public int Kullanici_Status { get; set; }
         public Nullable<System.DateTime> Kullanici_CreateDate { get; set; }
     }
 }

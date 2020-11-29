@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>WebApplication</title>
+    <title>AmicaRent Araç Kiralama Uygulaması</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     @Styles.Render("~/AdminLTE/plugins/font-awesome/css")
@@ -17,7 +17,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
-            <a href="@Url.Action("DashboardV1", "Home")" class="logo">
+            <a href="@Url.Action("Index", "Home")" class="logo">
                 <span class="logo-mini"><b>A</b>mica</span>
                 <span class="logo-lg"><b>Amica</b>Rent</span>
             </a>
@@ -27,192 +27,7 @@
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="~/Admin/dist/img/user.svg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="~/Admin/dist/img/user.svg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    AdminLTE Design Team
-                                                    <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="~/Admin/dist/img/user.svg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    Developers
-                                                    <small><i class="fa fa-clock-o"></i> Today</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="~/Admin/dist/img/user.svg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    Sales Department
-                                                    <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="~/Admin/dist/img/user.svg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>
-                                                    Reviewers
-                                                    <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
-                                <li>
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                                                page and may cause design problems
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-users text-red"></i> 5 new members joined
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-user text-red"></i> You changed your username
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">View all</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">9</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 9 tasks</li>
-                                <li>
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <h3>
-                                                    Design some buttons
-                                                    <small class="pull-right">20%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">20% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <h3>
-                                                    Create a nice theme
-                                                    <small class="pull-right">40%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">40% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <h3>
-                                                    Some task I need to do
-                                                    <small class="pull-right">60%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">60% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <h3>
-                                                    Make beautiful transitions
-                                                    <small class="pull-right">80%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">80% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="#">View all tasks</a>
-                                </li>
-                            </ul>
-                        </li>
                         @Html.Partial("_LoginPartial")
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -224,243 +39,111 @@
                         <img src="~/Admin/dist/img/user.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>@User.Identity.GetUserNameIdentifier()</p>
-                        <p>Said</p>
-                        @*<a href="#"><i class="fa fa-circle text-success"></i> Online</a>*@
+                        <p>@HttpContext.Current.Session["UserName"]</p>
                     </div>
                 </div>
-                @*<form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>*@
                 <ul class="sidebar-menu">
                     <li class="header">MENÜ ADIMLARI</li>
-                    <li id="left-sidebar-menu-carDef" class="treeview">
+                    <li id="solmenu-anasayfa">
+                        <a href="@Url.Action("Index", "Home")">
+                            <i class="fa fa-book"></i>
+                            <span>Ana Sayfa</span>
+                        </a>
+                    </li>
+                    <li id="solmenu-arac-tanim" class="treeview">
                         <a href="#">
                             <i class="fa fa-car"></i> <span>Araç</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-carDef-Arac"><a href="@Url.Action("Create", "Arac")"><i class="fa fa-save"></i> Araç Tanımlama</a></li>
-                            <li id="left-sidebar-menu-carDef-AracGrup"><a href="@Url.Action("Create", "AracGrup")"><i class="fa fa-bell-o"></i> Araç Grup Tanımlama</a></li>
-                            <li id="left-sidebar-menu-carDef-AracKasaTipi"><a href="@Url.Action("Create", "AracKasaTipi")"><i class="fa fa-automobile"></i> Araç Kasa Tipi Tanımlama</a></li>
-                            <li id="left-sidebar-menu-carDef-AracMarka"><a href="@Url.Action("Create", "AracMarka")"><i class="fa fa-copyright"></i> Araç Marka Tanımlama</a></li>
-                            <li id="left-sidebar-menu-carDef-AracModel"><a href="@Url.Action("Create", "AracModel")"><i class="fa fa-horse-head"></i> Araç Model Tanımlama</a></li>
-                            <li id="left-sidebar-menu-carDef-AracRenk"><a href="@Url.Action("Create", "AracRenk")"><i class="fa fa-paint-brush"></i> Araç Renk Tanımlama</a></li>
-                            <li id="left-sidebar-menu-carDef-AracYakitTuru"><a href="@Url.Action("Create", "AracYakitTuru")"><i class="fa ion-contrast"></i> Araç Yakıt Türü Tanımlama</a></li>
+                            <li id="solmenu-arac-tanim-Arac"><a href="@Url.Action("Create", "Arac")"><i class="fa fa-briefcase"></i> Araç Tanımlama</a></li>
+                            <li id="solmenu-arac-tanim-AracGrup"><a href="@Url.Action("Create", "AracGrup")"><i class="fa fa-object-ungroup"></i> Araç Grup Tanımlama</a></li>
+                            <li id="solmenu-arac-tanim-AracKasaTipi"><a href="@Url.Action("Create", "AracKasaTipi")"><i class="fa fa-cab"></i> Araç Kasa Tipi Tanımlama</a></li>
+                            <li id="solmenu-arac-tanim-AracMarka"><a href="@Url.Action("Create", "AracMarka")"><i class="fa fa-copyright"></i> Araç Marka Tanımlama</a></li>
+                            <li id="solmenu-arac-tanim-AracModel"><a href="@Url.Action("Create", "AracModel")"><i class="fa fa-tag"></i> Araç Model Tanımlama</a></li>
+                            <li id="solmenu-arac-tanim-AracRenk"><a href="@Url.Action("Create", "AracRenk")"><i class="fa fa-paint-brush"></i> Araç Renk Tanımlama</a></li>
+                            <li id="solmenu-arac-tanim-AracYakitTuru"><a href="@Url.Action("Create", "AracYakitTuru")"><i class="fa fa-map-o"></i> Araç Yakıt Türü Tanımlama</a></li>
                         </ul>
                     </li>
-                    <li id="left-sidebar-menu-carList" class="treeview">
+                    <li id="solmenu-arac-liste" class="treeview">
                         <a href="#">
-                            <i class="fa fa-car"></i> <span>Araç Listeleri</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-indent"></i> <span>Araç Listeleri</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-carList-Arac"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-save"></i> Tüm Araç Listesi</a></li>
-                            <li id="left-sidebar-menu-carList-Arac-res"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-save"></i> Rezervasyon Listesi</a></li>
-                            <li id="left-sidebar-menu-carList-Arac-avab"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-save"></i> Müsait Araç Listesi</a></li>
-                            <li id="left-sidebar-menu-carList-AracGrup"><a href="@Url.Action("Index", "AracGrup")"><i class="fa fa-bell-o"></i> Araç Grup Listesi</a></li>
-                            <li id="left-sidebar-menu-carList-AracKasaTipi"><a href="@Url.Action("Index", "AracKasaTipi")"><i class="fa fa-automobile"></i> Araç Kasa Tipi Listesi</a></li>
-                            <li id="left-sidebar-menu-carList-AracMarka"><a href="@Url.Action("Index", "AracMarka")"><i class="fa fa-copyright"></i> Araç Marka Listesi</a></li>
-                            <li id="left-sidebar-menu-carList-AracModel"><a href="@Url.Action("Index", "AracModel")"><i class="fa fa-horse-head"></i> Araç Model Listesi</a></li>
-                            <li id="left-sidebar-menu-carList-AracRenk"><a href="@Url.Action("Index", "AracRenk")"><i class="fa fa-paint-brush"></i> Araç Renk Listesi</a></li>
-                            <li id="left-sidebar-menu-carList-AracYakitTuru"><a href="@Url.Action("Index", "AracYakitTuru")"><i class="fa ion-contrast"></i> Araç Yakıt Türü Listesi</a></li>
+                            <li id="solmenu-arac-liste-Arac"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-trophy"></i> Tüm Araç Listesi</a></li>
+                            <li id="solmenu-arac-liste-Arac-res"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-subway"></i> Rezervasyon Listesi</a></li>
+                            <li id="solmenu-arac-liste-Arac-avab"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-truck"></i> Müsait Araç Listesi</a></li>
+                            <li id="solmenu-arac-liste-AracGrup"><a href="@Url.Action("Index", "AracGrup")"><i class="fa fa-minus-square"></i> Araç Grup Listesi</a></li>
+                            <li id="solmenu-arac-liste-AracKasaTipi"><a href="@Url.Action("Index", "AracKasaTipi")"><i class="fa fa-bar-chart"></i> Araç Kasa Tipi Listesi</a></li>
+                            <li id="solmenu-arac-liste-AracMarka"><a href="@Url.Action("Index", "AracMarka")"><i class="fa fa-line-chart"></i> Araç Marka Listesi</a></li>
+                            <li id="solmenu-arac-liste-AracModel"><a href="@Url.Action("Index", "AracModel")"><i class="fa fa-file-text-o"></i> Araç Model Listesi</a></li>
+                            <li id="solmenu-arac-liste-AracRenk"><a href="@Url.Action("Index", "AracRenk")"><i class="fa fa-bicycle"></i> Araç Renk Listesi</a></li>
+                            <li id="solmenu-arac-liste-AracYakitTuru"><a href="@Url.Action("Index", "AracYakitTuru")"><i class="fa  fa-user-secret"></i> Araç Yakıt Türü Listesi</a></li>
                         </ul>
                     </li>
-                    <li id="left-sidebar-menu-customerDef" class="treeview">
+                    <li id="solmenu-cari-tanim" class="treeview">
                         <a href="#">
-                            <i class="fa fa-car"></i> <span>Müşteri</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-smile-o"></i> <span>Müşteri</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-customerDef-Cari"><a href="@Url.Action("Create", "Cari")"><i class="fa fa-save"></i> Cari Tanımlama</a></li>
-                            <li id="left-sidebar-menu-customerDef-CariEhliyet"><a href="@Url.Action("Create", "CariEhliyet")"><i class="fa fa-bell-o"></i> Cari Ehliyet Tanımlama</a></li>
-                            <li id="left-sidebar-menu-customerDef-CariSehir"><a href="@Url.Action("Create", "CariSehir")"><i class="fa fa-automobile"></i> Cari Şehir Tanımlama</a></li>
-                            <li id="left-sidebar-menu-customerDef-CariUyruk"><a href="@Url.Action("Create", "CariUyruk")"><i class="fa fa-automobile"></i> Cari Uyruk Tanımlama</a></li>
+                            <li id="solmenu-cari-tanim-Cari"><a href="@Url.Action("Create", "Cari")"><i class="fa fa-save"></i> Cari Tanımlama</a></li>
+                            <li id="solmenu-cari-tanim-CariEhliyet"><a href="@Url.Action("Create", "CariEhliyet")"><i class="fa fa-bell-o"></i> Cari Ehliyet Tanımlama</a></li>
+                            <li id="solmenu-cari-tanim-CariSehir"><a href="@Url.Action("Create", "CariSehir")"><i class="fa fa-building"></i> Cari Şehir Tanımlama</a></li>
+                            <li id="solmenu-cari-tanim-CariUyruk"><a href="@Url.Action("Create", "CariUyruk")"><i class="fa fa-cubes"></i> Cari Uyruk Tanımlama</a></li>
                         </ul>
                     </li>
-                    <li id="left-sidebar-menu-customerList" class="treeview">
+                    <li id="solmenu-cari-liste" class="treeview">
                         <a href="#">
-                            <i class="fa fa-car"></i> <span>Müşteri Bilgileri</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa  fa-male"></i> <span>Müşteri Bilgileri</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-customerList-Cari"><a href="@Url.Action("Index", "Cari")"><i class="fa fa-save"></i> Cari Listesi</a></li>
-                            <li id="left-sidebar-menu-customerList-CariEhliyet"><a href="@Url.Action("Index", "CariEhliyet")"><i class="fa fa-bell-o"></i> Cari Ehliyet Listesi</a></li>
-                            <li id="left-sidebar-menu-customerList-CariSehir"><a href="@Url.Action("Index", "CariSehir")"><i class="fa fa-automobile"></i> Cari Şehir Listesi</a></li>
-                            <li id="left-sidebar-menu-customerList-CariUyruk"><a href="@Url.Action("Index", "CariUyruk")"><i class="fa fa-automobile"></i> Cari Uyruk Listesi</a></li>
+                            <li id="solmenu-cari-liste-Cari"><a href="@Url.Action("Index", "Cari")"><i class="fa fa-legal"></i> Cari Listesi</a></li>
+                            <li id="solmenu-cari-liste-CariEhliyet"><a href="@Url.Action("Index", "CariEhliyet")"><i class="fa fa-life-bouy"></i> Cari Ehliyet Listesi</a></li>
+                            <li id="solmenu-cari-liste-CariSehir"><a href="@Url.Action("Index", "CariSehir")"><i class="fa  fa-lightbulb-o"></i> Cari Şehir Listesi</a></li>
+                            <li id="solmenu-cari-liste-CariUyruk"><a href="@Url.Action("Index", "CariUyruk")"><i class="fa  fa-magic"></i> Cari Uyruk Listesi</a></li>
                         </ul>
                     </li>
-                    <li id="left-sidebar-menu-action" class="treeview">
+                    <li id="solmenu-operation" class="treeview">
                         <a href="#">
-                            <i class="fa fa-car"></i> <span>İşlem</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa  fa-hourglass-half"></i> <span>İşlem</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-actionList-Islem"><a href="@Url.Action("Index", "Islem")"><i class="fa fa-save"></i> Rezervasyon Listesi</a></li>
-                            <li id="left-sidebar-menu-actionDef-Islem"><a href="@Url.Action("Create", "Islem")"><i class="fa fa-save"></i> Kiralama İşlemleri</a></li>
+                            <li id="solmenu-operation-liste"><a href="@Url.Action("Index", "Islem")"><i class="fa  fa-location-arrow"></i> Rezervasyon Listesi</a></li>
+                            <li id="solmenu-operation-tanim"><a href="@Url.Action("Create", "Islem")"><i class="fa  fa-signal"></i> Kiralama İşlemleri</a></li>
                         </ul>
                     </li>
-                    <li id="left-sidebar-menu-service" class="treeview">
+                    <li id="solmenu-service" class="treeview">
                         <a href="#">
-                            <i class="fa fa-car"></i> <span>Servis İşlemleri</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-ambulance"></i> <span>Servis İşlemleri</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-serviceDef-Servis"><a href="@Url.Action("Create", "Servis")"><i class="fa fa-save"></i> Servis Tanımla</a></li>
-                            <li id="left-sidebar-menu-serviceDef-ServisFirma"><a href="@Url.Action("Create", "ServisFirma")"><i class="fa fa-save"></i> Servis Firmaları</a></li>
-                            <li id="left-sidebar-menu-serviceList-Servis"><a href="@Url.Action("Index", "Servis")"><i class="fa fa-save"></i> Yaklaşan Servis Listesi</a></li>
+                            <li id="solmenu-service-tanim-Servis"><a href="@Url.Action("Create", "Servis")"><i class="fa  fa-fighter-jet"></i> Servis Tanımla</a></li>
+                            <li id="solmenu-service-tanim-ServisFirma"><a href="@Url.Action("Create", "ServisFirma")"><i class="fa fa-motorcycle"></i> Servis Firmaları</a></li>
+                            <li id="solmenu-service-liste-Servis"><a href="@Url.Action("Index", "Servis")"><i class="fa fa-truck"></i> Yaklaşan Servis Listesi</a></li>
                         </ul>
                     </li>
-                    <li id="left-sidebar-menu-system" class="treeview">
+                    <li id="solmenu-system" class="treeview">
                         <a href="#">
-                            <i class="fa fa-car"></i> <span>Sistem Değişkenleri</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-spinner"></i> <span>Sistem Değişkenleri</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-systemDef-OdemeTipi"><a href="@Url.Action("Create", "OdemeTipi")"><i class="fa fa-save"></i> Ödeme Türleri Tanımlama</a></li>
-                            <li id="left-sidebar-menu-system-blank"><a href="#"><i class="fa fa-save"></i> Banka Bilgileri Tanımlama</a></li>
-                            <li id="left-sidebar-menu-system-blank"><a href="#"><i class="fa fa-save"></i> Şube Tanımlama</a></li>
-                            <li id="left-sidebar-menu-systemDef-Kullanici"><a href="@Url.Action("Create", "Kullanici")"><i class="fa fa-save"></i> Kullanıcı Tanımlama</a></li>
+                            <li id="solmenu-system-tanim-OdemeTipi"><a href="@Url.Action("Create", "OdemeTipi")"><i class="fa fa-money"></i> Ödeme Türleri Tanımlama</a></li>
+                            <li id="solmenu-system-blank"><a href="#"><i class="fa fa-turkish-lira"></i> Banka Bilgileri Tanımlama</a></li>
+                            <li id="solmenu-system-blank"><a href="#"><i class="fa fa-list"></i> Şube Tanımlama</a></li>
+                            <li id="solmenu-system-tanim-Kullanici"><a href="@Url.Action("Create", "Kullanici")"><i class="fa fa-user-md"></i> Kullanıcı Tanımlama</a></li>
+                            <li id="solmenu-system-liste-Kullanici"><a href="@Url.Action("Index", "Kullanici")"><i class="fa fa-users"></i> Kullanıcı Listesi</a></li>
                         </ul>
                     </li>
 
-                    <li id="left-sidebar-menu-till" class="treeview">
+                    <li id="solmenu-kasa" class="treeview">
                         <a href="#">
-                            <i class="fa fa-car"></i> <span>Kasa İşlemleri</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-gg-circle"></i> <span>Kasa İşlemleri</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-till-blank"><a href="#"><i class="fa fa-save"></i> Günlük Kasa</a></li>
-                            <li id="left-sidebar-menu-till-blank"><a href="#"><i class="fa fa-save"></i> Borç/Alacak Durumu</a></li>
-                            <li id="left-sidebar-menu-till-blank"><a href="#"><i class="fa fa-save"></i> Araç Kredi İşlemleri</a></li>
-                        </ul>
-                    </li>                   
-                    
-                    
-                    
-
-                    @*<li id="left-sidebar-menu-widgets">
-            <a href="@Url.Action("Index", "Widgets")">
-                <i class="fa fa-th"></i> <span>Widgets</span>
-                <small class="label pull-right bg-green">new</small>
-            </a>
-        </li>
-        <li id="left-sidebar-menu-charts" class="treeview">
-            <a href="#">
-                <i class="fa fa-pie-chart"></i>
-                <span>Charts</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action("ChartJs", "Charts")"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                <li id="left-sidebar-menu-charts-morris"><a href="@Url.Action("Morris", "Charts")"><i class="fa fa-circle-o"></i> Morris</a></li>
-                <li id="left-sidebar-menu-charts-flot"><a href="@Url.Action("Flot", "Charts")"><i class="fa fa-circle-o"></i> Flot</a></li>
-                <li id="left-sidebar-menu-charts-inline"><a href="@Url.Action("Inline", "Charts")"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-            </ul>
-        </li>*@
-                    <li id="left-sidebar-menu-elements" class="treeview">
-                        <a href="#">
-                            <i class="fa fa-laptop"></i>
-                            <span>UI Elements</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li id="left-sidebar-menu-elements-general"><a href="@Url.Action("General", "Elements")"><i class="fa fa-circle-o"></i> General</a></li>
-                            <li id="left-sidebar-menu-elements-icons"><a href="@Url.Action("Icons", "Elements")"><i class="fa fa-circle-o"></i> Icons</a></li>
-                            <li id="left-sidebar-menu-elements-buttons"><a href="@Url.Action("Buttons", "Elements")"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                            <li id="left-sidebar-menu-elements-sliders"><a href="@Url.Action("Sliders", "Elements")"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                            <li id="left-sidebar-menu-elements-timeline"><a href="@Url.Action("Timeline", "Elements")"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                            <li id="left-sidebar-menu-elements-modals"><a href="@Url.Action("Modals", "Elements")"><i class="fa fa-circle-o"></i> Modals</a></li>
+                            <li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-area-chart"></i> Günlük Kasa</a></li>
+                            <li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-cc-mastercard"></i> Borç/Alacak Durumu</a></li>
+                            <li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-check-square-o"></i> Araç Kredi İşlemleri</a></li>
                         </ul>
                     </li>
-                    @*<li id="left-sidebar-menu-forms" class="treeview">
-            <a href="#">
-                <i class="fa fa-edit"></i> <span>Forms</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li id="left-sidebar-menu-forms-general"><a href="@Url.Action("General", "Forms")"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                <li id="left-sidebar-menu-forms-advanced"><a href="@Url.Action("Advanced", "Forms")"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                <li id="left-sidebar-menu-forms-editors"><a href="@Url.Action("Editors", "Forms")"><i class="fa fa-circle-o"></i> Editors</a></li>
-            </ul>
-        </li>
-        <li id="left-sidebar-menu-tables" class="treeview">
-            <a href="#">
-                <i class="fa fa-table"></i> <span>Tables</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li id="left-sidebar-menu-tables-simple"><a href="@Url.Action("Simple", "Tables")"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-                <li id="left-sidebar-menu-tables-data"><a href="@Url.Action("Data", "Tables")"><i class="fa fa-circle-o"></i> Data tables</a></li>
-            </ul>
-        </li>
-        <li id="left-sidebar-menu-calendar">
-            <a href="@Url.Action("Index", "Calendar")">
-                <i class="fa fa-calendar"></i>
-                <span>Calendar</span>
-                <small class="label pull-right bg-red">3</small>
-            </a>
-        </li>
-        <li id="left-sidebar-menu-mailbox" class="treeview">
-            <a href="#">
-                <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li id="left-sidebar-menu-mailbox-inbox"><a href="@Url.Action("Inbox", "Mailbox")">Inbox <span class="label label-primary pull-right">13</span></a></li>
-                <li id="left-sidebar-menu-mailbox-compose"><a href="@Url.Action("Compose", "Mailbox")">Compose</a></li>
-                <li id="left-sidebar-menu-mailbox-read"><a href="@Url.Action("Read", "Mailbox")">Read</a></li>
-            </ul>
-        </li>
-        <li id="left-sidebar-menu-examples" class="treeview">
-            <a href="#">
-                <i class="fa fa-folder"></i> <span>Examples</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li id="left-sidebar-menu-examples-invoice"><a href="@Url.Action("Invoice", "Examples")"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                <li id="left-sidebar-menu-examples-profileex"><a href="@Url.Action("ProfileEx", "Examples")"><i class="fa fa-circle-o"></i> Profile</a></li>
-                <li id="left-sidebar-menu-examples-login"><a href="@Url.Action("Login", "Examples")"><i class="fa fa-circle-o"></i> Login</a></li>
-                <li id="left-sidebar-menu-examples-register"><a href="@Url.Action("Register", "Examples")"><i class="fa fa-circle-o"></i> Register</a></li>
-                <li id="left-sidebar-menu-examples-lockscreen"><a href="@Url.Action("Lockscreen", "Examples")"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                <li id="left-sidebar-menu-examples-p404"><a href="@Url.Action("P404", "Examples")"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                <li id="left-sidebar-menu-examples-p500"><a href="@Url.Action("P500", "Examples")"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                <li id="left-sidebar-menu-examples-blank"><a href="@Url.Action("Blank", "Examples")"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-                <li id="left-sidebar-menu-examples-pace"><a href="@Url.Action("Pace", "Examples")"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-            </ul>
-        </li>
-        <li id="left-sidebar-menu-multilevel" class="treeview">
-            <a href="#">
-                <i class="fa fa-share"></i> <span>Multilevel</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                <li>
-                    <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                        <li>
-                            <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
-                            <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-            </ul>
-        </li>
-        <li id="left-sidebar-menu-documentation">
-            <a href="@Url.Action("Index", "Documentation")">
-                <i class="fa fa-book"></i>
-                <span>Layout Documentation</span>
-            </a>
-        </li>
-        <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>*@
                 </ul>
             </section>
         </aside>
@@ -481,159 +164,10 @@
         </div>
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                <b>Version</b> 2.3.2
+                <b>Version</b> 1.0.0
             </div>
-            <strong>Copyrights | Amica Yazılım &copy; 2020<a href="https://amikasoft.com/">Amika</a>.</strong> Tüm hakları saklıdır.
+            <strong>Copyrights | Amica Yazılım &copy; 2020 <a href="https://amikasoft.com/">Amika</a>.</strong> Tüm hakları saklıdır.
         </footer>
-        <aside class="control-sidebar control-sidebar-dark">
-            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-                <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane" id="control-sidebar-home-tab">
-                    <h3 class="control-sidebar-heading">Recent Activity</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript::;">
-                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-                                    <p>Will be 23 on April 24th</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript::;">
-                                <i class="menu-icon fa fa-user bg-yellow"></i>
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-                                    <p>New phone +1(800)555-1234</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript::;">
-                                <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-                                    <p>nora@example.com</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript::;">
-                                <i class="menu-icon fa fa-file-code-o bg-green"></i>
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-                                    <p>Execution time 5 seconds</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript::;">
-                                <h4 class="control-sidebar-subheading">
-                                    Custom Template Design
-                                    <span class="label label-danger pull-right">70%</span>
-                                </h4>
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript::;">
-                                <h4 class="control-sidebar-subheading">
-                                    Update Resume
-                                    <span class="label label-success pull-right">95%</span>
-                                </h4>
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript::;">
-                                <h4 class="control-sidebar-subheading">
-                                    Laravel Integration
-                                    <span class="label label-warning pull-right">50%</span>
-                                </h4>
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript::;">
-                                <h4 class="control-sidebar-subheading">
-                                    Back End Framework
-                                    <span class="label label-primary pull-right">68%</span>
-                                </h4>
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-                <div class="tab-pane" id="control-sidebar-settings-tab">
-                    <form method="post">
-                        <h3 class="control-sidebar-heading">General Settings</h3>
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                Report panel usage
-                                <input type="checkbox" class="pull-right" checked>
-                            </label>
-                            <p>
-                                Some information about this general settings option
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                Allow mail redirect
-                                <input type="checkbox" class="pull-right" checked>
-                            </label>
-                            <p>
-                                Other sets of options are available
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                Expose author name in posts
-                                <input type="checkbox" class="pull-right" checked>
-                            </label>
-                            <p>
-                                Allow the user to show his name in blog posts
-                            </p>
-                        </div>
-                        <h3 class="control-sidebar-heading">Chat Settings</h3>
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                Show me as online
-                                <input type="checkbox" class="pull-right" checked>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                Turn off notifications
-                                <input type="checkbox" class="pull-right">
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                Delete chat history
-                                <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                            </label>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </aside>
-        <div class="control-sidebar-bg"></div>
     </div>
 
     @Scripts.Render("~/AdminLTE/plugins/jquery/js")
@@ -643,6 +177,7 @@
     @Scripts.Render("~/AdminLTE/plugins/fastclick/js")
     @Scripts.Render("~/Scripts/Shared/_Layout")
     @Scripts.Render("~/AdminLTE/dist/js")
+    @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

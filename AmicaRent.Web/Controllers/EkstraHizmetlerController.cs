@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: EkstraHizmetler
         public ActionResult Index()
         {
-            return View(db.EkstraHizmetler.ToList());
+            return View(db.EkstraHizmetler.Where(x => x.EkstraHizmetler_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: EkstraHizmetler/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                ekstraHizmetler.EkstraHizmetler_Status = (int)DBStatus.Active;
+                ekstraHizmetler.EkstraHizmetler_CreateDate = DateTime.Now;
                 db.EkstraHizmetler.Add(ekstraHizmetler);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,16 +104,7 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(ekstraHizmetler);
-        }
-
-        // POST: EkstraHizmetler/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EkstraHizmetler ekstraHizmetler = db.EkstraHizmetler.Find(id);
-            db.EkstraHizmetler.Remove(ekstraHizmetler);
+            ekstraHizmetler.EkstraHizmetler_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

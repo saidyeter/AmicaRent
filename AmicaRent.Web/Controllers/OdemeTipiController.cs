@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: OdemeTipi
         public ActionResult Index()
         {
-            return View(db.OdemeTipi.ToList());
+            return View(db.OdemeTipi.Where(x => x.OdemeTipi_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: OdemeTipi/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                odemeTipi.OdemeTipi_Status = (int)DBStatus.Active;
+                odemeTipi.OdemeTipi_CreateDate = DateTime.Now;
                 db.OdemeTipi.Add(odemeTipi);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,16 +104,7 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(odemeTipi);
-        }
-
-        // POST: OdemeTipi/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            OdemeTipi odemeTipi = db.OdemeTipi.Find(id);
-            db.OdemeTipi.Remove(odemeTipi);
+            odemeTipi.OdemeTipi_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

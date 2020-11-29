@@ -16,7 +16,7 @@ namespace WebApplication.DataAccess
     {
         public int KanGrubu_ID { get; set; }
         public string KanGrubu_Adi { get; set; }
-        public Nullable<int> KanGrubu_Status { get; set; }
+        public int KanGrubu_Status { get; set; }
         public Nullable<System.DateTime> KanGrubu_CreateDate { get; set; }
     }
 }

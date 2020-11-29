@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="AmicaRentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Arac">
           <Key>
             <PropertyRef Name="Arac_ID" />
@@ -56,7 +46,7 @@
           </Key>
           <Property Name="AracKasaTipi_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AracKasaTipi_Adi" Type="nvarchar" MaxLength="50" />
-          <Property Name="AracKasaTipi_Status" Type="int" />
+          <Property Name="AracKasaTipi_Status" Type="int" Nullable="false" />
           <Property Name="AracKasaTipi_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="AracMarka">
@@ -65,7 +55,7 @@
           </Key>
           <Property Name="AracMarka_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AracMarka_Adi" Type="nvarchar" MaxLength="50" />
-          <Property Name="AracMarka_Status" Type="int" />
+          <Property Name="AracMarka_Status" Type="int" Nullable="false" />
           <Property Name="AracMarka_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="AracModel">
@@ -75,7 +65,7 @@
           <Property Name="AracModel_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AracMarka_ID" Type="int" Nullable="false" />
           <Property Name="AracModel_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="AracModel_Status" Type="int" />
+          <Property Name="AracModel_Status" Type="int" Nullable="false" />
           <Property Name="AracModel_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="AracRenk">
@@ -113,6 +103,7 @@
           <Property Name="Cari_MobilTelefon" Type="nvarchar" MaxLength="50" />
           <Property Name="Cari_LokalTelefon" Type="nvarchar" MaxLength="50" />
           <Property Name="Cari_CreateDate" Type="datetime" />
+          <Property Name="Cari_Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CariEhliyet">
           <Key>
@@ -127,6 +118,7 @@
           <Property Name="CariEhliyet_EhliyetNumarasi" Type="nvarchar" MaxLength="50" />
           <Property Name="EhliyetSinif_ID" Type="int" />
           <Property Name="KanGrubu_ID" Type="int" />
+          <Property Name="CariEhliyet_Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CariSehir">
           <Key>
@@ -134,7 +126,7 @@
           </Key>
           <Property Name="CariSehir_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CariSehir_Adi" Type="nvarchar" MaxLength="50" />
-          <Property Name="CariSehir_Status" Type="int" />
+          <Property Name="CariSehir_Status" Type="int" Nullable="false" />
           <Property Name="CariSehir_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="CariUyruk">
@@ -143,7 +135,7 @@
           </Key>
           <Property Name="CariUyruk_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CariUyruk_Adi" Type="nvarchar" MaxLength="50" />
-          <Property Name="CariUyruk_Status" Type="int" />
+          <Property Name="CariUyruk_Status" Type="int" Nullable="false" />
           <Property Name="CariUyruk_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="EhliyetSinif">
@@ -152,7 +144,7 @@
           </Key>
           <Property Name="EhliyetSinif_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EhliyetSinif_Adi" Type="nvarchar" MaxLength="50" />
-          <Property Name="EhliyetSinif_Status" Type="int" />
+          <Property Name="EhliyetSinif_Status" Type="int" Nullable="false" />
           <Property Name="EhliyetSinif_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="EkstraHizmetler">
@@ -162,7 +154,7 @@
           <Property Name="EkstraHizmetler_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EkstraHizmetler_Adi" Type="nvarchar" MaxLength="50" />
           <Property Name="EkstraHizmetler_Ucreti" Type="float" />
-          <Property Name="EkstraHizmetler_Status" Type="int" />
+          <Property Name="EkstraHizmetler_Status" Type="int" Nullable="false" />
           <Property Name="EkstraHizmetler_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="EkSurucu">
@@ -172,6 +164,7 @@
           <Property Name="EkSurucu_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cari_ID" Type="int" />
           <Property Name="EkSurucu_CreateDate" Type="datetime" />
+          <Property Name="EkSurucu_Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Islem">
           <Key>
@@ -198,7 +191,7 @@
           <Property Name="Islem_IskontoOrani" Type="int" />
           <Property Name="Islem_TahsilEdilen" Type="float" />
           <Property Name="Islem_KalanBorc" Type="float" />
-          <Property Name="Islem_Status" Type="int" />
+          <Property Name="Islem_Status" Type="int" Nullable="false" />
           <Property Name="Islem_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="IslemEkstraHizmetler">
@@ -209,6 +202,7 @@
           <Property Name="Islem_ID" Type="int" />
           <Property Name="EkstraHizmetler_ID" Type="int" />
           <Property Name="IslemEkstraHizmetler_CreateDate" Type="datetime" />
+          <Property Name="IslemEkstraHizmetler_Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="IslemTahsilat">
           <Key>
@@ -221,6 +215,7 @@
           <Property Name="OdemeTipi_ID" Type="int" />
           <Property Name="IslemTahsilat_Tutar" Type="float" />
           <Property Name="IslemTahsilat_CreateDate" Type="datetime" />
+          <Property Name="IslemTahsilat_Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="KanGrubu">
           <Key>
@@ -228,7 +223,7 @@
           </Key>
           <Property Name="KanGrubu_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KanGrubu_Adi" Type="nvarchar" MaxLength="50" />
-          <Property Name="KanGrubu_Status" Type="int" />
+          <Property Name="KanGrubu_Status" Type="int" Nullable="false" />
           <Property Name="KanGrubu_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Kullanici">
@@ -240,8 +235,25 @@
           <Property Name="Kullanici_Adi" Type="nvarchar" MaxLength="50" />
           <Property Name="Kullanici_Sifre" Type="nvarchar" MaxLength="50" />
           <Property Name="Kullanici_SonGirisZamani" Type="datetime" />
-          <Property Name="Kullanici_Status" Type="int" />
+          <Property Name="Kullanici_Status" Type="int" Nullable="false" />
           <Property Name="Kullanici_CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="KullaniciRolIliskileri">
+          <Key>
+            <PropertyRef Name="RolIliski_ID" />
+          </Key>
+          <Property Name="RolIliski_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rol_ID" Type="int" Nullable="false" />
+          <Property Name="Kullanici_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KullaniciRolTanimlari">
+          <Key>
+            <PropertyRef Name="Rol_ID" />
+          </Key>
+          <Property Name="Rol_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rol_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rol_Aciklama" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rol_Kategori" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Lokasyon">
           <Key>
@@ -250,7 +262,7 @@
           <Property Name="Lokasyon_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Lokasyon_Adi" Type="nvarchar" MaxLength="50" />
           <Property Name="Lokasyon_Tipi" Type="int" />
-          <Property Name="Lokasyon_Status" Type="int" />
+          <Property Name="Lokasyon_Status" Type="int" Nullable="false" />
           <Property Name="Lokasyon_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="OdemeTipi">
@@ -259,7 +271,7 @@
           </Key>
           <Property Name="OdemeTipi_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OdemeTipi_Adi" Type="nvarchar" MaxLength="50" />
-          <Property Name="OdemeTipi_Status" Type="int" />
+          <Property Name="OdemeTipi_Status" Type="int" Nullable="false" />
           <Property Name="OdemeTipi_CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Servis">
@@ -273,6 +285,7 @@
           <Property Name="Servis_Notlar" Type="nvarchar" MaxLength="500" />
           <Property Name="Servis_Ucreti" Type="float" />
           <Property Name="Servis_CreateDate" Type="datetime" />
+          <Property Name="Servis_Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ServisFirma">
           <Key>
@@ -287,13 +300,14 @@
           <Property Name="ServisFirma_Email" Type="nvarchar" MaxLength="100" />
           <Property Name="ServisFirma_Yetkili" Type="nvarchar" MaxLength="50" />
           <Property Name="ServisFirma_CreateDate" Type="datetime" />
-          <Property Name="ServisFirma_Status" Type="int" />
+          <Property Name="ServisFirma_Status" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'AmicaRentDB.dbo.viewAracList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="viewAracList">
           <Key>
             <PropertyRef Name="Arac_ID" />
+            <PropertyRef Name="Arac_Status" />
             <PropertyRef Name="AracGrup_Adi" />
             <PropertyRef Name="AracModel_Adi" />
             <PropertyRef Name="Arac_Yil" />
@@ -308,6 +322,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewAracList' does not have a prim
             <PropertyRef Name="AracRenk_Adi" />
           </Key>
           <Property Name="Arac_ID" Type="int" Nullable="false" />
+          <Property Name="Arac_Status" Type="int" Nullable="false" />
           <Property Name="AracGrup_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AracMarka_Adi" Type="nvarchar" MaxLength="50" />
           <Property Name="AracModel_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -348,9 +363,11 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewCari' does not have a primary 
         <EntityType Name="viewCari">
           <Key>
             <PropertyRef Name="Cari_ID" />
+            <PropertyRef Name="Cari_Status" />
             <PropertyRef Name="Cinsiyet" />
           </Key>
           <Property Name="Cari_ID" Type="int" Nullable="false" />
+          <Property Name="Cari_Status" Type="int" Nullable="false" />
           <Property Name="Cari_AdSoyad" Type="nvarchar" MaxLength="50" />
           <Property Name="CariUyruk_Adi" Type="nvarchar" MaxLength="50" />
           <Property Name="Cari_IDNumber" Type="nvarchar" MaxLength="11" />
@@ -369,6 +386,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewCariEhliyet' does not have a p
         <EntityType Name="viewCariEhliyet">
           <Key>
             <PropertyRef Name="CariEhliyet_ID" />
+            <PropertyRef Name="CariEhliyet_Status" />
           </Key>
           <Property Name="CariEhliyet_ID" Type="int" Nullable="false" />
           <Property Name="Cari_ID" Type="int" />
@@ -379,6 +397,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewCariEhliyet' does not have a p
           <Property Name="CariEhliyet_EhliyetNumarasi" Type="nvarchar" MaxLength="50" />
           <Property Name="EhliyetSinif_Adi" Type="nvarchar" MaxLength="50" />
           <Property Name="KanGrubu_Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="CariEhliyet_Status" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'AmicaRentDB.dbo.viewIslem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -426,6 +445,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
             <PropertyRef Name="AracModel_Adi" />
             <PropertyRef Name="Arac_Yil" />
             <PropertyRef Name="AracPlakaNo" />
+            <PropertyRef Name="Servis_Status" />
           </Key>
           <Property Name="Servis_ID" Type="int" Nullable="false" />
           <Property Name="AracGrup_Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -437,9 +457,9 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="ServisFirma_Adi" Type="nvarchar" MaxLength="50" />
           <Property Name="Servis_Notlar" Type="nvarchar" MaxLength="500" />
           <Property Name="Servis_Ucreti" Type="float" />
+          <Property Name="Servis_Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="AmicaRentDBModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Arac" EntityType="Self.Arac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AracGrup" EntityType="Self.AracGrup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AracKasaTipi" EntityType="Self.AracKasaTipi" Schema="dbo" store:Type="Tables" />
@@ -459,6 +479,8 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <EntitySet Name="IslemTahsilat" EntityType="Self.IslemTahsilat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KanGrubu" EntityType="Self.KanGrubu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciRolIliskileri" EntityType="Self.KullaniciRolIliskileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciRolTanimlari" EntityType="Self.KullaniciRolTanimlari" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lokasyon" EntityType="Self.Lokasyon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OdemeTipi" EntityType="Self.OdemeTipi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servis" EntityType="Self.Servis" Schema="dbo" store:Type="Tables" />
@@ -466,6 +488,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <EntitySet Name="viewAracList" EntityType="Self.viewAracList" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [viewAracList].[Arac_ID] AS [Arac_ID], 
+    [viewAracList].[Arac_Status] AS [Arac_Status], 
     [viewAracList].[AracGrup_Adi] AS [AracGrup_Adi], 
     [viewAracList].[AracMarka_Adi] AS [AracMarka_Adi], 
     [viewAracList].[AracModel_Adi] AS [AracModel_Adi], 
@@ -500,6 +523,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <EntitySet Name="viewCari" EntityType="Self.viewCari" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [viewCari].[Cari_ID] AS [Cari_ID], 
+    [viewCari].[Cari_Status] AS [Cari_Status], 
     [viewCari].[Cari_AdSoyad] AS [Cari_AdSoyad], 
     [viewCari].[CariUyruk_Adi] AS [CariUyruk_Adi], 
     [viewCari].[Cari_IDNumber] AS [Cari_IDNumber], 
@@ -524,7 +548,8 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
     [viewCariEhliyet].[CariEhliyet_DogumYeri] AS [CariEhliyet_DogumYeri], 
     [viewCariEhliyet].[CariEhliyet_EhliyetNumarasi] AS [CariEhliyet_EhliyetNumarasi], 
     [viewCariEhliyet].[EhliyetSinif_Adi] AS [EhliyetSinif_Adi], 
-    [viewCariEhliyet].[KanGrubu_Adi] AS [KanGrubu_Adi]
+    [viewCariEhliyet].[KanGrubu_Adi] AS [KanGrubu_Adi], 
+    [viewCariEhliyet].[CariEhliyet_Status] AS [CariEhliyet_Status]
     FROM [dbo].[viewCariEhliyet] AS [viewCariEhliyet]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="viewIslem" EntityType="Self.viewIslem" store:Type="Views" store:Schema="dbo">
@@ -568,7 +593,8 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
     [viewServis].[Servis_ServisZamani] AS [Servis_ServisZamani], 
     [viewServis].[ServisFirma_Adi] AS [ServisFirma_Adi], 
     [viewServis].[Servis_Notlar] AS [Servis_Notlar], 
-    [viewServis].[Servis_Ucreti] AS [Servis_Ucreti]
+    [viewServis].[Servis_Ucreti] AS [Servis_Ucreti], 
+    [viewServis].[Servis_Status] AS [Servis_Status]
     FROM [dbo].[viewServis] AS [viewServis]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -577,16 +603,6 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AmicaRentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="Arac">
           <Key>
             <PropertyRef Name="Arac_ID" />
@@ -628,7 +644,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           </Key>
           <Property Name="AracKasaTipi_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AracKasaTipi_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AracKasaTipi_Status" Type="Int32" />
+          <Property Name="AracKasaTipi_Status" Type="Int32" Nullable="false" />
           <Property Name="AracKasaTipi_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="AracMarka">
@@ -637,7 +653,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           </Key>
           <Property Name="AracMarka_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AracMarka_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AracMarka_Status" Type="Int32" />
+          <Property Name="AracMarka_Status" Type="Int32" Nullable="false" />
           <Property Name="AracMarka_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="AracModel">
@@ -647,7 +663,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="AracModel_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AracMarka_ID" Type="Int32" Nullable="false" />
           <Property Name="AracModel_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AracModel_Status" Type="Int32" />
+          <Property Name="AracModel_Status" Type="Int32" Nullable="false" />
           <Property Name="AracModel_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="AracRenk">
@@ -685,6 +701,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="Cari_MobilTelefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Cari_LokalTelefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Cari_CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Cari_Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="CariEhliyet">
           <Key>
@@ -699,6 +716,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="CariEhliyet_EhliyetNumarasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EhliyetSinif_ID" Type="Int32" />
           <Property Name="KanGrubu_ID" Type="Int32" />
+          <Property Name="CariEhliyet_Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="CariSehir">
           <Key>
@@ -706,7 +724,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           </Key>
           <Property Name="CariSehir_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CariSehir_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CariSehir_Status" Type="Int32" />
+          <Property Name="CariSehir_Status" Type="Int32" Nullable="false" />
           <Property Name="CariSehir_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="CariUyruk">
@@ -715,7 +733,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           </Key>
           <Property Name="CariUyruk_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CariUyruk_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CariUyruk_Status" Type="Int32" />
+          <Property Name="CariUyruk_Status" Type="Int32" Nullable="false" />
           <Property Name="CariUyruk_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="EhliyetSinif">
@@ -724,7 +742,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           </Key>
           <Property Name="EhliyetSinif_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EhliyetSinif_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EhliyetSinif_Status" Type="Int32" />
+          <Property Name="EhliyetSinif_Status" Type="Int32" Nullable="false" />
           <Property Name="EhliyetSinif_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="EkstraHizmetler">
@@ -734,7 +752,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="EkstraHizmetler_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EkstraHizmetler_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EkstraHizmetler_Ucreti" Type="Double" />
-          <Property Name="EkstraHizmetler_Status" Type="Int32" />
+          <Property Name="EkstraHizmetler_Status" Type="Int32" Nullable="false" />
           <Property Name="EkstraHizmetler_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="EkSurucu">
@@ -744,6 +762,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="EkSurucu_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cari_ID" Type="Int32" />
           <Property Name="EkSurucu_CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="EkSurucu_Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Islem">
           <Key>
@@ -770,7 +789,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="Islem_IskontoOrani" Type="Int32" />
           <Property Name="Islem_TahsilEdilen" Type="Double" />
           <Property Name="Islem_KalanBorc" Type="Double" />
-          <Property Name="Islem_Status" Type="Int32" />
+          <Property Name="Islem_Status" Type="Int32" Nullable="false" />
           <Property Name="Islem_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="IslemEkstraHizmetler">
@@ -781,6 +800,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="Islem_ID" Type="Int32" />
           <Property Name="EkstraHizmetler_ID" Type="Int32" />
           <Property Name="IslemEkstraHizmetler_CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="IslemEkstraHizmetler_Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="IslemTahsilat">
           <Key>
@@ -793,6 +813,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="OdemeTipi_ID" Type="Int32" />
           <Property Name="IslemTahsilat_Tutar" Type="Double" />
           <Property Name="IslemTahsilat_CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="IslemTahsilat_Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="KanGrubu">
           <Key>
@@ -800,7 +821,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           </Key>
           <Property Name="KanGrubu_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KanGrubu_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="KanGrubu_Status" Type="Int32" />
+          <Property Name="KanGrubu_Status" Type="Int32" Nullable="false" />
           <Property Name="KanGrubu_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Kullanici">
@@ -812,8 +833,25 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="Kullanici_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Kullanici_Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Kullanici_SonGirisZamani" Type="DateTime" Precision="3" />
-          <Property Name="Kullanici_Status" Type="Int32" />
+          <Property Name="Kullanici_Status" Type="Int32" Nullable="false" />
           <Property Name="Kullanici_CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="KullaniciRolIliskileri">
+          <Key>
+            <PropertyRef Name="RolIliski_ID" />
+          </Key>
+          <Property Name="RolIliski_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol_ID" Type="Int32" Nullable="false" />
+          <Property Name="Kullanici_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KullaniciRolTanimlari">
+          <Key>
+            <PropertyRef Name="Rol_ID" />
+          </Key>
+          <Property Name="Rol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rol_Aciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rol_Kategori" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Lokasyon">
           <Key>
@@ -822,7 +860,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="Lokasyon_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Lokasyon_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Lokasyon_Tipi" Type="Int32" />
-          <Property Name="Lokasyon_Status" Type="Int32" />
+          <Property Name="Lokasyon_Status" Type="Int32" Nullable="false" />
           <Property Name="Lokasyon_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="OdemeTipi">
@@ -831,7 +869,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           </Key>
           <Property Name="OdemeTipi_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OdemeTipi_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="OdemeTipi_Status" Type="Int32" />
+          <Property Name="OdemeTipi_Status" Type="Int32" Nullable="false" />
           <Property Name="OdemeTipi_CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Servis">
@@ -845,6 +883,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="Servis_Notlar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Servis_Ucreti" Type="Double" />
           <Property Name="Servis_CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Servis_Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ServisFirma">
           <Key>
@@ -859,11 +898,12 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="ServisFirma_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ServisFirma_Yetkili" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ServisFirma_CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="ServisFirma_Status" Type="Int32" />
+          <Property Name="ServisFirma_Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="viewAracList">
           <Key>
             <PropertyRef Name="Arac_ID" />
+            <PropertyRef Name="Arac_Status" />
             <PropertyRef Name="AracGrup_Adi" />
             <PropertyRef Name="AracModel_Adi" />
             <PropertyRef Name="Arac_Yil" />
@@ -878,6 +918,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
             <PropertyRef Name="AracRenk_Adi" />
           </Key>
           <Property Name="Arac_ID" Type="Int32" Nullable="false" />
+          <Property Name="Arac_Status" Type="Int32" Nullable="false" />
           <Property Name="AracGrup_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AracMarka_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AracModel_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -914,9 +955,11 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
         <EntityType Name="viewCari">
           <Key>
             <PropertyRef Name="Cari_ID" />
+            <PropertyRef Name="Cari_Status" />
             <PropertyRef Name="Cinsiyet" />
           </Key>
           <Property Name="Cari_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cari_Status" Type="Int32" Nullable="false" />
           <Property Name="Cari_AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CariUyruk_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Cari_IDNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
@@ -933,6 +976,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
         <EntityType Name="viewCariEhliyet">
           <Key>
             <PropertyRef Name="CariEhliyet_ID" />
+            <PropertyRef Name="CariEhliyet_Status" />
           </Key>
           <Property Name="CariEhliyet_ID" Type="Int32" Nullable="false" />
           <Property Name="Cari_ID" Type="Int32" />
@@ -943,6 +987,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="CariEhliyet_EhliyetNumarasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EhliyetSinif_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="KanGrubu_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CariEhliyet_Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="viewIslem">
           <Key>
@@ -986,6 +1031,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
             <PropertyRef Name="AracModel_Adi" />
             <PropertyRef Name="Arac_Yil" />
             <PropertyRef Name="AracPlakaNo" />
+            <PropertyRef Name="Servis_Status" />
           </Key>
           <Property Name="Servis_ID" Type="Int32" Nullable="false" />
           <Property Name="AracGrup_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -997,9 +1043,9 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <Property Name="ServisFirma_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Servis_Notlar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Servis_Ucreti" Type="Double" />
+          <Property Name="Servis_Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityContainer Name="AmicaRentDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Arac" EntityType="Self.Arac" />
           <EntitySet Name="AracGrup" EntityType="Self.AracGrup" />
           <EntitySet Name="AracKasaTipi" EntityType="Self.AracKasaTipi" />
@@ -1019,6 +1065,8 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
           <EntitySet Name="IslemTahsilat" EntityType="Self.IslemTahsilat" />
           <EntitySet Name="KanGrubu" EntityType="Self.KanGrubu" />
           <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+          <EntitySet Name="KullaniciRolIliskileri" EntityType="Self.KullaniciRolIliskileri" />
+          <EntitySet Name="KullaniciRolTanimlari" EntityType="Self.KullaniciRolTanimlari" />
           <EntitySet Name="Lokasyon" EntityType="Self.Lokasyon" />
           <EntitySet Name="OdemeTipi" EntityType="Self.OdemeTipi" />
           <EntitySet Name="Servis" EntityType="Self.Servis" />
@@ -1036,16 +1084,6 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AmicaRentDBModelStoreContainer" CdmEntityContainer="AmicaRentDBEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="AmicaRentDBModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Arac">
             <EntityTypeMapping TypeName="AmicaRentDBModel.Arac">
               <MappingFragment StoreEntitySet="Arac">
@@ -1150,6 +1188,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
                 <ScalarProperty Name="Cari_MobilTelefon" ColumnName="Cari_MobilTelefon" />
                 <ScalarProperty Name="Cari_LokalTelefon" ColumnName="Cari_LokalTelefon" />
                 <ScalarProperty Name="Cari_CreateDate" ColumnName="Cari_CreateDate" />
+                <ScalarProperty Name="Cari_Status" ColumnName="Cari_Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1165,6 +1204,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
                 <ScalarProperty Name="CariEhliyet_EhliyetNumarasi" ColumnName="CariEhliyet_EhliyetNumarasi" />
                 <ScalarProperty Name="EhliyetSinif_ID" ColumnName="EhliyetSinif_ID" />
                 <ScalarProperty Name="KanGrubu_ID" ColumnName="KanGrubu_ID" />
+                <ScalarProperty Name="CariEhliyet_Status" ColumnName="CariEhliyet_Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1215,6 +1255,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
                 <ScalarProperty Name="EkSurucu_ID" ColumnName="EkSurucu_ID" />
                 <ScalarProperty Name="Cari_ID" ColumnName="Cari_ID" />
                 <ScalarProperty Name="EkSurucu_CreateDate" ColumnName="EkSurucu_CreateDate" />
+                <ScalarProperty Name="EkSurucu_Status" ColumnName="EkSurucu_Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1254,6 +1295,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
                 <ScalarProperty Name="Islem_ID" ColumnName="Islem_ID" />
                 <ScalarProperty Name="EkstraHizmetler_ID" ColumnName="EkstraHizmetler_ID" />
                 <ScalarProperty Name="IslemEkstraHizmetler_CreateDate" ColumnName="IslemEkstraHizmetler_CreateDate" />
+                <ScalarProperty Name="IslemEkstraHizmetler_Status" ColumnName="IslemEkstraHizmetler_Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1267,6 +1309,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
                 <ScalarProperty Name="OdemeTipi_ID" ColumnName="OdemeTipi_ID" />
                 <ScalarProperty Name="IslemTahsilat_Tutar" ColumnName="IslemTahsilat_Tutar" />
                 <ScalarProperty Name="IslemTahsilat_CreateDate" ColumnName="IslemTahsilat_CreateDate" />
+                <ScalarProperty Name="IslemTahsilat_Status" ColumnName="IslemTahsilat_Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1290,6 +1333,25 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
                 <ScalarProperty Name="Kullanici_SonGirisZamani" ColumnName="Kullanici_SonGirisZamani" />
                 <ScalarProperty Name="Kullanici_Status" ColumnName="Kullanici_Status" />
                 <ScalarProperty Name="Kullanici_CreateDate" ColumnName="Kullanici_CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciRolIliskileri">
+            <EntityTypeMapping TypeName="AmicaRentDBModel.KullaniciRolIliskileri">
+              <MappingFragment StoreEntitySet="KullaniciRolIliskileri">
+                <ScalarProperty Name="RolIliski_ID" ColumnName="RolIliski_ID" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="Kullanici_ID" ColumnName="Kullanici_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciRolTanimlari">
+            <EntityTypeMapping TypeName="AmicaRentDBModel.KullaniciRolTanimlari">
+              <MappingFragment StoreEntitySet="KullaniciRolTanimlari">
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="Rol_Adi" ColumnName="Rol_Adi" />
+                <ScalarProperty Name="Rol_Aciklama" ColumnName="Rol_Aciklama" />
+                <ScalarProperty Name="Rol_Kategori" ColumnName="Rol_Kategori" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1324,6 +1386,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
                 <ScalarProperty Name="Servis_Notlar" ColumnName="Servis_Notlar" />
                 <ScalarProperty Name="Servis_Ucreti" ColumnName="Servis_Ucreti" />
                 <ScalarProperty Name="Servis_CreateDate" ColumnName="Servis_CreateDate" />
+                <ScalarProperty Name="Servis_Status" ColumnName="Servis_Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1347,6 +1410,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
             <EntityTypeMapping TypeName="AmicaRentDBModel.viewAracList">
               <MappingFragment StoreEntitySet="viewAracList">
                 <ScalarProperty Name="Arac_ID" ColumnName="Arac_ID" />
+                <ScalarProperty Name="Arac_Status" ColumnName="Arac_Status" />
                 <ScalarProperty Name="AracGrup_Adi" ColumnName="AracGrup_Adi" />
                 <ScalarProperty Name="AracMarka_Adi" ColumnName="AracMarka_Adi" />
                 <ScalarProperty Name="AracModel_Adi" ColumnName="AracModel_Adi" />
@@ -1385,6 +1449,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
             <EntityTypeMapping TypeName="AmicaRentDBModel.viewCari">
               <MappingFragment StoreEntitySet="viewCari">
                 <ScalarProperty Name="Cari_ID" ColumnName="Cari_ID" />
+                <ScalarProperty Name="Cari_Status" ColumnName="Cari_Status" />
                 <ScalarProperty Name="Cari_AdSoyad" ColumnName="Cari_AdSoyad" />
                 <ScalarProperty Name="CariUyruk_Adi" ColumnName="CariUyruk_Adi" />
                 <ScalarProperty Name="Cari_IDNumber" ColumnName="Cari_IDNumber" />
@@ -1412,6 +1477,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
                 <ScalarProperty Name="CariEhliyet_EhliyetNumarasi" ColumnName="CariEhliyet_EhliyetNumarasi" />
                 <ScalarProperty Name="EhliyetSinif_Adi" ColumnName="EhliyetSinif_Adi" />
                 <ScalarProperty Name="KanGrubu_Adi" ColumnName="KanGrubu_Adi" />
+                <ScalarProperty Name="CariEhliyet_Status" ColumnName="CariEhliyet_Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1460,6 +1526,7 @@ warning 6002: The table/view 'AmicaRentDB.dbo.viewServis' does not have a primar
                 <ScalarProperty Name="ServisFirma_Adi" ColumnName="ServisFirma_Adi" />
                 <ScalarProperty Name="Servis_Notlar" ColumnName="Servis_Notlar" />
                 <ScalarProperty Name="Servis_Ucreti" ColumnName="Servis_Ucreti" />
+                <ScalarProperty Name="Servis_Status" ColumnName="Servis_Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

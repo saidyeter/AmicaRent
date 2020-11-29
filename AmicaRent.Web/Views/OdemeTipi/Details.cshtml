@@ -1,8 +1,6 @@
 ﻿@model WebApplication.DataAccess.OdemeTipi
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
 <h2>Details</h2>
 
@@ -19,14 +17,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OdemeTipi_Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OdemeTipi_Status)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.OdemeTipi_CreateDate)
         </dt>
 
@@ -37,6 +27,15 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OdemeTipi_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.OdemeTipi_ID }) |
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </p>
+
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-system');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-system-tanim-OdemeTipi');
+        subMenuItem.classList.add('active');
+    });</script>

@@ -25,7 +25,6 @@ namespace WebApplication.DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Arac> Arac { get; set; }
         public virtual DbSet<AracGrup> AracGrup { get; set; }
         public virtual DbSet<AracKasaTipi> AracKasaTipi { get; set; }
@@ -45,6 +44,8 @@ namespace WebApplication.DataAccess
         public virtual DbSet<IslemTahsilat> IslemTahsilat { get; set; }
         public virtual DbSet<KanGrubu> KanGrubu { get; set; }
         public virtual DbSet<Kullanici> Kullanici { get; set; }
+        public virtual DbSet<KullaniciRolIliskileri> KullaniciRolIliskileri { get; set; }
+        public virtual DbSet<KullaniciRolTanimlari> KullaniciRolTanimlari { get; set; }
         public virtual DbSet<Lokasyon> Lokasyon { get; set; }
         public virtual DbSet<OdemeTipi> OdemeTipi { get; set; }
         public virtual DbSet<Servis> Servis { get; set; }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: KanGrubu
         public ActionResult Index()
         {
-            return View(db.KanGrubu.ToList());
+            return View(db.KanGrubu.Where(x => x.KanGrubu_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: KanGrubu/Details/5

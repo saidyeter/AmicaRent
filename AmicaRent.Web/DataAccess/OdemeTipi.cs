@@ -16,7 +16,7 @@ namespace WebApplication.DataAccess
     {
         public int OdemeTipi_ID { get; set; }
         public string OdemeTipi_Adi { get; set; }
-        public Nullable<int> OdemeTipi_Status { get; set; }
+        public int OdemeTipi_Status { get; set; }
         public Nullable<System.DateTime> OdemeTipi_CreateDate { get; set; }
     }
 }

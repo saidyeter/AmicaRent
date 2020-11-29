@@ -130,13 +130,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Arac_Status, "Araç Durumu", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Arac_Status, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Arac_Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.AracRenk_ID, "Araç Renk", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -194,14 +187,14 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Listeye Geri Dön", "Index")
 </div>
 
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
-        var menuItem = document.querySelector('#left-sidebar-menu-car');
+        var menuItem = document.querySelector('#solmenu-arac-tanim');
         menuItem.classList.add('active');
-        var subMenuItem = menuItem.querySelector('#left-sidebar-menu-car-Arac');
+        var subMenuItem = menuItem.querySelector('#solmenu-arac-tanim-Arac');
         subMenuItem.classList.add('active');
     });
 </script>

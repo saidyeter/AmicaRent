@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<WebApplication.DataAccess.viewIslem>
 
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = "Index"; }
 
 <h2>Index</h2>
 
@@ -51,47 +49,53 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IslemTipim)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cari_AdSoyad)
-            </td>
-            <td>
-                @item.AracGrup_Adi @item.AracMarka_Adi @item.AracModel_Adi @item.Arac_Yil
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Islem_BaslangicTarihi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Islem_BitisTarihi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Islem_IlkKM)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Islem_SonKM)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Islem_YakitDurumu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Islem_TeslimatLokasyonID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Islem_IadeLokasyonID)
-            </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.IslemTipim)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cari_AdSoyad)
+    </td>
+    <td>
+        @item.AracGrup_Adi @item.AracMarka_Adi @item.AracModel_Adi @item.Arac_Yil
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Islem_BaslangicTarihi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Islem_BitisTarihi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Islem_IlkKM)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Islem_SonKM)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Islem_YakitDurumu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Islem_TeslimatLokasyonID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Islem_IadeLokasyonID)
+    </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Islem_Status)
-            </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Islem_Status)
+    </td>
 
-            <td>
-                @Html.ActionLink("Düzenle", "Edit", new { id = item.Islem_ID }) |
-                @Html.ActionLink("Detaylar", "Details", new { id = item.Islem_ID }) |
+    <td>
+        @Html.ActionLink("Düzenle", "Edit", new { id = item.Islem_ID }) |
+        @Html.ActionLink("Detaylar", "Details", new { id = item.Islem_ID }) |
 
-            </td>
-        </tr>
-    }
+    </td>
+</tr>}
 </table>
+
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-operation');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-operation-liste');
+        subMenuItem.classList.add('active');
+    });</script>

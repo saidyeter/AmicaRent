@@ -1,8 +1,6 @@
 ﻿@model WebApplication.DataAccess.ServisFirma
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
 <h2>Details</h2>
 
@@ -74,17 +72,17 @@
             @Html.DisplayFor(model => model.ServisFirma_CreateDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ServisFirma_Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ServisFirma_Status)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ServisFirma_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.ServisFirma_ID }) |
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </p>
+
+
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-service');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-service-tanim-ServisFirma');
+        subMenuItem.classList.add('active');
+    });</script>

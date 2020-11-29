@@ -1,80 +1,62 @@
 ﻿@model WebApplication.DataAccess.Kullanici
 
-@{
-    ViewBag.Title = "Yeni Kullanici";
-}
- 
+@{ ViewBag.Title = "Yeni Kullanici"; }
+
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Kullanici</h3>
-        </div>
- 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Kullanici_TamAdi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Kullanici_TamAdi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Kullanici_TamAdi, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-horizontal">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Kullanici</h3>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Kullanici_Adi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Kullanici_Adi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Kullanici_Adi, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Kullanici_TamAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Kullanici_TamAdi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Kullanici_TamAdi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Kullanici_Sifre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Kullanici_Sifre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Kullanici_Sifre, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Kullanici_Adi, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Kullanici_Adi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Kullanici_Adi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Kullanici_SonGirisZamani, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Kullanici_SonGirisZamani, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Kullanici_SonGirisZamani, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Kullanici_Sifre, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Kullanici_Sifre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Kullanici_Sifre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Kullanici_Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Kullanici_Status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Kullanici_Status, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Kullanici_CreateDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Kullanici_CreateDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Kullanici_CreateDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Onayla</button>
-        </div>
-    </div>
-</div>
-}
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Onayla</button>
+                        </div>
+                    </div>
+                </div>}
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+    var menuItem = document.querySelector('#solmenu-system');
+        menuItem.classList.add('active');
+    var subMenuItem = menuItem.querySelector('#solmenu-system-tanim-Kullanici');
+        subMenuItem.classList.add('active');
+    });</script>

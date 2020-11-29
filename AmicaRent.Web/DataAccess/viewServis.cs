@@ -24,5 +24,6 @@ namespace WebApplication.DataAccess
         public string ServisFirma_Adi { get; set; }
         public string Servis_Notlar { get; set; }
         public Nullable<double> Servis_Ucreti { get; set; }
+        public int Servis_Status { get; set; }
     }
 }

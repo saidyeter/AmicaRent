@@ -27,5 +27,6 @@ namespace WebApplication.DataAccess
         public string Cari_MobilTelefon { get; set; }
         public string Cari_LokalTelefon { get; set; }
         public Nullable<System.DateTime> Cari_CreateDate { get; set; }
+        public int Cari_Status { get; set; }
     }
 }

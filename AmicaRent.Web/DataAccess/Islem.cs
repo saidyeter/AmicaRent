@@ -35,7 +35,7 @@ namespace WebApplication.DataAccess
         public Nullable<int> Islem_IskontoOrani { get; set; }
         public Nullable<double> Islem_TahsilEdilen { get; set; }
         public Nullable<double> Islem_KalanBorc { get; set; }
-        public Nullable<int> Islem_Status { get; set; }
+        public int Islem_Status { get; set; }
         public Nullable<System.DateTime> Islem_CreateDate { get; set; }
     }
 }

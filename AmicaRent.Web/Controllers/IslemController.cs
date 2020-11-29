@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: Islem
         public ActionResult Index()
         {
-            return View(db.viewIslem.ToList());
+            return View(db.viewIslem.Where(x => x.Islem_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: Islem/Details/5
@@ -44,7 +45,7 @@ namespace WebApplication.Controllers
             ViewBag.CariList = cariList;
 
             Dictionary<int, string> aracList = new Dictionary<int, string>();
-            foreach (var arac in db.viewAracList.ToList())
+            foreach (var arac in db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active).ToList())
             {
                 aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
             }
@@ -67,6 +68,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                islem.Islem_Status = (int)DBStatus.Active;
+                islem.Islem_CreateDate = DateTime.Now;
                 db.Islem.Add(islem);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -93,7 +96,7 @@ namespace WebApplication.Controllers
             ViewBag.CariList = cariList;
 
             Dictionary<int, string> aracList = new Dictionary<int, string>();
-            foreach (var arac in db.viewAracList.ToList())
+            foreach (var arac in db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active).ToList())
             {
                 aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
             }
@@ -135,18 +138,10 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(islem);
-        }
-
-        // POST: Islem/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Islem islem = db.Islem.Find(id);
-            db.Islem.Remove(islem);
+            islem.Islem_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
+
         }
 
         protected override void Dispose(bool disposing)

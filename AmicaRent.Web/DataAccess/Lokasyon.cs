@@ -17,7 +17,7 @@ namespace WebApplication.DataAccess
         public int Lokasyon_ID { get; set; }
         public string Lokasyon_Adi { get; set; }
         public Nullable<int> Lokasyon_Tipi { get; set; }
-        public Nullable<int> Lokasyon_Status { get; set; }
+        public int Lokasyon_Status { get; set; }
         public Nullable<System.DateTime> Lokasyon_CreateDate { get; set; }
     }
 }

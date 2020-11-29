@@ -17,5 +17,6 @@ namespace WebApplication.DataAccess
         public int EkSurucu_ID { get; set; }
         public Nullable<int> Cari_ID { get; set; }
         public Nullable<System.DateTime> EkSurucu_CreateDate { get; set; }
+        public int EkSurucu_Status { get; set; }
     }
 }

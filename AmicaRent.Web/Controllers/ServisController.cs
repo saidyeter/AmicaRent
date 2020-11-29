@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: Servis
         public ActionResult Index()
         {
-            return View(db.viewServis.ToList());
+            return View(db.viewServis.Where(x => x.Servis_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: Servis/Details/5
@@ -39,15 +40,15 @@ namespace WebApplication.Controllers
         public ActionResult Create()
         {
 
-            List<ServisFirma> servisFirmalist = db.ServisFirma.ToList();
+            List<ServisFirma> servisFirmalist = db.ServisFirma.Where(x => x.ServisFirma_Status == (int)DBStatus.Active).ToList();
             ViewBag.ServisFirmalist = servisFirmalist;
 
             Dictionary<int, string> aracList = new Dictionary<int, string>();
-            foreach (var arac in db.viewAracList.ToList())
+            foreach (var arac in db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active).ToList())
             {
                 aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
             }
-            ViewBag.AracList = aracList; 
+            ViewBag.AracList = aracList;
 
 
             return View();
@@ -62,6 +63,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                servis.Servis_Status = (int)DBStatus.Active;
+                servis.Servis_CreateDate = DateTime.Now;
                 db.Servis.Add(servis);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,11 +86,11 @@ namespace WebApplication.Controllers
                 return HttpNotFound();
             }
 
-            List<ServisFirma> servisFirmalist = db.ServisFirma.ToList();
+            List<ServisFirma> servisFirmalist = db.ServisFirma.Where(x => x.ServisFirma_Status == (int)DBStatus.Active).ToList();
             ViewBag.ServisFirmalist = servisFirmalist;
 
             Dictionary<int, string> aracList = new Dictionary<int, string>();
-            foreach (var arac in db.viewAracList.ToList())
+            foreach (var arac in db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active).ToList())
             {
                 aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
             }
@@ -124,16 +127,7 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(servis);
-        }
-
-        // POST: Servis/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Servis servis = db.Servis.Find(id);
-            db.Servis.Remove(servis);
+            servis.Servis_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

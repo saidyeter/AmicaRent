@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.DataAccess;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: EkSurucu
         public ActionResult Index()
         {
-            return View(db.EkSurucu.ToList());
+            return View(db.EkSurucu.Where(x => x.EkSurucu_Status == (int)DBStatus.Active).ToList());
         }
 
         // GET: EkSurucu/Details/5
@@ -50,6 +51,8 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                ekSurucu.EkSurucu_Status = (int)DBStatus.Active;
+                ekSurucu.EkSurucu_CreateDate = DateTime.Now;
                 db.EkSurucu.Add(ekSurucu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,16 +104,7 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            return View(ekSurucu);
-        }
-
-        // POST: EkSurucu/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EkSurucu ekSurucu = db.EkSurucu.Find(id);
-            db.EkSurucu.Remove(ekSurucu);
+            ekSurucu.EkSurucu_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

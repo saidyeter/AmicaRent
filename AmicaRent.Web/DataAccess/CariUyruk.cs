@@ -16,7 +16,7 @@ namespace WebApplication.DataAccess
     {
         public int CariUyruk_ID { get; set; }
         public string CariUyruk_Adi { get; set; }
-        public Nullable<int> CariUyruk_Status { get; set; }
+        public int CariUyruk_Status { get; set; }
         public Nullable<System.DateTime> CariUyruk_CreateDate { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace WebApplication.DataAccess
     {
         public int AracKasaTipi_ID { get; set; }
         public string AracKasaTipi_Adi { get; set; }
-        public Nullable<int> AracKasaTipi_Status { get; set; }
+        public int AracKasaTipi_Status { get; set; }
         public Nullable<System.DateTime> AracKasaTipi_CreateDate { get; set; }
     }
 }
