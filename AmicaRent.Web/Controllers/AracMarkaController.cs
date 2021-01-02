@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AmicaRent.DataAccess;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WebApplication.DataAccess;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class AracMarkaController : Controller
+    public class AracMarkaController : RootController
     {
-        private AmicaRentDBEntities db = new AmicaRentDBEntities();
+        
 
         // GET: AracMarka
         public ActionResult Index()
@@ -108,7 +106,7 @@ namespace WebApplication.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-       
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

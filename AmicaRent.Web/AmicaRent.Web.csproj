@@ -111,6 +111,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic.Core, Version=1.2.7.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.Core.1.2.7\lib\net46\System.Linq.Dynamic.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -159,7 +162,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AracController.cs" />
     <Compile Include="Controllers\AracGrupController.cs" />
@@ -184,117 +186,9 @@
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\LokasyonController.cs" />
     <Compile Include="Controllers\OdemeTipiController.cs" />
+    <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Controllers\ServisController.cs" />
     <Compile Include="Controllers\ServisFirmaController.cs" />
-    <Compile Include="DataAccess\AmicaRentDBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AmicaRentDBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AmicaRentDBModel.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AmicaRentDBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AmicaRentDBModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Arac.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AracGrup.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AracKasaTipi.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AracMarka.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AracModel.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AracRenk.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AracYakitTuru.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Cari.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\CariEhliyet.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\CariSehir.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\CariUyruk.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\EhliyetSinif.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\EkstraHizmetler.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\EkSurucu.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Islem.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\IslemEkstraHizmetler.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\IslemTahsilat.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\KanGrubu.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Kullanici.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\KullaniciRolIliskileri.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\KullaniciRolTanimlari.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Lokasyon.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\OdemeTipi.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Servis.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\ServisFirma.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\viewAracList.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\viewAracModel.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\viewCari.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\viewCariEhliyet.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\viewIslem.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\viewServis.cs">
-      <DependentUpon>AmicaRentDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Extensions\ClaimsExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -303,10 +197,7 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="UserManagement\CustomAuthenticationFilter.cs" />
     <Compile Include="UserManagement\CustomAuthorizeAttribute.cs" />
-    <Compile Include="UserManagement\CustomRoleProvider.cs" />
-    <Compile Include="UserManagement\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminLTE\fonts\fontawesome-webfont.svg">
@@ -813,16 +704,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DataAccess\AmicaRentDBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AmicaRentDBModel.edmx</DependentUpon>
-      <LastGenOutput>AmicaRentDBModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataAccess\AmicaRentDBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AmicaRentDBModel.edmx</DependentUpon>
-      <LastGenOutput>AmicaRentDBModel.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="AdminLTE\plugins\fonts\fontawesome-webfont.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -869,13 +750,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <EntityDeploy Include="DataAccess\AmicaRentDBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AmicaRentDBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DataAccess\AmicaRentDBModel.edmx.diagram">
-      <DependentUpon>AmicaRentDBModel.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -892,6 +766,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Styles\Elements\General.css" />
     <Content Include="Styles\Elements\Icons.css" />
     <Content Include="Styles\Elements\Modals.css" />
@@ -1027,9 +902,12 @@
     <Content Include="Views\AracGrup\IndexAvailable.cshtml" />
     <Content Include="Views\AracGrup\IndexReserved.cshtml" />
     <Content Include="Views\Kullanici\ManageRole.cshtml" />
+    <Content Include="Views\Shared\_LeftMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DataAccess\" />
+    <Folder Include="Views\Root\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\bootstrap\css\bootstrap.css.map">
@@ -1069,6 +947,12 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmicaRent.DataAccess\AmicaRent.DataAccess.csproj">
+      <Project>{4988F956-2170-44A3-B9A2-98FCD29A3BFC}</Project>
+      <Name>AmicaRent.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

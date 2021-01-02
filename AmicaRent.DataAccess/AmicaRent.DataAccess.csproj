@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4988F956-2170-44A3-B9A2-98FCD29A3BFC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AmicaRent.DataAccess</RootNamespace>
+    <AssemblyName>AmicaRent.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AmicaRentDBContext.cs" />
+    <Compile Include="Model\Arac.cs" />
+    <Compile Include="Model\AracGrup.cs" />
+    <Compile Include="Model\AracKasaTipi.cs" />
+    <Compile Include="Model\AracMarka.cs" />
+    <Compile Include="Model\AracModel.cs" />
+    <Compile Include="Model\AracRenk.cs" />
+    <Compile Include="Model\AracYakitTuru.cs" />
+    <Compile Include="Model\Cari.cs" />
+    <Compile Include="Model\CariEhliyet.cs" />
+    <Compile Include="Model\CariSehir.cs" />
+    <Compile Include="Model\CariUyruk.cs" />
+    <Compile Include="Model\EhliyetSinif.cs" />
+    <Compile Include="Model\EkstraHizmetler.cs" />
+    <Compile Include="Model\EkSurucu.cs" />
+    <Compile Include="Model\Islem.cs" />
+    <Compile Include="Model\IslemEkstraHizmetler.cs" />
+    <Compile Include="Model\IslemTahsilat.cs" />
+    <Compile Include="Model\KanGrubu.cs" />
+    <Compile Include="Model\Kullanici.cs" />
+    <Compile Include="Model\KullaniciRolIliskileri.cs" />
+    <Compile Include="Model\KullaniciRolTanimlari.cs" />
+    <Compile Include="Model\Lokasyon.cs" />
+    <Compile Include="Model\OdemeTipi.cs" />
+    <Compile Include="Model\Servis.cs" />
+    <Compile Include="Model\ServisFirma.cs" />
+    <Compile Include="Model\viewAracList.cs" />
+    <Compile Include="Model\viewAracModel.cs" />
+    <Compile Include="Model\viewCari.cs" />
+    <Compile Include="Model\viewCariEhliyet.cs" />
+    <Compile Include="Model\viewIslem.cs" />
+    <Compile Include="Model\viewServis.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

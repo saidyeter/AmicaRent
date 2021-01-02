@@ -3,9 +3,9 @@ using System.Web.Mvc;
 
 namespace WebApplication.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : RootController
     { 
-        [AllowAnonymous]
+        
         public ActionResult Index()
         {
             return View();

@@ -1,19 +1,18 @@
-﻿using System;
+﻿using AmicaRent.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WebApplication.DataAccess;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class KullaniciController : Controller
+    public class KullaniciController : RootController
     {
-        private AmicaRentDBEntities db = new AmicaRentDBEntities();
+        
 
         // GET: Kullanici
         public ActionResult Index()
@@ -111,7 +110,7 @@ namespace WebApplication.Controllers
             return RedirectToAction("Index");
 
         }
-   
+
 
         protected override void Dispose(bool disposing)
         {

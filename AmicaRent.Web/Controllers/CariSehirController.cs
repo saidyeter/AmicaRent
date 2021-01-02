@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AmicaRent.DataAccess;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WebApplication.DataAccess;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class CariSehirController : Controller
+    public class CariSehirController : RootController
     {
-        private AmicaRentDBEntities db = new AmicaRentDBEntities();
+        
 
         // GET: CariSehir
         public ActionResult Index()
@@ -109,7 +107,7 @@ namespace WebApplication.Controllers
             return RedirectToAction("Index");
 
         }
-      
+
 
         protected override void Dispose(bool disposing)
         {

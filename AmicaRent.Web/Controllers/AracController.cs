@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AmicaRent.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,20 +7,42 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication.DataAccess;
+//using AmicaRent.DataAccess;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class AracController : Controller
+    public class AracController : RootController
     {
-        private AmicaRentDBEntities db = new AmicaRentDBEntities();
-
-        // GET: Arac
         public ActionResult Index()
         {
-            return View(db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active).ToList());
+            return View();
         }
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracPlakaNo.Contains(searchValue) || m.AracMarka_Adi.Contains(searchValue) || m.AracModel_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public ActionResult IndexAvailable()
         {
             return View(db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.KiralamaDurumu == "Boşta").ToList());
@@ -95,7 +118,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                arac.Arac_Status = (int)DBStatus.Active;                
+                arac.Arac_Status = (int)DBStatus.Active;
                 db.Arac.Add(arac);
                 db.SaveChanges();
                 return RedirectToAction("Index");

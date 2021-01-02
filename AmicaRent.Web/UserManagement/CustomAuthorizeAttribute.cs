@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AmicaRent.DataAccess;
+using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -6,56 +8,47 @@ using System.Web.Routing;
 namespace WebApplication.UserManagement
 {
     public class CustomAuthorizeAttribute : AuthorizeAttribute
-    {
-        private readonly UserManager userManager = new UserManager();
-        private readonly string[] allowedroles;
-        public CustomAuthorizeAttribute(params string[] roles)
-        {
-            //this.allowedroles = roles;
-        }
+    { 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
+            if (!httpContext.User.Identity.IsAuthenticated)
+            {
+                return false;
+            }
+            string username = httpContext.User.Identity.Name;
 
             var rd = httpContext.Request.RequestContext.RouteData;
             //string currentAction = rd.GetRequiredString("action");
             string currentController = rd.GetRequiredString("controller");
             //string currentArea = rd.Values["area"] as string;
-            int kullanici_ID = Convert.ToInt32(httpContext.Session["UserId"]);
+
 
             try
             {
+                AmicaRentDBContext db = new AmicaRentDBContext();
+                var user = db.Kullanici.FirstOrDefault(x => x.Kullanici_Adi == username);
+                if (user is null)
+                {
+                    throw new Exception("Kullanıcı bulunamadı.");
+                }
 
-                var roles = userManager.GetRoles(kullanici_ID);
-                roles.Add("Account");
-                roles.Add("Home");
-                return roles.Contains(currentController);
+                var userRoles = db.KullaniciRolIliskileri.Where(x => x.Kullanici_ID == user.Kullanici_ID).Select(x => x.Rol_ID);
+                var roleNames = db.KullaniciRolTanimlari.Where(x => userRoles.Contains(x.Rol_ID)).Select(x => x.Rol_Adi).ToList();
+
+                roleNames.Add("Account");
+                roleNames.Add("Home");
+
+                httpContext.Items["Roles"] = "'" + string.Join("','", roleNames.ToList()) + "'";
+
+                return roleNames.Contains(currentController);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
-                return false;
             }
 
-            //bool authorize = false;
-            //var userId = Convert.ToString(httpContext.Session["UserId"]);
-            //if (!string.IsNullOrEmpty(userId))
-            //    using (var context = new SqlDbContext())
-            //    {
-            //        var userRole = (from u in context.Users
-            //                        join r in context.Roles on u.RoleId equals r.Id
-            //                        where u.UserId == userId
-            //                        select new
-            //                        {
-            //                            r.Name
-            //                        }).FirstOrDefault();
-            //        foreach (var role in allowedroles)
-            //        {
-            //            if (role == userRole.Name) return true;
-            //        }
-            //    }
-
-
-            //return authorize;
+            httpContext.Items["error"] = "Yetki Bulunamadı";
+            return false;
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
@@ -64,8 +57,8 @@ namespace WebApplication.UserManagement
                new RouteValueDictionary
                {
                     { "controller", "Account" },
-                    { "action", "Login" }
-                    
+                    { "action", "Login" },
+                    { "returnUrl" , filterContext.HttpContext.Request.Url.GetComponents(UriComponents.PathAndQuery, UriFormat.SafeUnescaped) }
                });
         }
     }

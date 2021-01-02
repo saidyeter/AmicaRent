@@ -2,7 +2,7 @@
 
 namespace WebApplication.Controllers
 {
-    public class ElementsController : Controller
+    public class ElementsController : RootController
     {
         public ActionResult General()
         {

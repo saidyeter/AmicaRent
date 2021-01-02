@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AmicaRent.DataAccess;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WebApplication.DataAccess;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class LokasyonController : Controller
+    public class LokasyonController : RootController
     {
-        private AmicaRentDBEntities db = new AmicaRentDBEntities();
+        
 
         // GET: Lokasyon
         public ActionResult Index()
@@ -107,7 +105,7 @@ namespace WebApplication.Controllers
             lokasyon.Lokasyon_Status = (int)DBStatus.Deleted;
             db.SaveChanges();
             return RedirectToAction("Index");
-        } 
+        }
 
         protected override void Dispose(bool disposing)
         {

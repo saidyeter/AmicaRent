@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication.DataAccess.viewAracList>
+﻿@model IEnumerable<AmicaRent.DataAccess.viewAracList>
 
 @{ ViewBag.Title = "Araç"; }
 
@@ -11,97 +11,30 @@
                 </a>
             </div>
             <div class="box-body">
-                <table id="AracTable" class="table table-bordered table-striped">
-
-                    <tr>
-                        <th>
-                            Araç Grup
-                        </th>
-                        <th>
-                            Araç Marka
-                        </th>
-                        <th>
-                            Araç Model
-                        </th>
-                        <th>
-                            Araç Yılı
-                        </th>
-                        <th>
-                            Yakıt Türü
-                        </th>
-                        <th>
-                            Vites Tipi
-                        </th>
-                        <th>
-                            Araç Kasa Tipi
-                        </th>
-                        <th>
-                            Plaka Numarası
-                        </th>
-                        <th>
-                            Araç Durumu
-                        </th>
-
-                        <th>
-
-                        </th>
-
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AracGrup_Adi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AracMarka_Adi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AracModel_Adi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Arac_Yil)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AracYakitTuru_Adi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Arac_VitesTipi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AracKasaTipi_Adi)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.AracPlakaNo)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.KiralamaDurumu)
-            </td>
-            <td>
-
-                <a class="btn" href="@Url.Action("Edit", new { id = item.Arac_ID })">
-                    <i class="fa fa-edit"></i>
-                </a>
-                <a class="btn" href="@Url.Action("Details", new { id = item.Arac_ID })">
-                    <i class="fa fa-search"></i>
-                </a>
-                <a class="btn" href="#" onclick="deleteConfirm('@Url.Action("delete", new { id = item.Arac_ID })'); return false;">
-                    <i class="fa fa-trash"></i>
-                </a>
-            </td>
-        </tr>
-}
+                <table id="dt" class="table table-hover" style="width:100%">
+                    <thead class="blue-grey lighten-4">
+                        <tr>
+                            <th>Araç Grup</th>
+                            <th>Araç Marka</th>
+                            <th>Araç Model</th>
+                            <th>Araç Yılı </th>
+                            <th>Yakıt Türü</th>
+                            <th>Vites Tipi</th>
+                            <th>Araç Kasa Tipi</th>
+                            <th>Plaka Numarası</th>
+                            <th>Araç Durumu</th>
+                            <th width="10%"></th>
+                        </tr>
+                    </thead>
 
                 </table>
-            
             </div>
         </div>
     </div>
 </div>
 
+    @*<div class="col-lg-12" style="background-color: white;padding: 15px;">
+        class="table table-bordered table-striped">*@
 
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
@@ -109,5 +42,35 @@
         menuItem.classList.add('active');
         var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-Arac');
         subMenuItem.classList.add('active');
-    });   
+
+        var columns = [
+            { "data": "AracGrup_Adi", "name": "AracGrup_Adi", "autoWidth": true },
+            { "data": "AracMarka_Adi", "name": "AracMarka_Adi", "autoWidth": true },
+            { "data": "AracModel_Adi", "name": "AracModel_Adi", "autoWidth": true },
+            { "data": "Arac_Yil", "name": "Arac_Yil", "autoWidth": true },
+            { "data": "AracYakitTuru_Adi", "name": "AracYakitTuru_Adi", "autoWidth": true },
+            { "data": "Arac_VitesTipi", "name": "Arac_VitesTipi", "autoWidth": true },
+            { "data": "AracKasaTipi_Adi", "name": "AracKasaTipi_Adi", "autoWidth": true },
+            { "data": "AracPlakaNo", "name": "AracPlakaNo", "autoWidth": true },
+            { "data": "KiralamaDurumu", "name": "KiralamaDurumu", "autoWidth": true },
+            {
+                "data": "Arac_ID",
+                "render": function (data, type, row) {
+                    return "<a class='fas fa-trash red-text task-button' title='Sil' onclick='confirmDelete(\"/Arac/delete/" + row.Arac_ID + "\"); return false;' ></a>" +
+                        " <a class='fas fa-edit task-button' title='Düzenle' href='/Arac/edit/" + row.Arac_ID + "'></a>" +
+                        " <a class='fas fa-info task-button' title='Detay' href='/Arac/detail/" + row.Arac_ID + "'></a>";;
+                }
+            },
+        ];
+
+        var selector = "#dt";
+        var url = "/Arac/LoadDt";
+        makeDatatable(selector, url, columns, triggerMenuCorrection);
+    });
+    function triggerMenuCorrection() {
+        
+    }
+
 </script>
+
+

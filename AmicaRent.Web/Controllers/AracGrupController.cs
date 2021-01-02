@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WebApplication.DataAccess;
 using WebApplication.Models;
+using AmicaRent.DataAccess;
 
 namespace WebApplication.Controllers
 {
-    public class AracGrupController : Controller
-    {
-        private AmicaRentDBEntities db = new AmicaRentDBEntities();
+    public class AracGrupController : RootController
+    { 
 
         // GET: AracGrup
         public ActionResult Index()

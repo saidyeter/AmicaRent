@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AmicaRent.DataAccess;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WebApplication.DataAccess;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class KanGrubuController : Controller
+    public class KanGrubuController : RootController
     {
-        private AmicaRentDBEntities db = new AmicaRentDBEntities();
+        
 
         // GET: KanGrubu
         public ActionResult Index()

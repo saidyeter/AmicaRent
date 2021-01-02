@@ -1,28 +1,26 @@
-﻿using System;
+﻿using AmicaRent.DataAccess;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using WebApplication.DataAccess;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : RootController
     {
-        private AmicaRentDBEntities db = new AmicaRentDBEntities();
+        private IAuthenticationManager AuthenticationManager { get { return HttpContext.GetOwinContext().Authentication; } }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public ActionResult LogOff()
         {
 
-            Session["UserName"] = string.Empty;
-            Session["UserId"] = string.Empty;
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie,
+                                          DefaultAuthenticationTypes.ExternalCookie);
             return RedirectToAction("Login");
         }
 
@@ -52,11 +50,34 @@ namespace WebApplication.Controllers
 
             if (user != null)
             {
-                Session["UserName"] = user.Kullanici_Adi;
-                Session["UserId"] = user.Kullanici_ID;
+
                 user.Kullanici_SonGirisZamani = DateTime.Now;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, user.Kullanici_ID.ToString()),
+                    new Claim(ClaimTypes.Name, user.Kullanici_Adi)
+                };
+
+                var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+                AuthenticationManager.SignIn(new AuthenticationProperties()
+                {
+                    AllowRefresh = true,
+                    IsPersistent = false,//rememberme
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(15)
+                }, identity);
+
+                if (string.IsNullOrEmpty(returnUrl))
+                {
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return Redirect(returnUrl);
+                }
             }
             else
             {
