@@ -41,18 +41,61 @@ namespace WebApplication.Controllers
                 throw ex;
             }
         }
-
-
         public ActionResult IndexAvailable()
         {
-            return View(db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.KiralamaDurumu == "Boşta").ToList());
+            return View();
         }
 
         public ActionResult IndexReserved()
         {
-            return View(db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.KiralamaDurumu != "Boşta").ToList());
+            return View();
         }
-        // GET: Arac/Details/5
+        [HttpPost]
+        public JsonResult LoadDtIndexAvailable()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.KiralamaDurumu == "Boşta");
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracPlakaNo.Contains(searchValue) || m.AracMarka_Adi.Contains(searchValue) || m.AracModel_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpPost]
+        public JsonResult LoadDtIndexReserved()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.KiralamaDurumu == "Müşteride");
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracPlakaNo.Contains(searchValue) || m.AracMarka_Adi.Contains(searchValue) || m.AracModel_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+         
         public ActionResult Details(int? id)
         {
             if (id == null)

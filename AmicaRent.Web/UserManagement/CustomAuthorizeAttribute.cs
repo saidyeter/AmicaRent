@@ -37,6 +37,7 @@ namespace WebApplication.UserManagement
 
                 roleNames.Add("Account");
                 roleNames.Add("Home");
+                roleNames.Add("Root");
 
                 httpContext.Items["Roles"] = "'" + string.Join("','", roleNames.ToList()) + "'";
 

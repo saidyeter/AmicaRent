@@ -172,7 +172,6 @@
     <Compile Include="Controllers\AracYakitTuruController.cs" />
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\CariEhliyetController.cs" />
-    <Compile Include="Controllers\CariSehirController.cs" />
     <Compile Include="Controllers\CariUyrukController.cs" />
     <Compile Include="Controllers\EhliyetSinifController.cs" />
     <Compile Include="Controllers\EkstraHizmetlerController.cs" />
@@ -810,27 +809,21 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\AracGrup\Create.cshtml" />
-    <Content Include="Views\AracGrup\Details.cshtml" />
     <Content Include="Views\AracGrup\Edit.cshtml" />
     <Content Include="Views\AracGrup\Index.cshtml" />
     <Content Include="Views\AracKasaTipi\Create.cshtml" />
-    <Content Include="Views\AracKasaTipi\Details.cshtml" />
     <Content Include="Views\AracKasaTipi\Edit.cshtml" />
     <Content Include="Views\AracKasaTipi\Index.cshtml" />
     <Content Include="Views\AracMarka\Create.cshtml" />
-    <Content Include="Views\AracMarka\Details.cshtml" />
     <Content Include="Views\AracMarka\Edit.cshtml" />
     <Content Include="Views\AracMarka\Index.cshtml" />
     <Content Include="Views\AracModel\Create.cshtml" />
-    <Content Include="Views\AracModel\Details.cshtml" />
     <Content Include="Views\AracModel\Edit.cshtml" />
     <Content Include="Views\AracModel\Index.cshtml" />
     <Content Include="Views\AracRenk\Create.cshtml" />
-    <Content Include="Views\AracRenk\Details.cshtml" />
     <Content Include="Views\AracRenk\Edit.cshtml" />
     <Content Include="Views\AracRenk\Index.cshtml" />
     <Content Include="Views\AracYakitTuru\Create.cshtml" />
-    <Content Include="Views\AracYakitTuru\Details.cshtml" />
     <Content Include="Views\AracYakitTuru\Edit.cshtml" />
     <Content Include="Views\AracYakitTuru\Index.cshtml" />
     <Content Include="Views\Cari\Create.cshtml" />
@@ -841,12 +834,7 @@
     <Content Include="Views\CariEhliyet\Details.cshtml" />
     <Content Include="Views\CariEhliyet\Edit.cshtml" />
     <Content Include="Views\CariEhliyet\Index.cshtml" />
-    <Content Include="Views\CariSehir\Create.cshtml" />
-    <Content Include="Views\CariSehir\Details.cshtml" />
-    <Content Include="Views\CariSehir\Edit.cshtml" />
-    <Content Include="Views\CariSehir\Index.cshtml" />
     <Content Include="Views\CariUyruk\Create.cshtml" />
-    <Content Include="Views\CariUyruk\Details.cshtml" />
     <Content Include="Views\CariUyruk\Edit.cshtml" />
     <Content Include="Views\CariUyruk\Index.cshtml" />
     <Content Include="Views\EhliyetSinif\Create.cshtml" />
@@ -899,15 +887,13 @@
     <Content Include="Views\ServisFirma\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\AracGrup\IndexAvailable.cshtml" />
-    <Content Include="Views\AracGrup\IndexReserved.cshtml" />
     <Content Include="Views\Kullanici\ManageRole.cshtml" />
     <Content Include="Views\Shared\_LeftMenuPartial.cshtml" />
+    <Content Include="Views\Arac\IndexAvailable.cshtml" />
+    <Content Include="Views\Arac\IndexReserved.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DataAccess\" />
-    <Folder Include="Views\Root\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\bootstrap\css\bootstrap.css.map">

@@ -2,7 +2,7 @@
 @model AmicaRent.DataAccess.CariEhliyet
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Ehliyet Düzenle";
 
     List<EhliyetSinif> ehliyetSinifList = ViewBag.EhliyetSinifList;
 
@@ -17,94 +17,100 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>CariEhliyet</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.CariEhliyet_ID)
+    <div class="form-horizontal">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Ehliyet</h3>
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Cari_ID, "Cari Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Cari_ID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Cari_ID, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.CariEhliyet_ID)
+            @Html.HiddenFor(model => model.CariEhliyet_Status)
+            @Html.HiddenFor(model => model.Cari_ID)
+
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Veriliş Tarihi
+                </label>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.CariEhliyet_VerilisTarihi, new { @Value = Model.CariEhliyet_VerilisTarihi?.ToString("dd/MM/yyyy"), @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CariEhliyet_VerilisTarihi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Geçerlilik Tarihi
+                </label>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.CariEhliyet_GecerlilikTarihi, new { @Value = Model.CariEhliyet_GecerlilikTarihi?.ToString("dd/MM/yyyy"), @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CariEhliyet_GecerlilikTarihi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Verildiği Yer
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.CariEhliyet_VerildigiYer, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CariEhliyet_VerildigiYer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Doğum Yeri
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.CariEhliyet_DogumYeri, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CariEhliyet_DogumYeri, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Ehliyet Numarası
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.CariEhliyet_EhliyetNumarasi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CariEhliyet_EhliyetNumarasi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EhliyetSinif_ID, "Ehliyet Sınıfı Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-9">
+                    @Html.DropDownListFor(model => model.EhliyetSinif_ID, new SelectList(ehliyetSinifList, "EhliyetSinif_ID", "EhliyetSinif_Adi"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EhliyetSinif_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.KanGrubu_ID, "Kan Grubu Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-9">
+                    @Html.DropDownListFor(model => model.KanGrubu_ID, new SelectList(kanGrubuList, "KanGrubu_ID", "KanGrubu_Adi"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.KanGrubu_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Onayla</button>
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CariEhliyet_VerilisTarihi, "Veriliş Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CariEhliyet_VerilisTarihi, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CariEhliyet_VerilisTarihi, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CariEhliyet_GecerlilikTarihi, "Geçerlilik Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CariEhliyet_GecerlilikTarihi, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CariEhliyet_GecerlilikTarihi, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CariEhliyet_VerildigiYer, "Verildiği Yer", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CariEhliyet_VerildigiYer, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CariEhliyet_VerildigiYer, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CariEhliyet_DogumYeri, "Doğum Yeri", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CariEhliyet_DogumYeri, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CariEhliyet_DogumYeri, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CariEhliyet_EhliyetNumarasi, "Ehliyet Numarası", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CariEhliyet_EhliyetNumarasi, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CariEhliyet_EhliyetNumarasi, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.EhliyetSinif_ID, "Ehliyet Sınıfı", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.EhliyetSinif_ID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.EhliyetSinif_ID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.KanGrubu_ID, "Kan Grubu", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.KanGrubu_ID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.KanGrubu_ID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Kaydet" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>
     @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
-    var menuItem = document.querySelector('#solmenu-cari-liste');
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-cari-liste');
         menuItem.classList.add('active');
-    var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-CariEhliyet');
+        var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-CariEhliyet');
         subMenuItem.classList.add('active');
-    });</script>
+    });
+</script>

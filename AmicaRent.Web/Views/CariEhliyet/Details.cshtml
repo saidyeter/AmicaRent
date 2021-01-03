@@ -1,71 +1,73 @@
 ﻿@model AmicaRent.DataAccess.viewCariEhliyet
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Cari Ehliyet Detay";
 }
+ 
+<div class="form-horizontal">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Araç</h3>
+        </div>
 
-<h2>Details</h2>
+        <dl class="dl-horizontal">
+            <dt>
+                Adı Soyadı
+            </dt>
 
-<div>
-    <h4>CariEhliyet</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Cari Adı Soyadı
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_AdSoyad)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_AdSoyad)
-        </dd>
+            <dt>
+                Veriliş Tarihi
+            </dt>
 
-        <dt>
-            Veriliş Tarihi
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VerilisTarihi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CariEhliyet_VerilisTarihi)
-        </dd>
+            <dt>
+                Geçerlilik Tarihi
+            </dt>
 
-        <dt>
-            Geçerlilik Tarihi
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GecerlilikTarihi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CariEhliyet_GecerlilikTarihi)
-        </dd>
+            <dt>
+                Doğum Yeri
+            </dt>
 
-        <dt>
-            Doğum Yeri
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CariEhliyet_DogumYeri)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CariEhliyet_DogumYeri)
-        </dd>
+            <dt>
+                Ehliyet Numarası
+            </dt>
 
-        <dt>
-            Ehliyet Numarası
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CariEhliyet_EhliyetNumarasi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CariEhliyet_EhliyetNumarasi)
-        </dd>
+            <dt>
+                Ehliyet Sınıfı
+            </dt>
 
-        <dt>
-            Ehliyet Sınıfı
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EhliyetSinif_Adi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EhliyetSinif_Adi)
-        </dd>
+            <dt>
+                Kan Grubu
+            </dt>
 
-        <dt>
-            Kan Grubu
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KanGrubu_Adi)
-        </dd>
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.KanGrubu_Adi)
+            </dd>
+        </dl>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Düzenle", "Edit", new { id = Model.CariEhliyet_ID }) |

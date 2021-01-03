@@ -18,12 +18,12 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                 </a>
                 <ul class="treeview-menu">
                     @if (roleList.Contains("'Arac'")) { <li id="solmenu-arac-tanim-Arac"><a href="@Url.Action("Create", "Arac")"><i class="fa fa-briefcase"></i> Araç Tanımlama</a></li> } 
-                    @if (roleList.Contains("'AracGrup'")) { <li id="solmenu-arac-tanim-AracGrup"><a href="@Url.Action("Create", "AracGrup")"><i class="fa fa-object-ungroup"></i> Araç Grup Tanımlama</a></li>            }
-                    @if (roleList.Contains("'AracKasaTipi'")) { <li id="solmenu-arac-tanim-AracKasaTipi"><a href="@Url.Action("Create", "AracKasaTipi")"><i class="fa fa-cab"></i> Araç Kasa Tipi Tanımlama</a></li>          }
-                    @if (roleList.Contains("'AracMarka'")) { <li id="solmenu-arac-tanim-AracMarka"><a href="@Url.Action("Create", "AracMarka")"><i class="fa fa-copyright"></i> Araç Marka Tanımlama</a></li>              }
-                    @if (roleList.Contains("'AracModel'")) { <li id="solmenu-arac-tanim-AracModel"><a href="@Url.Action("Create", "AracModel")"><i class="fa fa-tag"></i> Araç Model Tanımlama</a></li>                    }
-                    @if (roleList.Contains("'AracRenk'")) { <li id="solmenu-arac-tanim-AracRenk"><a href="@Url.Action("Create", "AracRenk")"><i class="fa fa-paint-brush"></i> Araç Renk Tanımlama</a></li>               }
-                    @if (roleList.Contains("'AracYakitTuru'")) { <li id="solmenu-arac-tanim-AracYakitTuru"><a href="@Url.Action("Create", "AracYakitTuru")"><i class="fa fa-map-o"></i> Araç Yakıt Türü Tanımlama</a></li>     }
+                    @if (roleList.Contains("'AracGrup'")) { <li id="solmenu-arac-tanim-AracGrup"><a href="@Url.Action("Create", "AracGrup")"><i class="fa fa-object-ungroup"></i> Araç Grup Tanımlama</a></li> }
+                    @if (roleList.Contains("'AracKasaTipi'")) { <li id="solmenu-arac-tanim-AracKasaTipi"><a href="@Url.Action("Create", "AracKasaTipi")"><i class="fa fa-cab"></i> Araç Kasa Tipi Tanımlama</a></li> }
+                    @if (roleList.Contains("'AracMarka'")) { <li id="solmenu-arac-tanim-AracMarka"><a href="@Url.Action("Create", "AracMarka")"><i class="fa fa-copyright"></i> Araç Marka Tanımlama</a></li> }
+                    @if (roleList.Contains("'AracModel'")) { <li id="solmenu-arac-tanim-AracModel"><a href="@Url.Action("Create", "AracModel")"><i class="fa fa-tag"></i> Araç Model Tanımlama</a></li> }
+                    @if (roleList.Contains("'AracRenk'")) { <li id="solmenu-arac-tanim-AracRenk"><a href="@Url.Action("Create", "AracRenk")"><i class="fa fa-paint-brush"></i> Araç Renk Tanımlama</a></li> }
+                    @if (roleList.Contains("'AracYakitTuru'")) { <li id="solmenu-arac-tanim-AracYakitTuru"><a href="@Url.Action("Create", "AracYakitTuru")"><i class="fa fa-map-o"></i> Araç Yakıt Türü Tanımlama</a></li> }
                 </ul>
             </li>
             <li id="solmenu-arac-liste" class="treeview">
@@ -31,15 +31,15 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                     <i class="fa fa-indent"></i> <span>Araç Listeleri</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">                                                                                                                                                                                                                        
-                    @if (roleList.Contains("'Arac'")) { <li id="solmenu-arac-liste-Arac"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-trophy"></i> Tüm Araç Listesi</a></li>                                        }
-                    @if (roleList.Contains("'Arac'")) { <li id="solmenu-arac-liste-Arac-res"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-subway"></i> Rezervasyon Listesi</a></li>                                 }
-                    @if (roleList.Contains("'Arac'")) { <li id="solmenu-arac-liste-Arac-avab"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-truck"></i> Müsait Araç Listesi</a></li>                                 }
-                    @if (roleList.Contains("'AracGrup'")) { <li id="solmenu-arac-liste-AracGrup"><a href="@Url.Action("Index", "AracGrup")"><i class="fa fa-minus-square"></i> Araç Grup Listesi</a></li>                         }
-                    @if (roleList.Contains("'AracKasaTipi'")) { <li id="solmenu-arac-liste-AracKasaTipi"><a href="@Url.Action("Index", "AracKasaTipi")"><i class="fa fa-bar-chart"></i> Araç Kasa Tipi Listesi</a></li>               }
-                    @if (roleList.Contains("'AracMarka'")) { <li id="solmenu-arac-liste-AracMarka"><a href="@Url.Action("Index", "AracMarka")"><i class="fa fa-line-chart"></i> Araç Marka Listesi</a></li>                        }
-                    @if (roleList.Contains("'AracModel'")) { <li id="solmenu-arac-liste-AracModel"><a href="@Url.Action("Index", "AracModel")"><i class="fa fa-file-text-o"></i> Araç Model Listesi</a></li>                       }
-                    @if (roleList.Contains("'AracRenk'")) { <li id="solmenu-arac-liste-AracRenk"><a href="@Url.Action("Index", "AracRenk")"><i class="fa fa-bicycle"></i> Araç Renk Listesi</a></li>                              }
-                    @if (roleList.Contains("'AracYakitTuru'")) { <li id="solmenu-arac-liste-AracYakitTuru"><a href="@Url.Action("Index", "AracYakitTuru")"><i class="fa  fa-user-secret"></i> Araç Yakıt Türü Listesi</a></li>         }
+                    @if (roleList.Contains("'Arac'")) { <li id="solmenu-arac-liste-Arac"><a href="@Url.Action("Index", "Arac")"><i class="fa fa-trophy"></i> Tüm Araç Listesi</a></li> }
+                    @if (roleList.Contains("'Arac'")) { <li id="solmenu-arac-liste-Arac-res"><a href="@Url.Action("IndexReserved", "Arac")"><i class="fa fa-subway"></i> Rezervasyon Listesi</a></li> }
+                    @if (roleList.Contains("'Arac'")) { <li id="solmenu-arac-liste-Arac-avab"><a href="@Url.Action("IndexAvailable", "Arac")"><i class="fa fa-truck"></i> Müsait Araç Listesi</a></li> }
+                    @if (roleList.Contains("'AracGrup'")) { <li id="solmenu-arac-liste-AracGrup"><a href="@Url.Action("Index", "AracGrup")"><i class="fa fa-minus-square"></i> Araç Grup Listesi</a></li> }
+                    @if (roleList.Contains("'AracKasaTipi'")) { <li id="solmenu-arac-liste-AracKasaTipi"><a href="@Url.Action("Index", "AracKasaTipi")"><i class="fa fa-bar-chart"></i> Araç Kasa Tipi Listesi</a></li> }
+                    @if (roleList.Contains("'AracMarka'")) { <li id="solmenu-arac-liste-AracMarka"><a href="@Url.Action("Index", "AracMarka")"><i class="fa fa-line-chart"></i> Araç Marka Listesi</a></li> }
+                    @if (roleList.Contains("'AracModel'")) { <li id="solmenu-arac-liste-AracModel"><a href="@Url.Action("Index", "AracModel")"><i class="fa fa-file-text-o"></i> Araç Model Listesi</a></li> }
+                    @if (roleList.Contains("'AracRenk'")) { <li id="solmenu-arac-liste-AracRenk"><a href="@Url.Action("Index", "AracRenk")"><i class="fa fa-bicycle"></i> Araç Renk Listesi</a></li> }
+                    @if (roleList.Contains("'AracYakitTuru'")) { <li id="solmenu-arac-liste-AracYakitTuru"><a href="@Url.Action("Index", "AracYakitTuru")"><i class="fa  fa-user-secret"></i> Araç Yakıt Türü Listesi</a></li> }
                 </ul>
             </li>
             <li id="solmenu-cari-tanim" class="treeview">
@@ -47,10 +47,8 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                     <i class="fa fa-smile-o"></i> <span>Müşteri</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    @if (roleList.Contains("'Cari'")) {<li id="solmenu-cari-tanim-Cari"><a href="@Url.Action("Create", "Cari")"><i class="fa fa-save"></i> Cari Tanımlama</a></li>                                         }
-                    @if (roleList.Contains("'CariEhliyet'")) {<li id="solmenu-cari-tanim-CariEhliyet"><a href="@Url.Action("Create", "CariEhliyet")"><i class="fa fa-bell-o"></i> Cari Ehliyet Tanımlama</a></li>                 }
-                    @if (roleList.Contains("'CariSehir'")) {<li id="solmenu-cari-tanim-CariSehir"><a href="@Url.Action("Create", "CariSehir")"><i class="fa fa-building"></i> Cari Şehir Tanımlama</a></li>                     }
-                    @if (roleList.Contains("'CariUyruk'")) {<li id="solmenu-cari-tanim-CariUyruk"><a href="@Url.Action("Create", "CariUyruk")"><i class="fa fa-cubes"></i> Cari Uyruk Tanımlama</a></li>                        }
+                    @if (roleList.Contains("'Cari'")) {<li id="solmenu-cari-tanim-Cari"><a href="@Url.Action("Create", "Cari")"><i class="fa fa-save"></i> Cari Tanımlama</a></li> }
+                    @if (roleList.Contains("'CariUyruk'")) {<li id="solmenu-cari-tanim-CariUyruk"><a href="@Url.Action("Create", "CariUyruk")"><i class="fa fa-cubes"></i> Cari Uyruk Tanımlama</a></li> }
                 </ul>
             </li>
             <li id="solmenu-cari-liste" class="treeview">
@@ -58,10 +56,9 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                     <i class="fa  fa-male"></i> <span>Müşteri Bilgileri</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    @if (roleList.Contains("'Cari'")) {<li id="solmenu-cari-liste-Cari"><a href="@Url.Action("Index", "Cari")"><i class="fa fa-legal"></i> Cari Listesi</a></li>                                              }
-                    @if (roleList.Contains("'CariEhliyet'")) {<li id="solmenu-cari-liste-CariEhliyet"><a href="@Url.Action("Index", "CariEhliyet")"><i class="fa fa-life-bouy"></i> Cari Ehliyet Listesi</a></li>                    }
-                    @if (roleList.Contains("'CariSehir'")) {<li id="solmenu-cari-liste-CariSehir"><a href="@Url.Action("Index", "CariSehir")"><i class="fa  fa-lightbulb-o"></i> Cari Şehir Listesi</a></li>                       }
-                    @if (roleList.Contains("'CariUyruk'")) {<li id="solmenu-cari-liste-CariUyruk"><a href="@Url.Action("Index", "CariUyruk")"><i class="fa  fa-magic"></i> Cari Uyruk Listesi</a></li>                             }
+                    @if (roleList.Contains("'Cari'")) {<li id="solmenu-cari-liste-Cari"><a href="@Url.Action("Index", "Cari")"><i class="fa fa-legal"></i> Cari Listesi</a></li> }
+                    @if (roleList.Contains("'CariEhliyet'")) {<li id="solmenu-cari-liste-CariEhliyet"><a href="@Url.Action("Index", "CariEhliyet")"><i class="fa fa-life-bouy"></i> Cari Ehliyet Listesi</a></li> }
+                    @if (roleList.Contains("'CariUyruk'")) {<li id="solmenu-cari-liste-CariUyruk"><a href="@Url.Action("Index", "CariUyruk")"><i class="fa  fa-magic"></i> Cari Uyruk Listesi</a></li> }
                 </ul>
             </li>
             <li id="solmenu-operation" class="treeview">
@@ -70,7 +67,7 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                 </a>
                 <ul class="treeview-menu">
                         @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-liste"><a href="@Url.Action("Index", "Islem")"><i class="fa  fa-location-arrow"></i> Rezervasyon Listesi</a></li>}
-                        @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-tanim"><a href="@Url.Action("Create", "Islem")"><i class="fa  fa-signal"></i> Kiralama İşlemleri</a></li>        }
+                        @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-tanim"><a href="@Url.Action("Create", "Islem")"><i class="fa  fa-signal"></i> Kiralama İşlemleri</a></li> }
                 </ul>
             </li>
             <li id="solmenu-service" class="treeview">
@@ -78,9 +75,9 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                     <i class="fa fa-ambulance"></i> <span>Servis İşlemleri</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    @if (roleList.Contains("'Servis'")) {<li id="solmenu-service-tanim-Servis"><a href="@Url.Action("Create", "Servis")"><i class="fa  fa-fighter-jet"></i> Servis Tanımla</a></li>               }
-                    @if (roleList.Contains("'ServisFirma'")) {<li id="solmenu-service-tanim-ServisFirma"><a href="@Url.Action("Create", "ServisFirma")"><i class="fa fa-motorcycle"></i> Servis Firmaları</a></li>     }
-                    @if (roleList.Contains("'Servis'")) {<li id="solmenu-service-liste-Servis"><a href="@Url.Action("Index", "Servis")"><i class="fa fa-truck"></i> Yaklaşan Servis Listesi</a></li>              }
+                    @if (roleList.Contains("'Servis'")) {<li id="solmenu-service-tanim-Servis"><a href="@Url.Action("Create", "Servis")"><i class="fa  fa-fighter-jet"></i> Servis Tanımla</a></li> }
+                    @if (roleList.Contains("'ServisFirma'")) {<li id="solmenu-service-tanim-ServisFirma"><a href="@Url.Action("Create", "ServisFirma")"><i class="fa fa-motorcycle"></i> Servis Firma Tanımla</a></li> }
+                    @if (roleList.Contains("'Servis'")) {<li id="solmenu-service-liste-Servis"><a href="@Url.Action("Index", "Servis")"><i class="fa fa-truck"></i> Yaklaşan Servis Listesi</a></li> }
                 </ul>
             </li>
             <li id="solmenu-system" class="treeview">
@@ -89,10 +86,10 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                 </a>
                 <ul class="treeview-menu">
                     @if (roleList.Contains("'OdemeTipi'")) {<li id="solmenu-system-tanim-OdemeTipi"><a href="@Url.Action("Create", "OdemeTipi")"><i class="fa fa-money"></i> Ödeme Türleri Tanımlama</a></li>}
-                    @if (roleList.Contains("'")) {<li id="solmenu-system-blank"><a href="#"><i class="fa fa-turkish-lira"></i> Banka Bilgileri Tanımlama</a></li>                                  }
-                    @if (roleList.Contains("'")) {<li id="solmenu-system-blank"><a href="#"><i class="fa fa-list"></i> Şube Tanımlama</a></li>                                                     }
-                    @if (roleList.Contains("'Kullanici'")) {<li id="solmenu-system-tanim-Kullanici"><a href="@Url.Action("Create", "Kullanici")"><i class="fa fa-user-md"></i> Kullanıcı Tanımlama</a></li>  }
-                    @if (roleList.Contains("'Kullanici'")) {<li id="solmenu-system-liste-Kullanici"><a href="@Url.Action("Index", "Kullanici")"><i class="fa fa-users"></i> Kullanıcı Listesi</a></li>       }
+                    @if (roleList.Contains("'")) {<li id="solmenu-system-blank"><a href="#"><i class="fa fa-turkish-lira"></i> Banka Bilgileri Tanımlama</a></li> }
+                    @if (roleList.Contains("'")) {<li id="solmenu-system-blank"><a href="#"><i class="fa fa-list"></i> Şube Tanımlama</a></li> }
+                    @if (roleList.Contains("'Kullanici'")) {<li id="solmenu-system-tanim-Kullanici"><a href="@Url.Action("Create", "Kullanici")"><i class="fa fa-user-md"></i> Kullanıcı Tanımlama</a></li> }
+                    @if (roleList.Contains("'Kullanici'")) {<li id="solmenu-system-liste-Kullanici"><a href="@Url.Action("Index", "Kullanici")"><i class="fa fa-users"></i> Kullanıcı Listesi</a></li> }
                 </ul>
             </li>
 
@@ -101,8 +98,8 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                     <i class="fa fa-gg-circle"></i> <span>Kasa İşlemleri</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    @if (roleList.Contains("'")) {<li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-area-chart"></i> Günlük Kasa</a></li>             }
-                    @if (roleList.Contains("'")) {<li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-cc-mastercard"></i> Borç/Alacak Durumu</a></li>   }
+                    @if (roleList.Contains("'")) {<li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-area-chart"></i> Günlük Kasa</a></li> }
+                    @if (roleList.Contains("'")) {<li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-cc-mastercard"></i> Borç/Alacak Durumu</a></li> }
                     @if (roleList.Contains("'")) {<li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-check-square-o"></i> Araç Kredi İşlemleri</a></li>}
                 </ul>
             </li>

@@ -10,13 +10,33 @@ using WebApplication.Models;
 namespace WebApplication.Controllers
 {
     public class AracYakitTuruController : RootController
-    {
-        
-
-        // GET: AracYakitTuru
+    { 
         public ActionResult Index()
         {
-            return View(db.AracYakitTuru.Where(x => x.AracYakitTuru_Status == (int)DBStatus.Active).ToList());
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.AracYakitTuru.Where(x => x.AracYakitTuru_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracYakitTuru_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // GET: AracYakitTuru/Details/5

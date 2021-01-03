@@ -12,12 +12,37 @@ namespace WebApplication.Controllers
 {
     public class AracModelController : RootController
     {
-        
+
 
         // GET: AracModel
         public ActionResult Index()
         {
-            return View(db.viewAracModel.Where(x => x.AracModel_Status == (int)DBStatus.Active).ToList());
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.viewAracModel.Where(x => x.AracModel_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracMarka_Adi.Contains(searchValue) || m.AracModel_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // GET: AracModel/Details/5

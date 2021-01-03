@@ -1,11 +1,13 @@
-﻿@{ ViewBag.Title = "Araç"; }
+﻿@model IEnumerable<AmicaRent.DataAccess.viewAracList>
+
+@{ ViewBag.Title = "Müsait Araçlar"; }
 
 <div class="row">
     <div class="col-lg-12">
         <div class="box">
             <div class="box-header">
                 <a class="btn btn-default btn-sm" href="@Url.Action("Create")">
-                    <i class="fa fa-plus"></i> Yeni
+                    <i class="fa fa-plus"></i> Yeni Araç
                 </a>
             </div>
             <div class="box-body">
@@ -20,7 +22,6 @@
                             <th>Vites Tipi</th>
                             <th>Araç Kasa Tipi</th>
                             <th>Plaka Numarası</th>
-                            <th>Araç Durumu</th>
                             <th width="10%"></th>
                         </tr>
                     </thead>
@@ -35,7 +36,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         var menuItem = document.querySelector('#solmenu-arac-liste');
         menuItem.classList.add('active');
-        var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-Arac');
+        var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-Arac-avab');
         subMenuItem.classList.add('active');
 
         var columns = [
@@ -47,7 +48,6 @@
             { "data": "Arac_VitesTipi", "name": "Arac_VitesTipi", "autoWidth": true },
             { "data": "AracKasaTipi_Adi", "name": "AracKasaTipi_Adi", "autoWidth": true },
             { "data": "AracPlakaNo", "name": "AracPlakaNo", "autoWidth": true },
-            { "data": "KiralamaDurumu", "name": "KiralamaDurumu", "autoWidth": true },
             {
                 "data": "Arac_ID",
                 "render": function (data, type, row) {
@@ -59,9 +59,9 @@
         ];
 
         var selector = "#dt";
-        var url = "/Arac/LoadDt";
+        var url = "/Arac/LoadDtIndexAvailable";
         makeDatatable(selector, url, columns, afterDatatabled);
-    }); 
+    });
 </script>
 
 

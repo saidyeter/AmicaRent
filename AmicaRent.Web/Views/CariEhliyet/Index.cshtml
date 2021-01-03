@@ -1,74 +1,63 @@
-﻿@model IEnumerable<AmicaRent.DataAccess.viewCariEhliyet>
+﻿@{ ViewBag.Title = "Cari Ehliyet"; }
 
-@{
-    ViewBag.Title = "Index";
-}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <div class="box-header">
+                <a class="btn btn-default btn-sm" href="@Url.Action("Create")">
+                    <i class="fa fa-plus"></i> Yeni
+                </a>
+            </div>
+            <div class="box-body">
+                <table id="dt" class="table table-hover table-striped" style="width:100%">
+                    <thead class="blue-grey lighten-4">
+                        <tr>
+                            <th>Cari Adı Soyadı</th>
+                            <th>Veriliş Tarihi</th>
+                            <th>Geçerlilik Tarihi</th>
+                            <th>Doğum Yeri</th>
+                            <th>Ehliyet Numarası</th>
+                            <th>Ehliyet Sınıfı</th>
+                            <th>Kan Grubu</th>
+                            <th width="10%"></th>
+                        </tr>
+                    </thead>
 
-<h2>Index</h2>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Cari Adı Soyadı
-        </th>
-        <th>
-            Veriliş Tarihi
-        </th>
-        <th>
-            Geçerlilik Tarihi
-        </th>        
-        <th>
-            Doğum Yeri
-        </th>
-        <th>
-            Ehliyet Numarası
-        </th>
-        <th>
-            Ehliyet Sınıfı
-        </th>
-        <th>
-            Kan Grubu
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cari_AdSoyad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CariEhliyet_VerilisTarihi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CariEhliyet_GecerlilikTarihi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CariEhliyet_DogumYeri)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CariEhliyet_EhliyetNumarasi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EhliyetSinif_Adi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KanGrubu_Adi)
-            </td>
-            <td>
-                @Html.ActionLink("Düzenle", "Edit", new { id = item.CariEhliyet_ID }) |
-                @Html.ActionLink("Detaylar", "Details", new { id = item.CariEhliyet_ID }) 
-            </td>
-        </tr>
-    }
-
-</table>
-<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
-    var menuItem = document.querySelector('#solmenu-cari-liste');
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-cari-liste');
         menuItem.classList.add('active');
-    var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-CariEhliyet');
+        var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-CariEhliyet');
         subMenuItem.classList.add('active');
-    });</script>
+
+        var columns = [
+            { "data": "Cari_AdSoyad", "name": "Cari_AdSoyad", "autoWidth": true },
+            { "data": "VerilisTarihi", "name": "VerilisTarihi", "autoWidth": true },
+            { "data": "GecerlilikTarihi", "name": "GecerlilikTarihi", "autoWidth": true },
+            { "data": "CariEhliyet_DogumYeri", "name": "CariEhliyet_DogumYeri", "autoWidth": true },
+            { "data": "CariEhliyet_EhliyetNumarasi", "name": "CariEhliyet_EhliyetNumarasi", "autoWidth": true },
+            { "data": "EhliyetSinif_Adi", "name": "EhliyetSinif_Adi", "autoWidth": true },
+            { "data": "KanGrubu_Adi", "name": "KanGrubu_Adi", "autoWidth": true },
+            {
+                "data": "Cari_ID",
+                "render": function (data, type, row) {
+                    return "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/CariEhliyet/delete/" + row.CariEhliyet_ID + "\"); return false;' ></a>" +
+                        " <a class='fa fa-edit task-button' title='Düzenle' href='/CariEhliyet/edit/" + row.CariEhliyet_ID + "'></a>" +
+                        " <a class='fa fa-info task-button' title='Detay' href='/CariEhliyet/details/" + row.CariEhliyet_ID + "'></a>";;
+                }
+            },
+        ];
+        var selector = "#dt";
+        var url = "/CariEhliyet/LoadDt";
+        makeDatatable(selector, url, columns, afterDatatabled);
+    });
+</script>
+
+
+

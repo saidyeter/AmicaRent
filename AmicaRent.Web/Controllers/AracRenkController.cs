@@ -11,12 +11,32 @@ namespace WebApplication.Controllers
 {
     public class AracRenkController : RootController
     {
-        
-
-        // GET: AracRenk
         public ActionResult Index()
         {
-            return View(db.AracRenk.Where(x => x.AracRenk_Status == (int)DBStatus.Active).ToList());
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.AracRenk.Where(x => x.AracRenk_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracRenk_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // GET: AracRenk/Details/5

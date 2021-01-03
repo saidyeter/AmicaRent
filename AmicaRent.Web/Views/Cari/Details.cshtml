@@ -1,120 +1,124 @@
 ﻿@model AmicaRent.DataAccess.viewCari
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Cari Detay";
 }
 
-<h2>Details</h2>
+<div class="form-horizontal">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Cari</h3>
+        </div>
 
-<div>
-    <h4>Cari</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Cari_AdSoyad)
-        </dt>
+        <dl class="dl-horizontal">
+            <dt>
+                Ad Soyad
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_AdSoyad)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_AdSoyad)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CariUyruk_Adi)
-        </dt>
+            <dt>
+                Uyruk
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CariUyruk_Adi)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CariUyruk_Adi)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cari_IDNumber)
-        </dt>
+            <dt>
+                TCKN
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_IDNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_IDNumber)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cinsiyet)
-        </dt>
+            <dt>
+                Cinsiyet
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cinsiyet)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cinsiyet)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cari_DogumTarihi)
-        </dt>
+            <dt>
+                Doğum Tarihi
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_DogumTarihi)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_DogumTarihi)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cari_EpostaAdresi)
-        </dt>
+            <dt>
+                E Posta Adresi
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_EpostaAdresi)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_EpostaAdresi)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cari_Adres1)
-        </dt>
+            <dt>
+                Adres 1
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_Adres1)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_Adres1)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cari_Adres2)
-        </dt>
+            <dt>
+                Adres 2
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_Adres2)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_Adres2)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CariSehir_Adi)
-        </dt>
+            <dt>
+                Sehir
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CariSehir_Adi)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CariSehir_Adi)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cari_MobilTelefon)
-        </dt>
+            <dt>
+                Mobil Telefon
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_MobilTelefon)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_MobilTelefon)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cari_LokalTelefon)
-        </dt>
+            <dt>
+                Lokal Telefon
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_LokalTelefon)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_LokalTelefon)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cari_CreateDate)
-        </dt>
+            <dt>
+                Oluşturulma Tarihi
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cari_CreateDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cari_CreateDate)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Düzenle", "Edit", new { id = Model.Cari_ID }) |
     @Html.ActionLink("Listeye Geri Dön ", "Index")
 </p>
-<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
-    var menuItem = document.querySelector('#solmenu-cari-liste');
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-cari-liste');
         menuItem.classList.add('active');
-    var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-Cari');
+        var subMenuItem = menuItem.querySelector('#solmenu-cari-liste-Cari');
         subMenuItem.classList.add('active');
-    });</script>
+    });
+</script>

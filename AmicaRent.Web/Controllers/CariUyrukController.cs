@@ -11,12 +11,33 @@ namespace WebApplication.Controllers
 {
     public class CariUyrukController : RootController
     {
-        
-
-        // GET: CariUyruk
         public ActionResult Index()
         {
-            return View(db.CariUyruk.Where(x => x.CariUyruk_Status == (int)DBStatus.Active).ToList());
+            return View();
+        }
+
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.CariUyruk.Where(x => x.CariUyruk_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.CariUyruk_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // GET: CariUyruk/Details/5

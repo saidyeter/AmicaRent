@@ -16,8 +16,32 @@ namespace WebApplication.Controllers
         // GET: AracMarka
         public ActionResult Index()
         {
-            return View(db.AracMarka.Where(x => x.AracMarka_Status == (int)DBStatus.Active).ToList());
+            return View();
         }
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.AracMarka.Where(x => x.AracMarka_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracMarka_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         // GET: AracMarka/Details/5
         public ActionResult Details(int? id)

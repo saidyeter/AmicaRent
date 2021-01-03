@@ -12,13 +12,35 @@ namespace WebApplication.Controllers
 {
     public class CariController : RootController
     {
-        
-
-        // GET: Cari
         public ActionResult Index()
         {
-            return View(db.viewCari.Where(x => x.Cari_Status == (int)DBStatus.Active).ToList());
+            return View();
         }
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.viewCari.Where(x => x.Cari_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.Cari_AdSoyad.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
 
         // GET: Cari/Details/5
         public ActionResult Details(int? id)

@@ -18,6 +18,34 @@ namespace WebApplication.Controllers
             return View(db.AracGrup.Where(x => x.AracGrup_Status == (int)DBStatus.Active).ToList());
         }
 
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.AracGrup.Where(x => x.AracGrup_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracGrup_Adi.Contains(searchValue) );
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+
         // GET: AracGrup/Details/5
         public ActionResult Details(int? id)
         {

@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-      
+
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Onayla</button>
             </div>
@@ -34,14 +34,11 @@
     @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         var menuItem = document.querySelector('#solmenu-arac-tanim');
         menuItem.classList.add('active');
         var subMenuItem = menuItem.querySelector('#solmenu-arac-tanim-AracGrup');
         subMenuItem.classList.add('active');
-    });</script>
+    });
+</script>

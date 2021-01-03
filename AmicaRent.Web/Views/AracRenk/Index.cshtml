@@ -1,45 +1,50 @@
-﻿@model IEnumerable<AmicaRent.DataAccess.AracRenk>
+﻿@{ ViewBag.Title = "Araç Renk"; }
 
-@{
-    ViewBag.Title = "Index";
-}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <div class="box-header">
+                <a class="btn btn-default btn-sm" href="@Url.Action("Create")">
+                    <i class="fa fa-plus"></i> Yeni
+                </a>
+            </div>
+            <div class="box-body">
+                <table id="dt" class="table table-hover table-striped" style="width:100%">
+                    <thead class="blue-grey lighten-4">
+                        <tr>
+                            <th>Renk</th>
+                            <th width="10%"></th>
+                        </tr>
+                    </thead>
 
-<h2>Index</h2>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Renk Adı
-        </th>
-        <th>
-            Oluşturma Zamanı
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AracRenk_Adi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AracRenk_CreateDate)
-            </td>
-            <td>
-                @Html.ActionLink("Düzenle", "Edit", new { id = item.AracRenk_ID }) |
-                @Html.ActionLink("Detaylar", "Details", new { id = item.AracRenk_ID }) 
-            </td>
-        </tr>
-    }
-
-</table>
-<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
-    var menuItem = document.querySelector('#solmenu-arac-liste');
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-arac-liste');
         menuItem.classList.add('active');
-    var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-AracRenk');
+        var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-AracRenk');
         subMenuItem.classList.add('active');
-    });</script>
+
+        var columns = [
+            { "data": "AracRenk_Adi", "name": "AracRenk_Adi", "autoWidth": true },
+            {
+                "data": "AracRenk_ID",
+                "render": function (data, type, row) {
+                    return "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/AracRenk/delete/" + row.AracRenk_ID + "\"); return false;' ></a>" +
+                        " <a class='fa fa-edit task-button' title='Düzenle' href='/AracRenk/edit/" + row.AracRenk_ID + "'></a>";
+                }
+            },
+        ];
+
+        var selector = "#dt";
+        var url = "/AracRenk/LoadDt";
+        makeDatatable(selector, url, columns, afterDatatabled);
+    });
+</script>
+
+

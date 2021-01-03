@@ -10,16 +10,36 @@ using WebApplication.Models;
 namespace WebApplication.Controllers
 {
     public class CariEhliyetController : RootController
-    {
-        
-
-        // GET: CariEhliyet
+    { 
         public ActionResult Index()
         {
-            return View(db.viewCariEhliyet.Where(x => x.CariEhliyet_Status == (int)DBStatus.Active).ToList());
+            return View();
         }
 
-        // GET: CariEhliyet/Details/5
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.viewCariEhliyet.Where(x => x.CariEhliyet_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.Cari_AdSoyad.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,8 +55,18 @@ namespace WebApplication.Controllers
         }
 
         // GET: CariEhliyet/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            CariEhliyet model = new CariEhliyet();
+            model.Cari_ID= id;
+            var cari = db.Cari.FirstOrDefault(x => x.Cari_ID == id);
+            if (cari is null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.CariAdi = cari.Cari_AdSoyad;
+
             List<EhliyetSinif> ehliyetSinifList = db.EhliyetSinif.Where(x => x.EhliyetSinif_Status == (int)DBStatus.Active).ToList();
             ViewBag.EhliyetSinifList = ehliyetSinifList;
 
@@ -46,12 +76,9 @@ namespace WebApplication.Controllers
             List<Cari> cariList = db.Cari.Where(x => x.Cari_Status == (int)DBStatus.Active).ToList();
             ViewBag.CariList = cariList;
 
-            return View();
+            return View(model);
         }
-
-        // POST: CariEhliyet/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+         
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CariEhliyet_ID,Cari_ID,CariEhliyet_VerilisTarihi,CariEhliyet_GecerlilikTarihi,CariEhliyet_VerildigiYer,CariEhliyet_DogumYeri,CariEhliyet_EhliyetNumarasi,EhliyetSinif_ID,KanGrubu_ID")] CariEhliyet cariEhliyet)
@@ -97,7 +124,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CariEhliyet_ID,Cari_ID,CariEhliyet_VerilisTarihi,CariEhliyet_GecerlilikTarihi,CariEhliyet_VerildigiYer,CariEhliyet_DogumYeri,CariEhliyet_EhliyetNumarasi,EhliyetSinif_ID,KanGrubu_ID")] CariEhliyet cariEhliyet)
+        public ActionResult Edit([Bind(Include = "CariEhliyet_ID,Cari_ID,CariEhliyet_VerilisTarihi,CariEhliyet_Status,CariEhliyet_GecerlilikTarihi,CariEhliyet_VerildigiYer,CariEhliyet_DogumYeri,CariEhliyet_EhliyetNumarasi,EhliyetSinif_ID,KanGrubu_ID")] CariEhliyet cariEhliyet)
         {
             if (ModelState.IsValid)
             {

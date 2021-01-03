@@ -1,57 +1,61 @@
 ﻿@using AmicaRent.DataAccess
 @model AmicaRent.DataAccess.AracModel
 
-@{ ViewBag.Title = "";
-    List<AracMarka> aracMarkaList = ViewBag.AracMarkaList;}
+@{
+    ViewBag.Title = "Düzenle";
+    List<AracMarka> aracMarkaList = ViewBag.AracMarkaList;
+}
 
-<h2>Araç Model Düzenleme Ekranı</h2>
 
 
 @using (Html.BeginForm())
 {
 
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-                <div class="form-horizontal">
-
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.AracModel_ID)
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracMarka_ID, "Araç Marka", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.AracMarka_ID, new SelectList(aracMarkaList, "AracMarka_ID", "AracMarka_Adi"), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.AracMarka_ID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracModel_Adi, "Araç Model", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.AracModel_Adi, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.AracModel_Adi, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Kaydet" class="btn btn-default" />
-                        </div>
-                    </div>
-                </div>}
+    <div class="form-horizontal">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Araç Model</h3>
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.AracModel_ID)
+            @Html.HiddenFor(model => model.AracModel_Status)
+            @Html.HiddenFor(model => model.AracModel_CreateDate)
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Marka
+                </label>
+                <div class="col-md-9">
+                    @Html.DropDownListFor(model => model.AracMarka_ID, new SelectList(aracMarkaList, "AracMarka_ID", "AracMarka_Adi"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AracMarka_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    Model Adı
+                </label>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AracModel_Adi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AracModel_Adi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Onayla</button>
+            </div>
+        </div>
+    </div>
+}
 
 <div>
     @Html.ActionLink("Listeye Geri Dön", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
-    var menuItem = document.querySelector('#solmenu-arac-liste');
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-arac-liste');
         menuItem.classList.add('active');
-    var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-AracModel');
+        var subMenuItem = menuItem.querySelector('#solmenu-arac-liste-AracModel');
         subMenuItem.classList.add('active');
-    });</script>
+    });
+</script>

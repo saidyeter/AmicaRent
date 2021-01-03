@@ -46,3 +46,117 @@ function makeDatatable(selector, url, columns, drawCallback) {
 
     });
 }
+
+
+
+
+
+function makeSelect2(selector, url) {
+    $(selector).select2({
+        //geri açılacak
+        //minimumInputLength: 2,
+        allowClear: true,
+        ajax: {
+            url: url,
+            dataType: 'json',
+            type: 'Get',
+            data: function (params) {
+                return {
+                    q: params.term
+                };
+            },
+            processResults: function (data, params) {
+                return {
+                    results: data.items
+                }
+            },
+        },
+        language: {
+            inputTooShort: function (args) {
+                // args.minimum is the minimum required length
+                // args.input is the user-typed text
+                return (args.minimum - args.params.term.length) + " karakter daha giriniz.";
+            },
+            inputTooLong: function (args) {
+                // args.maximum is the maximum allowed length
+                // args.input is the user-typed text
+                return "You typed too much";
+            },
+            errorLoading: function () {
+                return "Sonuçlar alınırken hata oluştu!";
+            },
+            loadingMore: function () {
+                return "Sonuçlar yükleniyor.";
+            },
+            noResults: function () {
+                return "Sonuç bulunamadı.";
+            },
+            searching: function () {
+                return "Aranıyor...";
+            },
+            maximumSelected: function (args) {
+                // args.maximum is the maximum number of items the user may select
+                return "Error loading results";
+            }
+        }
+
+    })
+
+}
+
+
+function makeModelSelect2(selector, url, markaSelector) {
+    console.log("selector", selector, "url", url, "markaSelector", markaSelector);
+    $(selector).select2({
+        //geri açılacak
+        //minimumInputLength: 2,
+        allowClear: true,
+        ajax: {
+            url: url,
+            dataType: 'json',
+            type: 'Get',
+            data: function (params) {
+                console.log(params.term, $(markaSelector ).val());
+                return {
+                    q: params.term,
+                    markaId: $(markaSelector).val()
+                };
+            },
+            processResults: function (data, params) {
+                return {
+                    results: data.items
+                }
+            },
+        },
+        language: {
+            inputTooShort: function (args) {
+                // args.minimum is the minimum required length
+                // args.input is the user-typed text
+                return (args.minimum - args.params.term.length) + " karakter daha giriniz.";
+            },
+            inputTooLong: function (args) {
+                // args.maximum is the maximum allowed length
+                // args.input is the user-typed text
+                return "You typed too much";
+            },
+            errorLoading: function () {
+                return "Sonuçlar alınırken hata oluştu!";
+            },
+            loadingMore: function () {
+                return "Sonuçlar yükleniyor.";
+            },
+            noResults: function () {
+                return "Sonuç bulunamadı.";
+            },
+            searching: function () {
+                return "Aranıyor...";
+            },
+            maximumSelected: function (args) {
+                // args.maximum is the maximum number of items the user may select
+                return "Error loading results";
+            }
+        }
+
+    })
+
+}

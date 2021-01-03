@@ -2,201 +2,199 @@
 @model AmicaRent.DataAccess.Islem
 
 @{ ViewBag.Title = "Edit";
-                List<Cari> cariList = ViewBag.CariList;
-                Dictionary<int, string> aracList = ViewBag.AracList;
+    List<Cari> cariList = ViewBag.CariList;
+    Dictionary<int, string> aracList = ViewBag.AracList;
 
-                Dictionary<int, string> islemTipi = ViewBag.IslemTipi; }
+    Dictionary<int, string> islemTipi = ViewBag.IslemTipi; }
 
 <h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-                <div class="form-horizontal">
-                    <h4>Islem</h4>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.Islem_ID)
+    <div class="form-horizontal">
+        <h4>Islem</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Islem_ID)
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_Tipi, "İşlem Tipi Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.Islem_Tipi, new SelectList(islemTipi, "Key", "Value"), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Islem_Tipi, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_Tipi, "İşlem Tipi Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Islem_Tipi, new SelectList(islemTipi, "Key", "Value"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Islem_Tipi, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Cari_ID, "Cari Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.Arac_ID, new SelectList(aracList, "Key", "Value"), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Cari_ID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cari_ID, "Cari Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Arac_ID, new SelectList(aracList, "Key", "Value"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cari_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Arac_ID, "Araç Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Arac_ID, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Arac_ID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Arac_ID, "Araç Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Arac_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Arac_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_BaslangicTarihi, "Başlangıç Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_BaslangicTarihi, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_BaslangicTarihi, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_BaslangicTarihi, "Başlangıç Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_BaslangicTarihi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_BaslangicTarihi, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_BitisTarihi, "Bitiş Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_BitisTarihi, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_BitisTarihi, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_BitisTarihi, "Bitiş Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_BitisTarihi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_BitisTarihi, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_IlkKM, "İlk KM.", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_IlkKM, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_IlkKM, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_IlkKM, "İlk KM.", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_IlkKM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_IlkKM, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_SonKM, "Son KM.", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_SonKM, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_SonKM, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_SonKM, "Son KM.", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_SonKM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_SonKM, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_YakitDurumu, "Yakıt Durumu", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_YakitDurumu, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_YakitDurumu, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_YakitDurumu, "Yakıt Durumu", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_YakitDurumu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_YakitDurumu, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_TeslimatLokasyonID, "Teslimat Noktası Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_TeslimatLokasyonID, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_TeslimatLokasyonID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_TeslimatLokasyonID, "Teslimat Noktası Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_TeslimatLokasyonID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_TeslimatLokasyonID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_IadeLokasyonID, "İade Noktası Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_IadeLokasyonID, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_IadeLokasyonID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_IadeLokasyonID, "İade Noktası Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_IadeLokasyonID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_IadeLokasyonID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_GunlukUcret, "Günlük Ücret", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_GunlukUcret, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_GunlukUcret, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_GunlukUcret, "Günlük Ücret", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_GunlukUcret, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_GunlukUcret, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_GunlukKMSiniri, "Günlük KM Aşımı", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_GunlukKMSiniri, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_GunlukKMSiniri, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_GunlukKMSiniri, "Günlük KM Aşımı", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_GunlukKMSiniri, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_GunlukKMSiniri, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_ToplamKiralamaUcreti, "Toplam Kiralama Ücreti", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_ToplamKiralamaUcreti, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_ToplamKiralamaUcreti, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_ToplamKiralamaUcreti, "Toplam Kiralama Ücreti", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_ToplamKiralamaUcreti, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_ToplamKiralamaUcreti, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_ToplamKMAsimUcreti, "KM Aşım Ücreti", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_ToplamKMAsimUcreti, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_ToplamKMAsimUcreti, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_ToplamKMAsimUcreti, "KM Aşım Ücreti", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_ToplamKMAsimUcreti, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_ToplamKMAsimUcreti, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_ToplamEkstraHizmetler, "Ekstra Hizmetler", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_ToplamEkstraHizmetler, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_ToplamEkstraHizmetler, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_ToplamEkstraHizmetler, "Ekstra Hizmetler", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_ToplamEkstraHizmetler, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_ToplamEkstraHizmetler, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_ToplamValeHizmetleri, "Vale Hizmetleri", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_ToplamValeHizmetleri, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_ToplamValeHizmetleri, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_ToplamValeHizmetleri, "Vale Hizmetleri", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_ToplamValeHizmetleri, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_ToplamValeHizmetleri, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_ToplamDigerUcretler, "Diğer Ücretler", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_ToplamDigerUcretler, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_ToplamDigerUcretler, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_ToplamDigerUcretler, "Diğer Ücretler", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_ToplamDigerUcretler, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_ToplamDigerUcretler, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_IskontoOrani, "Iskonto Oranı", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_IskontoOrani, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_IskontoOrani, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_IskontoOrani, "Iskonto Oranı", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_IskontoOrani, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_IskontoOrani, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_TahsilEdilen, "Tahsil Edilen", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_TahsilEdilen, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_TahsilEdilen, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_TahsilEdilen, "Tahsil Edilen", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_TahsilEdilen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_TahsilEdilen, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Islem_KalanBorc, "Kalan", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Islem_KalanBorc, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Islem_KalanBorc, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Kaydet" class="btn btn-default" />
-                        </div>
-                    </div>
-                </div>}
+        <div class="form-group">
+            @Html.LabelFor(model => model.Islem_KalanBorc, "Kalan", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Islem_KalanBorc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Islem_KalanBorc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" />
+            </div>
+        </div>
+    </div>}
 
 <div>
     @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
         var menuItem = document.querySelector('#solmenu-operation');
         menuItem.classList.add('active');
         var subMenuItem = menuItem.querySelector('#solmenu-operation-liste');
         subMenuItem.classList.add('active');
-    });</script>
+    });
+</script>

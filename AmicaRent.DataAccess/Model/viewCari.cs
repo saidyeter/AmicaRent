@@ -21,5 +21,6 @@ namespace AmicaRent.DataAccess
         public string Cari_MobilTelefon { get; set; }
         public string Cari_LokalTelefon { get; set; }
         public DateTime? Cari_CreateDate { get; set; }
+        public int? CariEhliyet_ID { get; set; }
     }
 }

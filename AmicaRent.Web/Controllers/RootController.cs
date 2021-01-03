@@ -1,8 +1,16 @@
 ﻿using AmicaRent.DataAccess;
 using System;
+using System.Configuration;
+using System.Data.Entity;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Web.Mvc;
 using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
+using System.Web.Mvc;
 
 namespace WebApplication.Controllers
 {
@@ -50,5 +58,27 @@ namespace WebApplication.Controllers
                 throw;
             }
         }
+
+
+        public ActionResult BaseSelect2List<TSource>(DbSet<TSource> dbSet, Expression<Func<TSource, bool>> predicate, Expression<Func<TSource, Select2Model>> map) where TSource : class
+        {
+            var list = dbSet.Where(predicate).Select(map).Take(5).ToList();
+            return Json(new { items = list }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CariList(string q = "")
+        {
+            return BaseSelect2List(db.Cari, x => x.Cari_AdSoyad.Contains(q) , c => new Select2Model { id = c.Cari_ID.ToString(), text = c.Cari_AdSoyad });
+        }
+
+        public ActionResult ModelList(string q = "", int markaId = 0)
+        {
+            return BaseSelect2List(db.AracModel, x => x.AracMarka_ID == markaId && x.AracModel_Adi.Contains(q), c => new Select2Model { id = c.AracModel_ID.ToString(), text = c.AracModel_Adi });
+        }
+    }
+    public class Select2Model
+    {
+        public string id { get; set; }
+        public string text { get; set; }
     }
 }

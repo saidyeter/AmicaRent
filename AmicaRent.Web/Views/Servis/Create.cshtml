@@ -1,88 +1,81 @@
 ﻿@using AmicaRent.DataAccess
 @model AmicaRent.DataAccess.Servis
 
-@{ ViewBag.Title = "";
-
-
-
+@{
+    ViewBag.Title = "";
     List<ServisFirma> servisFirmalist = ViewBag.ServisFirmalist;
-
-
-    Dictionary<int, string> aracList = ViewBag.AracList; }
-
-<h2>Araç Servis Kaydı Oluşturma</h2>
-
+    Dictionary<int, string> aracList = ViewBag.AracList;
+    ViewBag.Title = "Araç Servis Kaydı Oluşturma";
+} 
 
 @using (Html.BeginForm())
 {
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Araç Servis Kaydı</h3>
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Arac_ID, "Araç Seçiniz :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Arac_ID, new SelectList(aracList, "Key", "Value"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Arac_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Servis_ServisZamani, "Servis Zamanı", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Servis_ServisZamani, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Servis_ServisZamani, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Arac_ID, "Araç Seçiniz :", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.Arac_ID, new SelectList(aracList, "Key", "Value"), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Arac_ID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ServisFirma_ID, "Servis Firması Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ServisFirma_ID, new SelectList(servisFirmalist, "ServisFirma_ID", "ServisFirma_Adi"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ServisFirma_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Servis_ServisZamani, "Servis Zamanı", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Servis_ServisZamani, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Servis_ServisZamani, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Servis_Notlar, "Notlar", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Servis_Notlar, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Servis_Notlar, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ServisFirma_ID, "Servis Firması Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.ServisFirma_ID, new SelectList(servisFirmalist, "ServisFirma_ID", "ServisFirma_Adi"), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.ServisFirma_ID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Servis_Ucreti, "Ücreti", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Servis_Ucreti, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Servis_Ucreti, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Servis_Notlar, "Notlar", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Servis_Notlar, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Servis_Notlar, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Servis_CreateDate, "Oluşturma Zamanı", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Servis_CreateDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Servis_CreateDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Servis_Ucreti, "Ücreti", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Servis_Ucreti, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Servis_Ucreti, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Onayla</button>
+            </div>
+        </div>
+    </div>
+}
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Servis_CreateDate, "Oluşturma Zamanı", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Servis_CreateDate, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Servis_CreateDate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Oluştur" class="btn btn-default" />
-                        </div>
-                    </div>
-                </div>}
 
 <div>
     @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
 
 
 <script type="text/javascript">
@@ -91,4 +84,5 @@
         menuItem.classList.add('active');
         var subMenuItem = menuItem.querySelector('#solmenu-service-tanim-Servis');
         subMenuItem.classList.add('active');
-    });</script>
+    });
+</script>

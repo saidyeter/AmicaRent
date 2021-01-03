@@ -10,8 +10,8 @@ namespace AmicaRent.DataAccess
         public int CariEhliyet_ID { get; set; }
         public int? Cari_ID { get; set; }
         public string Cari_AdSoyad { get; set; }
-        public DateTime? CariEhliyet_VerilisTarihi { get; set; }
-        public DateTime? CariEhliyet_GecerlilikTarihi { get; set; }
+        public string VerilisTarihi { get; set; }
+        public string GecerlilikTarihi { get; set; }
         public string CariEhliyet_DogumYeri { get; set; }
         public string CariEhliyet_EhliyetNumarasi { get; set; }
         public string EhliyetSinif_Adi { get; set; }

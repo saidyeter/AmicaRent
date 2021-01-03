@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [AmicaRentDB]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Database [AmicaRentDB]    Script Date: 4.01.2021 01:32:17 ******/
 CREATE DATABASE [AmicaRentDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -74,13 +74,166 @@ ALTER DATABASE [AmicaRentDB] SET TARGET_RECOVERY_TIME = 60 SECONDS
 GO
 ALTER DATABASE [AmicaRentDB] SET DELAYED_DURABILITY = DISABLED 
 GO
+ALTER DATABASE [AmicaRentDB] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
 EXEC sys.sp_db_vardecimal_storage_format N'AmicaRentDB', N'ON'
 GO
 ALTER DATABASE [AmicaRentDB] SET QUERY_STORE = OFF
 GO
 USE [AmicaRentDB]
 GO
-/****** Object:  Table [dbo].[Cari]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[Arac]    Script Date: 4.01.2021 01:32:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Arac](
+	[Arac_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracGrup_ID] [int] NOT NULL,
+	[AracMarka_ID] [int] NOT NULL,
+	[AracModel_ID] [int] NOT NULL,
+	[Arac_Yil] [char](4) NOT NULL,
+	[AracYakitTuru_ID] [int] NOT NULL,
+	[Arac_VitesTipi] [char](10) NOT NULL,
+	[AracKasaTipi_ID] [int] NOT NULL,
+	[AracKlimaDurumu] [int] NOT NULL,
+	[AracPlakaNo] [nvarchar](50) NOT NULL,
+	[AracGuncelKM] [float] NOT NULL,
+	[AracMotorNo] [nvarchar](50) NOT NULL,
+	[AracSaseNo] [nvarchar](50) NOT NULL,
+	[AracRuhsatSeriNo] [nvarchar](50) NOT NULL,
+	[Arac_Status] [int] NOT NULL,
+	[AracRenk_ID] [int] NOT NULL,
+	[AracKiralamaDurumu] [int] NULL,
+	[Arac_TrafikSigortasiBitisTarihi] [date] NULL,
+	[Arac_KaskoBitisTarihi] [date] NULL,
+	[Arac_KoltukSigortasiBitisTarihi] [date] NULL,
+	[Arac_FenniMuayeneGecerlilikTarihi] [date] NULL,
+ CONSTRAINT [PK_Arac] PRIMARY KEY CLUSTERED 
+(
+	[Arac_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracGrup]    Script Date: 4.01.2021 01:32:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracGrup](
+	[AracGrup_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracGrup_Adi] [nvarchar](50) NOT NULL,
+	[AracGrup_Status] [int] NOT NULL,
+	[AracGrup_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracGrup] PRIMARY KEY CLUSTERED 
+(
+	[AracGrup_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracRenk]    Script Date: 4.01.2021 01:32:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracRenk](
+	[AracRenk_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracRenk_Adi] [nvarchar](50) NOT NULL,
+	[AracRenk_Status] [int] NOT NULL,
+	[AracRenk_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracRenk] PRIMARY KEY CLUSTERED 
+(
+	[AracRenk_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracKasaTipi]    Script Date: 4.01.2021 01:32:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracKasaTipi](
+	[AracKasaTipi_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracKasaTipi_Adi] [nvarchar](50) NULL,
+	[AracKasaTipi_Status] [int] NOT NULL,
+	[AracKasaTipi_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracKasaTipi] PRIMARY KEY CLUSTERED 
+(
+	[AracKasaTipi_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracYakitTuru]    Script Date: 4.01.2021 01:32:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracYakitTuru](
+	[AracYakitTuru_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracYakitTuru_Adi] [nvarchar](50) NOT NULL,
+	[AracYakitTuru_Status] [int] NOT NULL,
+	[AracYakitTuru_CreateDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_AracYakitTuru] PRIMARY KEY CLUSTERED 
+(
+	[AracYakitTuru_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracMarka]    Script Date: 4.01.2021 01:32:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracMarka](
+	[AracMarka_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracMarka_Adi] [nvarchar](50) NULL,
+	[AracMarka_Status] [int] NOT NULL,
+	[AracMarka_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracMarka] PRIMARY KEY CLUSTERED 
+(
+	[AracMarka_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracModel]    Script Date: 4.01.2021 01:32:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracModel](
+	[AracModel_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracMarka_ID] [int] NOT NULL,
+	[AracModel_Adi] [nvarchar](50) NOT NULL,
+	[AracModel_Status] [int] NOT NULL,
+	[AracModel_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracModel] PRIMARY KEY CLUSTERED 
+(
+	[AracModel_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[viewAracList]    Script Date: 4.01.2021 01:32:17 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[viewAracList]
+AS
+SELECT        dbo.Arac.Arac_ID,dbo.Arac.Arac_Status, dbo.AracGrup.AracGrup_Adi, dbo.AracMarka.AracMarka_Adi, dbo.AracModel.AracModel_Adi, dbo.Arac.Arac_Yil, dbo.AracYakitTuru.AracYakitTuru_Adi, dbo.Arac.Arac_VitesTipi, 
+                         dbo.AracKasaTipi.AracKasaTipi_Adi, CASE WHEN dbo.Arac.AracKlimaDurumu = 1 THEN 'KlimalÄ±' ELSE 'KlimasÄ±z' END AS KlimaDurumu, dbo.Arac.AracPlakaNo, dbo.Arac.AracGuncelKM, dbo.Arac.AracMotorNo, 
+                         dbo.Arac.AracSaseNo, dbo.Arac.AracRuhsatSeriNo, dbo.AracRenk.AracRenk_Adi, 
+                         CASE WHEN dbo.Arac.AracKiralamaDurumu = 0 THEN 'BoÅŸta' WHEN dbo.Arac.AracKiralamaDurumu = 1 THEN 'MÃ¼ÅŸteride' WHEN dbo.Arac.AracKiralamaDurumu = 2 THEN 'Pasif AraÃ§' WHEN dbo.Arac.AracKiralamaDurumu = 3 THEN
+                          'ArÄ±zalÄ±/Serviste' END AS KiralamaDurumu, dbo.Arac.Arac_TrafikSigortasiBitisTarihi, dbo.Arac.Arac_KaskoBitisTarihi, dbo.Arac.Arac_KoltukSigortasiBitisTarihi, dbo.Arac.Arac_FenniMuayeneGecerlilikTarihi
+FROM            dbo.Arac INNER JOIN
+                         dbo.AracGrup ON dbo.Arac.AracGrup_ID = dbo.AracGrup.AracGrup_ID INNER JOIN
+                         dbo.AracKasaTipi ON dbo.Arac.AracKasaTipi_ID = dbo.AracKasaTipi.AracKasaTipi_ID INNER JOIN
+                         dbo.AracMarka ON dbo.Arac.AracMarka_ID = dbo.AracMarka.AracMarka_ID INNER JOIN
+                         dbo.AracModel ON dbo.Arac.AracModel_ID = dbo.AracModel.AracModel_ID INNER JOIN
+                         dbo.AracRenk ON dbo.Arac.AracRenk_ID = dbo.AracRenk.AracRenk_ID INNER JOIN
+                         dbo.AracYakitTuru ON dbo.Arac.AracYakitTuru_ID = dbo.AracYakitTuru.AracYakitTuru_ID
+GO
+/****** Object:  Table [dbo].[Cari]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -106,7 +259,7 @@ CREATE TABLE [dbo].[Cari](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Islem]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[Islem]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -141,158 +294,7 @@ CREATE TABLE [dbo].[Islem](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Arac]    Script Date: 29.11.2020 16:49:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Arac](
-	[Arac_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracGrup_ID] [int] NOT NULL,
-	[AracMarka_ID] [int] NOT NULL,
-	[AracModel_ID] [int] NOT NULL,
-	[Arac_Yil] [char](4) NOT NULL,
-	[AracYakitTuru_ID] [int] NOT NULL,
-	[Arac_VitesTipi] [char](10) NOT NULL,
-	[AracKasaTipi_ID] [int] NOT NULL,
-	[AracKlimaDurumu] [int] NOT NULL,
-	[AracPlakaNo] [nvarchar](50) NOT NULL,
-	[AracGuncelKM] [float] NOT NULL,
-	[AracMotorNo] [nvarchar](50) NOT NULL,
-	[AracSaseNo] [nvarchar](50) NOT NULL,
-	[AracRuhsatSeriNo] [nvarchar](50) NOT NULL,
-	[Arac_Status] [int] NOT NULL,
-	[AracRenk_ID] [int] NOT NULL,
-	[AracKiralamaDurumu] [int] NULL,
-	[Arac_TrafikSigortasiBitisTarihi] [date] NULL,
-	[Arac_KaskoBitisTarihi] [date] NULL,
-	[Arac_KoltukSigortasiBitisTarihi] [date] NULL,
-	[Arac_FenniMuayeneGecerlilikTarihi] [date] NULL,
- CONSTRAINT [PK_Arac] PRIMARY KEY CLUSTERED 
-(
-	[Arac_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracGrup]    Script Date: 29.11.2020 16:49:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracGrup](
-	[AracGrup_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracGrup_Adi] [nvarchar](50) NOT NULL,
-	[AracGrup_Status] [int] NOT NULL,
-	[AracGrup_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracGrup] PRIMARY KEY CLUSTERED 
-(
-	[AracGrup_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracRenk]    Script Date: 29.11.2020 16:49:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracRenk](
-	[AracRenk_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracRenk_Adi] [nvarchar](50) NOT NULL,
-	[AracRenk_Status] [int] NOT NULL,
-	[AracRenk_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracRenk] PRIMARY KEY CLUSTERED 
-(
-	[AracRenk_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracKasaTipi]    Script Date: 29.11.2020 16:49:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracKasaTipi](
-	[AracKasaTipi_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracKasaTipi_Adi] [nvarchar](50) NULL,
-	[AracKasaTipi_Status] [int] NOT NULL,
-	[AracKasaTipi_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracKasaTipi] PRIMARY KEY CLUSTERED 
-(
-	[AracKasaTipi_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracYakitTuru]    Script Date: 29.11.2020 16:49:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracYakitTuru](
-	[AracYakitTuru_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracYakitTuru_Adi] [nvarchar](50) NOT NULL,
-	[AracYakitTuru_Status] [int] NOT NULL,
-	[AracYakitTuru_CreateDate] [datetime] NOT NULL,
- CONSTRAINT [PK_AracYakitTuru] PRIMARY KEY CLUSTERED 
-(
-	[AracYakitTuru_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracMarka]    Script Date: 29.11.2020 16:49:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracMarka](
-	[AracMarka_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracMarka_Adi] [nvarchar](50) NULL,
-	[AracMarka_Status] [int] NOT NULL,
-	[AracMarka_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracMarka] PRIMARY KEY CLUSTERED 
-(
-	[AracMarka_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracModel]    Script Date: 29.11.2020 16:49:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracModel](
-	[AracModel_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracMarka_ID] [int] NOT NULL,
-	[AracModel_Adi] [nvarchar](50) NOT NULL,
-	[AracModel_Status] [int] NOT NULL,
-	[AracModel_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracModel] PRIMARY KEY CLUSTERED 
-(
-	[AracModel_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  View [dbo].[viewAracList]    Script Date: 29.11.2020 16:49:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE VIEW [dbo].[viewAracList]
-AS
-SELECT        dbo.Arac.Arac_ID,dbo.Arac.Arac_Status, dbo.AracGrup.AracGrup_Adi, dbo.AracMarka.AracMarka_Adi, dbo.AracModel.AracModel_Adi, dbo.Arac.Arac_Yil, dbo.AracYakitTuru.AracYakitTuru_Adi, dbo.Arac.Arac_VitesTipi, 
-                         dbo.AracKasaTipi.AracKasaTipi_Adi, CASE WHEN dbo.Arac.AracKlimaDurumu = 1 THEN 'Klimalý' ELSE 'Klimasýz' END AS KlimaDurumu, dbo.Arac.AracPlakaNo, dbo.Arac.AracGuncelKM, dbo.Arac.AracMotorNo, 
-                         dbo.Arac.AracSaseNo, dbo.Arac.AracRuhsatSeriNo, dbo.AracRenk.AracRenk_Adi, 
-                         CASE WHEN dbo.Arac.AracKiralamaDurumu = 0 THEN 'Boþta' WHEN dbo.Arac.AracKiralamaDurumu = 1 THEN 'Müþteride' WHEN dbo.Arac.AracKiralamaDurumu = 2 THEN 'Pasif Araç' WHEN dbo.Arac.AracKiralamaDurumu = 3 THEN
-                          'Arýzalý/Serviste' END AS KiralamaDurumu, dbo.Arac.Arac_TrafikSigortasiBitisTarihi, dbo.Arac.Arac_KaskoBitisTarihi, dbo.Arac.Arac_KoltukSigortasiBitisTarihi, dbo.Arac.Arac_FenniMuayeneGecerlilikTarihi
-FROM            dbo.Arac INNER JOIN
-                         dbo.AracGrup ON dbo.Arac.AracGrup_ID = dbo.AracGrup.AracGrup_ID INNER JOIN
-                         dbo.AracKasaTipi ON dbo.Arac.AracKasaTipi_ID = dbo.AracKasaTipi.AracKasaTipi_ID INNER JOIN
-                         dbo.AracMarka ON dbo.Arac.AracMarka_ID = dbo.AracMarka.AracMarka_ID INNER JOIN
-                         dbo.AracModel ON dbo.Arac.AracModel_ID = dbo.AracModel.AracModel_ID INNER JOIN
-                         dbo.AracRenk ON dbo.Arac.AracRenk_ID = dbo.AracRenk.AracRenk_ID INNER JOIN
-                         dbo.AracYakitTuru ON dbo.Arac.AracYakitTuru_ID = dbo.AracYakitTuru.AracYakitTuru_ID
-GO
-/****** Object:  View [dbo].[viewIslem]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  View [dbo].[viewIslem]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -308,7 +310,7 @@ FROM            dbo.Islem INNER JOIN
                          dbo.Cari ON dbo.Islem.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
                          dbo.viewAracList ON dbo.Islem.Arac_ID = dbo.viewAracList.Arac_ID
 GO
-/****** Object:  Table [dbo].[Servis]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[Servis]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -328,7 +330,7 @@ CREATE TABLE [dbo].[Servis](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ServisFirma]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[ServisFirma]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -350,7 +352,7 @@ CREATE TABLE [dbo].[ServisFirma](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewServis]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  View [dbo].[viewServis]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -363,7 +365,7 @@ FROM            dbo.Servis INNER JOIN
                          dbo.ServisFirma ON dbo.Servis.ServisFirma_ID = dbo.ServisFirma.ServisFirma_ID INNER JOIN
                          dbo.viewAracList ON dbo.Servis.Arac_ID = dbo.viewAracList.Arac_ID
 GO
-/****** Object:  View [dbo].[viewAracModel]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  View [dbo].[viewAracModel]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -374,7 +376,7 @@ SELECT        dbo.AracModel.AracModel_ID, dbo.AracModel.AracMarka_ID, dbo.AracMa
 FROM            dbo.AracModel INNER JOIN
                          dbo.AracMarka ON dbo.AracModel.AracMarka_ID = dbo.AracMarka.AracMarka_ID
 GO
-/****** Object:  Table [dbo].[CariEhliyet]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[CariEhliyet]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -396,7 +398,7 @@ CREATE TABLE [dbo].[CariEhliyet](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[EhliyetSinif]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[EhliyetSinif]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -412,7 +414,7 @@ CREATE TABLE [dbo].[EhliyetSinif](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[KanGrubu]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[KanGrubu]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -428,21 +430,21 @@ CREATE TABLE [dbo].[KanGrubu](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewCariEhliyet]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  View [dbo].[viewCariEhliyet]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE VIEW [dbo].[viewCariEhliyet]
 AS
-SELECT        dbo.CariEhliyet.CariEhliyet_ID, dbo.CariEhliyet.Cari_ID, dbo.Cari.Cari_AdSoyad, dbo.CariEhliyet.CariEhliyet_VerilisTarihi, dbo.CariEhliyet.CariEhliyet_GecerlilikTarihi, dbo.CariEhliyet.CariEhliyet_DogumYeri, 
-                         dbo.CariEhliyet.CariEhliyet_EhliyetNumarasi, dbo.EhliyetSinif.EhliyetSinif_Adi, dbo.KanGrubu.KanGrubu_Adi, dbo.CariEhliyet.CariEhliyet_Status
-FROM            dbo.CariEhliyet INNER JOIN
-                         dbo.Cari ON dbo.CariEhliyet.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
-                         dbo.EhliyetSinif ON dbo.CariEhliyet.EhliyetSinif_ID = dbo.EhliyetSinif.EhliyetSinif_ID INNER JOIN
-                         dbo.KanGrubu ON dbo.CariEhliyet.KanGrubu_ID = dbo.KanGrubu.KanGrubu_ID
+SELECT dbo.CariEhliyet.CariEhliyet_ID, dbo.CariEhliyet.Cari_ID, dbo.Cari.Cari_AdSoyad, CONVERT(varchar, dbo.CariEhliyet.CariEhliyet_VerilisTarihi, 104) AS VerilisTarihi, CONVERT(varchar, dbo.CariEhliyet.CariEhliyet_GecerlilikTarihi, 104) AS GecerlilikTarihi, 
+             dbo.CariEhliyet.CariEhliyet_DogumYeri, dbo.CariEhliyet.CariEhliyet_EhliyetNumarasi, dbo.EhliyetSinif.EhliyetSinif_Adi, dbo.KanGrubu.KanGrubu_Adi, dbo.CariEhliyet.CariEhliyet_Status
+FROM   dbo.CariEhliyet INNER JOIN
+             dbo.Cari ON dbo.CariEhliyet.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
+             dbo.EhliyetSinif ON dbo.CariEhliyet.EhliyetSinif_ID = dbo.EhliyetSinif.EhliyetSinif_ID INNER JOIN
+             dbo.KanGrubu ON dbo.CariEhliyet.KanGrubu_ID = dbo.KanGrubu.KanGrubu_ID
 GO
-/****** Object:  Table [dbo].[CariSehir]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[CariSehir]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -458,7 +460,7 @@ CREATE TABLE [dbo].[CariSehir](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CariUyruk]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[CariUyruk]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -474,21 +476,21 @@ CREATE TABLE [dbo].[CariUyruk](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewCari]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  View [dbo].[viewCari]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE VIEW [dbo].[viewCari]
 AS
-SELECT        dbo.Cari.Cari_ID, dbo.Cari.Cari_Status, dbo.Cari.Cari_AdSoyad, dbo.CariUyruk.CariUyruk_Adi, dbo.Cari.Cari_IDNumber, CASE WHEN dbo.Cari.Cari_Cinsiyet = 1 THEN 'Erkek' ELSE 'Kadýn' END AS 'Cinsiyet', dbo.Cari.Cari_DogumTarihi, 
-                         dbo.Cari.Cari_EpostaAdresi, dbo.Cari.Cari_Adres1, dbo.Cari.Cari_Adres2, dbo.CariSehir.CariSehir_Adi, dbo.Cari.Cari_MobilTelefon, dbo.Cari.Cari_LokalTelefon, dbo.Cari.Cari_CreateDate
-FROM            dbo.Cari INNER JOIN
-                         dbo.CariSehir ON dbo.Cari.CariSehir_ID = dbo.CariSehir.CariSehir_ID INNER JOIN
-                         dbo.CariUyruk ON dbo.Cari.Cari_UyrukID = dbo.CariUyruk.CariUyruk_ID
+SELECT dbo.Cari.Cari_ID, dbo.Cari.Cari_Status, dbo.Cari.Cari_AdSoyad, dbo.CariUyruk.CariUyruk_Adi, dbo.Cari.Cari_IDNumber, CASE WHEN dbo.Cari.Cari_Cinsiyet = 1 THEN 'Erkek' ELSE 'KadÄ±n' END AS Cinsiyet, dbo.Cari.Cari_DogumTarihi, dbo.Cari.Cari_EpostaAdresi, 
+             dbo.Cari.Cari_Adres1, dbo.Cari.Cari_Adres2, dbo.CariSehir.CariSehir_Adi, dbo.Cari.Cari_MobilTelefon, dbo.Cari.Cari_LokalTelefon, dbo.Cari.Cari_CreateDate, dbo.CariEhliyet.CariEhliyet_ID
+FROM   dbo.Cari INNER JOIN
+             dbo.CariSehir ON dbo.Cari.CariSehir_ID = dbo.CariSehir.CariSehir_ID INNER JOIN
+             dbo.CariUyruk ON dbo.Cari.Cari_UyrukID = dbo.CariUyruk.CariUyruk_ID LEFT OUTER JOIN
+             dbo.CariEhliyet ON dbo.Cari.Cari_ID = dbo.CariEhliyet.Cari_ID
 GO
-/****** Object:  Table [dbo].[EkstraHizmetler]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[EkstraHizmetler]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -505,7 +507,7 @@ CREATE TABLE [dbo].[EkstraHizmetler](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[EkSurucu]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[EkSurucu]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -521,7 +523,7 @@ CREATE TABLE [dbo].[EkSurucu](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[IslemEkstraHizmetler]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[IslemEkstraHizmetler]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -538,7 +540,7 @@ CREATE TABLE [dbo].[IslemEkstraHizmetler](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[IslemTahsilat]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[IslemTahsilat]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -558,7 +560,7 @@ CREATE TABLE [dbo].[IslemTahsilat](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Kullanici]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[Kullanici]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -577,7 +579,7 @@ CREATE TABLE [dbo].[Kullanici](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[KullaniciRolIliskileri]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[KullaniciRolIliskileri]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -592,7 +594,7 @@ CREATE TABLE [dbo].[KullaniciRolIliskileri](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[KullaniciRolTanimlari]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[KullaniciRolTanimlari]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -608,7 +610,7 @@ CREATE TABLE [dbo].[KullaniciRolTanimlari](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Lokasyon]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[Lokasyon]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -625,7 +627,7 @@ CREATE TABLE [dbo].[Lokasyon](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[OdemeTipi]    Script Date: 29.11.2020 16:49:56 ******/
+/****** Object:  Table [dbo].[OdemeTipi]    Script Date: 4.01.2021 01:32:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -643,29 +645,29 @@ CREATE TABLE [dbo].[OdemeTipi](
 GO
 SET IDENTITY_INSERT [dbo].[Arac] ON 
 GO
-INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi]) VALUES (1, 1, 1, 1, N'2010', 1, N'OTOMATÝK  ', 3, 1, N'34 MGM 34', 23000, N'AS7488377 NM 123 000000 761772-A', N'212198237948374', N'A-343412', 1, 1, 0, CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2020-01-01' AS Date))
+INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi]) VALUES (1, 1, 1, 1, N'2010', 1, N'OTOMATÄ°K  ', 3, 1, N'34 MGM 34', 23000, N'AS7488377 NM 123 000000 761772-A', N'212198237948374', N'A-343412', 1, 1, 1, CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2020-01-01' AS Date))
 GO
 INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi]) VALUES (2, 2, 1, 12, N'2012', 1, N'MANUEL    ', 5, 1, N'34 ABC 11', 110909, N'AS7488377 NM 123 000000 761772-A', N'212198237948374', N'A-343412', 1, 2, 0, CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2020-01-01' AS Date))
 GO
-INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi]) VALUES (3, 1, 2, 5, N'2019', 1, N'OTOMATÝK  ', 3, 1, N'34 ZSM 99', 10000, N'AS7488377 NM 123 000000 761772-A', N'212198237948374', N'A-343412', 1, 2, 0, CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2020-01-01' AS Date))
+INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi]) VALUES (3, 1, 2, 5, N'2019', 1, N'OTOMATÄ°K  ', 3, 1, N'34 ZSM 99', 10000, N'AS7488377 NM 123 000000 761772-A', N'212198237948374', N'A-343412', 1, 2, 0, CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2020-01-01' AS Date))
 GO
-INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi]) VALUES (4, 1, 1, 1, N'2010', 1, N'OTOMATÝK  ', 3, 1, N'34 mgm 34', 23000, N'AS7488377 ', N'212198237948374', N'A-343412	', 1, 1, 0, CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2021-02-02' AS Date), CAST(N'2021-01-01' AS Date))
+INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi]) VALUES (4, 1, 1, 1, N'2010', 1, N'OTOMATÄ°K  ', 3, 1, N'34 mgm 34', 23000, N'AS7488377 ', N'212198237948374', N'A-343412	', 1, 1, 0, CAST(N'2021-01-01' AS Date), CAST(N'2021-01-01' AS Date), CAST(N'2021-02-02' AS Date), CAST(N'2021-01-01' AS Date))
 GO
 SET IDENTITY_INSERT [dbo].[Arac] OFF
 GO
 SET IDENTITY_INSERT [dbo].[AracGrup] ON 
 GO
-INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (1, N'Lux Araç', 1, CAST(N'2020-11-24T13:12:01.307' AS DateTime))
+INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (1, N'Lux AraÃ§', 1, CAST(N'2020-11-24T13:12:01.307' AS DateTime))
 GO
-INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (2, N'Ticari Araç', 1, CAST(N'2020-11-24T13:12:06.293' AS DateTime))
+INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (2, N'Ticari AraÃ§', 1, CAST(N'2020-11-24T13:12:06.293' AS DateTime))
 GO
-INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (3, N'Binek Araç', 1, CAST(N'2020-11-24T13:12:11.870' AS DateTime))
+INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (3, N'Binek AraÃ§', 1, CAST(N'2020-11-24T13:12:11.000' AS DateTime))
 GO
-INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (4, N'StationWagon Araç', 1, CAST(N'2020-11-24T13:12:18.293' AS DateTime))
+INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (4, N'StationWagon AraÃ§', 1, CAST(N'2020-11-24T13:12:18.293' AS DateTime))
 GO
-INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (5, N'Cabrio Araç', 1, CAST(N'2020-11-24T13:12:25.043' AS DateTime))
+INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (5, N'Cabrio AraÃ§', 1, CAST(N'2020-11-24T13:12:25.043' AS DateTime))
 GO
-INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (6, N'Özel Þöförlü Araç', 1, CAST(N'2020-11-24T13:12:31.693' AS DateTime))
+INSERT [dbo].[AracGrup] ([AracGrup_ID], [AracGrup_Adi], [AracGrup_Status], [AracGrup_CreateDate]) VALUES (6, N'Ã–zel ÅžÃ¶fÃ¶rlÃ¼ AraÃ§', 1, CAST(N'2020-11-24T13:12:31.693' AS DateTime))
 GO
 SET IDENTITY_INSERT [dbo].[AracGrup] OFF
 GO
@@ -679,7 +681,7 @@ INSERT [dbo].[AracKasaTipi] ([AracKasaTipi_ID], [AracKasaTipi_Adi], [AracKasaTip
 GO
 INSERT [dbo].[AracKasaTipi] ([AracKasaTipi_ID], [AracKasaTipi_Adi], [AracKasaTipi_Status], [AracKasaTipi_CreateDate]) VALUES (4, N'SUV', 1, CAST(N'2020-11-24T13:21:11.760' AS DateTime))
 GO
-INSERT [dbo].[AracKasaTipi] ([AracKasaTipi_ID], [AracKasaTipi_Adi], [AracKasaTipi_Status], [AracKasaTipi_CreateDate]) VALUES (5, N'Minibüs', 1, CAST(N'2020-11-24T13:25:55.040' AS DateTime))
+INSERT [dbo].[AracKasaTipi] ([AracKasaTipi_ID], [AracKasaTipi_Adi], [AracKasaTipi_Status], [AracKasaTipi_CreateDate]) VALUES (5, N'MinibÃ¼s', 1, CAST(N'2020-11-24T13:25:55.040' AS DateTime))
 GO
 SET IDENTITY_INSERT [dbo].[AracKasaTipi] OFF
 GO
@@ -725,7 +727,7 @@ INSERT [dbo].[AracModel] ([AracModel_ID], [AracMarka_ID], [AracModel_Adi], [Arac
 GO
 INSERT [dbo].[AracModel] ([AracModel_ID], [AracMarka_ID], [AracModel_Adi], [AracModel_Status], [AracModel_CreateDate]) VALUES (11, 7, N'Fiesta 1.2', 1, NULL)
 GO
-INSERT [dbo].[AracModel] ([AracModel_ID], [AracMarka_ID], [AracModel_Adi], [AracModel_Status], [AracModel_CreateDate]) VALUES (12, 1, N'VÝTO M', 1, NULL)
+INSERT [dbo].[AracModel] ([AracModel_ID], [AracMarka_ID], [AracModel_Adi], [AracModel_Status], [AracModel_CreateDate]) VALUES (12, 1, N'VÄ°TO M', 1, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[AracModel] OFF
 GO
@@ -737,13 +739,13 @@ INSERT [dbo].[AracRenk] ([AracRenk_ID], [AracRenk_Adi], [AracRenk_Status], [Arac
 GO
 INSERT [dbo].[AracRenk] ([AracRenk_ID], [AracRenk_Adi], [AracRenk_Status], [AracRenk_CreateDate]) VALUES (3, N'KIRMIZI', 1, NULL)
 GO
-INSERT [dbo].[AracRenk] ([AracRenk_ID], [AracRenk_Adi], [AracRenk_Status], [AracRenk_CreateDate]) VALUES (4, N'MAVÝ', 1, NULL)
+INSERT [dbo].[AracRenk] ([AracRenk_ID], [AracRenk_Adi], [AracRenk_Status], [AracRenk_CreateDate]) VALUES (4, N'MAVÄ°', 1, NULL)
 GO
-INSERT [dbo].[AracRenk] ([AracRenk_ID], [AracRenk_Adi], [AracRenk_Status], [AracRenk_CreateDate]) VALUES (5, N'LACÝVERT', 1, NULL)
+INSERT [dbo].[AracRenk] ([AracRenk_ID], [AracRenk_Adi], [AracRenk_Status], [AracRenk_CreateDate]) VALUES (5, N'LACÄ°VERT', 1, NULL)
 GO
 INSERT [dbo].[AracRenk] ([AracRenk_ID], [AracRenk_Adi], [AracRenk_Status], [AracRenk_CreateDate]) VALUES (6, N'SARI', 1, NULL)
 GO
-INSERT [dbo].[AracRenk] ([AracRenk_ID], [AracRenk_Adi], [AracRenk_Status], [AracRenk_CreateDate]) VALUES (7, N'FÜME', 1, NULL)
+INSERT [dbo].[AracRenk] ([AracRenk_ID], [AracRenk_Adi], [AracRenk_Status], [AracRenk_CreateDate]) VALUES (7, N'FÃœME', 1, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[AracRenk] OFF
 GO
@@ -759,55 +761,205 @@ SET IDENTITY_INSERT [dbo].[AracYakitTuru] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Cari] ON 
 GO
-INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (1, N'TOLGA ALTAY', 1, N'22342160594', 1, CAST(N'1976-10-28' AS Date), N'tolga.altay@gmail.com', N'Istanbul', N'Istanbul', 2, N'905301175594', N'902122300909', CAST(N'2020-11-24T13:31:00.143' AS DateTime), 1)
+INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (1, N'TOLGA ALTAY', 1, N'22342160594', 1, CAST(N'1976-10-28' AS Date), N'tolga.altay@gmail.com', N'Istanbul', N'Istanbul', 41, N'905301175594', N'902122300909', CAST(N'2020-11-24T13:31:00.143' AS DateTime), 1)
 GO
-INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (2, N'FIRAT ACIOÐLU', 1, N'50328787123', 1, CAST(N'1980-02-15' AS Date), N'firatacioglu@hotmail.com', N'Istanbul', N'Istanbul', 1, N'905393340909', N'903129008191', CAST(N'2020-11-24T13:31:47.773' AS DateTime), 1)
+INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (2, N'FIRAT ACIOÄžLU', 1, N'50328787123', 1, CAST(N'1980-02-15' AS Date), N'firatacioglu@hotmail.com', N'Istanbul', N'Istanbul', 41, N'905393340909', N'903129008191', CAST(N'2020-11-24T13:31:47.773' AS DateTime), 1)
 GO
-INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (3, N'MURAT YAPICI', 1, N'50328787123', 1, CAST(N'1980-02-15' AS Date), N'firatacioglu@hotmail.com', N'Istanbul', N'Istanbul', 1, N'905393340909', N'903129008191', CAST(N'2020-11-24T13:31:47.773' AS DateTime), 1)
+INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (3, N'MURAT YAPICI', 1, N'50328787123', 1, CAST(N'1980-02-15' AS Date), N'firatacioglu@hotmail.com', N'Istanbul', N'Istanbul', 41, N'905393340909', N'903129008191', CAST(N'2020-11-24T13:31:47.773' AS DateTime), 1)
 GO
-INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (4, N'ÞEBNEM YARGILI', 1, N'92819920019', 2, CAST(N'1984-09-09' AS Date), N'sebnem@yargili.com', N'Istanbul', N'Istanbul', 1, N'905334009090', N'902165609911', CAST(N'2020-11-24T13:33:33.393' AS DateTime), 1)
+INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (4, N'ÅžEBNEM YARGILI', 1, N'92819920019', 2, CAST(N'1984-09-09' AS Date), N'sebnem@yargili.com', N'Istanbul', N'Istanbul', 13, N'905334009090', N'902165609911', CAST(N'2020-11-24T13:33:33.393' AS DateTime), 1)
 GO
-INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (5, N'müþteri 1', 1, N'1234567897', 1, CAST(N'1990-10-28' AS Date), N'musteri@test.com', N'adresi 1', N'adres 2', 2, N'5468666622', NULL, CAST(N'2020-11-29T16:42:21.187' AS DateTime), 1)
+INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (5, N'mÃ¼ÅŸteri 1', 1, N'1234567897', 1, CAST(N'1990-10-28' AS Date), N'musteri@test.com', N'adresi 1', N'adres 2', 13, N'5468666622', NULL, CAST(N'2020-11-29T16:42:21.187' AS DateTime), 1)
 GO
 SET IDENTITY_INSERT [dbo].[Cari] OFF
 GO
 SET IDENTITY_INSERT [dbo].[CariEhliyet] ON 
 GO
-INSERT [dbo].[CariEhliyet] ([CariEhliyet_ID], [Cari_ID], [CariEhliyet_VerilisTarihi], [CariEhliyet_GecerlilikTarihi], [CariEhliyet_VerildigiYer], [CariEhliyet_DogumYeri], [CariEhliyet_EhliyetNumarasi], [EhliyetSinif_ID], [KanGrubu_ID], [CariEhliyet_Status]) VALUES (1, 1, CAST(N'2020-11-12' AS Date), CAST(N'2020-11-19' AS Date), N's', N'11/10/1992', N'as', 2, 1, 1)
+INSERT [dbo].[CariEhliyet] ([CariEhliyet_ID], [Cari_ID], [CariEhliyet_VerilisTarihi], [CariEhliyet_GecerlilikTarihi], [CariEhliyet_VerildigiYer], [CariEhliyet_DogumYeri], [CariEhliyet_EhliyetNumarasi], [EhliyetSinif_ID], [KanGrubu_ID], [CariEhliyet_Status]) VALUES (1, 1, CAST(N'2020-11-12' AS Date), CAST(N'2020-11-19' AS Date), N'BakÄ±rkÃ¶y', N'Malatya', N'ABC 123456', 2, 1, 1)
+GO
+INSERT [dbo].[CariEhliyet] ([CariEhliyet_ID], [Cari_ID], [CariEhliyet_VerilisTarihi], [CariEhliyet_GecerlilikTarihi], [CariEhliyet_VerildigiYer], [CariEhliyet_DogumYeri], [CariEhliyet_EhliyetNumarasi], [EhliyetSinif_ID], [KanGrubu_ID], [CariEhliyet_Status]) VALUES (2, 4, CAST(N'2021-01-01' AS Date), CAST(N'2020-12-31' AS Date), N'Maslak', N'Edremit', N'QAZ 7896635423', 6, 1, 1)
 GO
 SET IDENTITY_INSERT [dbo].[CariEhliyet] OFF
 GO
 SET IDENTITY_INSERT [dbo].[CariSehir] ON 
 GO
-INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (1, N'ANKARA', 1, CAST(N'2020-11-24T13:30:17.307' AS DateTime))
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (8, N'Adana', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
 GO
-INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (2, N'ISTANBUL', 1, CAST(N'2020-11-24T13:30:19.800' AS DateTime))
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (9, N'AdÄ±yaman', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
 GO
-INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (3, N'ÝZMÝR', 1, CAST(N'2020-11-24T13:30:22.210' AS DateTime))
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (10, N'Afyon', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
 GO
-INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (4, N'ADANA', 1, CAST(N'2020-11-24T13:30:24.653' AS DateTime))
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (11, N'AÄŸrÄ±', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
 GO
-INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (5, N'MERSÝN', 1, CAST(N'2020-11-24T13:30:27.590' AS DateTime))
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (12, N'Amasya', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
 GO
-INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (6, N'BALIKESÝR', 1, CAST(N'2020-11-24T13:30:31.917' AS DateTime))
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (13, N'Ankara', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
 GO
-INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (7, N'TRABZON', 1, CAST(N'2020-11-24T13:30:35.970' AS DateTime))
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (14, N'Antalya', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (15, N'Artvin', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (16, N'AydÄ±n', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (17, N'BalÄ±kesir', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (18, N'Bilecik', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (19, N'BingÃ¶l', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (20, N'Bitlis', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (21, N'Bolu', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (22, N'Burdur', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (23, N'Bursa', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (24, N'Ã‡anakkale', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (25, N'Ã‡ankÄ±rÄ±', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (26, N'Ã‡orum', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (27, N'Denizli', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (28, N'DiyarbakÄ±r', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (29, N'Edirne', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (30, N'ElazÄ±ÄŸ', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (31, N'Erzincan', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (32, N'Erzurum', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (33, N'EskiÅŸehir', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (34, N'Gaziantep', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (35, N'Giresun', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (36, N'GÃ¼mÃ¼ÅŸhane', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (37, N'Hakkari', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (38, N'Hatay', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (39, N'Isparta', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (40, N'Mersin', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (41, N'Ä°stanbul', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (42, N'Ä°zmir', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (43, N'Kars', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (44, N'Kastamonu', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (45, N'Kayseri', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (46, N'KÄ±rklareli', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (47, N'KÄ±rÅŸehir', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (48, N'Kocaeli', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (49, N'Konya', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (50, N'KÃ¼tahya', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (51, N'Malatya', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (52, N'Manisa', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (53, N'K.MaraÅŸ', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (54, N'Mardin', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (55, N'MuÄŸla', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (56, N'MuÅŸ', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (57, N'NevÅŸehir', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (58, N'NiÄŸde', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (59, N'Ordu', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (60, N'Rize', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (61, N'Sakarya', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (62, N'Samsun', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (63, N'Siirt', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (64, N'Sinop', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (65, N'Sivas', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (66, N'TekirdaÄŸ', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (67, N'Tokat', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (68, N'Trabzon', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (69, N'Tunceli', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (70, N'ÅžanlÄ±urfa', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (71, N'UÅŸak', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (72, N'Van', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (73, N'Yozgat', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (74, N'Zonguldak', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (75, N'Aksaray', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (76, N'Bayburt', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (77, N'Karaman', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (78, N'KÄ±rÄ±kkale', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (79, N'Batman', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (80, N'ÅžÄ±rnak', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (81, N'BartÄ±n', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (82, N'Ardahan', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (83, N'IÄŸdÄ±r', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (84, N'Yalova', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (85, N'KarabÃ¼k', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (86, N'Kilis', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (87, N'Osmaniye', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
+GO
+INSERT [dbo].[CariSehir] ([CariSehir_ID], [CariSehir_Adi], [CariSehir_Status], [CariSehir_CreateDate]) VALUES (88, N'DÃ¼zce', 1, CAST(N'2021-01-03T19:35:04.703' AS DateTime))
 GO
 SET IDENTITY_INSERT [dbo].[CariSehir] OFF
 GO
 SET IDENTITY_INSERT [dbo].[CariUyruk] ON 
 GO
-INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (1, N'TÜRKÝYE CUMHURÝYETÝ', 1, NULL)
+INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (1, N'TÃœRKÄ°YE CUMHURÄ°YETÄ°', 1, NULL)
 GO
-INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (2, N'AMERÝKA BÝRLEÞÝK DEVLETLERÝ', 1, NULL)
+INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (2, N'AMERÄ°KA BÄ°RLEÅžÄ°K DEVLETLERÄ°', 1, NULL)
 GO
 INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (3, N'ALMANYA', 1, NULL)
 GO
 INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (4, N'FRANSA', 1, NULL)
 GO
-INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (5, N'ÜRDÜN', 1, NULL)
+INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (5, N'ÃœRDÃœN', 1, NULL)
 GO
-INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (6, N'BÝRLEÞÝK KRALLIK', 1, NULL)
+INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (6, N'BÄ°RLEÅžÄ°K KRALLIK', 1, NULL)
 GO
 INSERT [dbo].[CariUyruk] ([CariUyruk_ID], [CariUyruk_Adi], [CariUyruk_Status], [CariUyruk_CreateDate]) VALUES (7, N'URUGUAY', 1, NULL)
 GO
@@ -839,17 +991,17 @@ SET IDENTITY_INSERT [dbo].[EhliyetSinif] OFF
 GO
 SET IDENTITY_INSERT [dbo].[EkstraHizmetler] ON 
 GO
-INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (1, N'BEBEK KOLTUÐU', 45, 1, NULL)
+INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (1, N'BEBEK KOLTUÄžU', 45, 1, NULL)
 GO
-INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (2, N'CD ÇALAR', 19, 1, NULL)
+INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (2, N'CD Ã‡ALAR', 19, 1, NULL)
 GO
-INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (3, N'ÝLAVE SOFOR', 145, 1, NULL)
+INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (3, N'Ä°LAVE SOFOR', 145, 1, NULL)
 GO
-INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (4, N'VALE HÝZMETLERÝ', 100, 1, NULL)
+INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (4, N'VALE HÄ°ZMETLERÄ°', 100, 1, NULL)
 GO
-INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (5, N'DÝGER HÝZMETLER', 60, 1, NULL)
+INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (5, N'DÄ°GER HÄ°ZMETLER', 60, 1, NULL)
 GO
-INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (6, N'BEDELSÝZ', 0, 1, NULL)
+INSERT [dbo].[EkstraHizmetler] ([EkstraHizmetler_ID], [EkstraHizmetler_Adi], [EkstraHizmetler_Ucreti], [EkstraHizmetler_Status], [EkstraHizmetler_CreateDate]) VALUES (6, N'BEDELSÄ°Z', 0, 1, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[EkstraHizmetler] OFF
 GO
@@ -877,9 +1029,29 @@ INSERT [dbo].[Islem] ([Islem_ID], [Islem_Tipi], [Cari_ID], [Arac_ID], [Islem_Bas
 GO
 SET IDENTITY_INSERT [dbo].[Islem] OFF
 GO
+SET IDENTITY_INSERT [dbo].[KanGrubu] ON 
+GO
+INSERT [dbo].[KanGrubu] ([KanGrubu_ID], [KanGrubu_Adi], [KanGrubu_Status], [KanGrubu_CreateDate]) VALUES (1, N'A Rh -', 1, CAST(N'2021-01-01T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[KanGrubu] ([KanGrubu_ID], [KanGrubu_Adi], [KanGrubu_Status], [KanGrubu_CreateDate]) VALUES (2, N'A Rh +', 1, CAST(N'2021-01-04T01:30:46.207' AS DateTime))
+GO
+INSERT [dbo].[KanGrubu] ([KanGrubu_ID], [KanGrubu_Adi], [KanGrubu_Status], [KanGrubu_CreateDate]) VALUES (3, N'B Rh -', 1, CAST(N'2021-01-04T01:31:03.630' AS DateTime))
+GO
+INSERT [dbo].[KanGrubu] ([KanGrubu_ID], [KanGrubu_Adi], [KanGrubu_Status], [KanGrubu_CreateDate]) VALUES (4, N'B Rh +', 1, CAST(N'2021-01-04T01:31:08.313' AS DateTime))
+GO
+INSERT [dbo].[KanGrubu] ([KanGrubu_ID], [KanGrubu_Adi], [KanGrubu_Status], [KanGrubu_CreateDate]) VALUES (5, N'AB Rh -', 1, CAST(N'2021-01-04T01:31:26.577' AS DateTime))
+GO
+INSERT [dbo].[KanGrubu] ([KanGrubu_ID], [KanGrubu_Adi], [KanGrubu_Status], [KanGrubu_CreateDate]) VALUES (6, N'AB Rh +', 1, CAST(N'2021-01-04T01:31:28.870' AS DateTime))
+GO
+INSERT [dbo].[KanGrubu] ([KanGrubu_ID], [KanGrubu_Adi], [KanGrubu_Status], [KanGrubu_CreateDate]) VALUES (7, N'0 Rh -', 1, CAST(N'2021-01-04T01:31:35.670' AS DateTime))
+GO
+INSERT [dbo].[KanGrubu] ([KanGrubu_ID], [KanGrubu_Adi], [KanGrubu_Status], [KanGrubu_CreateDate]) VALUES (8, N'0 Rh +', 1, CAST(N'2021-01-04T01:31:37.583' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[KanGrubu] OFF
+GO
 SET IDENTITY_INSERT [dbo].[Kullanici] ON 
 GO
-INSERT [dbo].[Kullanici] ([Kullanici_ID], [Kullanici_TamAdi], [Kullanici_Adi], [Kullanici_Sifre], [Kullanici_SonGirisZamani], [Kullanici_Status], [Kullanici_CreateDate]) VALUES (1, N'Said Yeter', N'saidyeter', N'123456', CAST(N'2020-11-29T16:38:56.463' AS DateTime), 1, CAST(N'2020-11-28T16:29:04.990' AS DateTime))
+INSERT [dbo].[Kullanici] ([Kullanici_ID], [Kullanici_TamAdi], [Kullanici_Adi], [Kullanici_Sifre], [Kullanici_SonGirisZamani], [Kullanici_Status], [Kullanici_CreateDate]) VALUES (1, N'Said Yeter', N'saidyeter', N'123456', CAST(N'2021-01-04T00:09:44.990' AS DateTime), 1, CAST(N'2020-11-28T16:29:04.990' AS DateTime))
 GO
 SET IDENTITY_INSERT [dbo].[Kullanici] OFF
 GO
@@ -993,39 +1165,39 @@ SET IDENTITY_INSERT [dbo].[KullaniciRolTanimlari] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Lokasyon] ON 
 GO
-INSERT [dbo].[Lokasyon] ([Lokasyon_ID], [Lokasyon_Adi], [Lokasyon_Tipi], [Lokasyon_Status], [Lokasyon_CreateDate]) VALUES (1, N'AVRUPA YAKASI TESLÝMAT MERKEZÝ', 0, 1, CAST(N'2020-11-24T14:05:19.860' AS DateTime))
+INSERT [dbo].[Lokasyon] ([Lokasyon_ID], [Lokasyon_Adi], [Lokasyon_Tipi], [Lokasyon_Status], [Lokasyon_CreateDate]) VALUES (1, N'AVRUPA YAKASI TESLÄ°MAT MERKEZÄ°', 0, 1, CAST(N'2020-11-24T14:05:19.860' AS DateTime))
 GO
-INSERT [dbo].[Lokasyon] ([Lokasyon_ID], [Lokasyon_Adi], [Lokasyon_Tipi], [Lokasyon_Status], [Lokasyon_CreateDate]) VALUES (2, N'ANADOLU YAKASI TESLÝMAT MERKEZÝ', 0, 1, CAST(N'2020-11-24T14:05:26.793' AS DateTime))
+INSERT [dbo].[Lokasyon] ([Lokasyon_ID], [Lokasyon_Adi], [Lokasyon_Tipi], [Lokasyon_Status], [Lokasyon_CreateDate]) VALUES (2, N'ANADOLU YAKASI TESLÄ°MAT MERKEZÄ°', 0, 1, CAST(N'2020-11-24T14:05:26.793' AS DateTime))
 GO
-INSERT [dbo].[Lokasyon] ([Lokasyon_ID], [Lokasyon_Adi], [Lokasyon_Tipi], [Lokasyon_Status], [Lokasyon_CreateDate]) VALUES (3, N'SABÝHA GÖKÇEN HAVALÝMANI TESLÝMAT BÖLGESÝ', 0, 1, CAST(N'2020-11-24T14:05:38.900' AS DateTime))
+INSERT [dbo].[Lokasyon] ([Lokasyon_ID], [Lokasyon_Adi], [Lokasyon_Tipi], [Lokasyon_Status], [Lokasyon_CreateDate]) VALUES (3, N'SABÄ°HA GÃ–KÃ‡EN HAVALÄ°MANI TESLÄ°MAT BÃ–LGESÄ°', 0, 1, CAST(N'2020-11-24T14:05:38.900' AS DateTime))
 GO
-INSERT [dbo].[Lokasyon] ([Lokasyon_ID], [Lokasyon_Adi], [Lokasyon_Tipi], [Lokasyon_Status], [Lokasyon_CreateDate]) VALUES (4, N'ÝSTANBUL HAVALÝMANI TESLÝMAT BÖLGESÝ', 0, 1, CAST(N'2020-11-24T14:05:50.630' AS DateTime))
+INSERT [dbo].[Lokasyon] ([Lokasyon_ID], [Lokasyon_Adi], [Lokasyon_Tipi], [Lokasyon_Status], [Lokasyon_CreateDate]) VALUES (4, N'Ä°STANBUL HAVALÄ°MANI TESLÄ°MAT BÃ–LGESÄ°', 0, 1, CAST(N'2020-11-24T14:05:50.630' AS DateTime))
 GO
 SET IDENTITY_INSERT [dbo].[Lokasyon] OFF
 GO
 SET IDENTITY_INSERT [dbo].[OdemeTipi] ON 
 GO
-INSERT [dbo].[OdemeTipi] ([OdemeTipi_ID], [OdemeTipi_Adi], [OdemeTipi_Status], [OdemeTipi_CreateDate]) VALUES (1, N'NAKÝT', 1, NULL)
+INSERT [dbo].[OdemeTipi] ([OdemeTipi_ID], [OdemeTipi_Adi], [OdemeTipi_Status], [OdemeTipi_CreateDate]) VALUES (1, N'NAKÄ°T', 1, NULL)
 GO
 INSERT [dbo].[OdemeTipi] ([OdemeTipi_ID], [OdemeTipi_Adi], [OdemeTipi_Status], [OdemeTipi_CreateDate]) VALUES (2, N'BANKA HAVALE', 1, NULL)
 GO
-INSERT [dbo].[OdemeTipi] ([OdemeTipi_ID], [OdemeTipi_Adi], [OdemeTipi_Status], [OdemeTipi_CreateDate]) VALUES (3, N'KREDÝ KARTI', 1, NULL)
+INSERT [dbo].[OdemeTipi] ([OdemeTipi_ID], [OdemeTipi_Adi], [OdemeTipi_Status], [OdemeTipi_CreateDate]) VALUES (3, N'KREDÄ° KARTI', 1, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[OdemeTipi] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Servis] ON 
 GO
-INSERT [dbo].[Servis] ([Servis_ID], [Arac_ID], [Servis_ServisZamani], [ServisFirma_ID], [Servis_Notlar], [Servis_Ucreti], [Servis_CreateDate], [Servis_Status]) VALUES (1, 1, CAST(N'2020-01-01' AS Date), 1, N'DÝKKAT ETSÝNLER', 10000, NULL, 1)
+INSERT [dbo].[Servis] ([Servis_ID], [Arac_ID], [Servis_ServisZamani], [ServisFirma_ID], [Servis_Notlar], [Servis_Ucreti], [Servis_CreateDate], [Servis_Status]) VALUES (1, 1, CAST(N'2020-01-01' AS Date), 1, N'DÄ°KKAT ETSÄ°NLER', 10000, NULL, 1)
 GO
-INSERT [dbo].[Servis] ([Servis_ID], [Arac_ID], [Servis_ServisZamani], [ServisFirma_ID], [Servis_Notlar], [Servis_Ucreti], [Servis_CreateDate], [Servis_Status]) VALUES (2, 2, CAST(N'2020-01-01' AS Date), 2, N'BUNA DA DÝKKAT ETSÝNLER', 1000, NULL, 1)
+INSERT [dbo].[Servis] ([Servis_ID], [Arac_ID], [Servis_ServisZamani], [ServisFirma_ID], [Servis_Notlar], [Servis_Ucreti], [Servis_CreateDate], [Servis_Status]) VALUES (2, 2, CAST(N'2020-01-01' AS Date), 2, N'BUNA DA DÄ°KKAT ETSÄ°NLER', 1000, NULL, 1)
 GO
 SET IDENTITY_INSERT [dbo].[Servis] OFF
 GO
 SET IDENTITY_INSERT [dbo].[ServisFirma] ON 
 GO
-INSERT [dbo].[ServisFirma] ([ServisFirma_ID], [ServisFirma_Adi], [ServisFirma_Adres1], [ServisFirma_Adres2], [ServisFirma_Tel1], [ServisFirma_Tel2], [ServisFirma_Email], [ServisFirma_Yetkili], [ServisFirma_CreateDate], [ServisFirma_Status]) VALUES (1, N'MERCEDES USTASI ', N'ISTANBUL', N'ISTANBUL', N'02123220099', N'02129990022', N'FÝRMA@FÝRMA.COM', N'TOLGA MERCEDESCÝ', CAST(N'2020-11-24T00:00:00.000' AS DateTime), 1)
+INSERT [dbo].[ServisFirma] ([ServisFirma_ID], [ServisFirma_Adi], [ServisFirma_Adres1], [ServisFirma_Adres2], [ServisFirma_Tel1], [ServisFirma_Tel2], [ServisFirma_Email], [ServisFirma_Yetkili], [ServisFirma_CreateDate], [ServisFirma_Status]) VALUES (1, N'MERCEDES USTASI ', N'ISTANBUL', N'ISTANBUL', N'02123220099', N'02129990022', N'FÄ°RMA@FÄ°RMA.COM', N'TOLGA MERCEDESCÄ°', CAST(N'2020-11-24T00:00:00.000' AS DateTime), 1)
 GO
-INSERT [dbo].[ServisFirma] ([ServisFirma_ID], [ServisFirma_Adi], [ServisFirma_Adres1], [ServisFirma_Adres2], [ServisFirma_Tel1], [ServisFirma_Tel2], [ServisFirma_Email], [ServisFirma_Yetkili], [ServisFirma_CreateDate], [ServisFirma_Status]) VALUES (2, N'BMW USTASI', N'ISTANBUL', N'ISTANBIL', N'02123332211', N'02129932223', N'FÝRMA@MÝRMA.COM', N'FÝRAT ALMAN EKOLÜ', CAST(N'2020-11-24T00:00:00.000' AS DateTime), 1)
+INSERT [dbo].[ServisFirma] ([ServisFirma_ID], [ServisFirma_Adi], [ServisFirma_Adres1], [ServisFirma_Adres2], [ServisFirma_Tel1], [ServisFirma_Tel2], [ServisFirma_Email], [ServisFirma_Yetkili], [ServisFirma_CreateDate], [ServisFirma_Status]) VALUES (2, N'BMW USTASI', N'ISTANBUL', N'ISTANBIL', N'02123332211', N'02129932223', N'FÄ°RMA@MÄ°RMA.COM', N'FÄ°RAT ALMAN EKOLÃœ', CAST(N'2020-11-24T00:00:00.000' AS DateTime), 1)
 GO
 SET IDENTITY_INSERT [dbo].[ServisFirma] OFF
 GO
@@ -1099,11 +1271,11 @@ ALTER TABLE [dbo].[ServisFirma] ADD  CONSTRAINT [DF_ServisFirma_ServisFirma_Crea
 GO
 ALTER TABLE [dbo].[ServisFirma] ADD  CONSTRAINT [DF_ServisFirma_ServisFirma_Status]  DEFAULT ((1)) FOR [ServisFirma_Status]
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Klimalý 0: Klimasýz' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Arac', @level2type=N'COLUMN',@level2name=N'AracKlimaDurumu'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: KlimalÄ± 0: KlimasÄ±z' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Arac', @level2type=N'COLUMN',@level2name=N'AracKlimaDurumu'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Arac', @level2type=N'COLUMN',@level2name=N'Arac_Status'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 :Boþ 1: Müþteride 2: Pasif Araç 3: Arýzalý/Serviste ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Arac', @level2type=N'COLUMN',@level2name=N'AracKiralamaDurumu'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 :BoÅŸ 1: MÃ¼ÅŸteride 2: Pasif AraÃ§ 3: ArÄ±zalÄ±/Serviste ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Arac', @level2type=N'COLUMN',@level2name=N'AracKiralamaDurumu'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AracGrup', @level2type=N'COLUMN',@level2name=N'AracGrup_Status'
 GO
@@ -1117,9 +1289,9 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pa
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0 : Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AracYakitTuru', @level2type=N'COLUMN',@level2name=N'AracYakitTuru_Status'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'TC Kimlik ve Pasaport Numarasý Girilebilir. Uyruk TC ise numara TC Kimlik numarasýdýr.' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Cari', @level2type=N'COLUMN',@level2name=N'Cari_IDNumber'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'TC Kimlik ve Pasaport NumarasÄ± Girilebilir. Uyruk TC ise numara TC Kimlik numarasÄ±dÄ±r.' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Cari', @level2type=N'COLUMN',@level2name=N'Cari_IDNumber'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Erkek 0: Kadýn' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Cari', @level2type=N'COLUMN',@level2name=N'Cari_Cinsiyet'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Erkek 0: KadÄ±n' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Cari', @level2type=N'COLUMN',@level2name=N'Cari_Cinsiyet'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CariSehir', @level2type=N'COLUMN',@level2name=N'CariSehir_Status'
 GO
@@ -1137,806 +1309,13 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pa
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Kullanici', @level2type=N'COLUMN',@level2name=N'Kullanici_Status'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 : Teslimat Lokasyonu 1: Ýade Lokasyonu 2: Her ikiside' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Lokasyon', @level2type=N'COLUMN',@level2name=N'Lokasyon_Tipi'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 : Teslimat Lokasyonu 1: Ä°ade Lokasyonu 2: Her ikiside' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Lokasyon', @level2type=N'COLUMN',@level2name=N'Lokasyon_Tipi'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Lokasyon', @level2type=N'COLUMN',@level2name=N'Lokasyon_Status'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OdemeTipi', @level2type=N'COLUMN',@level2name=N'OdemeTipi_Status'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ServisFirma', @level2type=N'COLUMN',@level2name=N'ServisFirma_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'yFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 21
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracList'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracList'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "AracModel"
-            Begin Extent = 
-               Top = 6
-               Left = 38
-               Bottom = 193
-               Right = 248
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "AracMarka"
-            Begin Extent = 
-               Top = 6
-               Left = 286
-               Bottom = 136
-               Right = 495
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 9
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracModel'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracModel'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "Cari"
-            Begin Extent = 
-               Top = 15
-               Left = 352
-               Bottom = 309
-               Right = 537
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "CariUyruk"
-            Begin Extent = 
-               Top = 20
-               Left = 82
-               Bottom = 150
-               Right = 286
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "CariSehir"
-            Begin Extent = 
-               Top = 6
-               Left = 575
-               Bottom = 136
-               Right = 774
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 14
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCari'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCari'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "CariEhliyet"
-            Begin Extent = 
-               Top = 6
-               Left = 38
-               Bottom = 269
-               Right = 274
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "Cari"
-            Begin Extent = 
-               Top = 6
-               Left = 312
-               Bottom = 136
-               Right = 497
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "EhliyetSinif"
-            Begin Extent = 
-               Top = 6
-               Left = 535
-               Bottom = 136
-               Right = 745
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "KanGrubu"
-            Begin Extent = 
-               Top = 6
-               Left = 783
-               Bottom = 136
-               Right = 988
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 9
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCariEhliyet'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCariEhliyet'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCariEhliyet'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "Islem"
-            Begin Extent = 
-               Top = 6
-               Left = 38
-               Bottom = 320
-               Right = 282
-            End
-            DisplayFlags = 280
-            TopColumn = 9
-         End
-         Begin Table = "Cari"
-            Begin Extent = 
-               Top = 6
-               Left = 320
-               Bottom = 136
-               Right = 505
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "viewAracList"
-            Begin Extent = 
-               Top = 6
-               Left = 543
-               Bottom = 188
-               Right = 816
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 27
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewIslem'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewIslem'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewIslem'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "Servis"
-            Begin Extent = 
-               Top = 6
-               Left = 38
-               Bottom = 136
-               Right = 232
-            End
-            DisplayFlags = 280
-            TopColumn = 4
-         End
-         Begin Table = "ServisFirma"
-            Begin Extent = 
-               Top = 145
-               Left = 291
-               Bottom = 275
-               Right = 503
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "viewAracList"
-            Begin Extent = 
-               Top = 6
-               Left = 520
-               Bottom = 255
-               Right = 793
-            End
-            DisplayFlags = 280
-            TopColumn = 1
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 9
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewServis'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewServis'
 GO
 USE [master]
 GO

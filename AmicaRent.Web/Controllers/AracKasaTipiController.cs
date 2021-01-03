@@ -10,16 +10,37 @@ using WebApplication.Models;
 namespace WebApplication.Controllers
 {
     public class AracKasaTipiController : RootController
-    {
-        
-
-        // GET: AracKasaTipi
+    { 
         public ActionResult Index()
         {
-            return View(db.AracKasaTipi.Where(x => x.AracKasaTipi_Status == (int)DBStatus.Active).ToList());
+            return View();
         }
 
-        // GET: AracKasaTipi/Details/5
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.AracKasaTipi.Where(x => x.AracKasaTipi_Status == (int)DBStatus.Active);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracKasaTipi_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public ActionResult Details(int? id)
         {
             if (id == null)

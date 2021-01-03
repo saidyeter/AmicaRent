@@ -1,166 +1,173 @@
 ﻿@model AmicaRent.DataAccess.viewAracList
 
-@{ ViewBag.Title = "Details"; }
+@{ ViewBag.Title = "Araç Detay"; }
 
-<h2>Details</h2>
+<div class="form-horizontal">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Araç</h3>
+        </div>
 
-<div>
-    <h4>Arac</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Araç Grubu
-        </dt>
+        <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.AracGrup_Adi)
-        </dd>
+            <dt>
+                Araç Grubu
+            </dt>
 
-        <dt>
-            Araç Markası
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracGrup_Adi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracMarka_Adi)
-        </dd>
+            <dt>
+                Araç Markası
+            </dt>
 
-        <dt>
-            Araç Modeli
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracMarka_Adi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracModel_Adi)
-        </dd>
+            <dt>
+                Araç Modeli
+            </dt>
 
-        <dt>
-            Araç Yılı
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracModel_Adi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Arac_Yil)
-        </dd>
+            <dt>
+                Araç Yılı
+            </dt>
 
-        <dt>
-            Araç Yakıt Türü
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Arac_Yil)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracYakitTuru_Adi)
-        </dd>
+            <dt>
+                Araç Yakıt Türü
+            </dt>
 
-        <dt>
-            Vites Tipi
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracYakitTuru_Adi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Arac_VitesTipi)
-        </dd>
+            <dt>
+                Vites Tipi
+            </dt>
 
-        <dt>
-            Araç Kasa Tipi
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Arac_VitesTipi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracKasaTipi_Adi)
-        </dd>
+            <dt>
+                Araç Kasa Tipi
+            </dt>
 
-        <dt>
-            Klima Durumu
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracKasaTipi_Adi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.KlimaDurumu)
-        </dd>
+            <dt>
+                Klima Durumu
+            </dt>
 
-        <dt>
-            Plaka Numarası
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.KlimaDurumu)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracPlakaNo)
-        </dd>
+            <dt>
+                Plaka Numarası
+            </dt>
 
-        <dt>
-            Güncel KM.
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracPlakaNo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracGuncelKM)
-        </dd>
+            <dt>
+                Güncel KM.
+            </dt>
 
-        <dt>
-            Araç Motor Numarası
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracGuncelKM)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracMotorNo)
-        </dd>
+            <dt>
+                Araç Motor Numarası
+            </dt>
 
-        <dt>
-            Araç Şaşe Numarası
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracMotorNo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracSaseNo)
-        </dd>
+            <dt>
+                Araç Şaşe Numarası
+            </dt>
 
-        <dt>
-            Araç Ruhsat Seri Numarası
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracSaseNo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracRuhsatSeriNo)
-        </dd>
+            <dt>
+                Araç Ruhsat Seri Numarası
+            </dt>
 
-        <dt>
-            Araç Renk
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracRuhsatSeriNo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AracRenk_Adi)
-        </dd>
+            <dt>
+                Araç Renk
+            </dt>
 
-        <dt>
-            Kiralama Durumu
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AracRenk_Adi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.KiralamaDurumu)
-        </dd>
+            <dt>
+                Kiralama Durumu
+            </dt>
 
-        <dt>
-            Trafik Sigortası Bitiş Tarihi
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.KiralamaDurumu)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Arac_TrafikSigortasiBitisTarihi)
-        </dd>
+            <dt>
+                Trafik Sigortası Bitiş Tarihi
+            </dt>
 
-        <dt>
-            Kasko Bitiş Tarihi
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Arac_TrafikSigortasiBitisTarihi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Arac_KaskoBitisTarihi)
-        </dd>
+            <dt>
+                Kasko Bitiş Tarihi
+            </dt>
 
-        <dt>
-            Koltuk Sigortası Bitiş Tarihi
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Arac_KaskoBitisTarihi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Arac_KoltukSigortasiBitisTarihi)
-        </dd>
+            <dt>
+                Koltuk Sigortası Bitiş Tarihi
+            </dt>
 
-        <dt>
-            Fenni Muayene Geçerlilik Tarihi
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Arac_KoltukSigortasiBitisTarihi)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Arac_FenniMuayeneGecerlilikTarihi)
-        </dd>
+            <dt>
+                Fenni Muayene Geçerlilik Tarihi
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Arac_FenniMuayeneGecerlilikTarihi)
+            </dd>
+
+        </dl>
+
+
+
+
+    </div>
 </div>
 <p>
     @Html.ActionLink("Düzenle", "Edit", new { id = Model.Arac_ID }) |
