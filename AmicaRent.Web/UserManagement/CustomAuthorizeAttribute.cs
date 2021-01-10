@@ -1,5 +1,6 @@
 ﻿using AmicaRent.DataAccess;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,7 +26,7 @@ namespace WebApplication.UserManagement
 
             try
             {
-                AmicaRentDBContext db = new AmicaRentDBContext();
+                AmicaRentDBContext db = new AmicaRentDBContext(ConfigurationManager.ConnectionStrings["AmicaRentConnectionString"].ConnectionString);
                 var user = db.Kullanici.FirstOrDefault(x => x.Kullanici_Adi == username);
                 if (user is null)
                 {

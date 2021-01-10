@@ -6,8 +6,8 @@ namespace AmicaRent.DataAccess
 {
     public class AmicaRentDBContext : DbContext
     {//string connectionString
-        public AmicaRentDBContext()
-            : base("data source=.;initial catalog=AmicaRentDB;integrated security=True;")
+        public AmicaRentDBContext(string connectionString)
+            : base(connectionString)
         {
         }
 

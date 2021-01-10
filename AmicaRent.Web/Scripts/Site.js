@@ -1,4 +1,21 @@
-﻿
+﻿$(function () {
+
+    //$.datepicker.setDefaults($.datepicker.regional['tr']);
+
+    //Date picker
+    $('.datepicker').datepicker({
+        autoclose: true,
+        language: "tr",
+        firstDay: 1,
+        format: 'dd-mm-yyyy',  // Date Format used
+
+    })
+
+    $('.select2').select2()
+
+
+})
+
 function makeDatatable(selector, url, columns, drawCallback) {
     $(selector).DataTable({
         "ajax": {
@@ -116,7 +133,7 @@ function makeModelSelect2(selector, url, markaSelector) {
             dataType: 'json',
             type: 'Get',
             data: function (params) {
-                console.log(params.term, $(markaSelector ).val());
+                console.log(params.term, $(markaSelector).val());
                 return {
                     q: params.term,
                     markaId: $(markaSelector).val()

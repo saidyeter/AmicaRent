@@ -16,7 +16,7 @@ namespace WebApplication.Controllers
 {
     public class RootController : Controller
     {
-        public AmicaRentDBContext db = new AmicaRentDBContext();
+        public AmicaRentDBContext db = new AmicaRentDBContext(ConfigurationManager.ConnectionStrings["AmicaRentConnectionString"].ConnectionString);
 
         public JsonResult BaseDatatable<TSource>(IQueryable<TSource> queryableData)
         {
