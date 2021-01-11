@@ -1,0 +1,131 @@
+footer {
+    background-color: #14181c;
+    padding-top: 2rem;
+
+
+
+.footerinfo {
+    color: #fff;
+    font-size: 13px;
+    padding: 0.7rem 0;
+}
+
+.seperator {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #fff;
+
+}
+    .title{
+        text-transform: uppercase;
+        color:#fff;
+        font-weight: 600;
+
+        &::after{
+            content: "";
+            width: 1.8rem;
+            padding-top: 1rem;
+            height: 1px;
+            display: block;
+            border-bottom: 1px solid #fff;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .subtitle{
+        color:#fff;
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 1rem;
+
+    }
+
+    .phoneinfo {
+        color:#fff;
+        font-size: 12px;
+        font-weight: 500;
+        span {
+            font-size: 800;
+        }
+    }
+
+    .social_area{
+        a{
+            color:#fff;
+            font-size: 2.5rem;
+        }
+    }
+
+    .link_area{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+            a {
+                border-top: 1px solid rgb(255 255 255 / 50%);
+                border-bottom: 1px solid rgb(255 255 255 / 50%);
+
+                display: block;
+                padding: 0.6rem 0;
+                color: rgb(255 255 255 / 50%);
+                font-weight: 500;
+                font-size: 12px;
+                &:hover{
+                color: #fff;
+                text-decoration: none;
+                border-color: #fff;
+                }
+            }
+            
+        }
+
+    }
+
+    form {
+        .form_control {
+            width: 100%;
+            height: 40px;
+            border:inherit;
+            padding: 8px 16px;
+            position: relative;
+            font-size: 15px;
+            line-height: 20px;
+            color: #fff;
+            background-color: #434649;
+            outline: none;
+            font-size: 12px;
+
+            &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: #fff;
+
+                opacity: 1; /* Firefox */
+              }
+              
+              &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: #fff;
+
+              }
+              
+              &::-ms-input-placeholder { /* Microsoft Edge */
+                color: #fff;
+
+              }
+
+        }
+
+        button {
+            background-color: #c85555;
+            text-transform: uppercase;
+            border: none;
+            width: 100%;
+            font-size: 12px;
+            padding-top: 0.7rem;
+            padding-bottom: 0.7rem;
+            color: #fff;
+            outline: none;
+            font-weight: 600;
+            margin-bottom: 12rem;
+        }
+    }
+}

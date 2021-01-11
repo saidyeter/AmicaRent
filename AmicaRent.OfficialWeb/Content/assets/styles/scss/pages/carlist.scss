@@ -1,0 +1,132 @@
+.carlist {
+    background-image: url("/content/assets/images/carlist.jpg");
+    background-repeat: no-repeat;
+    background-position: top center;
+    min-height: 330px;
+
+    h1 {
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        margin-top: 3rem;
+        font-size: 54px;
+    }
+
+    .breadcrumb{
+        background: none;
+        color:#fff;
+        li {
+            color:#fff;
+        text-transform: uppercase;
+
+            &::before{
+            color:#fff;
+            }
+        }
+        a{
+            color:#fff;
+        }
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+     }
+
+     
+     
+}
+
+.saerch_car_area {
+    border: 1px solid #c6c6c6;
+    margin-top: 4rem;
+
+    h2{
+        text-transform: uppercase;
+        color: #000;
+        font-weight: 800;
+        background-color: #f2f2f2;
+        font-size: 1rem;
+        text-align: left;
+        padding: 1rem;
+    }
+
+    .carlistsearcharea {
+
+        span.slogan {
+            font-weight: 600;
+            text-transform: uppercase;
+            color:#fff;
+        }
+        h1 {
+            color:#fff;
+            font-weight: 800;
+            font-size: 3rem;
+        }
+
+        a {
+            text-transform: uppercase;
+            color:#fff;
+            text-decoration: none;
+            background-color: #c85555;
+            padding: 1rem;
+            font-weight: 800;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        form {
+            padding: 1rem;
+            
+            button {
+                background-color: #c85555;
+                text-transform: uppercase;
+                border: none;
+                width: 100%;
+                font-size: 12px;
+                padding-top: 0.7rem;
+                padding-bottom: 0.7rem;
+                color: #fff;
+                outline: none;
+            }
+
+            label {
+                font-weight: 600;
+                font-size :12px;
+                color:#000;
+            }
+
+            .form-group {
+                .selectric {
+                    background: #f2f2f2;
+                    border: none;
+                    border-radius: inherit;
+                    span {
+                        color:#000;
+                        font-size:12px;
+                    }
+
+                    i {
+                        color:#b3b3b3;
+                    }
+
+                }
+
+                .selectric-items {
+                    border: none;
+                border-radius: inherit;
+                background: #f2f2f2;
+
+                 
+                    li {
+                        color:#000;
+                        &:hover,&.highlighted {
+                            background: rgb(255 255 255 / 0.40);
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+ }
