@@ -123,29 +123,15 @@ namespace WebApplication.Controllers
             List<AracYakitTuru> aracYakitTuruList = db.AracYakitTuru.Where(x => x.AracYakitTuru_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracYakitTuruList = aracYakitTuruList;
 
-            Dictionary<string, string> vitesTipi = new Dictionary<string, string>();
-            vitesTipi.Add("OTOMATİK", "OTOMATİK");
-            vitesTipi.Add("MANUEL", "MANUEL");
-            ViewBag.VitesTipi = vitesTipi;
 
             List<AracKasaTipi> aracKasaTipiList = db.AracKasaTipi.Where(x => x.AracKasaTipi_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracKasaTipiList = aracKasaTipiList;
 
-            Dictionary<int, string> aracKlimaDurumu = new Dictionary<int, string>();
-            aracKlimaDurumu.Add(1, "Klimalı");
-            aracKlimaDurumu.Add(2, "Klimasız");
-            ViewBag.AracKlimaDurumu = aracKlimaDurumu;
 
             List<AracRenk> aracRenkList = db.AracRenk.Where(x => x.AracRenk_Status == (int)DBStatus.Active).ToList();
             ViewBag.AracRenkList = aracRenkList;
 
 
-            Dictionary<int, string> aracKiralamaDurumu = new Dictionary<int, string>();
-            aracKiralamaDurumu.Add(0, "Boşta");
-            aracKiralamaDurumu.Add(1, "Müşteride");
-            aracKiralamaDurumu.Add(2, "Pasif Araç");
-            aracKiralamaDurumu.Add(3, "Arızalı/Serviste");
-            ViewBag.AracKiralamaDurumu = aracKiralamaDurumu;
 
 
 

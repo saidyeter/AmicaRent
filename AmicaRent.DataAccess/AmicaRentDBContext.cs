@@ -13,9 +13,7 @@ namespace AmicaRent.DataAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //throw new UnintentionalCodeFirstException();
             modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
-
         }
 
         public virtual DbSet<Arac> Arac { get; set; }
@@ -25,6 +23,9 @@ namespace AmicaRent.DataAccess
         public virtual DbSet<AracModel> AracModel { get; set; }
         public virtual DbSet<AracRenk> AracRenk { get; set; }
         public virtual DbSet<AracYakitTuru> AracYakitTuru { get; set; }
+        public virtual DbSet<AracKredi> AracKredi { get; set; }
+        public virtual DbSet<Banka> Banka { get; set; }
+        public virtual DbSet<BankaBilgileri> BankaBilgileri { get; set; }
         public virtual DbSet<Cari> Cari { get; set; }
         public virtual DbSet<CariEhliyet> CariEhliyet { get; set; }
         public virtual DbSet<CariSehir> CariSehir { get; set; }

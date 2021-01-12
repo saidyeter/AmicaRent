@@ -30,5 +30,6 @@ namespace AmicaRent.DataAccess
         public double? Islem_KalanBorc { get; set; }
         public int Islem_Status { get; set; }
         public DateTime? Islem_CreateDate { get; set; }
+        public int? Islem_EkSurucuCari_ID { get; set; }
     }
 }

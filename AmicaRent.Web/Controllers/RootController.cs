@@ -66,14 +66,31 @@ namespace WebApplication.Controllers
             return Json(new { items = list }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult AracList(string q = "")
+        {
+            return BaseSelect2List(db.viewAracList, x => x.AracMarka_Adi.Contains(q) || x.AracModel_Adi.Contains(q), c => new Select2Model { id = c.Arac_ID.ToString(), text = c.AracMarka_Adi + " " + c.AracModel_Adi + " " + c.AracPlakaNo });
+        }
         public ActionResult CariList(string q = "")
         {
-            return BaseSelect2List(db.Cari, x => x.Cari_AdSoyad.Contains(q) , c => new Select2Model { id = c.Cari_ID.ToString(), text = c.Cari_AdSoyad });
+            return BaseSelect2List(db.Cari, x => x.Cari_AdSoyad.Contains(q), c => new Select2Model { id = c.Cari_ID.ToString(), text = c.Cari_AdSoyad });
         }
 
         public ActionResult ModelList(string q = "", int markaId = 0)
         {
             return BaseSelect2List(db.AracModel, x => x.AracMarka_ID == markaId && x.AracModel_Adi.Contains(q), c => new Select2Model { id = c.AracModel_ID.ToString(), text = c.AracModel_Adi });
+        }
+        public ActionResult LokasyonList(string q = "")
+        {
+            return BaseSelect2List(db.Lokasyon, x => x.Lokasyon_Adi.Contains(q), c => new Select2Model { id = c.Lokasyon_ID.ToString(), text = c.Lokasyon_Adi });
+        }
+
+        public JsonResult CariDetails(int c_id)
+        {
+            var cari = db.Cari.Find(c_id);
+            return Json(new
+            {
+                cari
+            });
         }
     }
     public class Select2Model

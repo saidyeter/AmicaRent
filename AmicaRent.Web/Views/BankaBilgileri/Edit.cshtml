@@ -1,0 +1,82 @@
+﻿@using AmicaRent.DataAccess
+@model BankaBilgileri
+
+@{
+    ViewBag.Title = "Banka Bilgisi Düzenle";
+    List<Banka> bankaList = ViewBag.BankaList;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Banka Bilgisi</h3>
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m=>m.BankaBilgileri_ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BankaBilgileri_BankaID, "Banka", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-9">
+                    @Html.DropDownListFor(model => model.BankaBilgileri_BankaID, new SelectList(bankaList, "Banka_ID", "Banka_Adi"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BankaBilgileri_BankaID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BankaBilgileri_HesapSahibi, "Hesap Sahibi", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.BankaBilgileri_HesapSahibi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BankaBilgileri_HesapSahibi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BankaBilgileri_HesapKodu, "Hesap Kodu", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.BankaBilgileri_HesapKodu, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BankaBilgileri_HesapKodu, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BankaBilgileri_SubeKodu, "Şube Kodu", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.BankaBilgileri_SubeKodu, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BankaBilgileri_SubeKodu, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BankaBilgileri_IBAN, "IBAN", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.BankaBilgileri_IBAN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BankaBilgileri_IBAN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Onayla</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
+</div>
+
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-system');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-system-tanim-BankaBilgileri');
+        subMenuItem.classList.add('active');
+    });
+</script>

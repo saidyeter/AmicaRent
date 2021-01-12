@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AracModelController.cs" />
     <Compile Include="Controllers\AracRenkController.cs" />
     <Compile Include="Controllers\AracYakitTuruController.cs" />
+    <Compile Include="Controllers\BankaBilgileriController.cs" />
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\CariEhliyetController.cs" />
     <Compile Include="Controllers\CariUyrukController.cs" />
@@ -891,6 +892,9 @@
     <Content Include="Views\Shared\_LeftMenuPartial.cshtml" />
     <Content Include="Views\Arac\IndexAvailable.cshtml" />
     <Content Include="Views\Arac\IndexReserved.cshtml" />
+    <Content Include="Views\BankaBilgileri\Create.cshtml" />
+    <Content Include="Views\BankaBilgileri\Index.cshtml" />
+    <Content Include="Views\BankaBilgileri\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

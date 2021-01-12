@@ -52,10 +52,13 @@
     <Compile Include="Model\Arac.cs" />
     <Compile Include="Model\AracGrup.cs" />
     <Compile Include="Model\AracKasaTipi.cs" />
+    <Compile Include="Model\AracKredi.cs" />
     <Compile Include="Model\AracMarka.cs" />
     <Compile Include="Model\AracModel.cs" />
     <Compile Include="Model\AracRenk.cs" />
     <Compile Include="Model\AracYakitTuru.cs" />
+    <Compile Include="Model\Banka.cs" />
+    <Compile Include="Model\BankaBilgileri.cs" />
     <Compile Include="Model\Cari.cs" />
     <Compile Include="Model\CariEhliyet.cs" />
     <Compile Include="Model\CariSehir.cs" />

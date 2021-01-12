@@ -39,22 +39,6 @@ namespace WebApplication.Controllers
         // GET: Islem/Create
         public ActionResult Create()
         {
-
-            List<Cari> cariList = db.Cari.ToList();
-            ViewBag.CariList = cariList;
-
-            Dictionary<int, string> aracList = new Dictionary<int, string>();
-            foreach (var arac in db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active).ToList())
-            {
-                aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
-            }
-            ViewBag.AracList = aracList;
-
-            Dictionary<int, string> islemTipi = new Dictionary<int, string>();
-            islemTipi.Add(1, "Rezervasyon");
-            islemTipi.Add(2, "Kiralama");
-            ViewBag.IslemTipi = islemTipi;
-
             return View();
         }
 
@@ -63,7 +47,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Islem_ID,Islem_Tipi,Cari_ID,Arac_ID,Islem_BaslangicTarihi,Islem_BitisTarihi,Islem_IlkKM,Islem_SonKM,Islem_YakitDurumu,Islem_TeslimatLokasyonID,Islem_IadeLokasyonID,Islem_GunlukUcret,Islem_GunlukKMSiniri,Islem_ToplamKiralamaUcreti,Islem_ToplamKMAsimUcreti,Islem_ToplamEkstraHizmetler,Islem_ToplamValeHizmetleri,Islem_ToplamDigerUcretler,Islem_IskontoOrani,Islem_TahsilEdilen,Islem_KalanBorc,Islem_Status,Islem_CreateDate")] Islem islem)
+        public ActionResult Create(Islem islem)
         {
             if (ModelState.IsValid)
             {

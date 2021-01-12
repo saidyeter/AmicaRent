@@ -16,6 +16,7 @@ namespace AmicaRent.DataAccess
         public string Arac_VitesTipi { get; set; }
         public int AracKasaTipi_ID { get; set; }
         public int AracKlimaDurumu { get; set; }
+        public int Arac_AsimUcreti { get; set; }
         public string AracPlakaNo { get; set; }
         public double AracGuncelKM { get; set; }
         public string AracMotorNo { get; set; }

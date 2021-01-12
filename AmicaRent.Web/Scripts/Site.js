@@ -11,10 +11,39 @@
 
     })
 
-    $('.select2').select2()
+    //$('.select2').select2()
 
 
 })
+
+function onCustomerChanged() {
+    selector = "#Cari_ID";
+    url = "/Root/CariDetails";
+    tckn_selector = "#cari_tckn";
+    telno_selector = "#cari_telno";
+    ehliyetno_selector = "#cari_ehliyetno";
+    mail_selector = "#cari_mail";
+    adres_selector = "#cari_adres";
+    $(selector).change(function () {
+        console.log("cari changed");
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                c_id : $(selector).val()
+            },
+            success: function (result) {
+                $(tckn_selector).html(result.cari.Cari_IDNumber)
+                $(telno_selector).html(result.cari.Cari_MobilTelefon)
+                $(ehliyetno_selector).html("yok")
+                $(mail_selector).html(result.cari.Cari_EpostaAdresi)
+                $(adres_selector).html(result.cari.Cari_Adres1)
+
+            }
+        });
+    });
+
+}
 
 function makeDatatable(selector, url, columns, drawCallback) {
     $(selector).DataTable({
@@ -65,10 +94,8 @@ function makeDatatable(selector, url, columns, drawCallback) {
 }
 
 
-
-
-
 function makeSelect2(selector, url) {
+    //console.log("makeSelect2", selector,url);
     $(selector).select2({
         //geri açılacak
         //minimumInputLength: 2,
@@ -76,13 +103,16 @@ function makeSelect2(selector, url) {
         ajax: {
             url: url,
             dataType: 'json',
-            type: 'Get',
+            type: 'GET',
             data: function (params) {
+                //console.log(params);
                 return {
                     q: params.term
                 };
             },
             processResults: function (data, params) {
+                //console.log(data);
+                //console.log(params);
                 return {
                     results: data.items
                 }

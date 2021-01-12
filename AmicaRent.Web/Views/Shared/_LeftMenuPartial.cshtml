@@ -86,10 +86,10 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                 </a>
                 <ul class="treeview-menu">
                     @if (roleList.Contains("'OdemeTipi'")) {<li id="solmenu-system-tanim-OdemeTipi"><a href="@Url.Action("Create", "OdemeTipi")"><i class="fa fa-money"></i> Ödeme Türleri Tanımlama</a></li>}
-                    @if (roleList.Contains("'")) {<li id="solmenu-system-blank"><a href="#"><i class="fa fa-turkish-lira"></i> Banka Bilgileri Tanımlama</a></li> }
-                    @if (roleList.Contains("'")) {<li id="solmenu-system-blank"><a href="#"><i class="fa fa-list"></i> Şube Tanımlama</a></li> }
                     @if (roleList.Contains("'Kullanici'")) {<li id="solmenu-system-tanim-Kullanici"><a href="@Url.Action("Create", "Kullanici")"><i class="fa fa-user-md"></i> Kullanıcı Tanımlama</a></li> }
                     @if (roleList.Contains("'Kullanici'")) {<li id="solmenu-system-liste-Kullanici"><a href="@Url.Action("Index", "Kullanici")"><i class="fa fa-users"></i> Kullanıcı Listesi</a></li> }
+                    @if (roleList.Contains("'BankaBilgileri'")) {<li id="solmenu-system-liste-BankaBilgileri"><a href="@Url.Action("Index", "BankaBilgileri")"><i class="fa fa-turkish-lira"></i> Banka Bilgileri</a></li> }
+                    @if (roleList.Contains("'BankaBilgileri'")) {<li id="solmenu-system-tanim-BankaBilgileri"><a href="@Url.Action("Create", "BankaBilgileri")"><i class="fa fa-turkish-lira"></i> Banka Bilgileri Tanımlama</a></li> }
                 </ul>
             </li>
 
