@@ -1,101 +1,89 @@
-﻿@model IEnumerable<AmicaRent.DataAccess.viewIslem>
+﻿@{ ViewBag.Title = "İşlem"; }
 
-@{ ViewBag.Title = "Index"; }
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <div class="box-header">
+                <a class="btn btn-default btn-sm" href="@Url.Action("Create")">
+                    <i class="fa fa-plus"></i> Yeni
+                </a>
+            </div>
+            <div class="box-body">
+                <table id="dt" class="table table-hover table-striped" style="width:100%">
+                    <thead class="blue-grey lighten-4">
+                        <tr>
+                            <th>Durum</th>
+                            <th>Cari Adı Soyadı</th>
+                            <th>Araç Marka / Model</th>
+                            <th>Plaka</th>
+                            <th>Başlangıç - Bitiş Tarihi</th>
+                            <th>Günlük Ücret</th>
+                            <th>Tahsil Edilen</th>
+                            <th>Kalan</th>
+                            <th width="10%"></th>
+                        </tr>
+                    </thead>
 
-<h2>Index</h2>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-
-    <tr>
-        <th>
-            İşlem Tipi
-        </th>
-        <th>
-            Cari Adı Soyadı
-        </th>
-        <th>
-            Araç Marka / Model
-        </th>
-        <th>
-            Başlangıç Tarihi
-        </th>
-        <th>
-            Bitiş Tarihi
-        </th>
-        <th>
-            İlk KM.
-        </th>
-        <th>
-            Son KM.
-        </th>
-        <th>
-            Yakıt Durumu
-        </th>
-        <th>
-            Teslimat Lokasyonu
-        </th>
-        <th>
-            İade Lokasyonu
-        </th>
-        <th>
-            Durum
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.IslemTipim)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Cari_AdSoyad)
-    </td>
-    <td>
-        @item.AracGrup_Adi @item.AracMarka_Adi @item.AracModel_Adi @item.Arac_Yil
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Islem_BaslangicTarihi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Islem_BitisTarihi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Islem_IlkKM)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Islem_SonKM)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Islem_YakitDurumu)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Islem_TeslimatLokasyonID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Islem_IadeLokasyonID)
-    </td>
-
-    <td>
-        @Html.DisplayFor(modelItem => item.Islem_Status)
-    </td>
-
-    <td>
-        @Html.ActionLink("Düzenle", "Edit", new { id = item.Islem_ID }) |
-        @Html.ActionLink("Detaylar", "Details", new { id = item.Islem_ID }) |
-
-    </td>
-</tr>}
-</table>
-
-<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
         var menuItem = document.querySelector('#solmenu-operation');
         menuItem.classList.add('active');
         var subMenuItem = menuItem.querySelector('#solmenu-operation-liste');
         subMenuItem.classList.add('active');
-    });</script>
+
+        var columns = [
+            { "data": "IslemTipim", "name": "IslemTipim", "autoWidth": true },
+            { "data": "Cari_AdSoyad", "name": "Cari_AdSoyad", "autoWidth": true },
+
+            {
+                "data": "AracGrup_Adi",
+                "render": function (data, type, row) {
+                    return row.AracGrup_Adi + " " + row.AracMarka_Adi + " " + row.AracModel_Adi + " (" + row.Arac_Yil + ")";
+                }
+            },
+            { "data": "AracPlakaNo", "name": "AracPlakaNo", "autoWidth": true },
+            {
+                "data": "BaslangicTarihi",
+                "render": function (data, type, row) {
+                    return row.BaslangicTarihi + " - " + row.BitisTarihi;
+                }
+            },
+
+            { "data": "Islem_GunlukUcret", "name": "Islem_GunlukUcret", "autoWidth": true },
+            { "data": "Islem_TahsilEdilen", "name": "Islem_TahsilEdilen", "autoWidth": true },
+            { "data": "Islem_KalanBorc", "name": "Islem_KalanBorc", "autoWidth": true },
+
+            {
+                "data": "Islem_ID",
+                "render": function (data, type, row) {
+                    if (row.Islem_Tipi === 1) {
+                        return "<a class='fa fa-angle-double-right task-button' title='Rezervasyondan Kiralamaya' href='/Islem/Hire/" + row.Islem_ID + "'></a>" +
+                            " <a class='fa fa-close task-button' title='Rezervasyon İptal' href='/Islem/CancelReservation/" + row.Islem_ID + "'></a>";
+                    }
+                    else if (row.Islem_Tipi === 2) {
+                        return "";
+                    }
+                    else if (row.Islem_Tipi === 3) {
+                        return "<a class='fa fa-check-circle-o task-button' title='Kiralama Bitti' href='/Islem/Done/" + row.Islem_ID + "'></a>";
+                    }
+                    else {
+
+                        return "";
+                    }
+                }
+            },
+        ];
+
+        var selector = "#dt";
+        var url = "/Islem/LoadDt";
+        makeDatatable(selector, url, columns, afterDatatabled);
+    });
+</script>
+
+

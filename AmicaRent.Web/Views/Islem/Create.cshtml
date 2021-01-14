@@ -1,411 +1,411 @@
-﻿@using AmicaRent.DataAccess
-@model AmicaRent.DataAccess.Islem
-
+﻿@model WebApplication.Models.ViewModels.IslemViewModel
 @{
     ViewBag.Title = "Yeni Islem";
 
     Dictionary<int, string> islemTipi = new Dictionary<int, string>();
     islemTipi.Add(1, "Rezervasyon");
-    islemTipi.Add(2, "Kiralama");
+    islemTipi.Add(3, "Kiralama");
 
 
 }
 
-@{
-    using (Html.BeginForm())
-    {
-        <div class="row">
-            <div class="col-xs-12">
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Islem_Tipi, "İşlem Tipi", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.Islem_Tipi, new SelectList(islemTipi, "Key", "Value"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Islem_Tipi, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-4">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Islem_Tipi, "İşlem Tipi", htmlAttributes: new { @class = "control-label" })
-                    @Html.DropDownListFor(model => model.Islem_Tipi, new SelectList(islemTipi, "Key", "Value"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Islem_Tipi, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="col-xs-4">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Cari_ID, "Müşteri Seçiniz", htmlAttributes: new { @class = "control-label" })
-                    <select id="Cari_ID" name="Cari_ID" class="form-control"></select>
-                    @Html.ValidationMessageFor(model => model.Cari_ID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="col-xs-4">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Arac_ID, "Araç Seçiniz", htmlAttributes: new { @class = "control-label" })
-                    <select id="Arac_ID" name="Arac_ID" class="form-control"></select>
-                    @Html.ValidationMessageFor(model => model.Arac_ID, "", new { @class = "text-danger" })
-                </div>
+        <div class="col-xs-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cari_ID, "Müşteri Seçiniz", htmlAttributes: new { @class = "control-label" })
+                <select id="Cari_ID" name="Cari_ID" class="form-control"></select>
+                @Html.ValidationMessageFor(model => model.Cari_ID, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4">
+        <div class="col-xs-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Arac_ID, "Araç Seçiniz", htmlAttributes: new { @class = "control-label" })
+                <select id="Arac_ID" name="Arac_ID" class="form-control"></select>
+                @Html.ValidationMessageFor(model => model.Arac_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
 
-                <div class="row">
+    <div class="row">
+        <div class="col-md-4">
 
-                    <div class="col-xs-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">
-                                    İşlem Tarihleri
+            <div class="row">
 
-                                </h3>
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                İşlem Tarihleri
 
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_BaslangicTarihi, "Başlangıç Zamanı", htmlAttributes: new { @class = "control-label" })
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                @Html.EditorFor(model => model.Islem_BaslangicTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
-                                                @Html.ValidationMessageFor(model => model.Islem_BaslangicTarihi, "", new { @class = "text-danger" })
+                            </h3>
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_BaslangicTarihi, "Başlangıç Zamanı", htmlAttributes: new { @class = "control-label" })
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
                                             </div>
-
-
+                                            @Html.EditorFor(model => model.Islem_BaslangicTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
+                                            @Html.ValidationMessageFor(model => model.Islem_BaslangicTarihi, "", new { @class = "text-danger" })
                                         </div>
+
+
                                     </div>
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_BitisTarihi, "Bitiş Zamanı", htmlAttributes: new { @class = "control-label" })
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                @Html.EditorFor(model => model.Islem_BitisTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
-                                                @Html.ValidationMessageFor(model => model.Islem_BitisTarihi, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_BitisTarihi, "Bitiş Zamanı", htmlAttributes: new { @class = "control-label" })
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
                                             </div>
+                                            @Html.EditorFor(model => model.Islem_BitisTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
+                                            @Html.ValidationMessageFor(model => model.Islem_BitisTarihi, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box -->
+                        <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
+                </div>
 
-                    <div class="col-xs-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">
-                                    Lokasyon
-                                </h3>
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                Lokasyon
+                            </h3>
 
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_TeslimatLokasyonID, "Teslim Noktası Seçiniz", htmlAttributes: new { @class = "control-label" })
-                                            <select id="Islem_TeslimatLokasyonID" name="Islem_TeslimatLokasyonID" class="form-control"></select>
-                                            @Html.ValidationMessageFor(model => model.Islem_TeslimatLokasyonID, "", new { @class = "text-danger" })
-                                        </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_TeslimatLokasyonID, "Teslim Noktası Seçiniz", htmlAttributes: new { @class = "control-label" })
+                                        <select id="Islem_TeslimatLokasyonID" name="Islem_TeslimatLokasyonID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.Islem_TeslimatLokasyonID, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_IadeLokasyonID, "İade Noktası Seçiniz", htmlAttributes: new { @class = "control-label" })
-                                            <select id="Islem_IadeLokasyonID" name="Islem_IadeLokasyonID" class="form-control"></select>
-                                            @Html.ValidationMessageFor(model => model.Islem_IadeLokasyonID, "", new { @class = "text-danger" })
-                                        </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_IadeLokasyonID, "İade Noktası Seçiniz", htmlAttributes: new { @class = "control-label" })
+                                        <select id="Islem_IadeLokasyonID" name="Islem_IadeLokasyonID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.Islem_IadeLokasyonID, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box -->
+                        <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
+                </div>
 
-                    <div class="col-xs-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">
-                                    Kilometre Bilgileri
-                                </h3>
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                Kilometre Bilgileri
+                            </h3>
 
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_IlkKM, "Çıkış KM", htmlAttributes: new { @class = "control-label" })
-                                            @Html.EditorFor(model => model.Islem_IlkKM, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_IlkKM, "", new { @class = "text-danger" })
-                                        </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_IlkKM, "Çıkış KM", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Islem_IlkKM, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Islem_IlkKM, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_GunlukKMSiniri, "KM Sınırı / Gün", htmlAttributes: new { @class = "control-label" })
-                                            @Html.EditorFor(model => model.Islem_GunlukKMSiniri, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_GunlukKMSiniri, "", new { @class = "text-danger" })
-                                        </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_GunlukKMSiniri, "KM Sınırı / Gün", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Islem_GunlukKMSiniri, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Islem_GunlukKMSiniri, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_SonKM, "Varış KM", htmlAttributes: new { @class = "control-label" })
-                                            @Html.EditorFor(model => model.Islem_SonKM, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_SonKM, "", new { @class = "text-danger" })
-                                        </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @*@Html.LabelFor(model => model.Islem_SonKM, "Varış KM", htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Islem_SonKM, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Islem_SonKM, "", new { @class = "text-danger" })*@
+                                        @Html.LabelFor(model => model.Islem_YakitDurumu, "Yakıt Durumu", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Islem_YakitDurumu, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Islem_YakitDurumu, "", new { @class = "text-danger" })
                                     </div>
+                                </div>
 
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Aşım Ücreti / KM</label><br />
-                                            <label style="font-weight:200;" id="arac_asimucreti">15TL</label>
-                                        </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Aşım Ücreti / KM</label><br />
+                                        <label style="font-weight:200;" id="arac_asimucreti">~</label>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box -->
+                        <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
+                </div>
 
 
-                    <div class="col-xs-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">
-                                    Fotoğraf İşlemleri
-                                </h3>
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                Fotoğraf İşlemleri
+                            </h3>
 
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <input type="file" id="aracResimleri" name="aracResimleri" multiple class="form-control" accept="image/*,video/*" />
                                 </div>
                             </div>
-                            <!-- /.box-body -->
+                            <div class="row">
+                                <div class="col-xs-12" id="filePreview"></div>
+                            </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.box-body -->
                     </div>
-
+                    <!-- /.box -->
                 </div>
 
             </div>
-            <div class="col-md-8">
-                <div class="row">
 
-                    <div class="col-xs-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">
-                                    Müşteri Bilgileri
-                                </h3>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
 
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label">T.C. Kimlik No</label><br />
-                                            <label style="font-weight:200;" id="cari_tckn">~</label>
-                                        </div>
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                Müşteri Bilgileri
+                            </h3>
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label">T.C. Kimlik No</label><br />
+                                        <label style="font-weight:200;" id="cari_tckn">~</label>
                                     </div>
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Telefon Numarası</label><br />
-                                            <label style="font-weight:200;" id="cari_telno">~</label>
-                                        </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Telefon Numarası</label><br />
+                                        <label style="font-weight:200;" id="cari_telno">~</label>
                                     </div>
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Ehliyet No:</label><br />
-                                            <label style="font-weight:200;" id="cari_ehliyetno">~</label>
-                                        </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Ehliyet No:</label><br />
+                                        <label style="font-weight:200;" id="cari_ehliyetno">~</label>
                                     </div>
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Mail Adresi</label><br />
-                                            <label style="font-weight:200;" id="cari_mail">~</label>
-                                        </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Mail Adresi</label><br />
+                                        <label style="font-weight:200;" id="cari_mail">~</label>
                                     </div>
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label">İkamet Adresi</label><br />
-                                            <label style="font-weight:200;" id="cari_adres">~</label>
-                                        </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">İkamet Adresi</label><br />
+                                        <label style="font-weight:200;" id="cari_adres">~</label>
                                     </div>
-                                    <div class="col-xs-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_EkSurucuCari_ID, "Ek Sürücü Seçiniz", htmlAttributes: new { @class = "control-label" })
-                                            <select id="Islem_EkSurucuCari_ID" name="Islem_EkSurucuCari_ID" class="form-control"></select>
-                                            @Html.ValidationMessageFor(model => model.Islem_EkSurucuCari_ID, "", new { @class = "text-danger" })
-                                        </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_EkSurucuCari_ID, "Ek Sürücü Seçiniz", htmlAttributes: new { @class = "control-label" })
+                                        <select id="Islem_EkSurucuCari_ID" name="Islem_EkSurucuCari_ID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.Islem_EkSurucuCari_ID, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box -->
+                        <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
+                </div>
 
-                    <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">
-                                    Ücret Bilgileri
-                                </h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <!-- form start -->
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                Ücret Bilgileri
+                            </h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
 
 
 
-                            <div class="box-body">
-                                <div class="row">
+                        <div class="box-body">
+                            <div class="row">
 
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_GunlukUcret, "Günlük Ücret", htmlAttributes: new { @class = "control-label" })
-                                            @Html.EditorFor(model => model.Islem_GunlukUcret, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_GunlukUcret, "", new { @class = "text-danger" })
-                                        </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_GunlukUcret, "Günlük Ücret", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Islem_GunlukUcret, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Islem_GunlukUcret, "", new { @class = "text-danger" })
                                     </div>
+                                </div>
 
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_ToplamEkstraHizmetler, "Ekstra Hizmetler Toplamı", htmlAttributes: new { @class = "control-label" })
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        @*@Html.LabelFor(model => model.Islem_ToplamEkstraHizmetler, "Ekstra Hizmetler Toplamı", htmlAttributes: new { @class = "control-label" })
                                             @Html.EditorFor(model => model.Islem_ToplamEkstraHizmetler, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_ToplamEkstraHizmetler, "", new { @class = "text-danger" })
-                                        </div>
+                                            @Html.ValidationMessageFor(model => model.Islem_ToplamEkstraHizmetler, "", new { @class = "text-danger" })*@
+                                        @Html.LabelFor(model => model.OdemeTipi_ID, htmlAttributes: new { @class = "control-label" })
+                                        <select id="OdemeTipi_ID" name="OdemeTipi_ID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.OdemeTipi_ID, "", new { @class = "text-danger" })
                                     </div>
+                                </div>
 
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_IskontoOrani, "İskonto Oranı", htmlAttributes: new { @class = "control-label" })
-                                            @Html.EditorFor(model => model.Islem_IskontoOrani, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_IskontoOrani, "", new { @class = "text-danger" })
-                                        </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_IskontoOrani, "İskonto Oranı", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Islem_IskontoOrani, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Islem_IskontoOrani, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_ToplamKMAsimUcreti, "Aşım Ücreti / KM", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        @*@Html.LabelFor(model => model.Islem_ToplamKMAsimUcreti, "Aşım Ücreti / KM", htmlAttributes: new { @class = "control-label" })
                                             @Html.EditorFor(model => model.Islem_ToplamKMAsimUcreti, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_ToplamKMAsimUcreti, "", new { @class = "text-danger" })
-                                        </div>
+                                            @Html.ValidationMessageFor(model => model.Islem_ToplamKMAsimUcreti, "", new { @class = "text-danger" })*@
+                                        @Html.LabelFor(model => model.Tahsilat_Aciklama, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Tahsilat_Aciklama, new { htmlAttributes = new { @Value = "Kayıt esnasında tahsil edildi", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Tahsilat_Aciklama, "", new { @class = "text-danger" })
                                     </div>
+                                </div>
 
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_ToplamValeHizmetleri, "Toplam Vale Bedeli", htmlAttributes: new { @class = "control-label" })
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        @*@Html.LabelFor(model => model.Islem_ToplamValeHizmetleri, "Toplam Vale Bedeli", htmlAttributes: new { @class = "control-label" })
                                             @Html.EditorFor(model => model.Islem_ToplamValeHizmetleri, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_ToplamValeHizmetleri, "", new { @class = "text-danger" })
-                                        </div>
+                                            @Html.ValidationMessageFor(model => model.Islem_ToplamValeHizmetleri, "", new { @class = "text-danger" })*@
+                                        @Html.LabelFor(model => model.Islem_TahsilEdilen, "Tahsil Edilen ", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Islem_TahsilEdilen, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Islem_TahsilEdilen, "", new { @class = "text-danger" })
                                     </div>
+                                </div>
 
-                                    <div style="clear:both">
-
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Islem_KalanBorc, "Kalan", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Islem_KalanBorc, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Islem_KalanBorc, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-xs-4">
-                                        &nbsp;
-                                    </div>
+                                </div>
 
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_ToplamDigerUcretler, "Diğer Ücretler", htmlAttributes: new { @class = "control-label" })
+                                <div style="clear:both">
+
+                                </div>
+                                <!--<div class="col-xs-4">
+                                    &nbsp;
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <div class="form-group">-->
+                                        @*@Html.LabelFor(model => model.Islem_ToplamDigerUcretler, "Diğer Ücretler", htmlAttributes: new { @class = "control-label" })
                                             @Html.EditorFor(model => model.Islem_ToplamDigerUcretler, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_ToplamDigerUcretler, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                    <div style="clear:both">
+                                            @Html.ValidationMessageFor(model => model.Islem_ToplamDigerUcretler, "", new { @class = "text-danger" })*@
+                                    <!--</div>
+                                </div>
+                                <div style="clear:both">
 
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
                                     </div>
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_TahsilEdilen, "Tahsil Edilen ", htmlAttributes: new { @class = "control-label" })
-                                            @Html.EditorFor(model => model.Islem_TahsilEdilen, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_TahsilEdilen, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                    <div style="clear:both">
+                                </div>
+                                <div style="clear:both">
 
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_KalanBorc, "Kalan", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">-->
+                                        @*@Html.LabelFor(model => model.Islem_KalanBorc, "Kalan", htmlAttributes: new { @class = "control-label" })
                                             @Html.EditorFor(model => model.Islem_KalanBorc, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_KalanBorc, "", new { @class = "text-danger" })
-                                        </div>
+                                            @Html.ValidationMessageFor(model => model.Islem_KalanBorc, "", new { @class = "text-danger" })*@
+                                    <!--</div>
+                                </div>
+                                <div style="clear:both">
+
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
                                     </div>
-                                    <div style="clear:both">
-
-                                    </div>
-                                    @*<div class="col-xs-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Islem_YakitDurumu, "Yakıt Durumu", htmlAttributes: new { @class = "control-label" })
-                                                @Html.EditorFor(model => model.Islem_YakitDurumu, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Islem_YakitDurumu, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>*@
-
-
-
-                                    <div class="col-xs-4">
-                                        &nbsp;
-                                    </div>
-
-                                    <div class="col-xs-4">
-                                        &nbsp;
-                                    </div>
-
-                                    <div class="col-xs-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Islem_ToplamKiralamaUcreti, "Toplam Kiralama Ücreti", htmlAttributes: new { @class = "control-label" })
-                                            @Html.EditorFor(model => model.Islem_ToplamKiralamaUcreti, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Islem_ToplamKiralamaUcreti, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-
-
-
-
-
-
-
                                 </div>
 
 
+
+                                <div class="col-xs-4">
+                                    &nbsp;
+                                </div>
+
+                                <div class="col-xs-4">
+                                    &nbsp;
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <div class="form-group">-->
+                                        @*@Html.LabelFor(model => model.Islem_ToplamKiralamaUcreti, "Toplam Kiralama Ücreti", htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.Islem_ToplamKiralamaUcreti, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Islem_ToplamKiralamaUcreti, "", new { @class = "text-danger" })*@
+                                    <!--</div>
+                                </div>-->
                             </div>
-                            <!-- /.box-body -->
-
-
-
-
-
-
                         </div>
+                        <!-- /.box-body -->
                     </div>
+                </div>
 
-
-                    <div class="col-xs-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">
-                                    Yapılan Tahsilatar
-                                </h3>
-
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body table-responsive">
-                                <table class="table table-hover">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                Yapılan Tahsilatar
+                            </h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive">
+                            <table class="table table-hover">
+                                <thead>
                                     <tr>
                                         <th style="border-top:none">
                                             Başlangıç Tarihi
@@ -420,88 +420,40 @@
                                             Kalan Ödeme
                                         </th>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            11/10/2020
-                                        </td>
-                                        <td>
-                                            6 Gün
-                                        </td>
-                                        <td>
-                                            34 ABC 2010
-                                        </td>
-                                        <td>
-                                            0 TL
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            11/10/2020
-                                        </td>
-                                        <td>
-                                            6 Gün
-                                        </td>
-                                        <td>
-                                            34 ABC 2010
-                                        </td>
-                                        <td>
-                                            0 TL
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            11/10/2020
-                                        </td>
-                                        <td>
-                                            6 Gün
-                                        </td>
-                                        <td>
-                                            34 ABC 2010
-                                        </td>
-                                        <td>
-                                            0 TL
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            11/10/2020
-                                        </td>
-                                        <td>
-                                            6 Gün
-                                        </td>
-                                        <td>
-                                            34 ABC 2010
-                                        </td>
-                                        <td>
-                                            0 TL
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- /.box-body -->
+                                </thead>
+                                <tbody id="tahsilatlar">
+                                   
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Onayla</button>
-                </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Onayla</button>
             </div>
         </div>
-
-    }
+    </div>
 
 }
+
+
 
 <div>
     @Html.ActionLink("Listeye Geri Dön ", "Index")
 </div>
-
+<style>
+    .previewImg1 {
+        display: none;
+    }
+</style>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         var menuItem = document.querySelector('#solmenu-operation');
@@ -513,6 +465,9 @@
         makeSelect2("#Islem_TeslimatLokasyonID", "/Root/LokasyonList")
         makeSelect2("#Islem_IadeLokasyonID", "/Root/LokasyonList")
         makeSelect2("#Arac_ID", "/Root/AracList")
+        makeSelect2("#OdemeTipi_ID", "/Root/OdemeTipiList")
         onCustomerChanged()
+        onVehicleChanged()
+        bindPreview("#aracResimleri", "#filePreview")
     });
 </script>

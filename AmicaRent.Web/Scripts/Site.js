@@ -12,32 +12,95 @@
     })
 
     //$('.select2').select2()
-
-
 })
 
-function onCustomerChanged() {
-    selector = "#Cari_ID";
-    url = "/Root/CariDetails";
-    tckn_selector = "#cari_tckn";
-    telno_selector = "#cari_telno";
-    ehliyetno_selector = "#cari_ehliyetno";
-    mail_selector = "#cari_mail";
-    adres_selector = "#cari_adres";
+function readURL(input, targetSelector) {
+    $(targetSelector).html("");
+
+    if (input.files) {
+        var filesAmount = input.files.length;
+
+        for (i = 0; i < filesAmount; i++) {
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                var img = $('<img class="previewImg" style="max-width:300px;max-height:300px;">');
+                img.attr('src', event.target.result);
+                img.appendTo(targetSelector);
+            }
+
+            reader.readAsDataURL(input.files[i]);
+        }
+    }
+}
+
+function bindPreview(inputSelector, imgSelector) {
+    $(inputSelector).change(function () {
+        readURL(this, imgSelector);
+    });
+}
+function onVehicleChanged() {
+    var selector = "#Arac_ID";
+    var url = "/Root/AracDetails";
+    var asimucreti_selector = "#arac_asimucreti";
+
     $(selector).change(function () {
-        console.log("cari changed");
         $.ajax({
             url: url,
             type: "POST",
             data: {
-                c_id : $(selector).val()
+                id: $(selector).val()
             },
             success: function (result) {
-                $(tckn_selector).html(result.cari.Cari_IDNumber)
-                $(telno_selector).html(result.cari.Cari_MobilTelefon)
-                $(ehliyetno_selector).html("yok")
-                $(mail_selector).html(result.cari.Cari_EpostaAdresi)
-                $(adres_selector).html(result.cari.Cari_Adres1)
+                $(asimucreti_selector).html(result.asimucreti)
+            }
+        });
+    });
+
+}
+
+function onCustomerChanged() {
+    console.log("1");
+    
+    var selector = "#Cari_ID";
+    var url = "/Root/CariDetails";
+    var tckn_selector = "#cari_tckn";
+    var telno_selector = "#cari_telno";
+    var ehliyetno_selector = "#cari_ehliyetno";
+    var mail_selector = "#cari_mail";
+    var adres_selector = "#cari_adres";
+    var tahsilatlar_selector = "#tahsilatlar"
+    $(selector).change(function () {
+        console.log("2", selector, $(selector).val());
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                id: $(selector).val()
+            },
+            success: function (result) {
+                console.log(result);
+                $(tckn_selector).html(result.tckn)
+                $(telno_selector).html(result.telno)
+                $(ehliyetno_selector).html(result.ehliyetno)
+                $(mail_selector).html(result.mail)
+                $(adres_selector).html(result.adres)
+                $(tahsilatlar_selector).html("")
+                if (result.tahsilatlar.length > 0) {
+                    $.each(result.tahsilatlar, function (i, item) {
+                        var line =
+                            $('<tr>').append(
+                                $('<td>').text(item.baslangicTarihi),
+                                $('<td>').text(item.kiralamaSuresi),
+                                $('<td>').text(item.plaka),
+                                $('<td>').text(item.kalanBorc)
+                            );
+                        $(tahsilatlar_selector).append(line);
+                    });
+                }
+            },
+            error: function (err) {
+                console.log(err);
 
             }
         });
@@ -92,7 +155,6 @@ function makeDatatable(selector, url, columns, drawCallback) {
 
     });
 }
-
 
 function makeSelect2(selector, url) {
     //console.log("makeSelect2", selector,url);
@@ -150,7 +212,6 @@ function makeSelect2(selector, url) {
     })
 
 }
-
 
 function makeModelSelect2(selector, url, markaSelector) {
     console.log("selector", selector, "url", url, "markaSelector", markaSelector);

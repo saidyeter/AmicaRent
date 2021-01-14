@@ -68,6 +68,7 @@
     <Compile Include="Model\EkSurucu.cs" />
     <Compile Include="Model\Islem.cs" />
     <Compile Include="Model\IslemEkstraHizmetler.cs" />
+    <Compile Include="Model\IslemFile.cs" />
     <Compile Include="Model\IslemTahsilat.cs" />
     <Compile Include="Model\KanGrubu.cs" />
     <Compile Include="Model\Kullanici.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Model\OdemeTipi.cs" />
     <Compile Include="Model\Servis.cs" />
     <Compile Include="Model\ServisFirma.cs" />
+    <Compile Include="Model\SysFile.cs" />
     <Compile Include="Model\viewAracList.cs" />
     <Compile Include="Model\viewAracModel.cs" />
     <Compile Include="Model\viewCari.cs" />

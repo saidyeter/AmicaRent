@@ -26,6 +26,8 @@ namespace AmicaRent.DataAccess
         public virtual DbSet<AracKredi> AracKredi { get; set; }
         public virtual DbSet<Banka> Banka { get; set; }
         public virtual DbSet<BankaBilgileri> BankaBilgileri { get; set; }
+        public virtual DbSet<SysFile> SysFile { get; set; }
+        public virtual DbSet<IslemFile> IslemFile { get; set; }
         public virtual DbSet<Cari> Cari { get; set; }
         public virtual DbSet<CariEhliyet> CariEhliyet { get; set; }
         public virtual DbSet<CariSehir> CariSehir { get; set; }
