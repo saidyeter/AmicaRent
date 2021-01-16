@@ -58,7 +58,7 @@ namespace WebApplication.Controllers
             {
                 var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
 
-                var data = db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.KiralamaDurumu == "Boşta");
+                var data = db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.AracKiralamaDurumu == (int)AracDurumu.Bos);
 
                 //Search    
                 if (!string.IsNullOrEmpty(searchValue))
@@ -80,7 +80,7 @@ namespace WebApplication.Controllers
             {
                 var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
 
-                var data = db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.KiralamaDurumu == "Müşteride");
+                var data = db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.AracKiralamaDurumu == (int)AracDurumu.Musteride);
 
                 //Search    
                 if (!string.IsNullOrEmpty(searchValue))
@@ -309,7 +309,42 @@ namespace WebApplication.Controllers
             return View(arac);
         }
 
-        // GET: Arac/Delete/5
+        public ActionResult SendToService(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Arac arac = db.Arac.Find(id);
+
+            if (arac == null)
+            {
+                return HttpNotFound();
+            }
+
+            arac.AracKiralamaDurumu = (int)AracDurumu.Serviste;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult MakePassive(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Arac arac = db.Arac.Find(id);
+
+            if (arac == null)
+            {
+                return HttpNotFound();
+            }
+
+            arac.AracKiralamaDurumu = (int)AracDurumu.Pasif;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
         public ActionResult Delete(int? id)
         {
             if (id == null)

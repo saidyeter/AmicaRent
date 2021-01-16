@@ -178,5 +178,28 @@ namespace WebApplication.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        [HttpPost]
+        public JsonResult LoadDt()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.Kullanici.Where(x => x.Kullanici_Status == (int)DBStatus.Active);
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.Kullanici_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

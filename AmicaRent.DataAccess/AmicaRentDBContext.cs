@@ -36,8 +36,7 @@ namespace AmicaRent.DataAccess
         public virtual DbSet<EhliyetSinif> EhliyetSinif { get; set; }
         public virtual DbSet<EkstraHizmetler> EkstraHizmetler { get; set; }
         public virtual DbSet<EkSurucu> EkSurucu { get; set; }
-        public virtual DbSet<Islem> Islem { get; set; }
-        public virtual DbSet<IslemEkstraHizmetler> IslemEkstraHizmetler { get; set; }
+        public virtual DbSet<Islem> Islem { get; set; } 
         public virtual DbSet<IslemTahsilat> IslemTahsilat { get; set; }
         public virtual DbSet<KanGrubu> KanGrubu { get; set; }
         public virtual DbSet<Kullanici> Kullanici { get; set; }

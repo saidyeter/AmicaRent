@@ -1,68 +1,68 @@
 ﻿@model IEnumerable<AmicaRent.DataAccess.Kullanici>
 
-@{ ViewBag.Title = "Index"; }
+@{ ViewBag.Title = "Kullanıcılar"; }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <div class="box-header">
+                <a class="btn btn-default btn-sm" href="@Url.Action("Create")">
+                    <i class="fa fa-plus"></i> Yeni
+                </a>
+            </div>
+            <div class="box-body">
+                <table id="dt" class="table table-hover table-striped" style="width:100%">
+                    <thead class="blue-grey lighten-4">
+                        <tr>
+                            <th>
+                                Kullanıcı Tam Adı
+                            </th>
+                            <th>
+                                Kullanıcı Adı
+                            </th>
+                            <th>
+                                Oluşturulmada Tarihi
+                            </th>
+                            <th>
+                                Son Giriş Zamanı
+                            </th>
+                            <th>
+                                Durumu
+                            </th>
+                            <th width="10%"></th>
+                        </tr>
+                    </thead>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Kullanıcı Tam Adı
-        </th>
-        <th>
-            Kullanıcı Adı
-        </th>
-        <th>
-            Kullanıcı Şifre
-        </th>
-        <th>
-            Son Giriş Zamanı
-        </th>
-        <th>
-            Durumu
-        </th>
-        <th>
-            Oluşturma Zamanı
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Kullanici_TamAdi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Kullanici_Adi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Kullanici_Sifre)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Kullanici_SonGirisZamani)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Kullanici_Status)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Kullanici_CreateDate)
-    </td>
-    <td>
-        @Html.ActionLink("Düzenle", "Edit", new { id = item.Kullanici_ID }) |
-        @Html.ActionLink("Detaylar", "Details", new { id = item.Kullanici_ID }) |
-        @Html.ActionLink("Rolleri Düzenle", "ManageRole", new { id = item.Kullanici_ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Kullanici_ID })
-    </td>
-</tr>}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-</table>
-
-<script type="text/javascript">document.addEventListener("DOMContentLoaded", function () {
-    var menuItem = document.querySelector('#solmenu-system');
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-system');
         menuItem.classList.add('active');
-    var subMenuItem = menuItem.querySelector('#solmenu-system-liste-Kullanici');
+        var subMenuItem = menuItem.querySelector('#solmenu-system-liste-Kullanici');
         subMenuItem.classList.add('active');
-    });</script>
+
+        var columns = [
+            { "data": "Kullanici_TamAdi", "name": "Kullanici_TamAdi", "autoWidth": true },
+            { "data": "Kullanici_Adi", "name": "Kullanici_Adi", "autoWidth": true },
+            { "data": "Kullanici_CreateDate", "name": "Kullanici_CreateDate", "autoWidth": true },
+            { "data": "Kullanici_SonGirisZamani", "name": "Kullanici_SonGirisZamani", "autoWidth": true },
+            { "data": "Kullanici_Status", "name": "Kullanici_Status", "autoWidth": true },
+            {
+                "data": "AracKasaTipi_ID",
+                "render": function (data, type, row) {
+                    return "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/Kullanici/delete/" + row.Kullanici_ID + "\"); return false;' ></a>" +
+                        " <a class='fa fa-edit task-button' title='Düzenle' href='/Kullanici/edit/" + row.Kullanici_ID + "'></a>";
+                }
+            },
+        ];
+
+        var selector = "#dt";
+        var url = "/Kullanici/LoadDt";
+        makeDatatable(selector, url, columns, afterDatatabled);
+    });
+</script>

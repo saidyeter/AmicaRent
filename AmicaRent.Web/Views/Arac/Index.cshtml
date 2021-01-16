@@ -51,9 +51,15 @@
             {
                 "data": "Arac_ID",
                 "render": function (data, type, row) {
-                    return "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/Arac/delete/" + row.Arac_ID + "\"); return false;' ></a>" +
+                    var buttons= "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/Arac/delete/" + row.Arac_ID + "\"); return false;' ></a>" +
                         " <a class='fa fa-edit task-button' title='Düzenle' href='/Arac/edit/" + row.Arac_ID + "'></a>" +
-                        " <a class='fa fa-info task-button' title='Detay' href='/Arac/details/" + row.Arac_ID + "'></a>";;
+                        " <a class='fa fa-info task-button' title='Detay' href='/Arac/details/" + row.Arac_ID + "'></a>";
+                    if (row.AracKiralamaDurumu === 0) {
+                        buttons +=
+                            " <a class='fa fa-wrench task-button' title='Servise Verildi' href='/Arac/SendToService/" + row.Arac_ID + "'></a>" +
+                            " <a class='fa fa-battery-empty task-button' title='Pasif Yap' href='/Arac/MakePassive/" + row.Arac_ID + "'></a>";
+                    }
+                    return buttons;
                 }
             },
         ];

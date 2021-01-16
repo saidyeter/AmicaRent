@@ -17,7 +17,7 @@
                             <th>Cinsiyet</th>
                             <th>Eposta Adresi</th>
                             <th>Şehir</th>
-                            <th>Mobil Telefon</th>                     
+                            <th>Mobil Telefon</th>
                             <th width="10%"></th>
                         </tr>
                     </thead>
@@ -45,17 +45,13 @@
             {
                 "data": "Cari_ID",
                 "render": function (data, type, row) {
-                    var icons= "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/Cari/delete/" + row.Cari_ID + "\"); return false;' ></a>" +
+                    var icons = "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/Cari/delete/" + row.Cari_ID + "\"); return false;' ></a>" +
                         " <a class='fa fa-edit task-button' title='Düzenle' href='/Cari/edit/" + row.Cari_ID + "'></a>" +
                         " <a class='fa fa-info task-button' title='Detay' href='/Cari/details/" + row.Cari_ID + "'></a>";
-                    if (row.CariEhliyet_ID === null) {
-                        icons += " <a class='fa fa-file task-button' title='Ehliyet Oluştur' href='/CariEhliyet/create/" + row.Cari_ID + "'></a>";
-                    }
-
                     return icons;
                 }
             },
-        ]; 
+        ];
         var selector = "#dt";
         var url = "/Cari/LoadDt";
         makeDatatable(selector, url, columns, afterDatatabled);

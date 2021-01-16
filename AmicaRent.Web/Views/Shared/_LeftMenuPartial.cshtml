@@ -57,7 +57,6 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                 </a>
                 <ul class="treeview-menu">
                     @if (roleList.Contains("'Cari'")) {<li id="solmenu-cari-liste-Cari"><a href="@Url.Action("Index", "Cari")"><i class="fa fa-legal"></i> Cari Listesi</a></li> }
-                    @if (roleList.Contains("'CariEhliyet'")) {<li id="solmenu-cari-liste-CariEhliyet"><a href="@Url.Action("Index", "CariEhliyet")"><i class="fa fa-life-bouy"></i> Cari Ehliyet Listesi</a></li> }
                     @if (roleList.Contains("'CariUyruk'")) {<li id="solmenu-cari-liste-CariUyruk"><a href="@Url.Action("Index", "CariUyruk")"><i class="fa  fa-magic"></i> Cari Uyruk Listesi</a></li> }
                 </ul>
             </li>

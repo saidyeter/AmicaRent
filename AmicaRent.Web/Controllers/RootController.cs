@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Mvc;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -68,7 +69,10 @@ namespace WebApplication.Controllers
 
         public ActionResult AracList(string q = "")
         {
-            return BaseSelect2List(db.viewAracList, x => x.AracMarka_Adi.Contains(q) || x.AracModel_Adi.Contains(q) || x.AracPlakaNo.Contains(q), c => new Select2Model { id = c.Arac_ID.ToString(), text = c.AracMarka_Adi + " " + c.AracModel_Adi + " (" + c.AracPlakaNo + ")" });
+            return BaseSelect2List(
+                db.viewAracList,//.Where(x => x.AracKiralamaDurumu == (int)AracDurumu.Bos),
+                x => x.AracMarka_Adi.Contains(q) || x.AracModel_Adi.Contains(q) || x.AracPlakaNo.Contains(q),
+                c => new Select2Model { id = c.Arac_ID.ToString(), text = c.AracMarka_Adi + " " + c.AracModel_Adi + " (" + c.AracPlakaNo + ")" });
         }
         public ActionResult CariList(string q = "")
         {
@@ -111,6 +115,24 @@ namespace WebApplication.Controllers
         {
             return BaseSelect2List(db.AracYakitTuru, x => x.AracYakitTuru_Adi.Contains(q), c => new Select2Model { id = c.AracYakitTuru_ID.ToString(), text = c.AracYakitTuru_Adi });
         }
+        public ActionResult KanGrubuList(string q = "")
+        {
+            return BaseSelect2List(db.KanGrubu, x => x.KanGrubu_Adi.Contains(q), c => new Select2Model { id = c.KanGrubu_ID.ToString(), text = c.KanGrubu_Adi });
+        }
+
+        public ActionResult EhliyetSinifList(string q = "")
+        {
+            return BaseSelect2List(db.EhliyetSinif, x => x.EhliyetSinif_Adi.Contains(q), c => new Select2Model { id = c.EhliyetSinif_ID.ToString(), text = c.EhliyetSinif_Adi });
+        }
+        public ActionResult CariSehirList(string q = "")
+        {
+            return BaseSelect2List(db.CariSehir, x => x.CariSehir_Adi.Contains(q), c => new Select2Model { id = c.CariSehir_ID.ToString(), text = c.CariSehir_Adi });
+        }
+        public ActionResult CariUyrukList(string q = "")
+        {
+            return BaseSelect2List(db.CariUyruk, x => x.CariUyruk_Adi.Contains(q), c => new Select2Model { id = c.CariUyruk_ID.ToString(), text = c.CariUyruk_Adi });
+        }
+
 
         public JsonResult CariDetails(int id)
         {

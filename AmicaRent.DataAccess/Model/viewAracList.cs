@@ -9,6 +9,7 @@ namespace AmicaRent.DataAccess
         [Key]
         public int Arac_ID { get; set; }
         public int Arac_Status { get; set; }
+        public int AracKiralamaDurumu { get; set; }
         public string AracGrup_Adi { get; set; }
         public string AracMarka_Adi { get; set; }
         public string AracModel_Adi { get; set; }

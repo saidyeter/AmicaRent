@@ -1,63 +1,68 @@
 ﻿@model IEnumerable<AmicaRent.DataAccess.viewServis>
 
-@{ ViewBag.Title = ""; }
+@{ ViewBag.Title = "Araç Servis Kayıtları"; }
 
-<h2>Araç Servis Kayıtları</h2>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box">
+                <div class="box-header">
+                    <a class="btn btn-default btn-sm" href="@Url.Action("Create")">
+                        <i class="fa fa-plus"></i> Yeni
+                    </a>
+                </div>
+                <div class="box-body">
+                    <table id="dt" class="table table-hover table-striped" style="width:100%">
+                        <thead class="blue-grey lighten-4">
+                            <tr>
+                                <th>
+                                    Araç Marka/Model
+                                </th>
+                                <th>
+                                    Servis Zamanı
+                                </th>
+                                <th>
+                                    Servis Firma
+                                </th>
+                                <th>
+                                    Notlar
+                                </th>
+                                <th>
+                                    Servis Ücreti
+                                </th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
 
-<p>
-    @Html.ActionLink("Yeni Oluştur", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Araç Marka/Model
-        </th>
-        <th>
-            Servis Zamanı
-        </th>
-        <th>
-            Servis Firma
-        </th>
-        <th>
-            Notlar
-        </th>
-        <th>
-            Servis Ücreti
-        </th>
-        <th></th>
-    </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @item.AracGrup_Adi @item.AracMarka_Adi @item.AracModel_Adi @item.Arac_Yil
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Servis_ServisZamani)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ServisFirma_Adi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Servis_Notlar)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Servis_Ucreti)
-    </td>
-    <td>
-        @Html.ActionLink("Düzenle", "Edit", new { id = item.Servis_ID }) |
-        @Html.ActionLink("Detaylar", "Details", new { id = item.Servis_ID }) |
-
-    </td>
-</tr>}
-
-</table>
-
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-        var menuItem = document.querySelector('#solmenu-service');
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+           var menuItem = document.querySelector('#solmenu-service');
         menuItem.classList.add('active');
         var subMenuItem = menuItem.querySelector('#solmenu-service-liste-Servis');
         subMenuItem.classList.add('active');
-    });</script>
+
+            var columns = [
+                { "data": "AracGrup_Adi", "name": "AracGrup_Adi", "autoWidth": true },
+                { "data": "Servis_ServisZamani", "name": "Servis_ServisZamani", "autoWidth": true },
+                { "data": "ServisFirma_Adi", "name": "ServisFirma_Adi", "autoWidth": true },
+                { "data": "Servis_Notlar", "name": "Servis_Notlar", "autoWidth": true },
+                { "data": "Servis_Ucreti", "name": "Servis_Ucreti", "autoWidth": true },
+                {
+                    "data": "Servis_ID",
+                    "render": function (data, type, row) {
+                        return "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/Servis/delete/" + row.Servis_ID + "\"); return false;' ></a>" +
+                            " <a class='fa fa-edit task-button' title='Düzenle' href='/Servis/edit/" + row.Servis_ID + "'></a>";
+                    }
+                },
+            ];
+
+            var selector = "#dt";
+            var url = "/Servis/LoadDt";
+            makeDatatable(selector, url, columns, afterDatatabled);
+        });
+    </script>

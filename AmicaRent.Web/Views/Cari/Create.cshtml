@@ -1,250 +1,231 @@
-﻿@using AmicaRent.DataAccess
-@model AmicaRent.DataAccess.Cari
+﻿@model WebApplication.Models.ViewModels.CariViewModel
 
 @{
     ViewBag.Title = "Yeni Cari";
-    List<CariUyruk> uyrukList = ViewBag.UyrukList;
-    List<CariSehir> sehirList = ViewBag.SehirList;
-    Dictionary<int, string> cinsiyet = ViewBag.Cinsiyet;
+
+    Dictionary<int, string> cinsiyet = new Dictionary<int, string>();
+    cinsiyet.Add(1, "Erkek");
+    cinsiyet.Add(2, "Kadın");
 }
 @{
     using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Cari Tanımlama</h3>
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_AdSoyad, "Adı Soyadı", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Cari_AdSoyad, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Cari_AdSoyad, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Cari Tanımlama</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             </div>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_UyrukID, "Uyruk", htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownListFor(model => model.Cari_UyrukID, new SelectList(uyrukList, "CariUyruk_ID", "CariUyruk_Adi"), new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Cari_UyrukID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_IDNumber, "Kimlik Numarası", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Cari_IDNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Cari_IDNumber, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_DogumTarihi, "Doğum Tarihi", htmlAttributes: new { @class = "control-label" })
-
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    @Html.EditorFor(model => model.Cari_DogumTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
-                                    @Html.ValidationMessageFor(model => model.Cari_DogumTarihi, "", new { @class = "text-danger" })
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_AdSoyad, "Adı Soyadı", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cari_AdSoyad, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cari_AdSoyad, "", new { @class = "text-danger" })
                                 </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_UyrukID, "Uyruk", htmlAttributes: new { @class = "control-label" })
+                                    <select id="Cari_UyrukID" name="Cari_UyrukID" class="form-control"></select>
+                                    @Html.ValidationMessageFor(model => model.Cari_UyrukID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_IDNumber, "Kimlik Numarası", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cari_IDNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cari_IDNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_DogumTarihi, "Doğum Tarihi", htmlAttributes: new { @class = "control-label" })
+
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.EditorFor(model => model.Cari_DogumTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
+                                        @Html.ValidationMessageFor(model => model.Cari_DogumTarihi, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_Cinsiyet, "Cinsiyet", htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.Cari_Cinsiyet, new SelectList(cinsiyet, "Key", "Value"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Cari_Cinsiyet, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_MobilTelefon, "Mobil Telefon", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cari_MobilTelefon, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cari_MobilTelefon, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_EpostaAdresi, "E-Posta Adresi", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cari_EpostaAdresi, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cari_EpostaAdresi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_LokalTelefon, "Lokal Telefon", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cari_LokalTelefon, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cari_LokalTelefon, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12">
 
                             </div>
                         </div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_Cinsiyet, "Cinsiyet", htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownListFor(model => model.Cari_Cinsiyet, new SelectList(cinsiyet, "Key", "Value"), new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Cari_Cinsiyet, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_MobilTelefon, "Mobil Telefon", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Cari_MobilTelefon, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Cari_MobilTelefon, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div style="clear:both"></div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_EpostaAdresi, "E-Posta Adresi", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Cari_EpostaAdresi, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Cari_EpostaAdresi, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
+                    </div>
+                    <!-- /.box-body -->
 
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_LokalTelefon, "Lokal Telefon", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Cari_LokalTelefon, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Cari_LokalTelefon, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
 
-                        <div class="col-xs-12">
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Adres Bilgisi</h3>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_Adres1, "Adres - 1", htmlAttributes: new { @class = "control-label" })
+                                    @Html.TextAreaFor(model => model.Cari_Adres1, 4, 4, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Cari_Adres1, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_Adres2, "Adres - 2", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cari_Adres2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cari_Adres2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CariSehir_ID, "İl", htmlAttributes: new { @class = "control-label" })
+                                    <select id="CariSehir_ID" name="CariSehir_ID" class="form-control"></select>
+                                    @Html.ValidationMessageFor(model => model.CariSehir_ID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
+                            <div class="col-xs-4">
+
+                            </div>
 
                         </div>
                     </div>
+
                 </div>
-                <!-- /.box-body -->
-
-
             </div>
-        </div>
 
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Adres Bilgisi</h3>
-                </div>
-
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        </div>
-
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_Adres1, "Adres - 1", htmlAttributes: new { @class = "control-label" })
-                                @Html.TextAreaFor(model => model.Cari_Adres1, 4, 4, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Cari_Adres1, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        @*<div class="col-xs-12">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Cari_Adres2, "Adres - 2", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Cari_Adres2, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Cari_Adres2, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.CariSehir_ID, "İl", htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownListFor(model => model.CariSehir_ID, new SelectList(sehirList, "CariSehir_ID", "CariSehir_Adi"), new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.CariSehir_ID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div style="clear:both"></div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.CariSehir_ID, "İlçe", htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownListFor(model => model.CariSehir_ID, new SelectList(sehirList, "CariSehir_ID", "CariSehir_Adi"), new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.CariSehir_ID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            Ehliyet
+                        </h3>
 
                     </div>
-                </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CariEhliyet_VerilisTarihi, "Veriliş Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.CariEhliyet_VerilisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CariEhliyet_VerilisTarihi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CariEhliyet_GecerlilikTarihi, "Geçerlilik Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.CariEhliyet_GecerlilikTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CariEhliyet_GecerlilikTarihi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CariEhliyet_VerildigiYer, "Verildiği Yer", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.CariEhliyet_VerildigiYer, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CariEhliyet_VerildigiYer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CariEhliyet_DogumYeri, "Doğum Yeri", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.CariEhliyet_DogumYeri, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CariEhliyet_DogumYeri, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CariEhliyet_EhliyetNumarasi, "Ehliyet Numarası", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.CariEhliyet_EhliyetNumarasi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CariEhliyet_EhliyetNumarasi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EhliyetSinif_ID, "Ehliyet Sınıfı Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                <select id="EhliyetSinif_ID" name="EhliyetSinif_ID" class="form-control"></select>
+
+                                @Html.ValidationMessageFor(model => model.EhliyetSinif_ID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.KanGrubu_ID, "Kan Grubu Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                <select id="KanGrubu_ID" name="KanGrubu_ID" class="form-control"></select>
+                                @Html.ValidationMessageFor(model => model.KanGrubu_ID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div> 
+
+            <div class="col-xs-12">
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Onayla</button>
+                </div>
             </div>
         </div>
-
-        <div class="col-xs-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        Önceki Kiralamalar
-                    </h3>
-
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body table-responsive">
-                    <table class="table table-hover">
-                        <tr>
-                            <th style="border-top:none">
-                                Başlangıç Tarihi
-                            </th>
-                            <th style="border-top:none">
-                                Kiralama Süresi
-                            </th>
-                            <th style="border-top:none">
-                                Araç Plaka No
-                            </th>
-                            <th style="border-top:none">
-                                Kalan Ödeme
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                11/10/2020
-                            </td>
-                            <td>
-                                6 Gün
-                            </td>
-                            <td>
-                                34 ABC 2010
-                            </td>
-                            <td>
-                                0 TL
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                11/10/2020
-                            </td>
-                            <td>
-                                6 Gün
-                            </td>
-                            <td>
-                                34 ABC 2010
-                            </td>
-                            <td>
-                                0 TL
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                11/10/2020
-                            </td>
-                            <td>
-                                6 Gün
-                            </td>
-                            <td>
-                                34 ABC 2010
-                            </td>
-                            <td>
-                                0 TL
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                11/10/2020
-                            </td>
-                            <td>
-                                6 Gün
-                            </td>
-                            <td>
-                                34 ABC 2010
-                            </td>
-                            <td>
-                                0 TL
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-        </div>
-
-        <div class="col-xs-12">
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Onayla</button>
-            </div>
-        </div>
-    </div>
 
     }
 }
@@ -259,5 +240,11 @@
         menuItem.classList.add('active');
         var subMenuItem = menuItem.querySelector('#solmenu-cari-tanim-Cari');
         subMenuItem.classList.add('active');
+
+
+        makeSelect2("#KanGrubu_ID", "/Root/KanGrubuList")
+        makeSelect2("#EhliyetSinif_ID", "/Root/EhliyetSinifList")
+        makeSelect2("#CariSehir_ID", "/Root/CariSehirList")
+        makeSelect2("#Cari_UyrukID", "/Root/CariUyrukList")
     });
 </script>

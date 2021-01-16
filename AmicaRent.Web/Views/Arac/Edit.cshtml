@@ -37,13 +37,12 @@
                                 <div class="col-xs-6">
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.AracGrup_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-
                                         <div class="col-md-10" id="select2AreaAracGrup">
                                             @Html.HiddenFor(model => model.AracGrup_ID)
-                                            @ViewBag.AracGrup <a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2LocalAracGrup(); return true;"></a>
+                                            @ViewBag.AracGrup <a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2Manuel('AracGrup'); return true;"></a>
                                             @Html.ValidationMessageFor(model => model.AracGrup_ID, "", new { @class = "text-danger" })
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="col-xs-6">
@@ -63,10 +62,10 @@
                                         @Html.LabelFor(model => model.AracMarka_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10" id="select2AreaAracMarka">
                                             @Html.HiddenFor(model => model.AracMarka_ID)
-                                            @ViewBag.AracMarka <a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2LocalAracMarka(); return true;"></a>
+                                            @ViewBag.AracMarka <a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2Manuel('AracMarka'); return true;"></a>
                                             @Html.ValidationMessageFor(model => model.AracMarka_ID, "", new { @class = "text-danger" })
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="col-xs-6">
@@ -117,7 +116,7 @@
                                         @Html.LabelFor(model => model.AracRenk_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10" id="select2AreaAracRenk">
                                             @Html.HiddenFor(model => model.AracRenk_ID)
-                                            @ViewBag.AracRenk<a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2LocalAracRenk(); return true;"></a>
+                                            @ViewBag.AracRenk<a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2Manuel('AracRenk'); return true;"></a>
                                             @Html.ValidationMessageFor(model => model.AracRenk_ID, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -163,10 +162,10 @@
 
                                         <div class="col-md-10" id="select2AreaAracYakitTuru">
                                             @Html.HiddenFor(model => model.AracYakitTuru_ID)
-                                            @ViewBag.AracYakitTuru<a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2LocalAracYakitTuru(); return true;"></a>
+                                            @ViewBag.AracYakitTuru<a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2Manuel('AracYakitTuru'); return true;"></a>
                                             @Html.ValidationMessageFor(model => model.AracYakitTuru_ID, "", new { @class = "text-danger" })
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="col-xs-12">
                                     <div class="form-group">
@@ -181,10 +180,10 @@
 
                                         <div class="col-md-10" id="select2AreaAracKasaTipi">
                                             @Html.HiddenFor(model => model.AracKasaTipi_ID)
-                                            @ViewBag.AracKasaTipi<a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2LocalAracKasaTipi(); return true;"></a>
+                                            @ViewBag.AracKasaTipi<a class='fa fa-edit' title='Düzenle' onclick="CreateSelect2Manuel('AracKasaTipi'); return true;"></a>
                                             @Html.ValidationMessageFor(model => model.AracKasaTipi_ID, "", new { @class = "text-danger" })
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="col-xs-12">
@@ -284,7 +283,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 }
 
@@ -302,50 +301,21 @@
         menuItem.classList.add('active');
         var subMenuItem = menuItem.querySelector('#solmenu-arac-tanim-Arac');
         subMenuItem.classList.add('active');
-
-        //makeModelSelect2("#AracModel_ID", "/Root/ModelList", "#AracMarka_ID")
-        //makeSelect2("#AracGrup_ID", "/Root/AracGrupList")
-        //makeSelect2("#AracMarka_ID", "/Root/AracMarkaList")
-        //makeSelect2("#AracRenk_ID", "/Root/AracRenkList")
-        //makeSelect2("#AracYakitTuru_ID", "/Root/AracYakitTuruList")
-        //makeSelect2("#AracKasaTipi_ID", "/Root/AracKasaTipiList")
-        //makeSelect2("#Arac_KrediBankaID", "/Root/BankaList")     
     });
 
-    function CreateSelect2LocalAracGrup() {
-        var element = document.getElementById("select2AreaAracGrup");
-        element.innerHTML = '<select id="AracGrup_ID" name="AracGrup_ID" class="form-control"></select>';
-        makeSelect2("#AracGrup_ID", "/Root/AracGrupList");
+
+    function CreateSelect2Manuel(key) {
+        var fn = Function(
+            `var element = document.getElementById("select2Area${key}");
+        element.innerHTML = '<select id="${key}_ID" name="${key}_ID" class="form-control"></select>';
+        makeSelect2("#${key}_ID", "/Root/${key}List");`);
+        fn();
     }
 
-    function CreateSelect2LocalAracMarka() {
-        var element = document.getElementById("select2AreaAracMarka");
-        element.innerHTML = '<select id="AracMarka_ID" name="AracMarka_ID" class="form-control"></select>';
-        makeSelect2("#AracMarka_ID", "/Root/AracMarkaList");
-    }
-    
     function CreateSelect2LocalAracModel() {
         var element = document.getElementById("select2AreaAracModel");
         element.innerHTML = '<select id="AracModel_ID" name="AracModel_ID" class="form-control"></select>';
         makeModelSelect2("#AracModel_ID", "/Root/ModelList", "#AracMarka_ID")
-    }
-
-    function CreateSelect2LocalAracRenk() {
-        var element = document.getElementById("select2AreaAracRenk");
-        element.innerHTML = '<select id="AracRenk_ID" name="AracRenk_ID" class="form-control"></select>';
-        makeSelect2("#AracRenk_ID", "/Root/AracRenkList");
-    }
-    
-    function CreateSelect2LocalAracYakitTuru() {
-        var element = document.getElementById("select2AreaAracYakitTuru");
-        element.innerHTML = '<select id="AracYakitTuru_ID" name="AracYakitTuru_ID" class="form-control"></select>';
-        makeSelect2("#AracYakitTuru_ID", "/Root/AracYakitTuruList");
-    }
-
-    function CreateSelect2LocalAracKasaTipi() {
-        var element = document.getElementById("select2AreaAracKasaTipi");
-        element.innerHTML = '<select id="AracKasaTipi_ID" name="AracKasaTipi_ID" class="form-control"></select>';
-        makeSelect2("#AracKasaTipi_ID", "/Root/AracKasaTipiList");
     }
 
 
