@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AmicaRentDBContext.cs" />
     <Compile Include="Model\Arac.cs" />
+    <Compile Include="Model\AracFile.cs" />
     <Compile Include="Model\AracGrup.cs" />
     <Compile Include="Model\AracKasaTipi.cs" />
     <Compile Include="Model\AracKredi.cs" />

@@ -68,7 +68,7 @@ namespace WebApplication.Controllers
 
         public ActionResult AracList(string q = "")
         {
-            return BaseSelect2List(db.viewAracList, x => x.AracMarka_Adi.Contains(q) || x.AracModel_Adi.Contains(q) || x.AracPlakaNo.Contains(q), c => new Select2Model { id = c.Arac_ID.ToString(), text = c.AracMarka_Adi + " " + c.AracModel_Adi + " (" + c.AracPlakaNo + ")"});
+            return BaseSelect2List(db.viewAracList, x => x.AracMarka_Adi.Contains(q) || x.AracModel_Adi.Contains(q) || x.AracPlakaNo.Contains(q), c => new Select2Model { id = c.Arac_ID.ToString(), text = c.AracMarka_Adi + " " + c.AracModel_Adi + " (" + c.AracPlakaNo + ")" });
         }
         public ActionResult CariList(string q = "")
         {
@@ -86,6 +86,30 @@ namespace WebApplication.Controllers
         public ActionResult OdemeTipiList(string q = "")
         {
             return BaseSelect2List(db.OdemeTipi, x => x.OdemeTipi_Adi.Contains(q), c => new Select2Model { id = c.OdemeTipi_ID.ToString(), text = c.OdemeTipi_Adi });
+        }
+        public ActionResult BankaList(string q = "")
+        {
+            return BaseSelect2List(db.Banka, x => x.Banka_Adi.Contains(q), c => new Select2Model { id = c.Banka_ID.ToString(), text = c.Banka_Adi });
+        }
+        public ActionResult AracGrupList(string q = "")
+        {
+            return BaseSelect2List(db.AracGrup, x => x.AracGrup_Adi.Contains(q), c => new Select2Model { id = c.AracGrup_ID.ToString(), text = c.AracGrup_Adi });
+        }
+        public ActionResult AracMarkaList(string q = "")
+        {
+            return BaseSelect2List(db.AracMarka, x => x.AracMarka_Adi.Contains(q), c => new Select2Model { id = c.AracMarka_ID.ToString(), text = c.AracMarka_Adi });
+        }
+        public ActionResult AracRenkList(string q = "")
+        {
+            return BaseSelect2List(db.AracRenk, x => x.AracRenk_Adi.Contains(q), c => new Select2Model { id = c.AracRenk_ID.ToString(), text = c.AracRenk_Adi });
+        }
+        public ActionResult AracKasaTipiList(string q = "")
+        {
+            return BaseSelect2List(db.AracKasaTipi, x => x.AracKasaTipi_Adi.Contains(q), c => new Select2Model { id = c.AracKasaTipi_ID.ToString(), text = c.AracKasaTipi_Adi });
+        }
+        public ActionResult AracYakitTuruList(string q = "")
+        {
+            return BaseSelect2List(db.AracYakitTuru, x => x.AracYakitTuru_Adi.Contains(q), c => new Select2Model { id = c.AracYakitTuru_ID.ToString(), text = c.AracYakitTuru_Adi });
         }
 
         public JsonResult CariDetails(int id)

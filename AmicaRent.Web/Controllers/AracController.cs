@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 //using AmicaRent.DataAccess;
 using WebApplication.Models;
+using WebApplication.Models.ViewModels;
 
 namespace WebApplication.Controllers
 {
@@ -95,7 +96,7 @@ namespace WebApplication.Controllers
             }
         }
 
-         
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -113,29 +114,8 @@ namespace WebApplication.Controllers
         // GET: Arac/Create
         public ActionResult Create()
         {
-
-            List<AracGrup> aracGrupList = db.AracGrup.Where(x => x.AracGrup_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracGrupList = aracGrupList;
-            List<AracMarka> aracMarkaList = db.AracMarka.Where(x => x.AracMarka_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracMarkaList = aracMarkaList;
-            List<AracModel> aracModelList = db.AracModel.Where(x => x.AracModel_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracModelList = aracModelList;
-            List<AracYakitTuru> aracYakitTuruList = db.AracYakitTuru.Where(x => x.AracYakitTuru_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracYakitTuruList = aracYakitTuruList;
-
-
-            List<AracKasaTipi> aracKasaTipiList = db.AracKasaTipi.Where(x => x.AracKasaTipi_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracKasaTipiList = aracKasaTipiList;
-
-
-            List<AracRenk> aracRenkList = db.AracRenk.Where(x => x.AracRenk_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracRenkList = aracRenkList;
-
-
-
-
-
-            return View();
+            AracViewModel model = new AracViewModel { Arac_KrediKullanimi = false };
+            return View(model);
         }
 
         // POST: Arac/Create
@@ -143,17 +123,104 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Arac_ID,AracGrup_ID,AracMarka_ID,AracModel_ID,Arac_Yil,AracYakitTuru_ID,Arac_VitesTipi,AracKasaTipi_ID,AracKlimaDurumu,AracPlakaNo,AracGuncelKM,AracMotorNo,AracSaseNo,AracRuhsatSeriNo,Arac_Status,AracRenk_ID,AracKiralamaDurumu,Arac_TrafikSigortasiBitisTarihi,Arac_KaskoBitisTarihi,Arac_KoltukSigortasiBitisTarihi,Arac_FenniMuayeneGecerlilikTarihi")] Arac arac)
+        public ActionResult Create(AracViewModel model, List<HttpPostedFileBase> aracResimleri)
         {
+            if (model.Arac_KrediKullanimi)
+            {
+                bool krediAlanEksik = false;
+                string ErrorMessage = "Gerekli.";
+                if (model.Arac_KrediTaksitOdemeGunu is null) { krediAlanEksik = true; ModelState.AddModelError("Arac_KrediTaksitOdemeGunu", ErrorMessage); }
+                if (model.Arac_KrediTaksitSayisi is null) { krediAlanEksik = true; ModelState.AddModelError("Arac_KrediTaksitSayisi", ErrorMessage); }
+                if (model.Arac_KrediTaksitTutari is null) { krediAlanEksik = true; ModelState.AddModelError("Arac_KrediTaksitTutari", ErrorMessage); }
+                if (model.Arac_KrediBankaID is null) { krediAlanEksik = true; ModelState.AddModelError("Arac_KrediTaksitTutari", ErrorMessage); }
+                if (krediAlanEksik)
+                {
+                    ModelState.AddModelError("Arac_KrediKullanimi", "Kredi Kullanımı varsa alttaki tüm alanlar dolmalıdır. Yoksa hepsi boş olmalıdır.");
+                }
+            }
             if (ModelState.IsValid)
             {
-                arac.Arac_Status = (int)DBStatus.Active;
+
+                Arac arac = new Arac
+                {
+                    AracGrup_ID = (int)model.AracGrup_ID,
+                    AracGuncelKM = model.AracGuncelKM,
+                    AracKasaTipi_ID = (int)model.AracKasaTipi_ID,
+                    AracKiralamaDurumu = (int)AracDurumu.Bos,
+                    AracKlimaDurumu = (int)model.AracKlimaDurumu,
+                    AracMarka_ID = (int)model.AracMarka_ID,
+                    AracModel_ID = (int)model.AracModel_ID,
+                    AracMotorNo = model.AracMotorNo,
+                    AracPlakaNo = model.AracPlakaNo,
+                    AracRenk_ID = (int)model.AracRenk_ID,
+                    AracRuhsatSeriNo = model.AracRuhsatSeriNo,
+                    AracSaseNo = model.AracSaseNo,
+                    AracYakitTuru_ID = (int)model.AracYakitTuru_ID,
+                    Arac_AsimUcreti = (int)model.Arac_AsimUcreti,
+                    Arac_FenniMuayeneGecerlilikTarihi = (DateTime)model.Arac_FenniMuayeneGecerlilikTarihi,
+                    Arac_KaskoBitisTarihi = (DateTime)model.Arac_KaskoBitisTarihi,
+                    Arac_KoltukSigortasiBitisTarihi = (DateTime)model.Arac_KoltukSigortasiBitisTarihi,
+                    Arac_Status = (int)DBStatus.Active,
+                    Arac_TrafikSigortasiBitisTarihi = (DateTime)model.Arac_TrafikSigortasiBitisTarihi,
+                    Arac_VitesTipi = (int)model.Arac_VitesTipi,
+                    Arac_Yil = model.Arac_Yil,
+                };
                 db.Arac.Add(arac);
                 db.SaveChanges();
+                if (model.Arac_KrediKullanimi)
+                {
+                    /*
+                     Arac_KrediTaksitOdemeGunu = 19u diyelim
+                    bugün ayın 16sı ise ilk taksit bu ayın 19u olur
+                    bugün ayın 20si ise ilk taksit bir sonraki ayın 19u olur                     
+                     */
+
+                    var firstPayment = DateTime.Now;
+                    if (DateTime.Now.Day < model.Arac_KrediTaksitOdemeGunu)
+                    {
+                        firstPayment = new DateTime(DateTime.Now.Year, DateTime.Now.Month, (int)model.Arac_KrediTaksitOdemeGunu);
+                    }
+                    else
+                    {
+                        firstPayment = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, (int)model.Arac_KrediTaksitOdemeGunu);
+                    }
+                    for (int i = 0; i < (int)model.Arac_KrediTaksitSayisi; i++)
+                    {
+                        AracKredi aracKredi = new AracKredi
+                        {
+                            AracKredi_KrediTutar = (int)model.Arac_KrediTaksitTutari,
+                            AracKredi_OdemeTarihi = firstPayment.AddMonths(i),
+                            AracKredi_Odendi = false,
+                            Arac_ID = arac.Arac_ID,
+                            Banka_ID = (int)model.Arac_KrediBankaID
+                        };
+                        db.AracKredi.Add(aracKredi);
+                    }
+                }
+                foreach (var item in aracResimleri)
+                {
+                    if (item != null)
+                    {
+                        try
+                        {
+                            var itemId = SaveFile(item.InputStream, item.FileName);
+                            var file = new AracFile();
+                            file.Arac_ID = arac.Arac_ID;
+                            file.SysFile_ID = itemId;
+                            db.AracFile.Add(file);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    }
+                }
+
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-
-            return View(arac);
+            return View(model);
         }
 
         // GET: Arac/Edit/5
@@ -170,43 +237,37 @@ namespace WebApplication.Controllers
             }
 
 
-
-            List<AracGrup> aracGrupList = db.AracGrup.Where(x => x.AracGrup_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracGrupList = aracGrupList;
-            List<AracMarka> aracMarkaList = db.AracMarka.Where(x => x.AracMarka_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracMarkaList = aracMarkaList;
-            List<AracModel> aracModelList = db.AracModel.Where(x => x.AracModel_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracModelList = aracModelList;
-            List<AracYakitTuru> aracYakitTuruList = db.AracYakitTuru.Where(x => x.AracYakitTuru_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracYakitTuruList = aracYakitTuruList;
-
-            Dictionary<string, string> vitesTipi = new Dictionary<string, string>();
-            vitesTipi.Add("OTOMATİK", "OTOMATİK");
-            vitesTipi.Add("MANUEL", "MANUEL");
-            ViewBag.VitesTipi = vitesTipi;
-
-            List<AracKasaTipi> aracKasaTipiList = db.AracKasaTipi.Where(x => x.AracKasaTipi_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracKasaTipiList = aracKasaTipiList;
-
-            Dictionary<int, string> aracKlimaDurumu = new Dictionary<int, string>();
-            aracKlimaDurumu.Add(1, "Klimalı");
-            aracKlimaDurumu.Add(2, "Klimasız");
-            ViewBag.AracKlimaDurumu = aracKlimaDurumu;
-
-            List<AracRenk> aracRenkList = db.AracRenk.Where(x => x.AracRenk_Status == (int)DBStatus.Active).ToList();
-            ViewBag.AracRenkList = aracRenkList;
-
-
-            Dictionary<int, string> aracKiralamaDurumu = new Dictionary<int, string>();
-            aracKiralamaDurumu.Add(0, "Boşta");
-            aracKiralamaDurumu.Add(1, "Müşteride");
-            aracKiralamaDurumu.Add(2, "Pasif Araç");
-            aracKiralamaDurumu.Add(3, "Arızalı/Serviste");
-            ViewBag.AracKiralamaDurumu = aracKiralamaDurumu;
+            AracViewModel model = new AracViewModel
+            {
+                AracGrup_ID = (int)arac.AracGrup_ID,
+                AracGuncelKM = arac.AracGuncelKM,
+                AracKasaTipi_ID = (int)arac.AracKasaTipi_ID,
+                AracKlimaDurumu = (int)arac.AracKlimaDurumu,
+                AracMarka_ID = (int)arac.AracMarka_ID,
+                AracModel_ID = (int)arac.AracModel_ID,
+                AracMotorNo = arac.AracMotorNo,
+                AracPlakaNo = arac.AracPlakaNo,
+                AracRenk_ID = (int)arac.AracRenk_ID,
+                AracRuhsatSeriNo = arac.AracRuhsatSeriNo,
+                AracSaseNo = arac.AracSaseNo,
+                AracYakitTuru_ID = (int)arac.AracYakitTuru_ID,
+                Arac_AsimUcreti = (int)arac.Arac_AsimUcreti,
+                Arac_FenniMuayeneGecerlilikTarihi = (DateTime)arac.Arac_FenniMuayeneGecerlilikTarihi,
+                Arac_KaskoBitisTarihi = (DateTime)arac.Arac_KaskoBitisTarihi,
+                Arac_KoltukSigortasiBitisTarihi = (DateTime)arac.Arac_KoltukSigortasiBitisTarihi,
+                Arac_TrafikSigortasiBitisTarihi = (DateTime)arac.Arac_TrafikSigortasiBitisTarihi,
+                Arac_VitesTipi = (int)arac.Arac_VitesTipi,
+                Arac_Yil = arac.Arac_Yil,
+            };
+            ViewBag.AracGrup = db.AracGrup.Find(model.AracGrup_ID).AracGrup_Adi;
+            ViewBag.AracKasaTipi = db.AracKasaTipi.Find(model.AracKasaTipi_ID).AracKasaTipi_Adi;
+            ViewBag.AracMarka = db.AracMarka.Find(model.AracMarka_ID).AracMarka_Adi;
+            ViewBag.AracModel = db.AracModel.Find(model.AracModel_ID).AracModel_Adi;
+            ViewBag.AracRenk = db.AracRenk.Find(model.AracRenk_ID).AracRenk_Adi;
+            ViewBag.AracYakitTuru = db.AracYakitTuru.Find(model.AracYakitTuru_ID).AracYakitTuru_Adi;
 
 
-
-            return View(arac);
+            return View(model);
         }
 
         // POST: Arac/Edit/5
@@ -214,10 +275,33 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Arac_ID,AracGrup_ID,AracMarka_ID,AracModel_ID,Arac_Yil,AracYakitTuru_ID,Arac_VitesTipi,AracKasaTipi_ID,AracKlimaDurumu,AracPlakaNo,AracGuncelKM,AracMotorNo,AracSaseNo,AracRuhsatSeriNo,Arac_Status,AracRenk_ID,AracKiralamaDurumu,Arac_TrafikSigortasiBitisTarihi,Arac_KaskoBitisTarihi,Arac_KoltukSigortasiBitisTarihi,Arac_FenniMuayeneGecerlilikTarihi")] Arac arac)
+        public ActionResult Edit(AracViewModel model, int? id)
         {
+            Arac arac = db.Arac.Find(id);
+
             if (ModelState.IsValid)
             {
+                arac.AracGrup_ID = (int)model.AracGrup_ID;
+                arac.AracGuncelKM = model.AracGuncelKM;
+                arac.AracKasaTipi_ID = (int)model.AracKasaTipi_ID;
+                arac.AracKiralamaDurumu = (int)AracDurumu.Bos;
+                arac.AracKlimaDurumu = (int)model.AracKlimaDurumu;
+                arac.AracMarka_ID = (int)model.AracMarka_ID;
+                arac.AracModel_ID = (int)model.AracModel_ID;
+                arac.AracMotorNo = model.AracMotorNo;
+                arac.AracPlakaNo = model.AracPlakaNo;
+                arac.AracRenk_ID = (int)model.AracRenk_ID;
+                arac.AracRuhsatSeriNo = model.AracRuhsatSeriNo;
+                arac.AracSaseNo = model.AracSaseNo;
+                arac.AracYakitTuru_ID = (int)model.AracYakitTuru_ID;
+                arac.Arac_AsimUcreti = (int)model.Arac_AsimUcreti;
+                arac.Arac_FenniMuayeneGecerlilikTarihi = (DateTime)model.Arac_FenniMuayeneGecerlilikTarihi;
+                arac.Arac_KaskoBitisTarihi = (DateTime)model.Arac_KaskoBitisTarihi;
+                arac.Arac_KoltukSigortasiBitisTarihi = (DateTime)model.Arac_KoltukSigortasiBitisTarihi;
+                arac.Arac_Status = (int)DBStatus.Active;
+                arac.Arac_TrafikSigortasiBitisTarihi = (DateTime)model.Arac_TrafikSigortasiBitisTarihi;
+                arac.Arac_VitesTipi = (int)model.Arac_VitesTipi;
+                arac.Arac_Yil = model.Arac_Yil;
                 db.Entry(arac).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

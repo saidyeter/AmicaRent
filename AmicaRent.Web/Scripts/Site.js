@@ -34,6 +34,45 @@ function readURL(input, targetSelector) {
     }
 }
 
+
+
+function assignInputChange(inputSelectors, notEmptyCallback, emptyCallback) {
+    $(inputSelectors).each(function (index, item) {
+        $(item).on("change paste keyup", function () {
+            var empty = true;
+            $(inputSelectors).each(function (index, item) {
+                //console.log($(item).val());
+                if (!$(item).val() || $(item).val().length !== 0) {
+                    empty = false;
+                }
+            })
+            if (empty === false) {
+                notEmptyCallback()
+            }
+            else {
+                emptyCallback()
+            }
+
+        });
+    });
+}
+function displayElementRegardingToInputs(elementSelector, inputSelectors) {
+    assignInputChange(
+        inputSelectors,
+        function () { $(elementSelector).removeClass("madeHidden") },
+        function () { $(elementSelector).addClass("madeHidden") }
+    )
+}
+function setValTrueRegardingToInputs(elementSelector, inputSelectors) {
+    assignInputChange(
+        inputSelectors,
+        function () { $(elementSelector).val("true") },
+        function () { $(elementSelector).val("false") }
+    )
+}
+
+
+
 function bindPreview(inputSelector, imgSelector) {
     $(inputSelector).change(function () {
         readURL(this, imgSelector);
@@ -60,8 +99,6 @@ function onVehicleChanged() {
 }
 
 function onCustomerChanged() {
-    console.log("1");
-    
     var selector = "#Cari_ID";
     var url = "/Root/CariDetails";
     var tckn_selector = "#cari_tckn";
@@ -71,7 +108,6 @@ function onCustomerChanged() {
     var adres_selector = "#cari_adres";
     var tahsilatlar_selector = "#tahsilatlar"
     $(selector).change(function () {
-        console.log("2", selector, $(selector).val());
         $.ajax({
             url: url,
             type: "POST",
@@ -157,24 +193,18 @@ function makeDatatable(selector, url, columns, drawCallback) {
 }
 
 function makeSelect2(selector, url) {
-    //console.log("makeSelect2", selector,url);
     $(selector).select2({
-        //geri açılacak
-        //minimumInputLength: 2,
         allowClear: true,
         ajax: {
             url: url,
             dataType: 'json',
             type: 'GET',
             data: function (params) {
-                //console.log(params);
                 return {
                     q: params.term
                 };
             },
             processResults: function (data, params) {
-                //console.log(data);
-                //console.log(params);
                 return {
                     results: data.items
                 }
@@ -214,7 +244,7 @@ function makeSelect2(selector, url) {
 }
 
 function makeModelSelect2(selector, url, markaSelector) {
-    console.log("selector", selector, "url", url, "markaSelector", markaSelector);
+
     $(selector).select2({
         //geri açılacak
         //minimumInputLength: 2,

@@ -1,195 +1,191 @@
 ﻿@using AmicaRent.DataAccess
-@model AmicaRent.DataAccess.Arac
+@model WebApplication.Models.ViewModels.AracViewModel
 
 @{
     ViewBag.Title = "Yeni Araç";
-
-    List<AracGrup> aracGrupList = ViewBag.AracGrupList;
-    List<AracMarka> aracMarkaList = ViewBag.AracMarkaList;
-    List<AracModel> aracModelList = ViewBag.AracModelList;
-    List<AracYakitTuru> aracYakitTuruList = ViewBag.AracYakitTuruList;
-    List<AracKasaTipi> aracKasaTipiList = ViewBag.AracKasaTipiList;
-    List<AracRenk> aracRenkList = ViewBag.AracRenkList;
-
-
-
-    Dictionary<string, string> vitesTipi = new Dictionary<string, string>();
-    vitesTipi.Add("OTOMATİK", "OTOMATİK");
-    vitesTipi.Add("MANUEL", "MANUEL");
+    Dictionary<int, string> vitesTipi = new Dictionary<int, string>();
+    vitesTipi.Add(1, "OTOMATİK");
+    vitesTipi.Add(2, "MANUEL");
     ViewBag.VitesTipi = vitesTipi;
     Dictionary<int, string> aracKlimaDurumu = new Dictionary<int, string>();
     aracKlimaDurumu.Add(1, "Klimalı");
     aracKlimaDurumu.Add(2, "Klimasız");
     ViewBag.AracKlimaDurumu = aracKlimaDurumu;
-    Dictionary<int, string> aracKiralamaDurumu = new Dictionary<int, string>();
-    aracKiralamaDurumu.Add(0, "Boşta");
-    aracKiralamaDurumu.Add(1, "Müşteride");
-    aracKiralamaDurumu.Add(2, "Pasif Araç");
-    aracKiralamaDurumu.Add(3, "Arızalı/Serviste");
-    ViewBag.AracKiralamaDurumu = aracKiralamaDurumu;
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
     <div class="row">
         <div class="col-xs-12">
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        </div>
-    </div>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        Araç Bilgileri
+                    </h3>
+                </div>
+                <div class="box-body">
 
-    <div class="row">
-        <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-8">
 
-            <div class="row">
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracGrup_ID, "Araç Grup", htmlAttributes: new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.AracGrup_ID, new SelectList(aracGrupList, "AracGrup_ID", "AracGrup_Adi"), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AracGrup_ID, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracGrup_ID, htmlAttributes: new { @class = "control-label" })
+                                        <select id="AracGrup_ID" name="AracGrup_ID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.AracGrup_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracPlakaNo, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.AracPlakaNo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.AracPlakaNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div style="clear:both">
+
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracMarka_ID, htmlAttributes: new { @class = "control-label" })
+                                        <select id="AracMarka_ID" name="AracMarka_ID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.AracMarka_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Arac_Yil, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Arac_Yil, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Arac_Yil, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracModel_ID, htmlAttributes: new { @class = "control-label" })
+                                        <select id="AracModel_ID" name="AracModel_ID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.AracModel_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div style="clear:both">
+
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracGuncelKM, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.AracGuncelKM, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.AracGuncelKM, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div style="clear:both">
+
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracMotorNo, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.AracMotorNo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.AracMotorNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracRenk_ID, htmlAttributes: new { @class = "control-label" })
+                                        <select id="AracRenk_ID" name="AracRenk_ID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.AracRenk_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracSaseNo, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.AracSaseNo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.AracSaseNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracRuhsatSeriNo, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.AracRuhsatSeriNo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.AracRuhsatSeriNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="col-xs-4">
+                            <div class="row">
+
+                                <div class="col-xs-12" style="margin-top: 8rem;">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracYakitTuru_ID, htmlAttributes: new { @class = "control-label" })
+                                        <select id="AracYakitTuru_ID" name="AracYakitTuru_ID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.AracYakitTuru_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Arac_VitesTipi, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.Arac_VitesTipi, new SelectList(vitesTipi, "Key", "Value"), new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Arac_VitesTipi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracKasaTipi_ID, htmlAttributes: new { @class = "control-label" })
+                                        <select id="AracKasaTipi_ID" name="AracKasaTipi_ID" class="form-control"></select>
+                                        @Html.ValidationMessageFor(model => model.AracKasaTipi_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AracKlimaDurumu, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.AracKlimaDurumu, new SelectList(aracKlimaDurumu, "Key", "Value"), new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AracKlimaDurumu, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Arac_AsimUcreti, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Arac_AsimUcreti, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Arac_AsimUcreti, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracPlakaNo, "Plaka No", htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.AracPlakaNo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.AracPlakaNo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div style="clear:both">
 
                 </div>
 
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracMarka_ID, "Araç Marka", htmlAttributes: new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.AracMarka_ID, new SelectList(aracMarkaList, "AracMarka_ID", "AracMarka_Adi"), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AracMarka_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Arac_Yil, "Araç Yıl", htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.Arac_Yil, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Arac_Yil, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracModel_ID, "Araç Model", htmlAttributes: new { @class = "control-label" })
-                        <select id="AracModel_ID" name="AracModel_ID" class="form-control"></select>
-                        @Html.ValidationMessageFor(model => model.AracModel_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div style="clear:both">
-
-                </div>
-
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracGuncelKM, "Güncel KM.", htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.AracGuncelKM, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.AracGuncelKM, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div style="clear:both">
-
-                </div>
-
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracMotorNo, "Araç Motor No", htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.AracMotorNo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.AracMotorNo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracRenk_ID, "Araç Renk", htmlAttributes: new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.AracRenk_ID, new SelectList(aracRenkList, "AracRenk_ID", "AracRenk_Adi"), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AracRenk_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracSaseNo, "Araç Şase No", htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.AracSaseNo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.AracSaseNo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracKiralamaDurumu, "Kiralama Durumu", htmlAttributes: new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.AracKiralamaDurumu, new SelectList(aracKiralamaDurumu, "Key", "Value"), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AracKiralamaDurumu, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracRuhsatSeriNo, "Ruhsat Seri No", htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.AracRuhsatSeriNo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.AracRuhsatSeriNo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-xs-6">
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-4">
-            <div class="row">
-
-                <div class="col-xs-12" style="margin-top: 8rem;">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracYakitTuru_ID, "Araç Yakıt Türü", htmlAttributes: new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.AracYakitTuru_ID, new SelectList(aracYakitTuruList, "AracYakitTuru_ID", "AracYakitTuru_Adi"), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AracYakitTuru_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Arac_VitesTipi, "Araç Vites Tipi", htmlAttributes: new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.Arac_VitesTipi, new SelectList(vitesTipi, "Key", "Value"), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Arac_VitesTipi, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracKasaTipi_ID, "Kasa Tipi", htmlAttributes: new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.AracKasaTipi_ID, new SelectList(aracKasaTipiList, "AracKasaTipi_ID", "AracKasaTipi_Adi"), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AracKasaTipi_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AracKlimaDurumu, "Klima Durumu", htmlAttributes: new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.AracKlimaDurumu, new SelectList(aracKlimaDurumu, "Key", "Value"), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AracKlimaDurumu, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Arac_AsimUcreti, "KM Aşım Ücreti", htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.Arac_AsimUcreti, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Arac_AsimUcreti, "", new { @class = "text-danger" })
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -199,30 +195,39 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">
-                        Kredi Bilgileri
+                        Kredi Bilgileri<i class="fa fa-fw fa-check-circle-o madeHidden" id="creditExist"></i>
+                        @Html.HiddenFor(x => x.Arac_KrediKullanimi)
+                        @Html.ValidationMessageFor(model => model.Arac_KrediKullanimi, "", new { @class = "text-danger" })
                     </h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-xs-3">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Arac_AsimUcreti, "Ödenecek Taksit Sayısı", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Arac_AsimUcreti, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Arac_AsimUcreti, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => model.Arac_KrediTaksitSayisi, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Arac_KrediTaksitSayisi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Arac_KrediTaksitSayisi, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-3">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Arac_AsimUcreti, "Aylık Ödeme Tutarı", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Arac_AsimUcreti, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Arac_AsimUcreti, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => model.Arac_KrediTaksitTutari, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Arac_KrediTaksitTutari, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Arac_KrediTaksitTutari, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-3">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Arac_AsimUcreti, "Ayın Kaçında Ödeniyor", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Arac_AsimUcreti, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Arac_AsimUcreti, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => model.Arac_KrediTaksitOdemeGunu, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Arac_KrediTaksitOdemeGunu, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Arac_KrediTaksitOdemeGunu, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Arac_KrediBankaID, htmlAttributes: new { @class = "control-label" })
+                                <select id="Arac_KrediBankaID" name="Arac_KrediBankaID" class="form-control"></select>
+                                @Html.ValidationMessageFor(model => model.Arac_KrediBankaID, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -232,52 +237,81 @@
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-xs-8">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        Sigorta Süre Bilgileri
-                    </h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Arac_TrafikSigortasiBitisTarihi, "Trf.Sig.Bit.Tar.", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Arac_TrafikSigortasiBitisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Arac_TrafikSigortasiBitisTarihi, "", new { @class = "text-danger" })
+            <div class="row">
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            Sigorta Süre Bilgileri
+                        </h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Arac_TrafikSigortasiBitisTarihi, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.EditorFor(model => model.Arac_TrafikSigortasiBitisTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
+                                        @Html.ValidationMessageFor(model => model.Arac_TrafikSigortasiBitisTarihi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Arac_KoltukSigortasiBitisTarihi, "Koltuk Sig.Bit.Tar.", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Arac_KoltukSigortasiBitisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Arac_KoltukSigortasiBitisTarihi, "", new { @class = "text-danger" })
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Arac_KoltukSigortasiBitisTarihi, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.EditorFor(model => model.Arac_KoltukSigortasiBitisTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
+                                        @Html.ValidationMessageFor(model => model.Arac_KoltukSigortasiBitisTarihi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Arac_KaskoBitisTarihi, "Kasko Bit.Tar.", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Arac_KaskoBitisTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Arac_KaskoBitisTarihi, "", new { @class = "text-danger" })
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Arac_KaskoBitisTarihi, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.EditorFor(model => model.Arac_KaskoBitisTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
+                                        @Html.ValidationMessageFor(model => model.Arac_KaskoBitisTarihi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, "Fenni Myn.Gec.Tar.", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, "", new { @class = "text-danger" })
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        @Html.EditorFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, new { htmlAttributes = new { @class = "form-control pull-right datepicker" } })
+                                        @Html.ValidationMessageFor(model => model.Arac_FenniMuayeneGecerlilikTarihi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Onayla</button>
+            <div class="row">
+                <div class="box box-primary">
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Onayla</button>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="col-xs-4">
             <div class="row">
                 <div class="col-xs-12">
@@ -289,11 +323,15 @@
 
                         </div>
                         <!-- /.box-header -->
+
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <input type="file" id="aracResimleri" name="aracResimleri" multiple class="form-control"  accept="image/*,video/mp4,video/x-m4v,video/*"/>
+                                    <input type="file" id="aracResimleri" name="aracResimleri" multiple class="form-control" accept="image/*,video/*" />
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12" id="filePreview"></div>
                             </div>
                         </div>
                         <!-- /.box-body -->
@@ -308,13 +346,30 @@
 <div>
     @Html.ActionLink("Listeye Geri Dön", "Index")
 </div>
-
+<style type="text/css">
+    .madeHidden {
+        display: none;
+    }
+</style>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         var menuItem = document.querySelector('#solmenu-arac-tanim');
         menuItem.classList.add('active');
         var subMenuItem = menuItem.querySelector('#solmenu-arac-tanim-Arac');
         subMenuItem.classList.add('active');
+
         makeModelSelect2("#AracModel_ID", "/Root/ModelList", "#AracMarka_ID")
+        makeSelect2("#AracGrup_ID", "/Root/AracGrupList")
+        makeSelect2("#AracMarka_ID", "/Root/AracMarkaList")
+        makeSelect2("#AracRenk_ID", "/Root/AracRenkList")
+        makeSelect2("#AracYakitTuru_ID", "/Root/AracYakitTuruList")
+        makeSelect2("#AracKasaTipi_ID", "/Root/AracKasaTipiList")
+        makeSelect2("#Arac_KrediBankaID", "/Root/BankaList")
+
+        bindPreview("#aracResimleri", "#filePreview")
+
+        var paymentInputs = ["#Arac_KrediTaksitSayisi", "#Arac_KrediTaksitTutari", "#Arac_KrediTaksitOdemeGunu", "#Arac_KrediBankaID"];
+        displayElementRegardingToInputs("#creditExist", paymentInputs)
+        setValTrueRegardingToInputs("#Arac_KrediKullanimi", paymentInputs)
     });
 </script>

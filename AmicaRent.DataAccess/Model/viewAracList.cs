@@ -14,7 +14,7 @@ namespace AmicaRent.DataAccess
         public string AracModel_Adi { get; set; }
         public string Arac_Yil { get; set; }
         public string AracYakitTuru_Adi { get; set; }
-        public string Arac_VitesTipi { get; set; }
+        public string VitesTipi { get; set; }
         public string AracKasaTipi_Adi { get; set; }
         public string KlimaDurumu { get; set; }
         public string AracPlakaNo { get; set; }

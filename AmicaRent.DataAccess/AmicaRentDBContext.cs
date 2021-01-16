@@ -17,6 +17,7 @@ namespace AmicaRent.DataAccess
         }
 
         public virtual DbSet<Arac> Arac { get; set; }
+        public virtual DbSet<AracFile> AracFile { get; set; }
         public virtual DbSet<AracGrup> AracGrup { get; set; }
         public virtual DbSet<AracKasaTipi> AracKasaTipi { get; set; }
         public virtual DbSet<AracMarka> AracMarka { get; set; }
