@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Mvc;
 using WebApplication.Models;
 
@@ -46,13 +48,14 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Kullanici_ID,Kullanici_TamAdi,Kullanici_Adi,Kullanici_Sifre,Kullanici_SonGirisZamani,Kullanici_Status,Kullanici_CreateDate")] Kullanici kullanici)
+        public ActionResult Create(Kullanici kullanici)
         {
             if (ModelState.IsValid)
             {
                 kullanici.Kullanici_Status = (int)DBStatus.Active;
                 kullanici.Kullanici_CreateDate = DateTime.Now;
                 kullanici.Kullanici_SonGirisZamani = DateTime.Now;
+                kullanici.Kullanici_Sifre = OneWayEncrypt(kullanici.Kullanici_Sifre);
                 db.Kullanici.Add(kullanici);
                 db.SaveChanges();
                 ViewBag.Message = "Kullanıcı eklendi. Yetkileri aşağıdan seçiniz.";
@@ -77,12 +80,10 @@ namespace WebApplication.Controllers
             return View(kullanici);
         }
 
-        // POST: Kullanici/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Kullanici_ID,Kullanici_TamAdi,Kullanici_Adi,Kullanici_Sifre,Kullanici_SonGirisZamani,Kullanici_Status,Kullanici_CreateDate")] Kullanici kullanici)
+        public ActionResult Edit(Kullanici kullanici)
         {
             if (ModelState.IsValid)
             {
@@ -187,7 +188,7 @@ namespace WebApplication.Controllers
             {
                 var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
 
-                var data = db.Kullanici.Where(x => x.Kullanici_Status == (int)DBStatus.Active);
+                var data = db.viewKullanici.AsQueryable();
                 //Search    
                 if (!string.IsNullOrEmpty(searchValue))
                 {
@@ -200,6 +201,12 @@ namespace WebApplication.Controllers
             {
                 throw ex;
             }
+        }
+
+        public string OneWayEncrypt(string plainText)
+        {
+            SHA1 sha = new SHA1CryptoServiceProvider();
+            return Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(plainText)));
         }
     }
 }

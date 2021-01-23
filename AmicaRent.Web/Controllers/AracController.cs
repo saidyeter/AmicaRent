@@ -80,7 +80,7 @@ namespace WebApplication.Controllers
             {
                 var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
 
-                var data = db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.AracKiralamaDurumu == (int)AracDurumu.Musteride);
+                var data = db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active && x.AracKiralamaDurumu == (int)AracDurumu.RezervasyonYapildi);
 
                 //Search    
                 if (!string.IsNullOrEmpty(searchValue))
@@ -373,10 +373,14 @@ namespace WebApplication.Controllers
             aracKredi.AracKredi_Odendi = true;
 
             Arac arac = db.Arac.Find(aracKredi.Arac_ID);
+            
+            
+            var truncated = $"{arac.AracPlakaNo} plakalı araç için {aracKredi.AracKredi_OdemeTarihi.ToString("dd MM yyyy")} tarihli taksit ödenmiştir";
+            if (truncated.Length > 500) { truncated = truncated.Substring(0, 500); }
 
             KasaIslem tahsilat = new KasaIslem
             {
-                KasaIslem_Aciklama = $"{arac.AracPlakaNo} plakalı araç için {aracKredi.AracKredi_OdemeTarihi.ToString("dd MM yyyy")} tarihli taksit ödenmiştir".Substring(0, 500),
+                KasaIslem_Aciklama = truncated,
                 KasaIslem_CreateDate = DateTime.Now,
                 KasaIslem_Tarih = DateTime.Now,
                 KasaIslem_Tutar = aracKredi.AracKredi_KrediTutar,
@@ -401,9 +405,7 @@ namespace WebApplication.Controllers
             try
             {
                 var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
-                var last7days = DateTime.Now.AddDays(-7);
-                var data = db.viewAracKredi.Where(x => x.AracKredi_OdemeTarihi > last7days && !x.AracKredi_Odendi);
-
+                IQueryable<AmicaRent.DataAccess.viewAracKredi> data = db.viewAracKredi;
 
                 //Search    
                 if (!string.IsNullOrEmpty(searchValue))

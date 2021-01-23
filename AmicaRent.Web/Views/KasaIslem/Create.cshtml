@@ -1,6 +1,6 @@
 ﻿@model AmicaRent.DataAccess.KasaIslem
 
-@{ 
+@{
     ViewBag.Title = "Yeni Kasa Hareketi";
     Dictionary<int, string> tip = new Dictionary<int, string>();
     tip.Add(1, "Gelir");
@@ -33,7 +33,7 @@
                         <div class="col-xs-6">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.KasaIslem_Tipi, "Tipi", htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownListFor(model => model.KasaIslem_Tipi, new SelectList(tip, "Key", "Value"), new { @class = "form-control" }) 
+                                @Html.DropDownListFor(model => model.KasaIslem_Tipi, new SelectList(tip, "Key", "Value"), new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.KasaIslem_Tipi, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                         <div class="col-xs-6">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.KasaIslem_Tutar, "Tutar", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.KasaIslem_Tutar, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                                @Html.EditorFor(model => model.KasaIslem_Tutar, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.KasaIslem_Tutar, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -56,18 +56,12 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-
-
-
-
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Onayla</button>
                 </div>
             </div>
         </div>
     </div>
-
-
 }
 
 <div>

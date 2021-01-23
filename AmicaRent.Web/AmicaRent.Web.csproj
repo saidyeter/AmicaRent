@@ -177,7 +177,6 @@
     <Compile Include="Controllers\BankaBilgileriController.cs" />
     <Compile Include="Controllers\CariController.cs" />
     <Compile Include="Controllers\CariUyrukController.cs" />
-    <Compile Include="Controllers\EkSurucuController.cs" />
     <Compile Include="Controllers\ElementsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IslemController.cs" />
@@ -851,10 +850,6 @@
     <Content Include="Views\EhliyetSinif\Details.cshtml" />
     <Content Include="Views\EhliyetSinif\Edit.cshtml" />
     <Content Include="Views\EhliyetSinif\Index.cshtml" />
-    <Content Include="Views\EkSurucu\Create.cshtml" />
-    <Content Include="Views\EkSurucu\Details.cshtml" />
-    <Content Include="Views\EkSurucu\Edit.cshtml" />
-    <Content Include="Views\EkSurucu\Index.cshtml" />
     <Content Include="Views\Islem\Create.cshtml" />
     <Content Include="Views\Islem\Details.cshtml" />
     <Content Include="Views\Islem\Edit.cshtml" />

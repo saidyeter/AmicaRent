@@ -119,9 +119,13 @@ namespace WebApplication.Controllers
                     arac.AracKiralamaDurumu = (int)AracDurumu.RezervasyonYapildi;
                 }
                 db.SaveChanges();
+
+                var truncated = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}";
+                if (truncated.Length > 500) { truncated = truncated.Substring(0, 500); }
+
                 KasaIslem tahsilat = new KasaIslem
                 {
-                    KasaIslem_Aciklama = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}".Substring(0, 500),
+                    KasaIslem_Aciklama = truncated,
                     KasaIslem_CreateDate = DateTime.Now,
                     KasaIslem_Tarih = DateTime.Now,
                     KasaIslem_Tutar = model.Islem_TahsilEdilen ?? 0,
@@ -192,9 +196,18 @@ namespace WebApplication.Controllers
             {
                 islem.Islem_TahsilEdilen += model.Islem_TahsilEdilen ?? 0;
                 islem.Islem_KalanBorc -= model.Islem_TahsilEdilen ?? 0;
+                islem.Islem_ToplamDigerUcretler = model.Islem_ToplamDigerUcretler;
+                islem.Islem_ToplamEkstraHizmetler = model.Islem_ToplamEkstraHizmetler;
+                islem.Islem_ToplamKiralamaUcreti = model.Islem_ToplamKiralamaUcreti;
+                islem.Islem_ToplamKMAsimUcreti = model.Islem_ToplamKMAsimUcreti;
+                islem.Islem_ToplamValeHizmetleri = model.Islem_ToplamValeHizmetleri;
+
+
+                var truncated = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}";
+                if (truncated.Length > 500) { truncated = truncated.Substring(0, 500); }
                 KasaIslem tahsilat = new KasaIslem
                 {
-                    KasaIslem_Aciklama = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}".Substring(0, 500),
+                    KasaIslem_Aciklama = truncated,
                     KasaIslem_CreateDate = DateTime.Now,
                     KasaIslem_Tarih = DateTime.Now,
                     KasaIslem_Tutar = model.Islem_TahsilEdilen ?? 0,
@@ -207,7 +220,7 @@ namespace WebApplication.Controllers
 
                 Arac a = db.Arac.Find(islem.Arac_ID);
                 a.AracKiralamaDurumu = (int)AracDurumu.Bos;
-
+                a.AracGuncelKM = (double)model.Islem_SonKM;
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -253,9 +266,12 @@ namespace WebApplication.Controllers
             {
                 islem.Islem_TahsilEdilen += model.Islem_TahsilEdilen ?? 0;
                 islem.Islem_KalanBorc -= model.Islem_TahsilEdilen ?? 0;
+
+                var truncated = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}";
+                if (truncated.Length > 500) { truncated = truncated.Substring(0, 500); }
                 KasaIslem tahsilat = new KasaIslem
                 {
-                    KasaIslem_Aciklama = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}".Substring(0, 500),
+                    KasaIslem_Aciklama = truncated,
                     KasaIslem_CreateDate = DateTime.Now,
                     KasaIslem_Tarih = DateTime.Now,
                     KasaIslem_Tutar = model.Islem_TahsilEdilen ?? 0,
@@ -311,9 +327,12 @@ namespace WebApplication.Controllers
             {
                 islem.Islem_TahsilEdilen += model.Islem_TahsilEdilen ?? 0;
                 islem.Islem_KalanBorc -= model.Islem_TahsilEdilen ?? 0;
+
+                var truncated = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}";
+                if (truncated.Length > 500) { truncated = truncated.Substring(0, 500); }
                 KasaIslem tahsilat = new KasaIslem
                 {
-                    KasaIslem_Aciklama = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}".Substring(0, 500),
+                    KasaIslem_Aciklama = truncated,
                     KasaIslem_CreateDate = DateTime.Now,
                     KasaIslem_Tarih = DateTime.Now,
                     KasaIslem_Tutar = model.Islem_TahsilEdilen,

@@ -21,13 +21,10 @@
                                 Kullanıcı Adı
                             </th>
                             <th>
-                                Oluşturulmada Tarihi
+                                Oluşturulma Tarihi
                             </th>
                             <th>
                                 Son Giriş Zamanı
-                            </th>
-                            <th>
-                                Durumu
                             </th>
                             <th width="10%"></th>
                         </tr>
@@ -49,14 +46,14 @@
         var columns = [
             { "data": "Kullanici_TamAdi", "name": "Kullanici_TamAdi", "autoWidth": true },
             { "data": "Kullanici_Adi", "name": "Kullanici_Adi", "autoWidth": true },
-            { "data": "Kullanici_CreateDate", "name": "Kullanici_CreateDate", "autoWidth": true },
-            { "data": "Kullanici_SonGirisZamani", "name": "Kullanici_SonGirisZamani", "autoWidth": true },
-            { "data": "Kullanici_Status", "name": "Kullanici_Status", "autoWidth": true },
+            { "data": "OlusturmaZamani", "name": "OlusturmaZamani", "autoWidth": true },
+            { "data": "SonGirisZamani", "name": "SonGirisZamani", "autoWidth": true },
             {
-                "data": "AracKasaTipi_ID",
+                "data": "Kullanici_ID",
                 "render": function (data, type, row) {
                     return "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/Kullanici/delete/" + row.Kullanici_ID + "\"); return false;' ></a>" +
-                        " <a class='fa fa-edit task-button' title='Düzenle' href='/Kullanici/edit/" + row.Kullanici_ID + "'></a>";
+                        " <a class='fa fa-edit task-button' title='Düzenle' href='/Kullanici/edit/" + row.Kullanici_ID + "'></a>" +
+                        " <a class='fa fa-wrench task-button' title='Rol Yönet' href='/Kullanici/ManageRole/" + row.Kullanici_ID + "'></a>";
                 }
             },
         ];

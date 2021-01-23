@@ -1,7 +1,7 @@
 ﻿@using AmicaRent.DataAccess
 @model  List<KeyValuePair<KullaniciRolTanimlari, bool>>
 @{
-    ViewBag.Title = "ManageRole";
+    ViewBag.Title = "Kullanıcı Rolü";
     int ManagedUserId = ViewBag.ManagedUserId;
     List<int> RoleCategories = ViewBag.RoleCategories;
     string CurrentlyRoles = ViewBag.CurrentlyRoles;
@@ -13,7 +13,7 @@
     @Html.Hidden("ManagedUserId", ManagedUserId);
     <div class="box box-warning">
         <div class="box-header with-border">
-            <h3 class="box-title">Kullanıcı Rolü Düzenle</h3>
+            <h3 class="box-title">Düzenle</h3>
             @if (ViewBag.Message != null)
             {
                 <h5 class="box-title">@ViewBag.Message</h5>

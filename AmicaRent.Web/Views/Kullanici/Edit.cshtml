@@ -34,20 +34,8 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Kullanici_Sifre, "Şifre", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Kullanici_Sifre, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
-                                @Html.ValidationMessageFor(model => model.Kullanici_Sifre, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
                     </div>
                 </div>
-
-
-
-
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Onayla</button>
                 </div>

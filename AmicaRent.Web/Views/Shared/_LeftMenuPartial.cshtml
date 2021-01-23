@@ -65,9 +65,9 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                     <i class="fa  fa-hourglass-half"></i> <span>İşlem</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                        @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-liste"><a href="@Url.Action("Index", "Islem")"><i class="fa  fa-location-arrow"></i> Rezervasyon Listesi</a></li>}
-                        @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-tanim"><a href="@Url.Action("Create", "Islem")"><i class="fa  fa-signal"></i> Kiralama İşlemleri</a></li> }
-                        @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-liste"><a href="@Url.Action("IndexState", "Islem")"><i class="fa  fa-location-arrow"></i> Borç/Alacak Durumu</a></li>}
+                        @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-liste"><a href="@Url.Action("Index", "Islem")"><i class="fa fa-location-arrow"></i> İşlem Listesi</a></li>}
+                        @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-tanim"><a href="@Url.Action("Create", "Islem")"><i class="fa fa-signal"></i> Kiralama İşlemleri</a></li> }
+                        @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-liste"><a href="@Url.Action("IndexState", "Islem")"><i class="fa  fa-dollar"></i> Borç/Alacak Durumu</a></li>}
                 </ul>
             </li>
             <li id="solmenu-service" class="treeview">

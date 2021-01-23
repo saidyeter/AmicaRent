@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.Models;
@@ -30,6 +31,11 @@ namespace WebApplication.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+        public string OneWayEncrypt(string plainText)
+        {
+            SHA1 sha = new SHA1CryptoServiceProvider();
+            return Convert.ToBase64String(sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(plainText)));
+        }
 
         [HttpPost]
         [AllowAnonymous]
@@ -41,11 +47,11 @@ namespace WebApplication.Controllers
                 return View(model);
             }
 
-
+            var parola = OneWayEncrypt(model.Kullanici_Sifre);
             Kullanici user = db.Kullanici
                 .Where(u =>
                     u.Kullanici_Adi == model.Kullanici_Adi &&
-                    u.Kullanici_Sifre == model.Kullanici_Sifre)
+                    u.Kullanici_Sifre == parola)
                 .FirstOrDefault();
 
             if (user != null)

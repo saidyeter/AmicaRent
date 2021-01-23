@@ -47,7 +47,8 @@
                 "render": function (data, type, row) {
                     var icons = "<a class='fa fa-trash task-button' title='Sil' onclick='deleteConfirm(\"/Cari/delete/" + row.Cari_ID + "\"); return false;' ></a>" +
                         " <a class='fa fa-edit task-button' title='Düzenle' href='/Cari/edit/" + row.Cari_ID + "'></a>" +
-                        " <a class='fa fa-info task-button' title='Detay' href='/Cari/details/" + row.Cari_ID + "'></a>";
+                        " <a class='fa fa-info task-button' title='Detay' href='/Cari/details/" + row.Cari_ID + "'></a>" +
+                        " <a class='fa fa-money task-button' title='Ödeme Al' href='/KasaIslem/create/" + row.Cari_ID + "'></a>";
                     return icons;
                 }
             },

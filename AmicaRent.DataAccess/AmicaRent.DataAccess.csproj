@@ -66,7 +66,6 @@
     <Compile Include="Model\CariUyruk.cs" />
     <Compile Include="Model\EhliyetSinif.cs" />
     <Compile Include="Model\EkstraHizmetler.cs" />
-    <Compile Include="Model\EkSurucu.cs" />
     <Compile Include="Model\Islem.cs" />
     <Compile Include="Model\IslemFile.cs" />
     <Compile Include="Model\KasaIslem.cs" />
@@ -85,6 +84,8 @@
     <Compile Include="Model\viewCari.cs" />
     <Compile Include="Model\viewCariEhliyet.cs" />
     <Compile Include="Model\viewIslem.cs" />
+    <Compile Include="Model\viewKasaIslem.cs" />
+    <Compile Include="Model\viewKullanici.cs" />
     <Compile Include="Model\viewServis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
