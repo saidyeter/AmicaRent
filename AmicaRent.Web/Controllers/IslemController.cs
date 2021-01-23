@@ -44,21 +44,34 @@ namespace WebApplication.Controllers
             }
         }
 
-        //// GET: Islem/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    var islem = db.viewIslem.SingleOrDefault(x => x.Islem_ID == id);
+        public ActionResult IndexState()
+        {
+            return View();
+        }
 
-        //    if (islem == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(islem);
-        //}
+        [HttpPost]
+        public JsonResult LoadDtState()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+                var data = db.viewIslem.Where(x => x.Islem_Status == (int)DBStatus.Active && x.Islem_KalanBorc > 0);
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.Cari_AdSoyad.Contains(searchValue) || m.AracPlakaNo.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         // GET: Islem/Create
         public ActionResult Create()
@@ -96,19 +109,27 @@ namespace WebApplication.Controllers
                     Islem_YakitDurumu = model.Islem_YakitDurumu ?? 0,
                 };
                 db.Islem.Add(islem);
-                db.SaveChanges();
-                IslemTahsilat tahsilat = new IslemTahsilat
+                Arac arac = db.Arac.Find(model.Arac_ID);
+                if ((int)model.Islem_Tipi == (int)IslemTipi.Kiralama)
                 {
-                    IslemTahsilat_Aciklama = model.Tahsilat_Aciklama,
-                    IslemTahsilat_CreateDate = DateTime.Now,
-                    IslemTahsilat_ID = 0,
-                    IslemTahsilat_Status = (int)DBStatus.Active,
-                    IslemTahsilat_Tarih = DateTime.Now,
-                    IslemTahsilat_Tutar = model.Islem_TahsilEdilen ?? 0,
-                    Islem_ID = islem.Islem_ID,
-                    OdemeTipi_ID = model.OdemeTipi_ID,
+                    arac.AracKiralamaDurumu = (int)AracDurumu.Musteride;
+                }
+                else if ((int)model.Islem_Tipi == (int)IslemTipi.Rezervasyon)
+                {
+                    arac.AracKiralamaDurumu = (int)AracDurumu.RezervasyonYapildi;
+                }
+                db.SaveChanges();
+                KasaIslem tahsilat = new KasaIslem
+                {
+                    KasaIslem_Aciklama = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}".Substring(0, 500),
+                    KasaIslem_CreateDate = DateTime.Now,
+                    KasaIslem_Tarih = DateTime.Now,
+                    KasaIslem_Tutar = model.Islem_TahsilEdilen ?? 0,
+                    OdemeTipi_ID = (int)model.OdemeTipi_ID,
+                    KasaIslem_Tipi = (int)KasaIslemTipi.Gelir
+
                 };
-                db.IslemTahsilat.Add(tahsilat);
+                db.KasaIslem.Add(tahsilat);
                 db.SaveChanges();
                 foreach (var item in aracResimleri)
                 {
@@ -171,19 +192,23 @@ namespace WebApplication.Controllers
             {
                 islem.Islem_TahsilEdilen += model.Islem_TahsilEdilen ?? 0;
                 islem.Islem_KalanBorc -= model.Islem_TahsilEdilen ?? 0;
-                IslemTahsilat tahsilat = new IslemTahsilat
+                KasaIslem tahsilat = new KasaIslem
                 {
-                    IslemTahsilat_Aciklama = model.Tahsilat_Aciklama,
-                    IslemTahsilat_CreateDate = DateTime.Now,
-                    IslemTahsilat_ID = 0,
-                    IslemTahsilat_Status = (int)DBStatus.Active,
-                    IslemTahsilat_Tarih = DateTime.Now,
-                    IslemTahsilat_Tutar = model.Islem_TahsilEdilen ?? 0,
-                    Islem_ID = islem.Islem_ID,
-                    OdemeTipi_ID = model.OdemeTipi_ID,
+                    KasaIslem_Aciklama = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}".Substring(0, 500),
+                    KasaIslem_CreateDate = DateTime.Now,
+                    KasaIslem_Tarih = DateTime.Now,
+                    KasaIslem_Tutar = model.Islem_TahsilEdilen ?? 0,
+                    OdemeTipi_ID = (int)model.OdemeTipi_ID,
+                    KasaIslem_Tipi = (int)KasaIslemTipi.Gelir
                 };
-                db.IslemTahsilat.Add(tahsilat);
-                islem.Islem_Tipi = 4;
+                db.KasaIslem.Add(tahsilat);
+                islem.Islem_Tipi = (int)IslemTipi.Tamamlandi;
+
+
+                Arac a = db.Arac.Find(islem.Arac_ID);
+                a.AracKiralamaDurumu = (int)AracDurumu.Bos;
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -228,19 +253,21 @@ namespace WebApplication.Controllers
             {
                 islem.Islem_TahsilEdilen += model.Islem_TahsilEdilen ?? 0;
                 islem.Islem_KalanBorc -= model.Islem_TahsilEdilen ?? 0;
-                IslemTahsilat tahsilat = new IslemTahsilat
+                KasaIslem tahsilat = new KasaIslem
                 {
-                    IslemTahsilat_Aciklama = model.Tahsilat_Aciklama,
-                    IslemTahsilat_CreateDate = DateTime.Now,
-                    IslemTahsilat_ID = 0,
-                    IslemTahsilat_Status = (int)DBStatus.Active,
-                    IslemTahsilat_Tarih = DateTime.Now,
-                    IslemTahsilat_Tutar = model.Islem_TahsilEdilen ?? 0,
-                    Islem_ID = islem.Islem_ID,
-                    OdemeTipi_ID = model.OdemeTipi_ID,
+                    KasaIslem_Aciklama = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}".Substring(0, 500),
+                    KasaIslem_CreateDate = DateTime.Now,
+                    KasaIslem_Tarih = DateTime.Now,
+                    KasaIslem_Tutar = model.Islem_TahsilEdilen ?? 0,
+                    OdemeTipi_ID = (int)model.OdemeTipi_ID,
+                    KasaIslem_Tipi = (int)KasaIslemTipi.Gelir
                 };
-                db.IslemTahsilat.Add(tahsilat);
-                islem.Islem_Tipi = 3;
+                db.KasaIslem.Add(tahsilat);
+                islem.Islem_Tipi = (int)IslemTipi.Kiralama;
+
+                Arac a = db.Arac.Find(islem.Arac_ID);
+                a.AracKiralamaDurumu = (int)AracDurumu.Musteride;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -284,19 +311,21 @@ namespace WebApplication.Controllers
             {
                 islem.Islem_TahsilEdilen += model.Islem_TahsilEdilen ?? 0;
                 islem.Islem_KalanBorc -= model.Islem_TahsilEdilen ?? 0;
-                IslemTahsilat tahsilat = new IslemTahsilat
+                KasaIslem tahsilat = new KasaIslem
                 {
-                    IslemTahsilat_Aciklama = model.Tahsilat_Aciklama,
-                    IslemTahsilat_CreateDate = DateTime.Now,
-                    IslemTahsilat_ID = 0,
-                    IslemTahsilat_Status = (int)DBStatus.Active,
-                    IslemTahsilat_Tarih = DateTime.Now,
-                    IslemTahsilat_Tutar = -1 * (model.Islem_TahsilEdilen ?? 0),
-                    Islem_ID = islem.Islem_ID,
-                    OdemeTipi_ID = model.OdemeTipi_ID,
+                    KasaIslem_Aciklama = $"{islem.Islem_ID} Id'li İşlem: {model.Tahsilat_Aciklama}".Substring(0, 500),
+                    KasaIslem_CreateDate = DateTime.Now,
+                    KasaIslem_Tarih = DateTime.Now,
+                    KasaIslem_Tutar = model.Islem_TahsilEdilen,
+                    OdemeTipi_ID = (int)model.OdemeTipi_ID,
+                    KasaIslem_Tipi = (int)KasaIslemTipi.Gider
                 };
-                db.IslemTahsilat.Add(tahsilat);
-                islem.Islem_Tipi = 2;
+                db.KasaIslem.Add(tahsilat);
+                islem.Islem_Tipi = (int)IslemTipi.RezervasyonIptal;
+
+                Arac a = db.Arac.Find(islem.Arac_ID);
+                a.AracKiralamaDurumu = (int)AracDurumu.Bos;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -339,72 +368,6 @@ namespace WebApplication.Controllers
             outputStream.Position = 0;
             return File(outputStream, "application/zip", islem.Cari_ID + "_" + islem.Arac_ID + ".zip");
         }
-
-        //// GET: Islem/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Islem islem = db.Islem.Find(id);
-        //    if (islem == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-
-        //    List<Cari> cariList = db.Cari.ToList();
-        //    ViewBag.CariList = cariList;
-
-        //    Dictionary<int, string> aracList = new Dictionary<int, string>();
-        //    foreach (var arac in db.viewAracList.Where(x => x.Arac_Status == (int)DBStatus.Active).ToList())
-        //    {
-        //        aracList.Add(arac.Arac_ID, arac.AracGrup_Adi + " " + arac.AracMarka_Adi + " " + arac.AracModel_Adi + " " + arac.Arac_Yil);
-        //    }
-        //    ViewBag.AracList = aracList;
-
-        //    Dictionary<int, string> islemTipi = new Dictionary<int, string>();
-        //    islemTipi.Add(1, "Rezervasyon");
-        //    islemTipi.Add(2, "Kiralama");
-        //    ViewBag.IslemTipi = islemTipi;
-
-        //    return View(islem);
-        //}
-
-        //// POST: Islem/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Islem_ID,Islem_Tipi,Cari_ID,Arac_ID,Islem_BaslangicTarihi,Islem_BitisTarihi,Islem_IlkKM,Islem_SonKM,Islem_YakitDurumu,Islem_TeslimatLokasyonID,Islem_IadeLokasyonID,Islem_GunlukUcret,Islem_GunlukKMSiniri,Islem_ToplamKiralamaUcreti,Islem_ToplamKMAsimUcreti,Islem_ToplamEkstraHizmetler,Islem_ToplamValeHizmetleri,Islem_ToplamDigerUcretler,Islem_IskontoOrani,Islem_TahsilEdilen,Islem_KalanBorc,Islem_Status,Islem_CreateDate")] Islem islem)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(islem).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(islem);
-        //}
-
-        // GET: Islem/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Islem islem = db.Islem.Find(id);
-        //    if (islem == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    islem.Islem_Status = (int)DBStatus.Deleted;
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-
-        //}
 
         protected override void Dispose(bool disposing)
         {

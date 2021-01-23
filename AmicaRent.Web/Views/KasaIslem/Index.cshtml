@@ -1,0 +1,45 @@
+﻿@{ ViewBag.Title = "Kasa İşlem"; }
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <div class="box-body">
+                <table id="dt" class="table table-hover table-striped" style="width:100%">
+                    <thead class="blue-grey lighten-4">
+                        <tr>
+                            <th>Açıklama</th>
+                            <th>KasaIslem_Tarih</th>
+                            <th>OdemeTipi_ID</th>
+                            <th>KasaIslem_Tipi</th>
+                            <th>KasaIslem_Tutar</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-kasa');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-kasa-liste');
+        subMenuItem.classList.add('active');
+
+        var columns = [
+            { "data": "KasaIslem_Aciklama", "name": "KasaIslem_Aciklama", "autoWidth": true },
+            { "data": "KasaIslem_Tarih", "name": "KasaIslem_Tarih", "autoWidth": true },
+            { "data": "OdemeTipi_ID", "name": "OdemeTipi_ID", "autoWidth": true },
+            { "data": "KasaIslem_Tipi", "name": "KasaIslem_Tipi", "autoWidth": true },
+            { "data": "KasaIslem_Tutar", "name": "KasaIslem_Tutar", "autoWidth": true },
+        ];
+
+        var selector = "#dt";
+        var url = "/KasaIslem/LoadDt";
+        makeDatatable(selector, url, columns, afterDatatabled);
+    });
+</script>
+
+

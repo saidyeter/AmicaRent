@@ -67,6 +67,7 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                 <ul class="treeview-menu">
                         @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-liste"><a href="@Url.Action("Index", "Islem")"><i class="fa  fa-location-arrow"></i> Rezervasyon Listesi</a></li>}
                         @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-tanim"><a href="@Url.Action("Create", "Islem")"><i class="fa  fa-signal"></i> Kiralama İşlemleri</a></li> }
+                        @if (roleList.Contains("'Islem'")) {<li id="solmenu-operation-liste"><a href="@Url.Action("IndexState", "Islem")"><i class="fa  fa-location-arrow"></i> Borç/Alacak Durumu</a></li>}
                 </ul>
             </li>
             <li id="solmenu-service" class="treeview">
@@ -97,9 +98,9 @@ string roleList = ((string)HttpContext.Current.Items["Roles"])??string.Empty;
                     <i class="fa fa-gg-circle"></i> <span>Kasa İşlemleri</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    @if (roleList.Contains("'")) {<li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-area-chart"></i> Günlük Kasa</a></li> }
-                    @if (roleList.Contains("'")) {<li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-cc-mastercard"></i> Borç/Alacak Durumu</a></li> }
-                    @if (roleList.Contains("'")) {<li id="solmenu-kasa-blank"><a href="#"><i class="fa  fa-check-square-o"></i> Araç Kredi İşlemleri</a></li>}
+                    @if (roleList.Contains("'KasaIslem'")) {<li id="solmenu-kasa-tanim"><a href="@Url.Action("Create", "KasaIslem")"><i class="fa  fa-area-chart"></i> Kasa İşlemi Tanımlama</a></li> }
+                    @if (roleList.Contains("'KasaIslem'")) {<li id="solmenu-kasa-liste"><a href="@Url.Action("Index", "KasaIslem")"><i class="fa  fa-cc-mastercard"></i> Kasa İşlemi Listesi</a></li> }
+                    @if (roleList.Contains("'Arac'")) {<li id="solmenu-kasa-liste-arackredi"><a href="@Url.Action("IndexAracKredi", "Arac")"><i class="fa  fa-check-square-o"></i> Araç Kredi İşlemleri</a></li>}
                 </ul>
             </li>
         </ul>

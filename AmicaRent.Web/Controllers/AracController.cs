@@ -345,24 +345,6 @@ namespace WebApplication.Controllers
 
             return RedirectToAction("Index");
         }
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Arac arac = db.Arac.Find(id);
-
-            if (arac == null)
-            {
-                return HttpNotFound();
-            }
-
-            arac.Arac_Status = (int)DBStatus.Deleted;
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -371,6 +353,70 @@ namespace WebApplication.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+
+        public ActionResult MarkPay(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AracKredi aracKredi = db.AracKredi.Find(id);
+
+            if (aracKredi == null)
+            {
+                return HttpNotFound();
+            }
+
+            aracKredi.AracKredi_Odendi = true;
+
+            Arac arac = db.Arac.Find(aracKredi.Arac_ID);
+
+            KasaIslem tahsilat = new KasaIslem
+            {
+                KasaIslem_Aciklama = $"{arac.AracPlakaNo} plakalı araç için {aracKredi.AracKredi_OdemeTarihi.ToString("dd MM yyyy")} tarihli taksit ödenmiştir".Substring(0, 500),
+                KasaIslem_CreateDate = DateTime.Now,
+                KasaIslem_Tarih = DateTime.Now,
+                KasaIslem_Tutar = aracKredi.AracKredi_KrediTutar,
+                OdemeTipi_ID = db.OdemeTipi.First(x => x.OdemeTipi_Adi.Contains("BANKA")).OdemeTipi_ID,
+                KasaIslem_Tipi = (int)KasaIslemTipi.Gider
+            };
+            db.KasaIslem.Add(tahsilat);
+
+
+            db.SaveChanges();
+
+            return RedirectToAction("IndexAracKredi");
+        }
+
+        public ActionResult IndexAracKredi()
+        {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult LoadKredi()
+        {
+            try
+            {
+                var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+                var last7days = DateTime.Now.AddDays(-7);
+                var data = db.viewAracKredi.Where(x => x.AracKredi_OdemeTarihi > last7days && !x.AracKredi_Odendi);
+
+
+                //Search    
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data = data.Where(m => m.AracPlakaNo.Contains(searchValue) || m.AracMarka_Adi.Contains(searchValue) || m.AracModel_Adi.Contains(searchValue));
+                }
+
+                return BaseDatatable(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

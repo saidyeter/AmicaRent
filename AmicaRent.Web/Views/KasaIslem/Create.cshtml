@@ -1,0 +1,87 @@
+﻿@model AmicaRent.DataAccess.KasaIslem
+
+@{ 
+    ViewBag.Title = "Yeni Kasa Hareketi";
+    Dictionary<int, string> tip = new Dictionary<int, string>();
+    tip.Add(1, "Gelir");
+    tip.Add(2, "Gider");
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Kasa İşlemi</h3>
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.KasaIslem_Aciklama, "Açıklama", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.KasaIslem_Aciklama, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.KasaIslem_Aciklama, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.KasaIslem_Tipi, "Tipi", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.KasaIslem_Tipi, new SelectList(tip, "Key", "Value"), new { @class = "form-control" }) 
+                                @Html.ValidationMessageFor(model => model.KasaIslem_Tipi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.KasaIslem_Tutar, "Tutar", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.KasaIslem_Tutar, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                                @Html.ValidationMessageFor(model => model.KasaIslem_Tutar, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OdemeTipi_ID, "Ödeme Tipi", htmlAttributes: new { @class = "control-label" })
+                                <select id="OdemeTipi_ID" name="OdemeTipi_ID" class="form-control"></select>
+                                @Html.ValidationMessageFor(model => model.OdemeTipi_ID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Onayla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+<div>
+    @Html.ActionLink("Listeye Geri Dön ", "Index")
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-kasa');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-kasa-tanim');
+        subMenuItem.classList.add('active');
+
+
+        makeSelect2("#OdemeTipi_ID", "/Root/OdemeTipiList")
+    });
+</script>

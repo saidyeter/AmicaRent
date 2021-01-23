@@ -70,8 +70,8 @@ namespace WebApplication.Controllers
         public ActionResult AracList(string q = "")
         {
             return BaseSelect2List(
-                db.viewAracList,//.Where(x => x.AracKiralamaDurumu == (int)AracDurumu.Bos),
-                x => x.AracMarka_Adi.Contains(q) || x.AracModel_Adi.Contains(q) || x.AracPlakaNo.Contains(q),
+                db.viewAracList,
+                x => x.AracKiralamaDurumu == (int)AracDurumu.Bos && (x.AracMarka_Adi.Contains(q) || x.AracModel_Adi.Contains(q) || x.AracPlakaNo.Contains(q)),
                 c => new Select2Model { id = c.Arac_ID.ToString(), text = c.AracMarka_Adi + " " + c.AracModel_Adi + " (" + c.AracPlakaNo + ")" });
         }
         public ActionResult CariList(string q = "")

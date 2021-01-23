@@ -5,6 +5,7 @@
         Bos = 0,
         Musteride = 1,
         Pasif = 2,
-        Serviste = 3
+        Serviste = 3,
+        RezervasyonYapildi = 4,
     }
 }

@@ -1,0 +1,58 @@
+﻿@{ ViewBag.Title = "Borç Alacak Durumu"; }
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <div class="box-body">
+                <table id="dt" class="table table-hover table-striped" style="width:100%">
+                    <thead class="blue-grey lighten-4">
+                        <tr>
+                            <th>Cari Adı Soyadı</th>
+                            <th>Araç Marka / Model</th>
+                            <th>Plaka</th>
+                            <th>Başlangıç - Bitiş Tarihi</th>
+                            <th>Tahsil Edilen</th>
+                            <th>Kalan</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-operation');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-operation-liste');
+        subMenuItem.classList.add('active');
+
+        var columns = [
+            { "data": "Cari_AdSoyad", "name": "Cari_AdSoyad", "autoWidth": true },
+
+            {
+                "data": "AracGrup_Adi",
+                "render": function (data, type, row) {
+                    return row.AracGrup_Adi + " " + row.AracMarka_Adi + " " + row.AracModel_Adi + " (" + row.Arac_Yil + ")";
+                }
+            },
+            { "data": "AracPlakaNo", "name": "AracPlakaNo", "autoWidth": true },
+            {
+                "data": "BaslangicTarihi",
+                "render": function (data, type, row) {
+                    return row.BaslangicTarihi + " - " + row.BitisTarihi;
+                }
+            },
+            { "data": "Islem_TahsilEdilen", "name": "Islem_TahsilEdilen", "autoWidth": true },
+            { "data": "Islem_KalanBorc", "name": "Islem_KalanBorc", "autoWidth": true },
+        ];
+
+        var selector = "#dt";
+        var url = "/Islem/LoadDtState";
+        makeDatatable(selector, url, columns, afterDatatabled);
+    });
+</script>
+
+
