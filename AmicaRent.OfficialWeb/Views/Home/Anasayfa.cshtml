@@ -1,41 +1,28 @@
-﻿<section class="mainpage">
-    <div class="container">
-        <ul class="social">
-            <li>
-                <a href="#">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <header>
-        <div class="container">
-            <ul>
-                <li class="selected">
-                    <a href="anasayfa"> Ana Sayfa</a>
-                </li>
-                <li>
-                    <a href="araclistesi"> Araç Listesi</a>
-                </li>
-                <li>
-                    <a href="hakkinda"> Hakkımızda</a>
-                </li>
-                <li>
-                    <a href="iletisim"> İletişim</a>
-                </li>
-            </ul>
-        </div>
-    </header>
+﻿@{
+    var startDays = new List<string>();
+    var endDays = new List<string>();
+    for (DateTime i = DateTime.Now; i < DateTime.Now.AddMonths(2); i = i.AddDays(1))
+    {
+        startDays.Add(i.ToString("dd.MM.yyyy"));
+        endDays.Add(i.ToString("dd.MM.yyyy"));
+    }
+
+    var startTimes = new List<string>();
+    var endTimes = new List<string>();
+    var n = DateTime.Now;
+    var morning = new DateTime(n.Year, n.Month, n.Day, 7, 0, 0);
+    var evening = new DateTime(n.Year, n.Month, n.Day, 22, 0, 1);
+    for (DateTime i = morning; i < evening; i = i.AddHours(1))
+    {
+        startTimes.Add(i.ToString("hh:mm"));
+        endTimes.Add(i.ToString("hh:mm"));
+    }
+
+
+}
+<section class="mainpage">
+    @Html.Partial("_Header")
+
     <div class="container searcharea">
         <div class="row">
             <div class="col-6">
@@ -48,59 +35,87 @@
                 <a href="#">Araç Listesi</a>
             </div>
             <div class="col-6">
-                <form method="POST">
+                <form method="POST" action="/araclistesi">
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="" class="form-label">Alış Lokasyonu</label>
-                                <select name="" id="" class="form_select" required>
-                                    <option value="" class="placeholder">Merkez Ofis</option>
-                                    <option value="İstanbul">İstanbul</option>
+                                <select name="alisLokasyon" id="alisLokasyon" class="form_select" required>
+                                    @{ if (ViewBag.Lokasyonlar != null)
+                                        {
+                                            foreach (var item in (List<AmicaRent.DataAccess.Lokasyon>)ViewBag.Lokasyonlar)
+                                            {
+                                                <option value="@item.Lokasyon_ID">@item.Lokasyon_Adi</option>
+                                            }
+                                        }
+                                    }
                                 </select>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="" class="form-label">Dönüş Lokasyonu</label>
-                                <select name="" id="" class="form_select" required>
-                                    <option value="" class="placeholder">Merkez Ofis</option>
-                                    <option value="İstanbul">İstanbul</option>
+                                <select name="donusLokasyon" id="donusLokasyon" class="form_select" required>
+                                    @{ if (ViewBag.Lokasyonlar != null)
+                                        {
+                                            foreach (var item in (List<AmicaRent.DataAccess.Lokasyon>)ViewBag.Lokasyonlar)
+                                            {
+                                                <option value="@item.Lokasyon_ID">@item.Lokasyon_Adi</option>
+                                            }
+                                        }
+                                    }
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Alış Tarihi</label>
-                                <select name="" id="" class="form_select" required>
-                                    <option value="" class="placeholder">17.12.2020</option>
-                                    <option value="17.12.2020">17.12.2020</option>
+                                <select name="alisGun" id="alisGun" class="form_select" required>
+                                    @{
+                                        foreach (var item in startDays)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Alış Saati</label>
-                                <select name="" id="" class="form_select" required>
-                                    <option value="" class="placeholder">17:10</option>
-                                    <option value="İstanbul">17:12</option>
+                                <select name="alisSaat" id="alisSaat" class="form_select" required>
+                                    @{
+                                        foreach (var item in startTimes)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Dönüş Tarihi</label>
-                                <select name="" id="" class="form_select" required>
-                                    <option value="" class="placeholder">17.12.2020</option>
-                                    <option value="17.12.2020">17.12.2020</option>
+                                <select name="donusGun" id="donusGun" class="form_select" required>
+                                    @{
+                                        foreach (var item in endDays)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Dönüş Saati</label>
-                                <select name="" id="" class="form_select" required>
-                                    <option value="" class="placeholder">17:10</option>
-                                    <option value="İstanbul">17:12</option>
+                                <select name="donusSaat" id="donusSaat" class="form_select" required>
+                                    @{
+                                        foreach (var item in endTimes)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                         </div>
