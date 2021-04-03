@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [AmicaRentDB]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Database [AmicaRentDB]    Script Date: 3.04.2021 23:20:03 ******/
 CREATE DATABASE [AmicaRentDB] ON  PRIMARY 
 ( NAME = N'AmicaRentDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\AmicaRentDB.mdf' , SIZE = 73728KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
@@ -67,7 +67,7 @@ EXEC sys.sp_db_vardecimal_storage_format N'AmicaRentDB', N'ON'
 GO
 USE [AmicaRentDB]
 GO
-/****** Object:  Table [dbo].[Arac]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[Arac]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -95,13 +95,14 @@ CREATE TABLE [dbo].[Arac](
 	[Arac_KoltukSigortasiBitisTarihi] [date] NOT NULL,
 	[Arac_FenniMuayeneGecerlilikTarihi] [date] NOT NULL,
 	[Arac_AsimUcreti] [int] NOT NULL,
+	[Lokasyon_ID] [int] NOT NULL,
  CONSTRAINT [PK_Arac] PRIMARY KEY CLUSTERED 
 (
 	[Arac_ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AracFile]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[AracFile]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -116,7 +117,7 @@ CREATE TABLE [dbo].[AracFile](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AracGrup]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[AracGrup]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -132,7 +133,7 @@ CREATE TABLE [dbo].[AracGrup](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AracKasaTipi]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[AracKasaTipi]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +149,7 @@ CREATE TABLE [dbo].[AracKasaTipi](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AracKredi]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[AracKredi]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -166,7 +167,7 @@ CREATE TABLE [dbo].[AracKredi](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AracMarka]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[AracMarka]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -182,7 +183,7 @@ CREATE TABLE [dbo].[AracMarka](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AracModel]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[AracModel]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -199,7 +200,7 @@ CREATE TABLE [dbo].[AracModel](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AracRenk]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[AracRenk]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -215,7 +216,7 @@ CREATE TABLE [dbo].[AracRenk](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AracYakitTuru]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[AracYakitTuru]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -231,7 +232,7 @@ CREATE TABLE [dbo].[AracYakitTuru](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Banka]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[Banka]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -245,7 +246,7 @@ CREATE TABLE [dbo].[Banka](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BankaBilgileri]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[BankaBilgileri]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -263,7 +264,7 @@ CREATE TABLE [dbo].[BankaBilgileri](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Cari]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[Cari]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -292,7 +293,7 @@ CREATE TABLE [dbo].[Cari](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CariEhliyet]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[CariEhliyet]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -314,7 +315,7 @@ CREATE TABLE [dbo].[CariEhliyet](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CariSehir]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[CariSehir]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -330,7 +331,7 @@ CREATE TABLE [dbo].[CariSehir](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CariUyruk]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[CariUyruk]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -346,7 +347,7 @@ CREATE TABLE [dbo].[CariUyruk](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[EhliyetSinif]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[EhliyetSinif]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -362,7 +363,7 @@ CREATE TABLE [dbo].[EhliyetSinif](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[EkstraHizmetler]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[EkstraHizmetler]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -379,7 +380,7 @@ CREATE TABLE [dbo].[EkstraHizmetler](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Islem]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[Islem]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -415,7 +416,7 @@ CREATE TABLE [dbo].[Islem](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[IslemFile]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[IslemFile]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -430,7 +431,7 @@ CREATE TABLE [dbo].[IslemFile](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[KanGrubu]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[KanGrubu]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -446,7 +447,7 @@ CREATE TABLE [dbo].[KanGrubu](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[KasaIslem]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[KasaIslem]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -465,7 +466,7 @@ CREATE TABLE [dbo].[KasaIslem](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Kullanici]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[Kullanici]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -484,7 +485,7 @@ CREATE TABLE [dbo].[Kullanici](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[KullaniciRolIliskileri]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[KullaniciRolIliskileri]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -499,7 +500,7 @@ CREATE TABLE [dbo].[KullaniciRolIliskileri](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[KullaniciRolTanimlari]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[KullaniciRolTanimlari]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -515,7 +516,7 @@ CREATE TABLE [dbo].[KullaniciRolTanimlari](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Lokasyon]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[Lokasyon]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -532,7 +533,7 @@ CREATE TABLE [dbo].[Lokasyon](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[OdemeTipi]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[OdemeTipi]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -548,7 +549,29 @@ CREATE TABLE [dbo].[OdemeTipi](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Servis]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[RezervasyonOnKayit]    Script Date: 3.04.2021 23:20:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RezervasyonOnKayit](
+	[RezervasyonOnKayit_ID] [int] NOT NULL,
+	[RezervasyonOnKayit_Ad] [nvarchar](50) NOT NULL,
+	[RezervasyonOnKayit_Soyad] [nvarchar](50) NOT NULL,
+	[RezervasyonOnKayit_email] [nvarchar](200) NOT NULL,
+	[RezervasyonOnKayit_telefon] [nvarchar](50) NOT NULL,
+	[RezervasyonOnKayit_AlisTarihi] [date] NOT NULL,
+	[RezervasyonOnKayit_AlisSaati] [time](7) NOT NULL,
+	[RezervasyonOnKayit_TeslimTarihi] [date] NOT NULL,
+	[RezervasyonOnKayit_TeslimSaati] [time](7) NOT NULL,
+	[RezervasyonOnKayit_AlisLokasyonID] [int] NOT NULL,
+	[RezervasyonOnKayit_TeslimLokasyonID] [int] NOT NULL,
+	[RezervasyonOnKayit_AracID] [int] NOT NULL,
+	[RezervasyonOnKayit_Durum] [int] NOT NULL,
+	[RezervasyonOnKayit_Not] [nvarchar](500) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Servis]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -568,7 +591,7 @@ CREATE TABLE [dbo].[Servis](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ServisFirma]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[ServisFirma]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -590,7 +613,7 @@ CREATE TABLE [dbo].[ServisFirma](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SysFile]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  Table [dbo].[SysFile]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -607,32 +630,48 @@ CREATE TABLE [dbo].[SysFile](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewAracList]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  View [dbo].[viewAracList]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-
-
-
-CREATE     VIEW [dbo].[viewAracList]
+CREATE   VIEW [dbo].[viewAracList]
 AS
-SELECT        dbo.Arac.Arac_ID,dbo.Arac.Arac_Status, dbo.AracGrup.AracGrup_Adi, dbo.AracMarka.AracMarka_Adi, dbo.AracModel.AracModel_Adi, dbo.Arac.Arac_Yil, dbo.AracYakitTuru.AracYakitTuru_Adi, 
-CASE WHEN dbo.Arac.Arac_VitesTipi= 1 THEN 'OTOMATİK' ELSE 'MANUEL' END AS VitesTipi, dbo.AracKasaTipi.AracKasaTipi_Adi, CASE WHEN dbo.Arac.AracKlimaDurumu = 1 THEN 'Klimalı' ELSE 'Klimasız' END AS KlimaDurumu, 
-dbo.Arac.AracPlakaNo, dbo.Arac.AracGuncelKM, dbo.Arac.AracMotorNo, dbo.Arac.AracSaseNo, dbo.Arac.AracRuhsatSeriNo, dbo.AracRenk.AracRenk_Adi, dbo.Arac.AracKiralamaDurumu,
-                         CASE WHEN dbo.Arac.AracKiralamaDurumu = 0 THEN 'Boşta' WHEN dbo.Arac.AracKiralamaDurumu = 1 THEN 'Müşteride' WHEN dbo.Arac.AracKiralamaDurumu = 2 THEN 'Pasif Araç' WHEN dbo.Arac.AracKiralamaDurumu = 3 THEN
-                          'Arızalı/Serviste' WHEN dbo.Arac.AracKiralamaDurumu = 4 THEN
-                          'Rezervasyon Yapıldı' END AS KiralamaDurumu, dbo.Arac.Arac_TrafikSigortasiBitisTarihi, dbo.Arac.Arac_KaskoBitisTarihi, dbo.Arac.Arac_KoltukSigortasiBitisTarihi, dbo.Arac.Arac_FenniMuayeneGecerlilikTarihi
-FROM            dbo.Arac INNER JOIN
-                         dbo.AracGrup ON dbo.Arac.AracGrup_ID = dbo.AracGrup.AracGrup_ID INNER JOIN
-                         dbo.AracKasaTipi ON dbo.Arac.AracKasaTipi_ID = dbo.AracKasaTipi.AracKasaTipi_ID INNER JOIN
-                         dbo.AracMarka ON dbo.Arac.AracMarka_ID = dbo.AracMarka.AracMarka_ID INNER JOIN
-                         dbo.AracModel ON dbo.Arac.AracModel_ID = dbo.AracModel.AracModel_ID INNER JOIN
-                         dbo.AracRenk ON dbo.Arac.AracRenk_ID = dbo.AracRenk.AracRenk_ID INNER JOIN
-                         dbo.AracYakitTuru ON dbo.Arac.AracYakitTuru_ID = dbo.AracYakitTuru.AracYakitTuru_ID
+SELECT 
+ dbo.Arac.Arac_ID,
+ dbo.Arac.Arac_Status, 
+ dbo.AracGrup.AracGrup_Adi, 
+ dbo.AracMarka.AracMarka_Adi, 
+ dbo.AracModel.AracModel_Adi, 
+ dbo.Arac.Arac_Yil, 
+ dbo.AracYakitTuru.AracYakitTuru_Adi, 
+ CASE WHEN dbo.Arac.Arac_VitesTipi= 1 THEN 'OTOMATİK' ELSE 'MANUEL' END AS VitesTipi, 
+ dbo.AracKasaTipi.AracKasaTipi_Adi, 
+ CASE WHEN dbo.Arac.AracKlimaDurumu = 1 THEN 'Klimalı' ELSE 'Klimasız' END AS KlimaDurumu, 
+ dbo.Arac.AracPlakaNo, 
+ dbo.Arac.AracGuncelKM, 
+ dbo.Arac.AracMotorNo, 
+ dbo.Arac.AracSaseNo, 
+ dbo.Arac.AracRuhsatSeriNo, 
+ dbo.AracRenk.AracRenk_Adi,
+ dbo.Arac.AracKiralamaDurumu,
+ CASE WHEN dbo.Arac.AracKiralamaDurumu = 0 THEN 'Boşta' WHEN dbo.Arac.AracKiralamaDurumu = 1 THEN 'Müşteride' WHEN dbo.Arac.AracKiralamaDurumu = 2 THEN 'Pasif Araç' WHEN dbo.Arac.AracKiralamaDurumu = 3 THEN 'Arızalı/Serviste' WHEN dbo.Arac.AracKiralamaDurumu = 4 THEN 'Rezervasyon Yapıldı' END AS KiralamaDurumu, 
+ dbo.Arac.Arac_TrafikSigortasiBitisTarihi, 
+ dbo.Arac.Arac_KaskoBitisTarihi, 
+ dbo.Arac.Arac_KoltukSigortasiBitisTarihi, 
+ dbo.Arac.Arac_FenniMuayeneGecerlilikTarihi,
+ dbo.Lokasyon.Lokasyon_Adi
+FROM dbo.Arac 
+	INNER JOIN dbo.AracGrup ON dbo.Arac.AracGrup_ID = dbo.AracGrup.AracGrup_ID 
+	INNER JOIN dbo.AracKasaTipi ON dbo.Arac.AracKasaTipi_ID = dbo.AracKasaTipi.AracKasaTipi_ID 
+	INNER JOIN dbo.AracMarka ON dbo.Arac.AracMarka_ID = dbo.AracMarka.AracMarka_ID 
+	INNER JOIN dbo.AracModel ON dbo.Arac.AracModel_ID = dbo.AracModel.AracModel_ID 
+	INNER JOIN dbo.AracRenk ON dbo.Arac.AracRenk_ID = dbo.AracRenk.AracRenk_ID 
+	INNER JOIN dbo.AracYakitTuru ON dbo.Arac.AracYakitTuru_ID = dbo.AracYakitTuru.AracYakitTuru_ID
+	INNER JOIN dbo.Lokasyon ON dbo.Arac.Lokasyon_ID = dbo.Lokasyon.Lokasyon_ID
 GO
-/****** Object:  View [dbo].[viewAracKredi]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  View [dbo].[viewAracKredi]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -646,7 +685,7 @@ INNER JOIN dbo.viewAracList AS arac ON arac.Arac_ID = kredi.Arac_ID
 INNER JOIN dbo.Banka AS banka ON banka.Banka_ID = kredi.Banka_ID
 WHERE kredi.AracKredi_OdemeTarihi < DATEADD(DAY,7,GETDATE()) AND kredi.AracKredi_Odendi = 0
 GO
-/****** Object:  View [dbo].[viewIslem]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  View [dbo].[viewIslem]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -660,7 +699,7 @@ FROM   dbo.Islem INNER JOIN
              dbo.Cari ON dbo.Islem.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
              dbo.viewAracList ON dbo.Islem.Arac_ID = dbo.viewAracList.Arac_ID
 GO
-/****** Object:  View [dbo].[viewServis]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  View [dbo].[viewServis]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -673,7 +712,7 @@ FROM            dbo.Servis INNER JOIN
                          dbo.ServisFirma ON dbo.Servis.ServisFirma_ID = dbo.ServisFirma.ServisFirma_ID INNER JOIN
                          dbo.viewAracList ON dbo.Servis.Arac_ID = dbo.viewAracList.Arac_ID
 GO
-/****** Object:  View [dbo].[viewAracModel]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  View [dbo].[viewAracModel]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -684,7 +723,7 @@ SELECT        dbo.AracModel.AracModel_ID, dbo.AracModel.AracMarka_ID, dbo.AracMa
 FROM            dbo.AracModel INNER JOIN
                          dbo.AracMarka ON dbo.AracModel.AracMarka_ID = dbo.AracMarka.AracMarka_ID
 GO
-/****** Object:  View [dbo].[viewCari]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  View [dbo].[viewCari]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -699,7 +738,7 @@ FROM   dbo.Cari INNER JOIN
              dbo.CariUyruk ON dbo.Cari.Cari_UyrukID = dbo.CariUyruk.CariUyruk_ID LEFT OUTER JOIN
              dbo.CariEhliyet ON dbo.Cari.Cari_ID = dbo.CariEhliyet.Cari_ID
 GO
-/****** Object:  View [dbo].[viewCariEhliyet]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  View [dbo].[viewCariEhliyet]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -713,7 +752,7 @@ FROM   dbo.CariEhliyet INNER JOIN
              dbo.EhliyetSinif ON dbo.CariEhliyet.EhliyetSinif_ID = dbo.EhliyetSinif.EhliyetSinif_ID INNER JOIN
              dbo.KanGrubu ON dbo.CariEhliyet.KanGrubu_ID = dbo.KanGrubu.KanGrubu_ID
 GO
-/****** Object:  View [dbo].[viewKasaIslem]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  View [dbo].[viewKasaIslem]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -724,7 +763,7 @@ SELECT kasa.KasaIslem_ID, kasa.KasaIslem_Aciklama, CONVERT(varchar, kasa.KasaIsl
 FROM   dbo.KasaIslem AS kasa INNER JOIN
              dbo.OdemeTipi AS odemeTipi ON kasa.OdemeTipi_ID = odemeTipi.OdemeTipi_ID
 GO
-/****** Object:  View [dbo].[viewKullanici]    Script Date: 3.04.2021 16:36:03 ******/
+/****** Object:  View [dbo].[viewKullanici]    Script Date: 3.04.2021 23:20:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -737,13 +776,30 @@ SELECT Kullanici_ID, Kullanici_TamAdi, Kullanici_Adi, Kullanici_Sifre, CONVERT(v
 FROM   dbo.Kullanici
 where Kullanici.Kullanici_Status = 1
 GO
+/****** Object:  View [dbo].[viewRezervasyonOnKayit]    Script Date: 3.04.2021 23:20:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewRezervasyonOnKayit]
+AS
+SELECT dbo.RezervasyonOnKayit.RezervasyonOnKayit_ID, dbo.RezervasyonOnKayit.RezervasyonOnKayit_Ad + ' ' + dbo.RezervasyonOnKayit.RezervasyonOnKayit_Soyad AS Ad_Soyad, dbo.RezervasyonOnKayit.RezervasyonOnKayit_email AS Email, CONVERT(varchar, 
+             dbo.RezervasyonOnKayit.RezervasyonOnKayit_AlisTarihi, 104) AS AlisTarihi, dbo.RezervasyonOnKayit.RezervasyonOnKayit_telefon AS Telefon, CONVERT(varchar, dbo.RezervasyonOnKayit.RezervasyonOnKayit_TeslimTarihi, 104) AS TeslimTarihi, CONVERT(varchar, 
+             dbo.RezervasyonOnKayit.RezervasyonOnKayit_TeslimSaati, 108) AS TeslimSaati, CONVERT(varchar, dbo.RezervasyonOnKayit.RezervasyonOnKayit_AlisSaati, 108) AS AlisSaati, dbo.Arac.AracPlakaNo AS Plaka, dbo.RezervasyonOnKayit.RezervasyonOnKayit_Not, 
+             AlisLokasyon.Lokasyon_Adi AS AlisLokasyonu, TeslimLokasyon.Lokasyon_Adi AS TeslimLokasyonu, 
+             CASE WHEN dbo.RezervasyonOnKayit.RezervasyonOnKayit_Durum = 0 THEN 'BEKLİYOR' WHEN dbo.RezervasyonOnKayit.RezervasyonOnKayit_Durum = 1 THEN 'KABUL EDİLDİ' ELSE 'REDDEDİLDİ' END AS Durum
+FROM   dbo.RezervasyonOnKayit INNER JOIN
+             dbo.Lokasyon AS AlisLokasyon ON dbo.RezervasyonOnKayit.RezervasyonOnKayit_AlisLokasyonID = AlisLokasyon.Lokasyon_ID INNER JOIN
+             dbo.Lokasyon AS TeslimLokasyon ON dbo.RezervasyonOnKayit.RezervasyonOnKayit_TeslimLokasyonID = TeslimLokasyon.Lokasyon_ID INNER JOIN
+             dbo.Arac ON dbo.RezervasyonOnKayit.RezervasyonOnKayit_AracID = dbo.Arac.Arac_ID
+GO
 SET IDENTITY_INSERT [dbo].[Arac] ON 
 GO
-INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi], [Arac_AsimUcreti]) VALUES (6, 1, 1, 1, N'2018', 2, 1, 1, 1, N'34 MRC 04', 12850, N'MTR123456789', N'SAS45678901234567', N'RHS123456789', 1, 1, 0, CAST(N'2021-12-01' AS Date), CAST(N'2021-12-01' AS Date), CAST(N'2021-12-01' AS Date), CAST(N'2021-12-01' AS Date), 25)
+INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi], [Arac_AsimUcreti], [Lokasyon_ID]) VALUES (6, 1, 1, 1, N'2018', 2, 1, 1, 1, N'34 MRC 04', 12850, N'MTR123456789', N'SAS45678901234567', N'RHS123456789', 1, 1, 0, CAST(N'2021-12-01' AS Date), CAST(N'2021-12-01' AS Date), CAST(N'2021-12-01' AS Date), CAST(N'2021-12-01' AS Date), 25, 3)
 GO
-INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi], [Arac_AsimUcreti]) VALUES (7, 1, 2, 5, N'2017', 2, 1, 3, 1, N'34 BMW 01', 22000, N'MTR113456789', N'SAS45678901234566', N'RHS123456788', 1, 2, 4, CAST(N'2021-10-30' AS Date), CAST(N'2021-10-30' AS Date), CAST(N'2021-10-30' AS Date), CAST(N'2021-10-30' AS Date), 22)
+INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi], [Arac_AsimUcreti], [Lokasyon_ID]) VALUES (7, 1, 2, 5, N'2017', 2, 1, 3, 1, N'34 BMW 01', 22000, N'MTR113456789', N'SAS45678901234566', N'RHS123456788', 1, 2, 4, CAST(N'2021-10-30' AS Date), CAST(N'2021-10-30' AS Date), CAST(N'2021-10-30' AS Date), CAST(N'2021-10-30' AS Date), 22, 1)
 GO
-INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi], [Arac_AsimUcreti]) VALUES (8, 3, 5, 9, N'2017', 2, 1, 1, 1, N'34 EGA 22', 61500, N'MTR123456787', N'SAS45678901234565', N'RHS123456787', 1, 1, 0, CAST(N'2021-07-07' AS Date), CAST(N'2021-07-07' AS Date), CAST(N'2021-07-07' AS Date), CAST(N'2021-07-07' AS Date), 14)
+INSERT [dbo].[Arac] ([Arac_ID], [AracGrup_ID], [AracMarka_ID], [AracModel_ID], [Arac_Yil], [AracYakitTuru_ID], [Arac_VitesTipi], [AracKasaTipi_ID], [AracKlimaDurumu], [AracPlakaNo], [AracGuncelKM], [AracMotorNo], [AracSaseNo], [AracRuhsatSeriNo], [Arac_Status], [AracRenk_ID], [AracKiralamaDurumu], [Arac_TrafikSigortasiBitisTarihi], [Arac_KaskoBitisTarihi], [Arac_KoltukSigortasiBitisTarihi], [Arac_FenniMuayeneGecerlilikTarihi], [Arac_AsimUcreti], [Lokasyon_ID]) VALUES (8, 3, 5, 9, N'2017', 2, 1, 1, 1, N'34 EGA 22', 61500, N'MTR123456787', N'SAS45678901234565', N'RHS123456787', 1, 1, 0, CAST(N'2021-07-07' AS Date), CAST(N'2021-07-07' AS Date), CAST(N'2021-07-07' AS Date), CAST(N'2021-07-07' AS Date), 14, 4)
 GO
 SET IDENTITY_INSERT [dbo].[Arac] OFF
 GO
@@ -1226,65 +1282,67 @@ SET IDENTITY_INSERT [dbo].[KasaIslem] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Kullanici] ON 
 GO
-INSERT [dbo].[Kullanici] ([Kullanici_ID], [Kullanici_TamAdi], [Kullanici_Adi], [Kullanici_Sifre], [Kullanici_SonGirisZamani], [Kullanici_Status], [Kullanici_CreateDate]) VALUES (1, N'Said Yeter', N'saidyeter', N'fEqNCco3Yq9h5ZUglD3CZJT4lBs=', CAST(N'2021-04-03T16:04:18.950' AS DateTime), 1, CAST(N'2020-11-28T16:29:04.990' AS DateTime))
+INSERT [dbo].[Kullanici] ([Kullanici_ID], [Kullanici_TamAdi], [Kullanici_Adi], [Kullanici_Sifre], [Kullanici_SonGirisZamani], [Kullanici_Status], [Kullanici_CreateDate]) VALUES (1, N'Said Yeter', N'saidyeter', N'fEqNCco3Yq9h5ZUglD3CZJT4lBs=', CAST(N'2021-04-03T22:54:51.700' AS DateTime), 1, CAST(N'2020-11-28T16:29:04.990' AS DateTime))
 GO
 SET IDENTITY_INSERT [dbo].[Kullanici] OFF
 GO
 SET IDENTITY_INSERT [dbo].[KullaniciRolIliskileri] ON 
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (81, 1, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (108, 1, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (82, 2, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (109, 2, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (83, 3, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (110, 3, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (84, 4, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (111, 4, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (85, 5, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (112, 5, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (86, 6, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (113, 6, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (87, 7, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (114, 7, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (88, 8, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (115, 8, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (89, 9, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (116, 9, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (90, 10, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (117, 10, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (91, 11, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (118, 11, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (92, 12, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (119, 12, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (93, 13, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (120, 13, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (94, 14, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (121, 14, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (95, 15, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (122, 15, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (96, 16, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (123, 16, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (97, 17, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (124, 17, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (98, 18, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (125, 18, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (99, 19, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (126, 19, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (100, 20, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (127, 20, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (101, 21, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (128, 21, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (102, 22, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (129, 22, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (103, 23, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (130, 23, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (104, 24, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (131, 24, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (105, 25, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (132, 25, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (106, 26, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (133, 26, 1)
 GO
-INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (107, 27, 1)
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (134, 27, 1)
+GO
+INSERT [dbo].[KullaniciRolIliskileri] ([RolIliski_ID], [Rol_ID], [Kullanici_ID]) VALUES (135, 28, 1)
 GO
 SET IDENTITY_INSERT [dbo].[KullaniciRolIliskileri] OFF
 GO
@@ -1343,6 +1401,8 @@ GO
 INSERT [dbo].[KullaniciRolTanimlari] ([Rol_ID], [Rol_Adi], [Rol_Aciklama], [Rol_Kategori]) VALUES (26, N'BankaBilgileri', N'Banka Bilgileri', 9)
 GO
 INSERT [dbo].[KullaniciRolTanimlari] ([Rol_ID], [Rol_Adi], [Rol_Aciklama], [Rol_Kategori]) VALUES (27, N'KasaIslem', N'KasaIslem', 9)
+GO
+INSERT [dbo].[KullaniciRolTanimlari] ([Rol_ID], [Rol_Adi], [Rol_Aciklama], [Rol_Kategori]) VALUES (28, N'RezervasyonOnKayit', N'Rezervasyon talepleri', 9)
 GO
 SET IDENTITY_INSERT [dbo].[KullaniciRolTanimlari] OFF
 GO
@@ -1459,1221 +1519,6 @@ GO
 ALTER TABLE [dbo].[ServisFirma] ADD  CONSTRAINT [DF_ServisFirma_ServisFirma_CreateDate]  DEFAULT (getdate()) FOR [ServisFirma_CreateDate]
 GO
 ALTER TABLE [dbo].[ServisFirma] ADD  CONSTRAINT [DF_ServisFirma_ServisFirma_Status]  DEFAULT ((1)) FOR [ServisFirma_Status]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Klimalı 0: Klimasız' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Arac', @level2type=N'COLUMN',@level2name=N'AracKlimaDurumu'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Arac', @level2type=N'COLUMN',@level2name=N'Arac_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 :Boş 1: Müşteride 2: Pasif Araç 3: Arızalı/Serviste ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Arac', @level2type=N'COLUMN',@level2name=N'AracKiralamaDurumu'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AracGrup', @level2type=N'COLUMN',@level2name=N'AracGrup_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AracKasaTipi', @level2type=N'COLUMN',@level2name=N'AracKasaTipi_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0 : Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AracMarka', @level2type=N'COLUMN',@level2name=N'AracMarka_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AracModel', @level2type=N'COLUMN',@level2name=N'AracModel_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AracRenk', @level2type=N'COLUMN',@level2name=N'AracRenk_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0 : Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AracYakitTuru', @level2type=N'COLUMN',@level2name=N'AracYakitTuru_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'TC Kimlik ve Pasaport Numarası Girilebilir. Uyruk TC ise numara TC Kimlik numarasıdır.' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Cari', @level2type=N'COLUMN',@level2name=N'Cari_IDNumber'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Erkek 0: Kadın' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Cari', @level2type=N'COLUMN',@level2name=N'Cari_Cinsiyet'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CariSehir', @level2type=N'COLUMN',@level2name=N'CariSehir_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CariUyruk', @level2type=N'COLUMN',@level2name=N'CariUyruk_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'EhliyetSinif', @level2type=N'COLUMN',@level2name=N'EhliyetSinif_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'EkstraHizmetler', @level2type=N'COLUMN',@level2name=N'EkstraHizmetler_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1 : Rezervasyon 2: Kiralama ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Islem', @level2type=N'COLUMN',@level2name=N'Islem_Tipi'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Islem', @level2type=N'COLUMN',@level2name=N'Islem_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'KanGrubu', @level2type=N'COLUMN',@level2name=N'KanGrubu_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Kullanici', @level2type=N'COLUMN',@level2name=N'Kullanici_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 : Teslimat Lokasyonu 1: İade Lokasyonu 2: Her ikiside' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Lokasyon', @level2type=N'COLUMN',@level2name=N'Lokasyon_Tipi'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Lokasyon', @level2type=N'COLUMN',@level2name=N'Lokasyon_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OdemeTipi', @level2type=N'COLUMN',@level2name=N'OdemeTipi_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1: Aktif 0: Pasif' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'ServisFirma', @level2type=N'COLUMN',@level2name=N'ServisFirma_Status'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "kredi"
-            Begin Extent = 
-               Top = 9
-               Left = 57
-               Bottom = 301
-               Right = 360
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "arac"
-            Begin Extent = 
-               Top = 9
-               Left = 401
-               Bottom = 298
-               Right = 772
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "banka"
-            Begin Extent = 
-               Top = 9
-               Left = 829
-               Bottom = 152
-               Right = 1051
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracKredi'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracKredi'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'yFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 21
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracList'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracList'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "AracModel"
-            Begin Extent = 
-               Top = 6
-               Left = 38
-               Bottom = 193
-               Right = 248
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "AracMarka"
-            Begin Extent = 
-               Top = 6
-               Left = 286
-               Bottom = 136
-               Right = 495
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 9
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracModel'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewAracModel'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "Cari"
-            Begin Extent = 
-               Top = 15
-               Left = 352
-               Bottom = 309
-               Right = 537
-            End
-            DisplayFlags = 280
-            TopColumn = 10
-         End
-         Begin Table = "CariSehir"
-            Begin Extent = 
-               Top = 6
-               Left = 575
-               Bottom = 136
-               Right = 774
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "CariUyruk"
-            Begin Extent = 
-               Top = 20
-               Left = 82
-               Bottom = 150
-               Right = 286
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "CariEhliyet"
-            Begin Extent = 
-               Top = 144
-               Left = 764
-               Bottom = 341
-               Right = 1082
-            End
-            DisplayFlags = 280
-            TopColumn = 1
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 14
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCari'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCari'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCari'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "CariEhliyet"
-            Begin Extent = 
-               Top = 6
-               Left = 38
-               Bottom = 269
-               Right = 274
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "Cari"
-            Begin Extent = 
-               Top = 6
-               Left = 312
-               Bottom = 136
-               Right = 497
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "EhliyetSinif"
-            Begin Extent = 
-               Top = 6
-               Left = 535
-               Bottom = 136
-               Right = 745
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "KanGrubu"
-            Begin Extent = 
-               Top = 6
-               Left = 783
-               Bottom = 136
-               Right = 988
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 9
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCariEhliyet'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCariEhliyet'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCariEhliyet'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1[50] 2[25] 3) )"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 2
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "Islem"
-            Begin Extent = 
-               Top = 6
-               Left = 38
-               Bottom = 424
-               Right = 348
-            End
-            DisplayFlags = 280
-            TopColumn = 12
-         End
-         Begin Table = "Cari"
-            Begin Extent = 
-               Top = 88
-               Left = 318
-               Bottom = 210
-               Right = 503
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "viewAracList"
-            Begin Extent = 
-               Top = 6
-               Left = 543
-               Bottom = 404
-               Right = 816
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 27
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      PaneHidden = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-  ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewIslem'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'       SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewIslem'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewIslem'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "kasa"
-            Begin Extent = 
-               Top = 9
-               Left = 57
-               Bottom = 206
-               Right = 333
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "odemeTipi"
-            Begin Extent = 
-               Top = 9
-               Left = 390
-               Bottom = 206
-               Right = 675
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewKasaIslem'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewKasaIslem'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "Kullanici"
-            Begin Extent = 
-               Top = 9
-               Left = 57
-               Bottom = 363
-               Right = 354
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewKullanici'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewKullanici'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1 [50] 4 [25] 3))"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1 [75] 4))"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 0
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "Servis"
-            Begin Extent = 
-               Top = 6
-               Left = 38
-               Bottom = 136
-               Right = 232
-            End
-            DisplayFlags = 280
-            TopColumn = 4
-         End
-         Begin Table = "ServisFirma"
-            Begin Extent = 
-               Top = 145
-               Left = 291
-               Bottom = 275
-               Right = 503
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "viewAracList"
-            Begin Extent = 
-               Top = 6
-               Left = 520
-               Bottom = 255
-               Right = 793
-            End
-            DisplayFlags = 280
-            TopColumn = 1
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 9
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewServis'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewServis'
 GO
 USE [master]
 GO
