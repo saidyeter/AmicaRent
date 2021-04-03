@@ -29,5 +29,6 @@ namespace AmicaRent.DataAccess
         public DateTime? Arac_KaskoBitisTarihi { get; set; }
         public DateTime? Arac_KoltukSigortasiBitisTarihi { get; set; }
         public DateTime? Arac_FenniMuayeneGecerlilikTarihi { get; set; }
+        public string Lokasyon_Adi { get; set; }
     }
 }
