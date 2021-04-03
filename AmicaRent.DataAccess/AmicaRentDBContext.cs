@@ -45,6 +45,7 @@ namespace AmicaRent.DataAccess
         public virtual DbSet<OdemeTipi> OdemeTipi { get; set; }
         public virtual DbSet<Servis> Servis { get; set; }
         public virtual DbSet<ServisFirma> ServisFirma { get; set; }
+        public virtual DbSet<RezervasyonOnKayit> RezervasyonOnKayit { get; set; }
         public virtual DbSet<viewAracList> viewAracList { get; set; }
         public virtual DbSet<viewAracModel> viewAracModel { get; set; }
         public virtual DbSet<viewCari> viewCari { get; set; }
@@ -54,6 +55,7 @@ namespace AmicaRent.DataAccess
         public virtual DbSet<viewAracKredi> viewAracKredi { get; set; }
         public virtual DbSet<viewKullanici> viewKullanici { get; set; }
         public virtual DbSet<viewKasaIslem> viewKasaIslem { get; set; }
+        public virtual DbSet<viewRezervasyonOnKayit> viewRezervasyonOnKayit { get; set; }
     }
 
 }

@@ -59,9 +59,25 @@ namespace WebApplication.Controllers
         }
 
         // GET: Cari/Create
-        public ActionResult Create()
+        public ActionResult Create(int? RezervasyonOnKayitId)
         {
-            return View();
+            if (RezervasyonOnKayitId is null)
+            {
+                return View();
+            }
+            RezervasyonOnKayit rezervasyonOnKayit = db.RezervasyonOnKayit.Find(RezervasyonOnKayitId);
+            if (rezervasyonOnKayit is null)
+            {
+                return View();
+            }
+            CariViewModel model = new CariViewModel
+            {
+                Cari_AdSoyad = rezervasyonOnKayit.RezervasyonOnKayit_Ad + " " + rezervasyonOnKayit.RezervasyonOnKayit_Soyad,
+                Cari_MobilTelefon = rezervasyonOnKayit.RezervasyonOnKayit_telefon,
+                Cari_EpostaAdresi = rezervasyonOnKayit.RezervasyonOnKayit_email,
+                
+            };
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

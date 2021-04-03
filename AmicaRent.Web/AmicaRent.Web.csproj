@@ -184,6 +184,7 @@
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\LokasyonController.cs" />
     <Compile Include="Controllers\OdemeTipiController.cs" />
+    <Compile Include="Controllers\RezervasyonOnKayitController.cs" />
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Controllers\ServisController.cs" />
     <Compile Include="Controllers\ServisFirmaController.cs" />
@@ -894,6 +895,7 @@
     <Content Include="Views\KasaIslem\Index.cshtml" />
     <Content Include="Views\KasaIslem\Create.cshtml" />
     <Content Include="Views\Islem\IndexState.cshtml" />
+    <Content Include="Views\RezervasyonOnKayit\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -75,6 +75,7 @@
     <Compile Include="Model\KullaniciRolTanimlari.cs" />
     <Compile Include="Model\Lokasyon.cs" />
     <Compile Include="Model\OdemeTipi.cs" />
+    <Compile Include="Model\RezervasyonOnKayit.cs" />
     <Compile Include="Model\Servis.cs" />
     <Compile Include="Model\ServisFirma.cs" />
     <Compile Include="Model\SysFile.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Model\viewIslem.cs" />
     <Compile Include="Model\viewKasaIslem.cs" />
     <Compile Include="Model\viewKullanici.cs" />
+    <Compile Include="Model\viewRezervasyonOnKayit.cs" />
     <Compile Include="Model\viewServis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
