@@ -140,7 +140,7 @@ namespace WebApplication.Controllers
             }
             if (ModelState.IsValid)
             {
-
+                var locationId = db.Lokasyon.First().Lokasyon_ID;
                 Arac arac = new Arac
                 {
                     AracGrup_ID = (int)model.AracGrup_ID,
@@ -164,6 +164,7 @@ namespace WebApplication.Controllers
                     Arac_TrafikSigortasiBitisTarihi = (DateTime)model.Arac_TrafikSigortasiBitisTarihi,
                     Arac_VitesTipi = (int)model.Arac_VitesTipi,
                     Arac_Yil = model.Arac_Yil,
+                    Lokasyon_ID = locationId
                 };
                 db.Arac.Add(arac);
                 db.SaveChanges();
@@ -373,8 +374,8 @@ namespace WebApplication.Controllers
             aracKredi.AracKredi_Odendi = true;
 
             Arac arac = db.Arac.Find(aracKredi.Arac_ID);
-            
-            
+
+
             var truncated = $"{arac.AracPlakaNo} plakalı araç için {aracKredi.AracKredi_OdemeTarihi.ToString("dd MM yyyy")} tarihli taksit ödenmiştir";
             if (truncated.Length > 500) { truncated = truncated.Substring(0, 500); }
 
@@ -419,6 +420,22 @@ namespace WebApplication.Controllers
             {
                 throw ex;
             }
+        }
+
+
+        public JsonResult ChangeLocation(int? aracId, int? locationId)
+        {
+            if (aracId is null ||
+                locationId is null ||
+                !db.Arac.Any(x => x.Arac_ID == aracId) ||
+                !db.Lokasyon.Any(x => x.Lokasyon_ID == locationId))
+            {
+                return Json(new { isSuccess = false });
+            }
+            Arac arac = db.Arac.Find(aracId);
+            arac.Lokasyon_ID = (int)locationId;
+            db.SaveChanges();
+            return Json(new { isSuccess = true });
         }
     }
 }

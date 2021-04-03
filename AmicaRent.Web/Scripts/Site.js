@@ -254,7 +254,7 @@ function makeModelSelect2(selector, url, markaSelector) {
             dataType: 'json',
             type: 'Get',
             data: function (params) {
-                console.log(params.term, $(markaSelector).val());
+                //console.log(params.term, $(markaSelector).val());
                 return {
                     q: params.term,
                     markaId: $(markaSelector).val()
@@ -297,4 +297,79 @@ function makeModelSelect2(selector, url, markaSelector) {
 
     })
 
+}
+
+
+
+async function ChangeLocation(aracId) {
+    var locationsUrl = '/Root/LokasyonList'
+    var changeLocationUrl = '/Arac/ChangeLocation'
+
+    var response = await fetch(locationsUrl);
+    var locations = await response.json(); // parses JSON response into native JavaScript objects
+
+    //var select = (`<select class="form-control" id="Lokasyon_ID" ></select>`);
+    var select = '<select class="form-control" id="Lokasyon_ID" >'
+    locations.items.forEach(value => {
+        select += `<option value="${value.id}">${value.text}</option>`
+    })
+    select += "</select>"
+
+    var title = "Lokasyon Değiştir"
+    var modal = $(`
+
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">${title}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                                <label id="lo-id">Lokasyonlar</label>
+                                ${select}
+                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" id='change-location'>Kaydet</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+`);
+    modal.find('#change-location').on('click', async (e) => {
+        var locationId = modal.find('#Lokasyon_ID').val()
+        var requestBody = {
+            aracId,
+            locationId
+        }
+        var response = await fetch(changeLocationUrl, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(requestBody) // body data type must match "Content-Type" header
+        });
+        var data = await response.json(); // parses JSON response into native JavaScript objects
+        modal.modal('hide');
+        if (data.isSuccess) {
+            location.reload()
+        } else {
+            alert("Lokasyon değiştirme HATALI.");
+        }
+    })
+
+    modal.modal('show');
 }
