@@ -6,6 +6,10 @@
     Dictionary<int, string> cinsiyet = new Dictionary<int, string>();
     cinsiyet.Add(1, "Erkek");
     cinsiyet.Add(2, "Kadın");
+
+    Dictionary<int, string> tip = new Dictionary<int, string>();
+    tip.Add(1, "Alıcı");
+    tip.Add(2, "Satıcı");
 }
 @{
     using (Html.BeginForm())
@@ -82,7 +86,11 @@
                                 </div>
                             </div>
                             <div class="col-xs-4">
-
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_Tipi, "Tip", htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.Cari_Tipi, new SelectList(tip, "Key", "Value"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Cari_Tipi, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
@@ -91,10 +99,32 @@
                                     @Html.ValidationMessageFor(model => model.Cari_LokalTelefon, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+                            <div style="clear:both"></div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_VergiDairesi, "Vergi Dairesi", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cari_VergiDairesi, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cari_VergiDairesi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cari_VergiNo, "Vergi Numarası", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Cari_VergiNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cari_VergiNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+
+                            </div>
 
                             <div class="col-xs-12">
 
                             </div>
+
+
+
+
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -218,7 +248,7 @@
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
-            </div> 
+            </div>
 
             <div class="col-xs-12">
                 <div class="box-footer">
