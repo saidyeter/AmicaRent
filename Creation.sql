@@ -1,15 +1,10 @@
 USE [master]
 GO
-/****** Object:  Database [AmicaRentDB]    Script Date: 24.01.2021 02:36:45 ******/
-CREATE DATABASE [AmicaRentDB]
- CONTAINMENT = NONE
- ON  PRIMARY 
+/****** Object:  Database [AmicaRentDB]    Script Date: 3.04.2021 16:36:03 ******/
+CREATE DATABASE [AmicaRentDB] ON  PRIMARY 
 ( NAME = N'AmicaRentDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\AmicaRentDB.mdf' , SIZE = 73728KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
 ( NAME = N'AmicaRentDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\AmicaRentDB_log.ldf' , SIZE = 73728KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT
-GO
-ALTER DATABASE [AmicaRentDB] SET COMPATIBILITY_LEVEL = 140
 GO
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
@@ -68,164 +63,11 @@ ALTER DATABASE [AmicaRentDB] SET PAGE_VERIFY CHECKSUM
 GO
 ALTER DATABASE [AmicaRentDB] SET DB_CHAINING OFF 
 GO
-ALTER DATABASE [AmicaRentDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [AmicaRentDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [AmicaRentDB] SET DELAYED_DURABILITY = DISABLED 
-GO
-ALTER DATABASE [AmicaRentDB] SET ACCELERATED_DATABASE_RECOVERY = OFF  
-GO
 EXEC sys.sp_db_vardecimal_storage_format N'AmicaRentDB', N'ON'
-GO
-ALTER DATABASE [AmicaRentDB] SET QUERY_STORE = OFF
 GO
 USE [AmicaRentDB]
 GO
-/****** Object:  Table [dbo].[KasaIslem]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[KasaIslem](
-	[KasaIslem_ID] [int] IDENTITY(1,1) NOT NULL,
-	[KasaIslem_Aciklama] [nvarchar](500) NOT NULL,
-	[KasaIslem_Tarih] [date] NOT NULL,
-	[KasaIslem_Tipi] [int] NOT NULL,
-	[OdemeTipi_ID] [int] NOT NULL,
-	[KasaIslem_Tutar] [float] NOT NULL,
-	[KasaIslem_CreateDate] [datetime] NOT NULL,
- CONSTRAINT [PK_KasaIslem] PRIMARY KEY CLUSTERED 
-(
-	[KasaIslem_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[OdemeTipi]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[OdemeTipi](
-	[OdemeTipi_ID] [int] IDENTITY(1,1) NOT NULL,
-	[OdemeTipi_Adi] [nvarchar](50) NULL,
-	[OdemeTipi_Status] [int] NOT NULL,
-	[OdemeTipi_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_OdemeTipi] PRIMARY KEY CLUSTERED 
-(
-	[OdemeTipi_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  View [dbo].[viewKasaIslem]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[viewKasaIslem]
-AS
-SELECT kasa.KasaIslem_ID, kasa.KasaIslem_Aciklama, CONVERT(varchar, kasa.KasaIslem_Tarih, 104) AS KasaIslem_Tarih, CASE WHEN kasa.KasaIslem_Tipi = 1 THEN 'GELİR' ELSE 'GİDER' END AS IslemTipi, kasa.KasaIslem_Tutar, odemeTipi.OdemeTipi_Adi
-FROM   dbo.KasaIslem AS kasa INNER JOIN
-             dbo.OdemeTipi AS odemeTipi ON kasa.OdemeTipi_ID = odemeTipi.OdemeTipi_ID
-GO
-/****** Object:  Table [dbo].[AracGrup]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracGrup](
-	[AracGrup_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracGrup_Adi] [nvarchar](50) NOT NULL,
-	[AracGrup_Status] [int] NOT NULL,
-	[AracGrup_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracGrup] PRIMARY KEY CLUSTERED 
-(
-	[AracGrup_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracRenk]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracRenk](
-	[AracRenk_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracRenk_Adi] [nvarchar](50) NOT NULL,
-	[AracRenk_Status] [int] NOT NULL,
-	[AracRenk_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracRenk] PRIMARY KEY CLUSTERED 
-(
-	[AracRenk_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracKasaTipi]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracKasaTipi](
-	[AracKasaTipi_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracKasaTipi_Adi] [nvarchar](50) NULL,
-	[AracKasaTipi_Status] [int] NOT NULL,
-	[AracKasaTipi_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracKasaTipi] PRIMARY KEY CLUSTERED 
-(
-	[AracKasaTipi_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracYakitTuru]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracYakitTuru](
-	[AracYakitTuru_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracYakitTuru_Adi] [nvarchar](50) NOT NULL,
-	[AracYakitTuru_Status] [int] NOT NULL,
-	[AracYakitTuru_CreateDate] [datetime] NOT NULL,
- CONSTRAINT [PK_AracYakitTuru] PRIMARY KEY CLUSTERED 
-(
-	[AracYakitTuru_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracMarka]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracMarka](
-	[AracMarka_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracMarka_Adi] [nvarchar](50) NULL,
-	[AracMarka_Status] [int] NOT NULL,
-	[AracMarka_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracMarka] PRIMARY KEY CLUSTERED 
-(
-	[AracMarka_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[AracModel]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracModel](
-	[AracModel_ID] [int] IDENTITY(1,1) NOT NULL,
-	[AracMarka_ID] [int] NOT NULL,
-	[AracModel_Adi] [nvarchar](50) NOT NULL,
-	[AracModel_Status] [int] NOT NULL,
-	[AracModel_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_AracModel] PRIMARY KEY CLUSTERED 
-(
-	[AracModel_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Arac]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[Arac]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -259,32 +101,54 @@ CREATE TABLE [dbo].[Arac](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewAracList]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[AracFile]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
-
-
-
-CREATE     VIEW [dbo].[viewAracList]
-AS
-SELECT        dbo.Arac.Arac_ID,dbo.Arac.Arac_Status, dbo.AracGrup.AracGrup_Adi, dbo.AracMarka.AracMarka_Adi, dbo.AracModel.AracModel_Adi, dbo.Arac.Arac_Yil, dbo.AracYakitTuru.AracYakitTuru_Adi, 
-CASE WHEN dbo.Arac.Arac_VitesTipi= 1 THEN 'OTOMATİK' ELSE 'MANUEL' END AS VitesTipi, dbo.AracKasaTipi.AracKasaTipi_Adi, CASE WHEN dbo.Arac.AracKlimaDurumu = 1 THEN 'Klimalı' ELSE 'Klimasız' END AS KlimaDurumu, 
-dbo.Arac.AracPlakaNo, dbo.Arac.AracGuncelKM, dbo.Arac.AracMotorNo, dbo.Arac.AracSaseNo, dbo.Arac.AracRuhsatSeriNo, dbo.AracRenk.AracRenk_Adi, dbo.Arac.AracKiralamaDurumu,
-                         CASE WHEN dbo.Arac.AracKiralamaDurumu = 0 THEN 'Boşta' WHEN dbo.Arac.AracKiralamaDurumu = 1 THEN 'Müşteride' WHEN dbo.Arac.AracKiralamaDurumu = 2 THEN 'Pasif Araç' WHEN dbo.Arac.AracKiralamaDurumu = 3 THEN
-                          'Arızalı/Serviste' WHEN dbo.Arac.AracKiralamaDurumu = 4 THEN
-                          'Rezervasyon Yapıldı' END AS KiralamaDurumu, dbo.Arac.Arac_TrafikSigortasiBitisTarihi, dbo.Arac.Arac_KaskoBitisTarihi, dbo.Arac.Arac_KoltukSigortasiBitisTarihi, dbo.Arac.Arac_FenniMuayeneGecerlilikTarihi
-FROM            dbo.Arac INNER JOIN
-                         dbo.AracGrup ON dbo.Arac.AracGrup_ID = dbo.AracGrup.AracGrup_ID INNER JOIN
-                         dbo.AracKasaTipi ON dbo.Arac.AracKasaTipi_ID = dbo.AracKasaTipi.AracKasaTipi_ID INNER JOIN
-                         dbo.AracMarka ON dbo.Arac.AracMarka_ID = dbo.AracMarka.AracMarka_ID INNER JOIN
-                         dbo.AracModel ON dbo.Arac.AracModel_ID = dbo.AracModel.AracModel_ID INNER JOIN
-                         dbo.AracRenk ON dbo.Arac.AracRenk_ID = dbo.AracRenk.AracRenk_ID INNER JOIN
-                         dbo.AracYakitTuru ON dbo.Arac.AracYakitTuru_ID = dbo.AracYakitTuru.AracYakitTuru_ID
+CREATE TABLE [dbo].[AracFile](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Arac_ID] [int] NOT NULL,
+	[SysFile_ID] [int] NOT NULL,
+ CONSTRAINT [PK_AracFile] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AracKredi]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[AracGrup]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracGrup](
+	[AracGrup_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracGrup_Adi] [nvarchar](50) NOT NULL,
+	[AracGrup_Status] [int] NOT NULL,
+	[AracGrup_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracGrup] PRIMARY KEY CLUSTERED 
+(
+	[AracGrup_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracKasaTipi]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracKasaTipi](
+	[AracKasaTipi_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracKasaTipi_Adi] [nvarchar](50) NULL,
+	[AracKasaTipi_Status] [int] NOT NULL,
+	[AracKasaTipi_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracKasaTipi] PRIMARY KEY CLUSTERED 
+(
+	[AracKasaTipi_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracKredi]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -302,7 +166,72 @@ CREATE TABLE [dbo].[AracKredi](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Banka]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[AracMarka]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracMarka](
+	[AracMarka_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracMarka_Adi] [nvarchar](50) NULL,
+	[AracMarka_Status] [int] NOT NULL,
+	[AracMarka_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracMarka] PRIMARY KEY CLUSTERED 
+(
+	[AracMarka_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracModel]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracModel](
+	[AracModel_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracMarka_ID] [int] NOT NULL,
+	[AracModel_Adi] [nvarchar](50) NOT NULL,
+	[AracModel_Status] [int] NOT NULL,
+	[AracModel_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracModel] PRIMARY KEY CLUSTERED 
+(
+	[AracModel_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracRenk]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracRenk](
+	[AracRenk_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracRenk_Adi] [nvarchar](50) NOT NULL,
+	[AracRenk_Status] [int] NOT NULL,
+	[AracRenk_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_AracRenk] PRIMARY KEY CLUSTERED 
+(
+	[AracRenk_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AracYakitTuru]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AracYakitTuru](
+	[AracYakitTuru_ID] [int] IDENTITY(1,1) NOT NULL,
+	[AracYakitTuru_Adi] [nvarchar](50) NOT NULL,
+	[AracYakitTuru_Status] [int] NOT NULL,
+	[AracYakitTuru_CreateDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_AracYakitTuru] PRIMARY KEY CLUSTERED 
+(
+	[AracYakitTuru_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Banka]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -316,53 +245,141 @@ CREATE TABLE [dbo].[Banka](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewAracKredi]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[BankaBilgileri]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
-CREATE VIEW [dbo].[viewAracKredi]
-AS
-SELECT kredi.AracKredi_ID, CONVERT(varchar, kredi.AracKredi_OdemeTarihi, 104) AS OdemeTarihi, kredi.AracKredi_KrediTutar, banka.Banka_Adi, arac.AracPlakaNo, arac.AracMarka_Adi, arac.AracModel_Adi, kredi.AracKredi_Odendi, kredi.AracKredi_OdemeTarihi
-FROM   dbo.AracKredi AS kredi 
-INNER JOIN dbo.viewAracList AS arac ON arac.Arac_ID = kredi.Arac_ID 
-INNER JOIN dbo.Banka AS banka ON banka.Banka_ID = kredi.Banka_ID
-WHERE kredi.AracKredi_OdemeTarihi < DATEADD(DAY,7,GETDATE()) AND kredi.AracKredi_Odendi = 0
-GO
-/****** Object:  Table [dbo].[Kullanici]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Kullanici](
-	[Kullanici_ID] [int] IDENTITY(1,1) NOT NULL,
-	[Kullanici_TamAdi] [nvarchar](50) NULL,
-	[Kullanici_Adi] [nvarchar](50) NULL,
-	[Kullanici_Sifre] [nvarchar](50) NULL,
-	[Kullanici_SonGirisZamani] [datetime] NULL,
-	[Kullanici_Status] [int] NOT NULL,
-	[Kullanici_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_Kullanici] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[BankaBilgileri](
+	[BankaBilgileri_ID] [int] IDENTITY(1,1) NOT NULL,
+	[BankaBilgileri_IBAN] [nvarchar](50) NOT NULL,
+	[BankaBilgileri_SubeKodu] [nvarchar](50) NULL,
+	[BankaBilgileri_HesapKodu] [nvarchar](50) NULL,
+	[BankaBilgileri_HesapSahibi] [nvarchar](50) NOT NULL,
+	[BankaBilgileri_BankaID] [int] NOT NULL,
+ CONSTRAINT [PK_BankaBilgileri] PRIMARY KEY CLUSTERED 
 (
-	[Kullanici_ID] ASC
+	[BankaBilgileri_ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewKullanici]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[Cari]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
-/****** Script for SelectTopNRows command from SSMS  ******/
-CREATE VIEW [dbo].[viewKullanici]
-AS
-SELECT Kullanici_ID, Kullanici_TamAdi, Kullanici_Adi, Kullanici_Sifre, CONVERT(varchar, Kullanici_SonGirisZamani, 104) AS SonGirisZamani, CONVERT(varchar, Kullanici_CreateDate, 104) AS OlusturmaZamani
-FROM   dbo.Kullanici
-where Kullanici.Kullanici_Status = 1
+CREATE TABLE [dbo].[Cari](
+	[Cari_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Cari_AdSoyad] [nvarchar](50) NULL,
+	[Cari_UyrukID] [int] NULL,
+	[Cari_IDNumber] [nvarchar](11) NULL,
+	[Cari_Cinsiyet] [int] NULL,
+	[Cari_DogumTarihi] [date] NULL,
+	[Cari_EpostaAdresi] [nvarchar](100) NULL,
+	[Cari_Adres1] [nvarchar](500) NULL,
+	[Cari_Adres2] [nvarchar](500) NULL,
+	[CariSehir_ID] [int] NULL,
+	[Cari_MobilTelefon] [nvarchar](50) NULL,
+	[Cari_LokalTelefon] [nvarchar](50) NULL,
+	[Cari_CreateDate] [datetime] NULL,
+	[Cari_Status] [int] NOT NULL,
+	[Cari_Tipi] [int] NOT NULL,
+	[Cari_VergiNo] [nvarchar](20) NULL,
+	[Cari_VergiDairesi] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Cari] PRIMARY KEY CLUSTERED 
+(
+	[Cari_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Islem]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[CariEhliyet]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CariEhliyet](
+	[CariEhliyet_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Cari_ID] [int] NULL,
+	[CariEhliyet_VerilisTarihi] [date] NULL,
+	[CariEhliyet_GecerlilikTarihi] [date] NULL,
+	[CariEhliyet_VerildigiYer] [nvarchar](50) NULL,
+	[CariEhliyet_DogumYeri] [nvarchar](50) NULL,
+	[CariEhliyet_EhliyetNumarasi] [nvarchar](50) NULL,
+	[EhliyetSinif_ID] [int] NULL,
+	[KanGrubu_ID] [int] NULL,
+	[CariEhliyet_Status] [int] NOT NULL,
+ CONSTRAINT [PK_CariEhliyet] PRIMARY KEY CLUSTERED 
+(
+	[CariEhliyet_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CariSehir]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CariSehir](
+	[CariSehir_ID] [int] IDENTITY(1,1) NOT NULL,
+	[CariSehir_Adi] [nvarchar](50) NULL,
+	[CariSehir_Status] [int] NOT NULL,
+	[CariSehir_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_CariSehir] PRIMARY KEY CLUSTERED 
+(
+	[CariSehir_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CariUyruk]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CariUyruk](
+	[CariUyruk_ID] [int] IDENTITY(1,1) NOT NULL,
+	[CariUyruk_Adi] [nvarchar](50) NULL,
+	[CariUyruk_Status] [int] NOT NULL,
+	[CariUyruk_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_CariUyruk] PRIMARY KEY CLUSTERED 
+(
+	[CariUyruk_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EhliyetSinif]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EhliyetSinif](
+	[EhliyetSinif_ID] [int] IDENTITY(1,1) NOT NULL,
+	[EhliyetSinif_Adi] [nvarchar](50) NULL,
+	[EhliyetSinif_Status] [int] NOT NULL,
+	[EhliyetSinif_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_EhliyetSinif] PRIMARY KEY CLUSTERED 
+(
+	[EhliyetSinif_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EkstraHizmetler]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EkstraHizmetler](
+	[EkstraHizmetler_ID] [int] IDENTITY(1,1) NOT NULL,
+	[EkstraHizmetler_Adi] [nvarchar](50) NULL,
+	[EkstraHizmetler_Ucreti] [float] NULL,
+	[EkstraHizmetler_Status] [int] NOT NULL,
+	[EkstraHizmetler_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_EkstraHizmetler] PRIMARY KEY CLUSTERED 
+(
+	[EkstraHizmetler_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Islem]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -398,47 +415,140 @@ CREATE TABLE [dbo].[Islem](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Cari]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[IslemFile]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Cari](
-	[Cari_ID] [int] IDENTITY(1,1) NOT NULL,
-	[Cari_AdSoyad] [nvarchar](50) NULL,
-	[Cari_UyrukID] [int] NULL,
-	[Cari_IDNumber] [nvarchar](11) NULL,
-	[Cari_Cinsiyet] [int] NULL,
-	[Cari_DogumTarihi] [date] NULL,
-	[Cari_EpostaAdresi] [nvarchar](100) NULL,
-	[Cari_Adres1] [nvarchar](500) NULL,
-	[Cari_Adres2] [nvarchar](500) NULL,
-	[CariSehir_ID] [int] NULL,
-	[Cari_MobilTelefon] [nvarchar](50) NULL,
-	[Cari_LokalTelefon] [nvarchar](50) NULL,
-	[Cari_CreateDate] [datetime] NULL,
-	[Cari_Status] [int] NOT NULL,
- CONSTRAINT [PK_Cari] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[IslemFile](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Islem_ID] [int] NOT NULL,
+	[SysFile_ID] [int] NOT NULL,
+ CONSTRAINT [PK_ServisIslemFile] PRIMARY KEY CLUSTERED 
 (
-	[Cari_ID] ASC
+	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewIslem]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[KanGrubu]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE VIEW [dbo].[viewIslem]
-AS
-SELECT dbo.Islem.Islem_ID, CASE WHEN dbo.Islem.Islem_Tipi = 1 THEN 'Rezervasyon' WHEN dbo.Islem.Islem_Tipi = 2 THEN 'Rezervasyondan Vazgeçti' WHEN dbo.Islem.Islem_Tipi = 3 THEN 'Kiralama' ELSE 'Tamamlandı' END AS IslemTipim, dbo.Cari.Cari_AdSoyad, 
-             dbo.viewAracList.AracGrup_Adi, dbo.viewAracList.AracMarka_Adi, dbo.viewAracList.AracModel_Adi, dbo.viewAracList.Arac_Yil, CONVERT(varchar, dbo.Islem.Islem_BaslangicTarihi, 104) AS BaslangicTarihi, CONVERT(varchar, dbo.Islem.Islem_BitisTarihi, 104) AS BitisTarihi, 
-             dbo.Islem.Islem_GunlukUcret, dbo.Islem.Islem_TahsilEdilen, dbo.Islem.Islem_KalanBorc, dbo.Islem.Islem_Status, dbo.viewAracList.AracPlakaNo, dbo.Islem.Islem_CreateDate, dbo.Islem.Islem_Tipi
-FROM   dbo.Islem INNER JOIN
-             dbo.Cari ON dbo.Islem.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
-             dbo.viewAracList ON dbo.Islem.Arac_ID = dbo.viewAracList.Arac_ID
+CREATE TABLE [dbo].[KanGrubu](
+	[KanGrubu_ID] [int] IDENTITY(1,1) NOT NULL,
+	[KanGrubu_Adi] [nvarchar](50) NULL,
+	[KanGrubu_Status] [int] NOT NULL,
+	[KanGrubu_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_KanGrubu] PRIMARY KEY CLUSTERED 
+(
+	[KanGrubu_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Servis]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[KasaIslem]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[KasaIslem](
+	[KasaIslem_ID] [int] IDENTITY(1,1) NOT NULL,
+	[KasaIslem_Aciklama] [nvarchar](500) NOT NULL,
+	[KasaIslem_Tarih] [date] NOT NULL,
+	[KasaIslem_Tipi] [int] NOT NULL,
+	[OdemeTipi_ID] [int] NOT NULL,
+	[KasaIslem_Tutar] [float] NOT NULL,
+	[KasaIslem_CreateDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_KasaIslem] PRIMARY KEY CLUSTERED 
+(
+	[KasaIslem_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Kullanici]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Kullanici](
+	[Kullanici_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Kullanici_TamAdi] [nvarchar](50) NULL,
+	[Kullanici_Adi] [nvarchar](50) NULL,
+	[Kullanici_Sifre] [nvarchar](50) NULL,
+	[Kullanici_SonGirisZamani] [datetime] NULL,
+	[Kullanici_Status] [int] NOT NULL,
+	[Kullanici_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_Kullanici] PRIMARY KEY CLUSTERED 
+(
+	[Kullanici_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[KullaniciRolIliskileri]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[KullaniciRolIliskileri](
+	[RolIliski_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Rol_ID] [int] NOT NULL,
+	[Kullanici_ID] [int] NOT NULL,
+ CONSTRAINT [PK_KullaniciRolIliskileri] PRIMARY KEY CLUSTERED 
+(
+	[RolIliski_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[KullaniciRolTanimlari]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[KullaniciRolTanimlari](
+	[Rol_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Rol_Adi] [nvarchar](50) NOT NULL,
+	[Rol_Aciklama] [nvarchar](50) NOT NULL,
+	[Rol_Kategori] [int] NOT NULL,
+ CONSTRAINT [PK_KullaniciRolTanimlari] PRIMARY KEY CLUSTERED 
+(
+	[Rol_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Lokasyon]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Lokasyon](
+	[Lokasyon_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Lokasyon_Adi] [nvarchar](50) NULL,
+	[Lokasyon_Tipi] [int] NULL,
+	[Lokasyon_Status] [int] NOT NULL,
+	[Lokasyon_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_Table_2] PRIMARY KEY CLUSTERED 
+(
+	[Lokasyon_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OdemeTipi]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OdemeTipi](
+	[OdemeTipi_ID] [int] IDENTITY(1,1) NOT NULL,
+	[OdemeTipi_Adi] [nvarchar](50) NULL,
+	[OdemeTipi_Status] [int] NOT NULL,
+	[OdemeTipi_CreateDate] [datetime] NULL,
+ CONSTRAINT [PK_OdemeTipi] PRIMARY KEY CLUSTERED 
+(
+	[OdemeTipi_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Servis]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -458,7 +568,7 @@ CREATE TABLE [dbo].[Servis](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ServisFirma]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[ServisFirma]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -480,258 +590,7 @@ CREATE TABLE [dbo].[ServisFirma](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewServis]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[viewServis]
-AS
-SELECT        dbo.Servis.Servis_ID, dbo.viewAracList.AracGrup_Adi, dbo.viewAracList.AracMarka_Adi, dbo.viewAracList.AracModel_Adi, dbo.viewAracList.Arac_Yil, dbo.viewAracList.AracPlakaNo, dbo.Servis.Servis_ServisZamani, 
-                         dbo.ServisFirma.ServisFirma_Adi, dbo.Servis.Servis_Notlar, dbo.Servis.Servis_Ucreti, dbo.Servis.Servis_Status
-FROM            dbo.Servis INNER JOIN
-                         dbo.ServisFirma ON dbo.Servis.ServisFirma_ID = dbo.ServisFirma.ServisFirma_ID INNER JOIN
-                         dbo.viewAracList ON dbo.Servis.Arac_ID = dbo.viewAracList.Arac_ID
-GO
-/****** Object:  View [dbo].[viewAracModel]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[viewAracModel]
-AS
-SELECT        dbo.AracModel.AracModel_ID, dbo.AracModel.AracMarka_ID, dbo.AracMarka.AracMarka_Adi, dbo.AracModel.AracModel_Adi, dbo.AracModel.AracModel_Status, dbo.AracModel.AracModel_CreateDate
-FROM            dbo.AracModel INNER JOIN
-                         dbo.AracMarka ON dbo.AracModel.AracMarka_ID = dbo.AracMarka.AracMarka_ID
-GO
-/****** Object:  Table [dbo].[CariEhliyet]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CariEhliyet](
-	[CariEhliyet_ID] [int] IDENTITY(1,1) NOT NULL,
-	[Cari_ID] [int] NULL,
-	[CariEhliyet_VerilisTarihi] [date] NULL,
-	[CariEhliyet_GecerlilikTarihi] [date] NULL,
-	[CariEhliyet_VerildigiYer] [nvarchar](50) NULL,
-	[CariEhliyet_DogumYeri] [nvarchar](50) NULL,
-	[CariEhliyet_EhliyetNumarasi] [nvarchar](50) NULL,
-	[EhliyetSinif_ID] [int] NULL,
-	[KanGrubu_ID] [int] NULL,
-	[CariEhliyet_Status] [int] NOT NULL,
- CONSTRAINT [PK_CariEhliyet] PRIMARY KEY CLUSTERED 
-(
-	[CariEhliyet_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[EhliyetSinif]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[EhliyetSinif](
-	[EhliyetSinif_ID] [int] IDENTITY(1,1) NOT NULL,
-	[EhliyetSinif_Adi] [nvarchar](50) NULL,
-	[EhliyetSinif_Status] [int] NOT NULL,
-	[EhliyetSinif_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_EhliyetSinif] PRIMARY KEY CLUSTERED 
-(
-	[EhliyetSinif_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[KanGrubu]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[KanGrubu](
-	[KanGrubu_ID] [int] IDENTITY(1,1) NOT NULL,
-	[KanGrubu_Adi] [nvarchar](50) NULL,
-	[KanGrubu_Status] [int] NOT NULL,
-	[KanGrubu_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_KanGrubu] PRIMARY KEY CLUSTERED 
-(
-	[KanGrubu_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  View [dbo].[viewCariEhliyet]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[viewCariEhliyet]
-AS
-SELECT dbo.CariEhliyet.CariEhliyet_ID, dbo.CariEhliyet.Cari_ID, dbo.Cari.Cari_AdSoyad, CONVERT(varchar, dbo.CariEhliyet.CariEhliyet_VerilisTarihi, 104) AS VerilisTarihi, CONVERT(varchar, dbo.CariEhliyet.CariEhliyet_GecerlilikTarihi, 104) AS GecerlilikTarihi, 
-             dbo.CariEhliyet.CariEhliyet_DogumYeri, dbo.CariEhliyet.CariEhliyet_EhliyetNumarasi, dbo.EhliyetSinif.EhliyetSinif_Adi, dbo.KanGrubu.KanGrubu_Adi, dbo.CariEhliyet.CariEhliyet_Status
-FROM   dbo.CariEhliyet INNER JOIN
-             dbo.Cari ON dbo.CariEhliyet.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
-             dbo.EhliyetSinif ON dbo.CariEhliyet.EhliyetSinif_ID = dbo.EhliyetSinif.EhliyetSinif_ID INNER JOIN
-             dbo.KanGrubu ON dbo.CariEhliyet.KanGrubu_ID = dbo.KanGrubu.KanGrubu_ID
-GO
-/****** Object:  Table [dbo].[CariSehir]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CariSehir](
-	[CariSehir_ID] [int] IDENTITY(1,1) NOT NULL,
-	[CariSehir_Adi] [nvarchar](50) NULL,
-	[CariSehir_Status] [int] NOT NULL,
-	[CariSehir_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_CariSehir] PRIMARY KEY CLUSTERED 
-(
-	[CariSehir_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[CariUyruk]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CariUyruk](
-	[CariUyruk_ID] [int] IDENTITY(1,1) NOT NULL,
-	[CariUyruk_Adi] [nvarchar](50) NULL,
-	[CariUyruk_Status] [int] NOT NULL,
-	[CariUyruk_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_CariUyruk] PRIMARY KEY CLUSTERED 
-(
-	[CariUyruk_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  View [dbo].[viewCari]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[viewCari]
-AS
-SELECT dbo.Cari.Cari_ID, dbo.Cari.Cari_Status, dbo.Cari.Cari_AdSoyad, dbo.CariUyruk.CariUyruk_Adi, dbo.Cari.Cari_IDNumber, CASE WHEN dbo.Cari.Cari_Cinsiyet = 1 THEN 'Erkek' ELSE 'Kadın' END AS Cinsiyet, dbo.Cari.Cari_DogumTarihi, dbo.Cari.Cari_EpostaAdresi, 
-             dbo.Cari.Cari_Adres1, dbo.Cari.Cari_Adres2, dbo.CariSehir.CariSehir_Adi, dbo.Cari.Cari_MobilTelefon, dbo.Cari.Cari_LokalTelefon, dbo.Cari.Cari_CreateDate, dbo.CariEhliyet.CariEhliyet_ID
-FROM   dbo.Cari INNER JOIN
-             dbo.CariSehir ON dbo.Cari.CariSehir_ID = dbo.CariSehir.CariSehir_ID INNER JOIN
-             dbo.CariUyruk ON dbo.Cari.Cari_UyrukID = dbo.CariUyruk.CariUyruk_ID LEFT OUTER JOIN
-             dbo.CariEhliyet ON dbo.Cari.Cari_ID = dbo.CariEhliyet.Cari_ID
-GO
-/****** Object:  Table [dbo].[AracFile]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AracFile](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Arac_ID] [int] NOT NULL,
-	[SysFile_ID] [int] NOT NULL,
- CONSTRAINT [PK_AracFile] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[BankaBilgileri]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[BankaBilgileri](
-	[BankaBilgileri_ID] [int] IDENTITY(1,1) NOT NULL,
-	[BankaBilgileri_IBAN] [nvarchar](50) NOT NULL,
-	[BankaBilgileri_SubeKodu] [nvarchar](50) NULL,
-	[BankaBilgileri_HesapKodu] [nvarchar](50) NULL,
-	[BankaBilgileri_HesapSahibi] [nvarchar](50) NOT NULL,
-	[BankaBilgileri_BankaID] [int] NOT NULL,
- CONSTRAINT [PK_BankaBilgileri] PRIMARY KEY CLUSTERED 
-(
-	[BankaBilgileri_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[EkstraHizmetler]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[EkstraHizmetler](
-	[EkstraHizmetler_ID] [int] IDENTITY(1,1) NOT NULL,
-	[EkstraHizmetler_Adi] [nvarchar](50) NULL,
-	[EkstraHizmetler_Ucreti] [float] NULL,
-	[EkstraHizmetler_Status] [int] NOT NULL,
-	[EkstraHizmetler_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_EkstraHizmetler] PRIMARY KEY CLUSTERED 
-(
-	[EkstraHizmetler_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[IslemFile]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[IslemFile](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Islem_ID] [int] NOT NULL,
-	[SysFile_ID] [int] NOT NULL,
- CONSTRAINT [PK_ServisIslemFile] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[KullaniciRolIliskileri]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[KullaniciRolIliskileri](
-	[RolIliski_ID] [int] IDENTITY(1,1) NOT NULL,
-	[Rol_ID] [int] NOT NULL,
-	[Kullanici_ID] [int] NOT NULL,
- CONSTRAINT [PK_KullaniciRolIliskileri] PRIMARY KEY CLUSTERED 
-(
-	[RolIliski_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[KullaniciRolTanimlari]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[KullaniciRolTanimlari](
-	[Rol_ID] [int] IDENTITY(1,1) NOT NULL,
-	[Rol_Adi] [nvarchar](50) NOT NULL,
-	[Rol_Aciklama] [nvarchar](50) NOT NULL,
-	[Rol_Kategori] [int] NOT NULL,
- CONSTRAINT [PK_KullaniciRolTanimlari] PRIMARY KEY CLUSTERED 
-(
-	[Rol_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Lokasyon]    Script Date: 24.01.2021 02:36:45 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Lokasyon](
-	[Lokasyon_ID] [int] IDENTITY(1,1) NOT NULL,
-	[Lokasyon_Adi] [nvarchar](50) NULL,
-	[Lokasyon_Tipi] [int] NULL,
-	[Lokasyon_Status] [int] NOT NULL,
-	[Lokasyon_CreateDate] [datetime] NULL,
- CONSTRAINT [PK_Table_2] PRIMARY KEY CLUSTERED 
-(
-	[Lokasyon_ID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[SysFile]    Script Date: 24.01.2021 02:36:45 ******/
+/****** Object:  Table [dbo].[SysFile]    Script Date: 3.04.2021 16:36:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -747,6 +606,136 @@ CREATE TABLE [dbo].[SysFile](
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[viewAracList]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE     VIEW [dbo].[viewAracList]
+AS
+SELECT        dbo.Arac.Arac_ID,dbo.Arac.Arac_Status, dbo.AracGrup.AracGrup_Adi, dbo.AracMarka.AracMarka_Adi, dbo.AracModel.AracModel_Adi, dbo.Arac.Arac_Yil, dbo.AracYakitTuru.AracYakitTuru_Adi, 
+CASE WHEN dbo.Arac.Arac_VitesTipi= 1 THEN 'OTOMATİK' ELSE 'MANUEL' END AS VitesTipi, dbo.AracKasaTipi.AracKasaTipi_Adi, CASE WHEN dbo.Arac.AracKlimaDurumu = 1 THEN 'Klimalı' ELSE 'Klimasız' END AS KlimaDurumu, 
+dbo.Arac.AracPlakaNo, dbo.Arac.AracGuncelKM, dbo.Arac.AracMotorNo, dbo.Arac.AracSaseNo, dbo.Arac.AracRuhsatSeriNo, dbo.AracRenk.AracRenk_Adi, dbo.Arac.AracKiralamaDurumu,
+                         CASE WHEN dbo.Arac.AracKiralamaDurumu = 0 THEN 'Boşta' WHEN dbo.Arac.AracKiralamaDurumu = 1 THEN 'Müşteride' WHEN dbo.Arac.AracKiralamaDurumu = 2 THEN 'Pasif Araç' WHEN dbo.Arac.AracKiralamaDurumu = 3 THEN
+                          'Arızalı/Serviste' WHEN dbo.Arac.AracKiralamaDurumu = 4 THEN
+                          'Rezervasyon Yapıldı' END AS KiralamaDurumu, dbo.Arac.Arac_TrafikSigortasiBitisTarihi, dbo.Arac.Arac_KaskoBitisTarihi, dbo.Arac.Arac_KoltukSigortasiBitisTarihi, dbo.Arac.Arac_FenniMuayeneGecerlilikTarihi
+FROM            dbo.Arac INNER JOIN
+                         dbo.AracGrup ON dbo.Arac.AracGrup_ID = dbo.AracGrup.AracGrup_ID INNER JOIN
+                         dbo.AracKasaTipi ON dbo.Arac.AracKasaTipi_ID = dbo.AracKasaTipi.AracKasaTipi_ID INNER JOIN
+                         dbo.AracMarka ON dbo.Arac.AracMarka_ID = dbo.AracMarka.AracMarka_ID INNER JOIN
+                         dbo.AracModel ON dbo.Arac.AracModel_ID = dbo.AracModel.AracModel_ID INNER JOIN
+                         dbo.AracRenk ON dbo.Arac.AracRenk_ID = dbo.AracRenk.AracRenk_ID INNER JOIN
+                         dbo.AracYakitTuru ON dbo.Arac.AracYakitTuru_ID = dbo.AracYakitTuru.AracYakitTuru_ID
+GO
+/****** Object:  View [dbo].[viewAracKredi]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[viewAracKredi]
+AS
+SELECT kredi.AracKredi_ID, CONVERT(varchar, kredi.AracKredi_OdemeTarihi, 104) AS OdemeTarihi, kredi.AracKredi_KrediTutar, banka.Banka_Adi, arac.AracPlakaNo, arac.AracMarka_Adi, arac.AracModel_Adi, kredi.AracKredi_Odendi, kredi.AracKredi_OdemeTarihi
+FROM   dbo.AracKredi AS kredi 
+INNER JOIN dbo.viewAracList AS arac ON arac.Arac_ID = kredi.Arac_ID 
+INNER JOIN dbo.Banka AS banka ON banka.Banka_ID = kredi.Banka_ID
+WHERE kredi.AracKredi_OdemeTarihi < DATEADD(DAY,7,GETDATE()) AND kredi.AracKredi_Odendi = 0
+GO
+/****** Object:  View [dbo].[viewIslem]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewIslem]
+AS
+SELECT dbo.Islem.Islem_ID, CASE WHEN dbo.Islem.Islem_Tipi = 1 THEN 'Rezervasyon' WHEN dbo.Islem.Islem_Tipi = 2 THEN 'Rezervasyondan Vazgeçti' WHEN dbo.Islem.Islem_Tipi = 3 THEN 'Kiralama' ELSE 'Tamamlandı' END AS IslemTipim, dbo.Cari.Cari_AdSoyad, 
+             dbo.viewAracList.AracGrup_Adi, dbo.viewAracList.AracMarka_Adi, dbo.viewAracList.AracModel_Adi, dbo.viewAracList.Arac_Yil, CONVERT(varchar, dbo.Islem.Islem_BaslangicTarihi, 104) AS BaslangicTarihi, CONVERT(varchar, dbo.Islem.Islem_BitisTarihi, 104) AS BitisTarihi, 
+             dbo.Islem.Islem_GunlukUcret, dbo.Islem.Islem_TahsilEdilen, dbo.Islem.Islem_KalanBorc, dbo.Islem.Islem_Status, dbo.viewAracList.AracPlakaNo, dbo.Islem.Islem_CreateDate, dbo.Islem.Islem_Tipi
+FROM   dbo.Islem INNER JOIN
+             dbo.Cari ON dbo.Islem.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
+             dbo.viewAracList ON dbo.Islem.Arac_ID = dbo.viewAracList.Arac_ID
+GO
+/****** Object:  View [dbo].[viewServis]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewServis]
+AS
+SELECT        dbo.Servis.Servis_ID, dbo.viewAracList.AracGrup_Adi, dbo.viewAracList.AracMarka_Adi, dbo.viewAracList.AracModel_Adi, dbo.viewAracList.Arac_Yil, dbo.viewAracList.AracPlakaNo, dbo.Servis.Servis_ServisZamani, 
+                         dbo.ServisFirma.ServisFirma_Adi, dbo.Servis.Servis_Notlar, dbo.Servis.Servis_Ucreti, dbo.Servis.Servis_Status
+FROM            dbo.Servis INNER JOIN
+                         dbo.ServisFirma ON dbo.Servis.ServisFirma_ID = dbo.ServisFirma.ServisFirma_ID INNER JOIN
+                         dbo.viewAracList ON dbo.Servis.Arac_ID = dbo.viewAracList.Arac_ID
+GO
+/****** Object:  View [dbo].[viewAracModel]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewAracModel]
+AS
+SELECT        dbo.AracModel.AracModel_ID, dbo.AracModel.AracMarka_ID, dbo.AracMarka.AracMarka_Adi, dbo.AracModel.AracModel_Adi, dbo.AracModel.AracModel_Status, dbo.AracModel.AracModel_CreateDate
+FROM            dbo.AracModel INNER JOIN
+                         dbo.AracMarka ON dbo.AracModel.AracMarka_ID = dbo.AracMarka.AracMarka_ID
+GO
+/****** Object:  View [dbo].[viewCari]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewCari]
+AS
+SELECT dbo.Cari.Cari_ID, dbo.Cari.Cari_Status, dbo.Cari.Cari_AdSoyad, dbo.CariUyruk.CariUyruk_Adi, dbo.Cari.Cari_IDNumber, CASE WHEN dbo.Cari.Cari_Cinsiyet = 1 THEN 'Erkek' ELSE 'Kadın' END AS Cinsiyet, dbo.Cari.Cari_DogumTarihi, dbo.Cari.Cari_EpostaAdresi, 
+             dbo.Cari.Cari_Adres1, dbo.Cari.Cari_Adres2, dbo.CariSehir.CariSehir_Adi, dbo.Cari.Cari_MobilTelefon, dbo.Cari.Cari_LokalTelefon, dbo.Cari.Cari_CreateDate, dbo.CariEhliyet.CariEhliyet_ID, CASE WHEN dbo.Cari.Cari_Tipi = 1 THEN 'Alıcı' ELSE 'Satıcı' END AS Tip, 
+             dbo.Cari.Cari_VergiNo, dbo.Cari.Cari_VergiDairesi
+FROM   dbo.Cari INNER JOIN
+             dbo.CariSehir ON dbo.Cari.CariSehir_ID = dbo.CariSehir.CariSehir_ID INNER JOIN
+             dbo.CariUyruk ON dbo.Cari.Cari_UyrukID = dbo.CariUyruk.CariUyruk_ID LEFT OUTER JOIN
+             dbo.CariEhliyet ON dbo.Cari.Cari_ID = dbo.CariEhliyet.Cari_ID
+GO
+/****** Object:  View [dbo].[viewCariEhliyet]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewCariEhliyet]
+AS
+SELECT dbo.CariEhliyet.CariEhliyet_ID, dbo.CariEhliyet.Cari_ID, dbo.Cari.Cari_AdSoyad, CONVERT(varchar, dbo.CariEhliyet.CariEhliyet_VerilisTarihi, 104) AS VerilisTarihi, CONVERT(varchar, dbo.CariEhliyet.CariEhliyet_GecerlilikTarihi, 104) AS GecerlilikTarihi, 
+             dbo.CariEhliyet.CariEhliyet_DogumYeri, dbo.CariEhliyet.CariEhliyet_EhliyetNumarasi, dbo.EhliyetSinif.EhliyetSinif_Adi, dbo.KanGrubu.KanGrubu_Adi, dbo.CariEhliyet.CariEhliyet_Status
+FROM   dbo.CariEhliyet INNER JOIN
+             dbo.Cari ON dbo.CariEhliyet.Cari_ID = dbo.Cari.Cari_ID INNER JOIN
+             dbo.EhliyetSinif ON dbo.CariEhliyet.EhliyetSinif_ID = dbo.EhliyetSinif.EhliyetSinif_ID INNER JOIN
+             dbo.KanGrubu ON dbo.CariEhliyet.KanGrubu_ID = dbo.KanGrubu.KanGrubu_ID
+GO
+/****** Object:  View [dbo].[viewKasaIslem]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewKasaIslem]
+AS
+SELECT kasa.KasaIslem_ID, kasa.KasaIslem_Aciklama, CONVERT(varchar, kasa.KasaIslem_Tarih, 104) AS KasaIslem_Tarih, CASE WHEN kasa.KasaIslem_Tipi = 1 THEN 'GELİR' ELSE 'GİDER' END AS IslemTipi, kasa.KasaIslem_Tutar, odemeTipi.OdemeTipi_Adi
+FROM   dbo.KasaIslem AS kasa INNER JOIN
+             dbo.OdemeTipi AS odemeTipi ON kasa.OdemeTipi_ID = odemeTipi.OdemeTipi_ID
+GO
+/****** Object:  View [dbo].[viewKullanici]    Script Date: 3.04.2021 16:36:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/****** Script for SelectTopNRows command from SSMS  ******/
+CREATE VIEW [dbo].[viewKullanici]
+AS
+SELECT Kullanici_ID, Kullanici_TamAdi, Kullanici_Adi, Kullanici_Sifre, CONVERT(varchar, Kullanici_SonGirisZamani, 104) AS SonGirisZamani, CONVERT(varchar, Kullanici_CreateDate, 104) AS OlusturmaZamani
+FROM   dbo.Kullanici
+where Kullanici.Kullanici_Status = 1
 GO
 SET IDENTITY_INSERT [dbo].[Arac] ON 
 GO
@@ -947,9 +936,9 @@ SET IDENTITY_INSERT [dbo].[BankaBilgileri] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Cari] ON 
 GO
-INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (7, N'Tolga Mercedesci', 1, N'45865321472', 1, CAST(N'1980-10-28' AS Date), N'TolgaMercedesci@gmail.com', N'Maltepe Ataturk cd No 12 Daire 4', NULL, 41, N'5356215630', NULL, CAST(N'2021-01-24T02:06:51.933' AS DateTime), 1)
+INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status], [Cari_Tipi], [Cari_VergiNo], [Cari_VergiDairesi]) VALUES (7, N'Tolga Mercedesci', 1, N'45865321472', 1, CAST(N'1980-10-28' AS Date), N'TolgaMercedesci@gmail.com', N'Maltepe Ataturk cd No 12 Daire 4', NULL, 41, N'5356215630', NULL, CAST(N'2021-01-24T02:06:51.933' AS DateTime), 1, 1, NULL, NULL)
 GO
-INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status]) VALUES (8, N'Tolga Bmvci', 1, N'22342160594', 1, CAST(N'1988-10-28' AS Date), N'TolgaBmvci@gmail.com', N'Kadiköy Cumh. cd No 33 Daire 8', NULL, 41, N'905334009090', N'903129008191', CAST(N'2021-01-24T02:11:25.037' AS DateTime), 1)
+INSERT [dbo].[Cari] ([Cari_ID], [Cari_AdSoyad], [Cari_UyrukID], [Cari_IDNumber], [Cari_Cinsiyet], [Cari_DogumTarihi], [Cari_EpostaAdresi], [Cari_Adres1], [Cari_Adres2], [CariSehir_ID], [Cari_MobilTelefon], [Cari_LokalTelefon], [Cari_CreateDate], [Cari_Status], [Cari_Tipi], [Cari_VergiNo], [Cari_VergiDairesi]) VALUES (8, N'Tolga Bmvci', 1, N'22342160594', 1, CAST(N'1988-10-28' AS Date), N'TolgaBmvci@gmail.com', N'Kadiköy Cumh. cd No 33 Daire 8', NULL, 41, N'905334009090', N'903129008191', CAST(N'2021-01-24T02:11:25.037' AS DateTime), 1, 1, N'12389123', N'İzmir')
 GO
 SET IDENTITY_INSERT [dbo].[Cari] OFF
 GO
@@ -957,7 +946,7 @@ SET IDENTITY_INSERT [dbo].[CariEhliyet] ON
 GO
 INSERT [dbo].[CariEhliyet] ([CariEhliyet_ID], [Cari_ID], [CariEhliyet_VerilisTarihi], [CariEhliyet_GecerlilikTarihi], [CariEhliyet_VerildigiYer], [CariEhliyet_DogumYeri], [CariEhliyet_EhliyetNumarasi], [EhliyetSinif_ID], [KanGrubu_ID], [CariEhliyet_Status]) VALUES (6, 7, CAST(N'2010-01-01' AS Date), CAST(N'2022-01-01' AS Date), N'Kartal', N'Eskişehir', N'EHL123456789', 6, 2, 1)
 GO
-INSERT [dbo].[CariEhliyet] ([CariEhliyet_ID], [Cari_ID], [CariEhliyet_VerilisTarihi], [CariEhliyet_GecerlilikTarihi], [CariEhliyet_VerildigiYer], [CariEhliyet_DogumYeri], [CariEhliyet_EhliyetNumarasi], [EhliyetSinif_ID], [KanGrubu_ID], [CariEhliyet_Status]) VALUES (7, 8, CAST(N'2009-02-02' AS Date), CAST(N'2023-02-02' AS Date), N'Maltepe', N'Denizli', N'EHL123456788', 6, 3, 1)
+INSERT [dbo].[CariEhliyet] ([CariEhliyet_ID], [Cari_ID], [CariEhliyet_VerilisTarihi], [CariEhliyet_GecerlilikTarihi], [CariEhliyet_VerildigiYer], [CariEhliyet_DogumYeri], [CariEhliyet_EhliyetNumarasi], [EhliyetSinif_ID], [KanGrubu_ID], [CariEhliyet_Status]) VALUES (7, 8, NULL, NULL, N'Maltepe', N'Denizli', N'EHL123456788', 6, 3, 1)
 GO
 SET IDENTITY_INSERT [dbo].[CariEhliyet] OFF
 GO
@@ -1237,7 +1226,7 @@ SET IDENTITY_INSERT [dbo].[KasaIslem] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Kullanici] ON 
 GO
-INSERT [dbo].[Kullanici] ([Kullanici_ID], [Kullanici_TamAdi], [Kullanici_Adi], [Kullanici_Sifre], [Kullanici_SonGirisZamani], [Kullanici_Status], [Kullanici_CreateDate]) VALUES (1, N'Said Yeter', N'saidyeter', N'fEqNCco3Yq9h5ZUglD3CZJT4lBs=', CAST(N'2021-01-24T01:43:47.957' AS DateTime), 1, CAST(N'2020-11-28T16:29:04.990' AS DateTime))
+INSERT [dbo].[Kullanici] ([Kullanici_ID], [Kullanici_TamAdi], [Kullanici_Adi], [Kullanici_Sifre], [Kullanici_SonGirisZamani], [Kullanici_Status], [Kullanici_CreateDate]) VALUES (1, N'Said Yeter', N'saidyeter', N'fEqNCco3Yq9h5ZUglD3CZJT4lBs=', CAST(N'2021-04-03T16:04:18.950' AS DateTime), 1, CAST(N'2020-11-28T16:29:04.990' AS DateTime))
 GO
 SET IDENTITY_INSERT [dbo].[Kullanici] OFF
 GO
@@ -1915,7 +1904,7 @@ Begin DesignProperties =
                Right = 537
             End
             DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 10
          End
          Begin Table = "CariSehir"
             Begin Extent = 
@@ -1980,8 +1969,7 @@ Begin DesignProperties =
          Append = 1400
          NewValue = 1170
          SortType = 1350
-         SortOrder = 1410
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCari'
+         SortOrder = 1410' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewCari'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'
          GroupBy = 1350

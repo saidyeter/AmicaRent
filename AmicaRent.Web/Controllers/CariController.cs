@@ -67,44 +67,48 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CariViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                Cari cari = new Cari
-                {
-                    Cari_CreateDate = DateTime.Now,
-                    Cari_Status = (int)DBStatus.Active,
-                    CariSehir_ID = model.CariSehir_ID,
-                    Cari_Adres1 = model.Cari_Adres1,
-                    Cari_Adres2 = model.Cari_Adres2,
-                    Cari_AdSoyad = model.Cari_AdSoyad,
-                    Cari_Cinsiyet = model.Cari_Cinsiyet,
-                    Cari_DogumTarihi = model.Cari_DogumTarihi,
-                    Cari_EpostaAdresi = model.Cari_EpostaAdresi,
-                    Cari_IDNumber = model.Cari_IDNumber,
-                    Cari_LokalTelefon = model.Cari_LokalTelefon,
-                    Cari_MobilTelefon = model.Cari_MobilTelefon,
-                    Cari_UyrukID = model.Cari_UyrukID,
-                };
-                db.Cari.Add(cari);
-                db.SaveChanges();
-                CariEhliyet cariEhliyet = new CariEhliyet
-                {
-                    Cari_ID = cari.Cari_ID,
-                    CariEhliyet_DogumYeri = model.CariEhliyet_DogumYeri,
-                    CariEhliyet_EhliyetNumarasi = model.CariEhliyet_EhliyetNumarasi,
-                    CariEhliyet_GecerlilikTarihi = model.CariEhliyet_GecerlilikTarihi,
-                    CariEhliyet_Status = (int)DBStatus.Active,
-                    CariEhliyet_VerildigiYer = model.CariEhliyet_VerildigiYer,
-                    CariEhliyet_VerilisTarihi = model.CariEhliyet_VerilisTarihi,
-                    EhliyetSinif_ID = model.EhliyetSinif_ID,
-                    KanGrubu_ID = model.KanGrubu_ID,
-                };
-                db.CariEhliyet.Add(cariEhliyet);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(model);
             }
 
-            return View(model);
+
+            Cari cari = new Cari
+            {
+                Cari_CreateDate = DateTime.Now,
+                Cari_Status = (int)DBStatus.Active,
+                CariSehir_ID = model.CariSehir_ID,
+                Cari_Adres1 = model.Cari_Adres1,
+                Cari_Adres2 = model.Cari_Adres2,
+                Cari_AdSoyad = model.Cari_AdSoyad,
+                Cari_Cinsiyet = model.Cari_Cinsiyet,
+                Cari_DogumTarihi = model.Cari_DogumTarihi,
+                Cari_EpostaAdresi = model.Cari_EpostaAdresi,
+                Cari_IDNumber = model.Cari_IDNumber,
+                Cari_LokalTelefon = model.Cari_LokalTelefon,
+                Cari_MobilTelefon = model.Cari_MobilTelefon,
+                Cari_UyrukID = model.Cari_UyrukID,
+                Cari_Tipi = (int)model.Cari_Tipi,
+                Cari_VergiDairesi = model.Cari_VergiDairesi,
+                Cari_VergiNo = model.Cari_VergiNo
+            };
+            db.Cari.Add(cari);
+            db.SaveChanges();
+            CariEhliyet cariEhliyet = new CariEhliyet
+            {
+                Cari_ID = cari.Cari_ID,
+                CariEhliyet_DogumYeri = model.CariEhliyet_DogumYeri,
+                CariEhliyet_EhliyetNumarasi = model.CariEhliyet_EhliyetNumarasi,
+                CariEhliyet_GecerlilikTarihi = model.CariEhliyet_GecerlilikTarihi,
+                CariEhliyet_Status = (int)DBStatus.Active,
+                CariEhliyet_VerildigiYer = model.CariEhliyet_VerildigiYer,
+                CariEhliyet_VerilisTarihi = model.CariEhliyet_VerilisTarihi,
+                EhliyetSinif_ID = model.EhliyetSinif_ID,
+                KanGrubu_ID = model.KanGrubu_ID,
+            };
+            db.CariEhliyet.Add(cariEhliyet);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Cari/Edit/5
@@ -142,6 +146,9 @@ namespace WebApplication.Controllers
                 CariEhliyet_VerilisTarihi = cariEhliyet.CariEhliyet_VerilisTarihi,
                 EhliyetSinif_ID = cariEhliyet.EhliyetSinif_ID,
                 KanGrubu_ID = cariEhliyet.KanGrubu_ID,
+                Cari_Tipi = cari.Cari_Tipi,
+                Cari_VergiNo = cari.Cari_VergiNo,
+                Cari_VergiDairesi = cari.Cari_VergiDairesi
             };
             ViewBag.EhliyetSinif = db.EhliyetSinif.Find(cariEhliyet.EhliyetSinif_ID).EhliyetSinif_Adi;
             ViewBag.KanGrubu = db.KanGrubu.Find(cariEhliyet.KanGrubu_ID).KanGrubu_Adi;
@@ -177,6 +184,9 @@ namespace WebApplication.Controllers
                 cari.Cari_MobilTelefon = model.Cari_MobilTelefon;
                 cari.Cari_UyrukID = model.Cari_UyrukID;
 
+                cari.Cari_Tipi = (int)model.Cari_Tipi;
+                cari.Cari_VergiNo = model.Cari_VergiNo;
+                cari.Cari_VergiDairesi = model.Cari_VergiDairesi;
 
                 cariEhliyet.Cari_ID = cari.Cari_ID;
                 cariEhliyet.CariEhliyet_DogumYeri = model.CariEhliyet_DogumYeri;

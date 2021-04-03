@@ -24,5 +24,10 @@ namespace WebApplication.Models.ViewModels
         public int? EhliyetSinif_ID { get; set; }
         public int? KanGrubu_ID { get; set; }
         public int CariEhliyet_Status { get; set; }
+
+
+        public int? Cari_Tipi { get; set; }
+        public string Cari_VergiNo { get; set; }
+        public string Cari_VergiDairesi { get; set; }
     }
 }
