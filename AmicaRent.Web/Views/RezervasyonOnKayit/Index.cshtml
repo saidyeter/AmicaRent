@@ -53,10 +53,13 @@
             {
                 "data": "RezervasyonOnKayit_ID",
                 "render": function (data, type, row) {
-                    return
-                        "<a class='fa fa-info task-button' title='Detay' href='/RezervasyonOnKayit/details/" + row.RezervasyonOnKayit_ID + "'></a>" +
-                        "<a class='fa fa-close task-button' title='Reddet' href='/RezervasyonOnKayit/decline/" + row.RezervasyonOnKayit_ID + "'></a>" +
-                        "<a class='fa fa-check task-button' title='Onayla ve Cari Oluşturmaya Git' href='/RezervasyonOnKayit/accept/" + row.RezervasyonOnKayit_ID + "'></a>";
+                    var buttons = "<a class='fa fa-info task-button' title='Detay' href='/RezervasyonOnKayit/details/" + row.RezervasyonOnKayit_ID + "'></a>";
+                    if (row.Durum == "BEKLİYOR") {
+
+                        buttons += "<a class='fa fa-close task-button' title='Reddet' href='/RezervasyonOnKayit/decline/" + row.RezervasyonOnKayit_ID + "'></a>" +
+                            "<a class='fa fa-check task-button' title='Onayla ve Cari Oluşturmaya Git' href='/RezervasyonOnKayit/accept/" + row.RezervasyonOnKayit_ID + "'></a>";
+                    }
+                    return buttons;
                 }
             },
         ];

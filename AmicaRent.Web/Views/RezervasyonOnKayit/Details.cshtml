@@ -1,0 +1,118 @@
+﻿@model AmicaRent.DataAccess.viewRezervasyonOnKayit
+
+@{ ViewBag.Title = "Rezervasyon Ön Kayıt Detay"; }
+
+<div class="form-horizontal">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Rezervasyon Ön Kayıt</h3>
+        </div>
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                Rezervasyon Yaptıran Kişi
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ad_Soyad)
+            </dd>
+
+            <dt>
+                Rezervasyon Yaptıran E Mail
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                Rezervasyon Yaptıran Telefon
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Telefon)
+            </dd>
+
+            <dt>
+                Rezervasyon Notu
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RezervasyonOnKayit_Not)
+            </dd>
+            
+            <dt>
+                Araç Plaka
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Plaka)
+            </dd>
+
+            <dt>
+                Alış Lokasyonu
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AlisLokasyonu)
+            </dd>
+
+            <dt>
+                Alış Tarihi
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AlisTarihi)
+            </dd>
+
+            <dt>
+                Alış Saati
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AlisSaati)
+            </dd>
+
+            <dt>
+                Teslim Lokasyonu
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TeslimLokasyonu)
+            </dd>
+
+            <dt>
+                Teslim Tarihi
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TeslimTarihi)
+            </dd>
+
+            <dt>
+                Teslim Saati
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TeslimSaati)
+            </dd>
+
+
+
+
+        </dl>
+
+
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var menuItem = document.querySelector('#solmenu-operation');
+        menuItem.classList.add('active');
+        var subMenuItem = menuItem.querySelector('#solmenu-operation-liste-rezervasyon');
+        subMenuItem.classList.add('active');
+    });
+</script>

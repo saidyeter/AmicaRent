@@ -1,0 +1,74 @@
+﻿@model AmicaRent.DataAccess.RezervasyonOnKayit
+@{
+    ViewBag.Title = "RezervasyonYap";
+}
+
+<section class="mainpage">
+    @Html.Partial("_Header")
+    <div class="container carlistsearcharea">
+
+        <form method="POST" action="/RezervasyonYap">
+            @Html.HiddenFor(x => x.RezervasyonOnKayit_AracID)
+            @Html.HiddenFor(x => x.RezervasyonOnKayit_AlisLokasyonID)
+            @Html.HiddenFor(x => x.RezervasyonOnKayit_AlisTarihi)
+            @Html.HiddenFor(x => x.RezervasyonOnKayit_AlisSaati)
+            @Html.HiddenFor(x => x.RezervasyonOnKayit_TeslimLokasyonID)
+            @Html.HiddenFor(x => x.RezervasyonOnKayit_TeslimSaati)
+            @Html.HiddenFor(x => x.RezervasyonOnKayit_TeslimTarihi)
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        @if (!string.IsNullOrEmpty(ViewBag.Error))
+                        {
+                            <br />
+                            <label style="background-color:red;color:white;font-weight:bold;">@ViewBag.Error</label>
+                        }
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <br />
+                        @Html.EditorFor(model => model.RezervasyonOnKayit_Ad, new { htmlAttributes = new { @class = "form-control", placeHolder = "Ad" } })
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <br />
+                        @Html.EditorFor(model => model.RezervasyonOnKayit_Soyad, new { htmlAttributes = new { @class = "form-control", placeholder = "Soyad" } })
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <br />
+                        @Html.EditorFor(model => model.RezervasyonOnKayit_email, new { htmlAttributes = new { @class = "form-control", placeholder = "E-Posta" } })
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <br />
+                        @Html.EditorFor(model => model.RezervasyonOnKayit_telefon, new { htmlAttributes = new { @class = "form-control", placeholder = "Telefon" } })
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <br />
+                        @Html.TextAreaFor(model => model.RezervasyonOnKayit_Not, new { @class = "form-control", placeholder = "Not", width = "100%" })
+                    </div>
+                </div>
+                <div class="col-6">
+                    <br />
+                    <button type="submit">
+                        Rezervasyon Yap
+                    </button>
+                    <br />
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

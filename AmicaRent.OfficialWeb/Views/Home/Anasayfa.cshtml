@@ -1,11 +1,14 @@
-﻿@{
+﻿@model AmicaRent.OfficialWeb.Models.AracFiltreViewModel
+
+@{
     var startDays = new List<string>();
     var endDays = new List<string>();
-    for (DateTime i = DateTime.Now; i < DateTime.Now.AddMonths(2); i = i.AddDays(1))
+    for (DateTime i = DateTime.Now; i < DateTime.Now.AddMonths(1); i = i.AddDays(1))
     {
         startDays.Add(i.ToString("dd.MM.yyyy"));
-        endDays.Add(i.ToString("dd.MM.yyyy"));
+        endDays.Add(i.AddDays(1).ToString("dd.MM.yyyy"));
     }
+
 
     var startTimes = new List<string>();
     var endTimes = new List<string>();
@@ -18,7 +21,13 @@
         endTimes.Add(i.ToString("hh:mm"));
     }
 
+    List<AmicaRent.DataAccess.Lokasyon> locationsFromViewBag = ViewBag.Lokasyonlar;
+    Dictionary<int, string> locationList = new Dictionary<int, string>();
 
+    foreach (var lokasyon in locationsFromViewBag)
+    {
+        locationList.Add(lokasyon.Lokasyon_ID, lokasyon.Lokasyon_Adi);
+    }
 }
 <section class="mainpage">
     @Html.Partial("_Header")
@@ -40,83 +49,38 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="" class="form-label">Alış Lokasyonu</label>
-                                <select name="alisLokasyon" id="alisLokasyon" class="form_select" required>
-                                    @{ if (ViewBag.Lokasyonlar != null)
-                                        {
-                                            foreach (var item in (List<AmicaRent.DataAccess.Lokasyon>)ViewBag.Lokasyonlar)
-                                            {
-                                                <option value="@item.Lokasyon_ID">@item.Lokasyon_Adi</option>
-                                            }
-                                        }
-                                    }
-                                </select>
+                                @Html.DropDownListFor(model => model.alisLokasyon, new SelectList(locationList, "Key", "Value"), new { @class = "form_select" })
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="" class="form-label">Dönüş Lokasyonu</label>
-                                <select name="donusLokasyon" id="donusLokasyon" class="form_select" required>
-                                    @{ if (ViewBag.Lokasyonlar != null)
-                                        {
-                                            foreach (var item in (List<AmicaRent.DataAccess.Lokasyon>)ViewBag.Lokasyonlar)
-                                            {
-                                                <option value="@item.Lokasyon_ID">@item.Lokasyon_Adi</option>
-                                            }
-                                        }
-                                    }
-                                </select>
+                                @Html.DropDownListFor(model => model.donusLokasyon, new SelectList(locationList, "Key", "Value"), new { @class = "form_select" })
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Alış Tarihi</label>
-                                <select name="alisGun" id="alisGun" class="form_select" required>
-                                    @{
-                                        foreach (var item in startDays)
-                                        {
-                                            <option value="@item">@item</option>
-                                        }
-                                    }
-                                </select>
+                                @Html.DropDownListFor(model => model.alisGun, new SelectList(startDays), new { @class = "form_select"})
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Alış Saati</label>
-                                <select name="alisSaat" id="alisSaat" class="form_select" required>
-                                    @{
-                                        foreach (var item in startTimes)
-                                        {
-                                            <option value="@item">@item</option>
-                                        }
-                                    }
-                                </select>
+                                @Html.DropDownListFor(model => model.alisSaat, new SelectList(startTimes), new { @class = "form_select" })
+
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Dönüş Tarihi</label>
-                                <select name="donusGun" id="donusGun" class="form_select" required>
-                                    @{
-                                        foreach (var item in endDays)
-                                        {
-                                            <option value="@item">@item</option>
-                                        }
-                                    }
-                                </select>
+                                @Html.DropDownListFor(model => model.donusGun, new SelectList(endDays), new { @class = "form_select" })
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="" class="form-label">Dönüş Saati</label>
-                                <select name="donusSaat" id="donusSaat" class="form_select" required>
-                                    @{
-                                        foreach (var item in endTimes)
-                                        {
-                                            <option value="@item">@item</option>
-                                        }
-                                    }
-                                </select>
+                                @Html.DropDownListFor(model => model.donusSaat, new SelectList(endTimes), new { @class = "form_select" })
                             </div>
                         </div>
                         <div class="col-12">

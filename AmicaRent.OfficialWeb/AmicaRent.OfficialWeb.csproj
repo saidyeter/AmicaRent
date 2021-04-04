@@ -458,6 +458,8 @@
     <Content Include="Views\Home\Iletisim.cshtml" />
     <Content Include="Views\Home\AracListesi.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Home\RezervasyonYap.cshtml" />
+    <Content Include="Views\Home\RezervasyonYapildi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

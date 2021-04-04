@@ -896,6 +896,7 @@
     <Content Include="Views\KasaIslem\Create.cshtml" />
     <Content Include="Views\Islem\IndexState.cshtml" />
     <Content Include="Views\RezervasyonOnKayit\Index.cshtml" />
+    <Content Include="Views\RezervasyonOnKayit\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

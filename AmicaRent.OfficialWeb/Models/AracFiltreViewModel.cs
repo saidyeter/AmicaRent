@@ -1,4 +1,6 @@
-﻿namespace AmicaRent.OfficialWeb.Models
+﻿using System.Collections.Generic;
+
+namespace AmicaRent.OfficialWeb.Models
 {
     public class AracFiltreViewModel
     {
@@ -8,5 +10,7 @@
         public string alisSaat { get; set; }
         public string donusGun { get; set; }
         public string donusSaat { get; set; }
+        public List<AmicaRent.OfficialWeb.Models.AracViewModel> aracList { get; set; }
+
     }
 }
