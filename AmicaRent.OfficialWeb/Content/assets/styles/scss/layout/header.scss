@@ -31,6 +31,19 @@ header {
         flex-wrap: wrap;
         list-style: none;
         justify-content: flex-end;
+
+&.logo {
+    float: left;
+
+li {
+   padding: 0;
+}
+
+    img {
+        height: 5.5rem;
+    }
+}
+
         li {
             padding: 2rem;
 

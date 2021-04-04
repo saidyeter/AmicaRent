@@ -19,17 +19,24 @@
 </div>
 <header>
     <div class="container">
+        <ul class="logo">
+            <li>
+                <a href="/">
+                    <img src="~/Content/assets/images/logo.jpg">
+                </a>
+            </li>
+        </ul>
         <ul>
-            <li @(Request.Path=="/anasayfa" ? " class=selected" : "")>
+            <li @(Request.Path == "/anasayfa" ? " class=selected" : "")>
                 <a href="anasayfa"> Ana Sayfa</a>
             </li>
-            <li @(Request.Path=="/araclistesi" ? " class=selected": "")>
+            <li @(Request.Path == "/araclistesi" ? " class=selected" : "")>
                 <a href="araclistesi"> Araç Listesi</a>
             </li>
-            <li @(Request.Path=="/hakkinda" ?  " class=selected": "")>
+            <li @(Request.Path == "/hakkinda" ? " class=selected" : "")>
                 <a href="hakkinda"> Hakkımızda</a>
             </li>
-            <li @(Request.Path=="/iletisim" ?  " class=selected": "")>
+            <li @(Request.Path == "/iletisim" ? " class=selected" : "")>
                 <a href="iletisim"> İletişim</a>
             </li>
         </ul>
