@@ -49,7 +49,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RezervasyonOnKayit model = db.RezervasyonOnKayit.Find(id);
+            var model = db.viewRezervasyonOnKayit.Find(id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -68,6 +68,7 @@ namespace WebApplication.Controllers
                 return HttpNotFound();
             }
             model.RezervasyonOnKayit_Durum = (int)RezervasyonOnKayitDurum.KabulEdildi;
+            db.SaveChanges();
             return RedirectToAction("Create", "Cari", new { RezervasyonOnKayitId = model.RezervasyonOnKayit_ID });
         }
         public ActionResult Decline(int? id)
@@ -82,6 +83,7 @@ namespace WebApplication.Controllers
                 return HttpNotFound();
             }
             model.RezervasyonOnKayit_Durum = (int)RezervasyonOnKayitDurum.Reddedildi;
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -9,8 +9,8 @@ namespace AmicaRent.OfficialWeb.Models
     {
         public int Arac_ID { get; set; }
         public string MarkaModel { get; set; }
-        public double Fiyat { get; set; }
-        public int Indirim { get; set; }
+        //public double Fiyat { get; set; }
+        //public int Indirim { get; set; }
         public string Yil { get; set; }
         public int KM { get; set; }
         public string YakitTuru { get; set; }
