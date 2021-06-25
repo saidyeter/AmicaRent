@@ -1,13 +1,26 @@
 ﻿@model AmicaRent.OfficialWeb.Models.AracFiltreViewModel
 
 @{
-    var startDays = new List<string>();
-    var endDays = new List<string>();
-    for (DateTime i = DateTime.Now; i < DateTime.Now.AddMonths(1); i = i.AddDays(1))
+    var dayCounts = new Dictionary<int, int>();
+    dayCounts.Add(1, 31);
+    dayCounts.Add(2, 28);
+    dayCounts.Add(3, 31);
+    dayCounts.Add(4, 30);
+    dayCounts.Add(5, 31);
+    dayCounts.Add(6, 30);
+    dayCounts.Add(7, 31);
+    dayCounts.Add(8, 31);
+    dayCounts.Add(9, 30);
+    dayCounts.Add(10, 31);
+    dayCounts.Add(11, 30);
+    dayCounts.Add(12, 31);
+    var days = new List<string>();
+    for (int i = 1; i <= dayCounts[DateTime.Now.Month]; i++)
     {
-        startDays.Add(i.ToString("dd.MM.yyyy"));
-        endDays.Add(i.AddDays(1).ToString("dd.MM.yyyy"));
+        days.Add(i.ToString().PadLeft(2, '0'));
     }
+    var months = Enumerable.Range(1, 12).Select(x => x.ToString().PadLeft(2, '0')).ToList();
+    var years = Enumerable.Range(DateTime.Now.Year, 5).Select(x => x.ToString()).ToList();
 
 
     var startTimes = new List<string>();
@@ -28,6 +41,7 @@
     {
         locationList.Add(lokasyon.Lokasyon_ID, lokasyon.Lokasyon_Adi);
     }
+
 }
 <section class="mainpage">
     @Html.Partial("_Header")
@@ -48,38 +62,58 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="" class="form-label">Alış Lokasyonu</label>
+                                <label class="form-label">Alış Lokasyonu</label>
                                 @Html.DropDownListFor(model => model.alisLokasyon, new SelectList(locationList, "Key", "Value"), new { @class = "form_select" })
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="" class="form-label">Dönüş Lokasyonu</label>
+                                <label class="form-label">Dönüş Lokasyonu</label>
                                 @Html.DropDownListFor(model => model.donusLokasyon, new SelectList(locationList, "Key", "Value"), new { @class = "form_select" })
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-8">
                             <div class="form-group">
-                                <label for="" class="form-label">Alış Tarihi</label>
-                                @Html.DropDownListFor(model => model.alisGun, new SelectList(startDays), new { @class = "form_select"})
+                                <label class="form-label">Alış Tarihi</label>
+                                <div style="display: flex;">
+                                    <div style="flex-grow:2">
+                                        @Html.DropDownListFor(model => model.alisTarihGun, new SelectList(days), new { @class = "form_select" })
+                                    </div>
+                                    <div style="flex-grow:2;padding-left: .5em;">
+                                        @Html.DropDownListFor(model => model.alisTarihAy, new SelectList(months), new { @class = "form_select" })
+                                    </div>
+                                    <div style="flex-grow:3;padding-left: .5em;">
+                                        @Html.DropDownListFor(model => model.alisTarihYil, new SelectList(years), new { @class = "form_select" })
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="" class="form-label">Alış Saati</label>
+                                <label class="form-label">Alış Saati</label>
                                 @Html.DropDownListFor(model => model.alisSaat, new SelectList(startTimes), new { @class = "form_select" })
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label class="form-label">Dönüş Tarihi</label>
 
+                                <div style="display: flex;">
+                                    <div style="flex-grow:2">
+                                        @Html.DropDownListFor(model => model.donusTarihGun, new SelectList(days), new { @class = "form_select" })
+                                    </div>
+                                    <div style="flex-grow:2;padding-left: .5em;">
+                                        @Html.DropDownListFor(model => model.donusTarihAy, new SelectList(months), new { @class = "form_select" })
+                                    </div>
+                                    <div style="flex-grow:3;padding-left: .5em;">
+                                        @Html.DropDownListFor(model => model.donusTarihYil, new SelectList(years), new { @class = "form_select" })
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="" class="form-label">Dönüş Tarihi</label>
-                                @Html.DropDownListFor(model => model.donusGun, new SelectList(endDays), new { @class = "form_select" })
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="" class="form-label">Dönüş Saati</label>
+                                <label class="form-label">Dönüş Saati</label>
                                 @Html.DropDownListFor(model => model.donusSaat, new SelectList(endTimes), new { @class = "form_select" })
                             </div>
                         </div>
@@ -345,13 +379,13 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="" class="form-label">Rezervasyon Numaranız</label>
+                                <label class="form-label">Rezervasyon Numaranız</label>
                                 <input type="text" class="form_control" placeholder="RZV00XXXXX">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="" class="form-label">E-Posta Adresiniz</label>
+                                <label class="form-label">E-Posta Adresiniz</label>
                                 <input type="email" class="form_control" placeholder="Lütfen e-posta adresinizi yazınız...">
                             </div>
                         </div>
@@ -366,3 +400,86 @@
         </div>
     </div>
 </section>
+
+
+
+@section ReservationScripts {
+    <script type="text/javascript">
+        $('.form_select').on('selectric-select', function (event, element, selectric) {
+            if (element.id == "donusTarihAy") {
+                const year = $("#donusTarihYil")
+                var dayCounts = [
+                    { month: 1, dayCount: 31 },
+                    { month: 3, dayCount: 31 },
+                    { month: 4, dayCount: 30 },
+                    { month: 5, dayCount: 31 },
+                    { month: 6, dayCount: 30 },
+                    { month: 7, dayCount: 31 },
+                    { month: 8, dayCount: 31 },
+                    { month: 9, dayCount: 30 },
+                    { month: 10, dayCount: 31 },
+                    { month: 11, dayCount: 30 },
+                    { month: 12, dayCount: 31 },
+                ]
+                if (parseInt(year.val()) % 4 == 0) {
+                    dayCounts.push({ month: 2, dayCount: 29 })
+                } else {
+                    dayCounts.push({ month: 2, dayCount: 28 })
+                }
+
+                const monthInt = parseInt(element.value)
+                const maxday = dayCounts.find(x => x.monthIndex == monthInt).dayCount
+                const day = $("#donusTarihGun")
+                let days = day.children()
+                let lastDayOnUi = parseInt(days[days.length - 1].value)
+                while (maxday < lastDayOnUi) {
+                    day.children()[day.children().length - 1].remove()
+                    days = day.children()
+                    lastDayOnUi = parseInt(days[days.length - 1].value)
+                }
+                while (maxday > lastDayOnUi) {
+                    day.append('<option>' + (lastDayOnUi + 1).toString() + '</option>');
+                    days = day.children()
+                    lastDayOnUi = parseInt(days[days.length - 1].value)
+                }
+                day.selectric("init")
+            } else if (element.id == "alisTarihAy") {
+                const year = $("#alisTarihYil")
+                var dayCounts = [
+                    { month: 1, dayCount: 31 },
+                    { month: 3, dayCount: 31 },
+                    { month: 4, dayCount: 30 },
+                    { month: 5, dayCount: 31 },
+                    { month: 6, dayCount: 30 },
+                    { month: 7, dayCount: 31 },
+                    { month: 8, dayCount: 31 },
+                    { month: 9, dayCount: 30 },
+                    { month: 10, dayCount: 31 },
+                    { month: 11, dayCount: 30 },
+                    { month: 12, dayCount: 31 },
+                ]
+                if (parseInt(year.val()) % 4 == 0) {
+                    dayCounts.push({ month: 2, dayCount: 29 })
+                } else {
+                    dayCounts.push({ month: 2, dayCount: 28 })
+                }
+                const monthInt = parseInt(element.value)
+                const maxday = dayCounts.find(x => x.month == monthInt).dayCount
+                const day = $("#alisTarihGun")
+                let days = day.children()
+                let lastDayOnUi = parseInt(days[days.length - 1].value)
+                while (maxday < lastDayOnUi) {
+                    day.children()[day.children().length - 1].remove()
+                    days = day.children()
+                    lastDayOnUi = parseInt(days[days.length - 1].value)
+                }
+                while (maxday > lastDayOnUi) {
+                    day.append('<option>' + (lastDayOnUi + 1).toString() + '</option>');
+                    days = day.children()
+                    lastDayOnUi = parseInt(days[days.length - 1].value)
+                }
+                day.selectric("init")
+            }
+        });
+    </script>
+}
