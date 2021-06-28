@@ -145,47 +145,6 @@
                     </h2>
                     <div class="carlistsearcharea">
                         <form method="POST" action="/araclistesi">
-
-                            @*<div class="col-12">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Alış Lokasyonu</label>
-                                        @Html.DropDownListFor(model => model.alisLokasyon, new SelectList(locationList, "Key", "Value"), new { @class = "form_select" })
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Dönüş Lokasyonu</label>
-                                        @Html.DropDownListFor(model => model.donusLokasyon, new SelectList(locationList, "Key", "Value"), new { @class = "form_select" })
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Alış Tarihi</label>
-                                        @Html.DropDownListFor(model => model.alisGun, new SelectList(startDays), new { @class = "form_select" })
-
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Alış Saati</label>
-                                        @Html.DropDownListFor(model => model.alisSaat, new SelectList(startTimes), new { @class = "form_select" })
-
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Dönüş Tarihi</label>
-                                        @Html.DropDownListFor(model => model.donusGun, new SelectList(endDays), new { @class = "form_select" })
-
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Dönüş Saati</label>
-                                        @Html.DropDownListFor(model => model.donusSaat, new SelectList(endTimes), new { @class = "form_select" })
-
-                                    </div>
-                                </div>*@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="form-label">Alış Lokasyonu</label>
@@ -263,21 +222,26 @@
 @section ReservationScripts {
     <script type="text/javascript">
         function reservation(aracId) {
-            var alisLokasyon = document.getElementById('alisLokasyon').value
-            var donusLokasyon = document.getElementById('donusLokasyon').value
-            var alisGun = document.getElementById('alisGun').value
-            var alisSaat = document.getElementById('alisSaat').value
-            var donusGun = document.getElementById('donusGun').value
-            var donusSaat = document.getElementById('donusSaat').value
-
-            var opt = `a=${aracId}&al=${alisLokasyon}&dl=${donusLokasyon}&ag=${alisGun}&as=${alisSaat}&dg=${donusGun}&ds=${donusSaat}`;
-            var href = `/RezervasyonYap?o=${btoa(opt)}`
+            const alisLokasyon = document.getElementById('alisLokasyon').value
+            const donusLokasyon = document.getElementById('donusLokasyon').value
+            const alisTarihGun = document.getElementById('alisTarihGun').value
+            const alisTarihAy = document.getElementById('alisTarihAy').value
+            const alisTarihYil = document.getElementById('alisTarihYil').value
+            const donusTarihGun = document.getElementById('donusTarihGun').value
+            const donusTarihAy = document.getElementById('donusTarihAy').value
+            const donusTarihYil = document.getElementById('donusTarihYil').value
+            const alisSaat = document.getElementById('alisSaat').value
+            const donusSaat = document.getElementById('donusSaat').value
+            const alisGun = `${alisTarihGun}.${alisTarihAy}.${alisTarihYil}`
+            const donusGun = `${donusTarihGun}.${donusTarihAy}.${donusTarihYil}`
+            const opt = `a=${aracId}&al=${alisLokasyon}&dl=${donusLokasyon}&ag=${alisGun}&as=${alisSaat}&dg=${donusGun}&ds=${donusSaat}`;
+            const href = `/RezervasyonYap?o=${btoa(opt)}`
             location.href = href
         }
         $('.form_select').on('selectric-select', function (event, element, selectric) {
             if (element.id == "donusTarihAy") {
                 const year = $("#donusTarihYil")
-                var dayCounts = [
+                const dayCounts = [
                     { month: 1, dayCount: 31 },
                     { month: 3, dayCount: 31 },
                     { month: 4, dayCount: 30 },
@@ -314,7 +278,7 @@
                 day.selectric("init")
             } else if (element.id == "alisTarihAy") {
                 const year = $("#alisTarihYil")
-                var dayCounts = [
+                const dayCounts = [
                     { month: 1, dayCount: 31 },
                     { month: 3, dayCount: 31 },
                     { month: 4, dayCount: 30 },
@@ -352,3 +316,10 @@
         });
     </script>
 }
+
+
+
+
+
+
+
